@@ -1,0 +1,1895 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Objetivo – Educação de Qualidade | Colégio e Cursinho</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0d2346;
+      --blue:   #1a4fac;
+      --sky:    #1e8dc1;
+      --gold:   #e8a020;
+      --red:    #c0392b;
+      --light:  #f0f4fb;
+      --white:  #ffffff;
+      --text:   #1a1e2e;
+      --muted:  #5a6478;
+      --border: #dde3f0;
+
+      /* Sombras padronizadas */
+      --shadow-xs:  0 1px 3px rgba(13,35,70,.08);
+      --shadow-sm:  0 2px 8px rgba(13,35,70,.10);
+      --shadow-md:  0 4px 20px rgba(13,35,70,.12);
+      --shadow-lg:  0 8px 32px rgba(13,35,70,.14);
+      --shadow-xl:  0 16px 48px rgba(13,35,70,.18);
+      --shadow-gold: 0 8px 28px rgba(232,160,32,.40);
+
+      /* Border radius padronizados */
+      --r-xs:  6px;
+      --r-sm:  10px;
+      --r-md:  14px;
+      --r-lg:  20px;
+      --r-xl:  28px;
+      --r-full: 9999px;
+
+      /* Transição global */
+      --ease: cubic-bezier(.4,0,.2,1);
+      --dur: .22s;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── TOP BAR ─────────────────────────────────────────── */
+    .topbar {
+      background: var(--navy);
+      color: #9bb3d4;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .03em;
+      padding: .5rem 0;
+    }
+    .topbar-inner {
+      max-width: 1260px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .topbar-left { display: flex; gap: 1.4rem; flex-wrap: wrap; }
+    .topbar-right { display: flex; gap: .75rem; align-items: center; }
+    .topbar a {
+      color: #9bb3d4;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: .35rem;
+      transition: color var(--dur) var(--ease);
+      border-radius: var(--r-xs);
+      padding: .15rem .35rem;
+    }
+    .topbar a:hover { color: var(--gold); }
+    .topbar-cta {
+      background: var(--gold);
+      color: var(--navy) !important;
+      padding: .35rem 1rem;
+      border-radius: var(--r-full);
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(232,160,32,.35);
+      transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease) !important;
+    }
+    .topbar-cta:hover {
+      background: #f5b030 !important;
+      color: var(--navy) !important;
+      box-shadow: 0 4px 14px rgba(232,160,32,.5) !important;
+      transform: translateY(-1px);
+    }
+    .topbar svg { width: 13px; height: 13px; fill: currentColor; flex-shrink: 0; }
+
+    /* ── HEADER / NAV ────────────────────────────────────── */
+    header {
+      background: var(--white);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 2px solid rgba(13,35,70,.08);
+      box-shadow: var(--shadow-md);
+    }
+    .header-inner {
+      max-width: 1260px;
+      margin: 0 auto;
+      padding: .85rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+    .logo svg { height: 48px; width: auto; display: block; transition: opacity var(--dur); }
+    .logo:hover svg { opacity: .85; }
+
+    nav { display: flex; align-items: center; gap: .15rem; }
+    .nav-item { position: relative; }
+    .nav-link {
+      display: block;
+      padding: .6rem .9rem;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--navy);
+      text-decoration: none;
+      border-radius: var(--r-xs);
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+      white-space: nowrap;
+    }
+    .nav-link:hover, .nav-item:hover > .nav-link {
+      background: var(--light);
+      color: var(--blue);
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      min-width: 248px;
+      box-shadow: var(--shadow-xl);
+      z-index: 200;
+      overflow: hidden;
+      padding: .4rem;
+    }
+    .nav-item:hover .dropdown { display: block; animation: dropIn .18s var(--ease); }
+    @keyframes dropIn {
+      from { opacity:0; transform: translateY(-6px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+    .dropdown a {
+      display: flex;
+      align-items: center;
+      padding: .6rem .85rem;
+      font-size: .84rem;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      border-radius: var(--r-xs);
+      transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+      gap: .5rem;
+    }
+    .dropdown a:hover { background: var(--light); color: var(--blue); }
+
+    .btn-area-restrita {
+      background: var(--navy);
+      color: var(--white) !important;
+      padding: .6rem 1.25rem;
+      border-radius: var(--r-full);
+      font-size: .82rem;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      box-shadow: 0 3px 12px rgba(13,35,70,.25);
+      transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+    }
+    .btn-area-restrita:hover {
+      background: var(--blue);
+      box-shadow: 0 6px 20px rgba(26,79,172,.35);
+      transform: translateY(-1px);
+    }
+
+    /* ── HERO ────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 640px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: linear-gradient(120deg, #0d2346 0%, #1a4fac 60%, #1e8dc1 100%);
+    }
+    .hero-bg-pattern {
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(ellipse 80% 80% at 70% 50%, rgba(30,141,193,.35) 0%, transparent 70%),
+        repeating-linear-gradient(45deg, rgba(255,255,255,.03) 0px, rgba(255,255,255,.03) 1px, transparent 1px, transparent 32px);
+    }
+    .hero-badge {
+      position: absolute;
+      top: 2.5rem;
+      right: 2.5rem;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 1.1rem;
+      font-weight: 900;
+      border-radius: 50%;
+      width: 124px;
+      height: 124px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.15;
+      text-align: center;
+      box-shadow: var(--shadow-gold);
+      animation: pulse 3s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); box-shadow: var(--shadow-gold); }
+      50% { transform: scale(1.05); box-shadow: 0 12px 40px rgba(232,160,32,.55); }
+    }
+    .hero-badge span { font-size: .72rem; font-weight: 700; letter-spacing: .1em; }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1260px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 3rem;
+    }
+    .hero-text { color: var(--white); }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      background: rgba(232,160,32,.18);
+      border: 1px solid rgba(232,160,32,.5);
+      color: var(--gold);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .35rem 1rem;
+      border-radius: var(--r-full);
+      margin-bottom: 1.2rem;
+    }
+    .hero-title {
+      font-size: clamp(2.2rem, 4vw, 3.6rem);
+      font-weight: 900;
+      line-height: 1.12;
+      margin-bottom: 1.2rem;
+    }
+    .hero-title em { color: var(--gold); font-style: normal; }
+    .hero-sub {
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: rgba(255,255,255,.78);
+      line-height: 1.75;
+      margin-bottom: 2.2rem;
+      max-width: 460px;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      background: var(--gold);
+      color: var(--navy);
+      padding: .9rem 2rem;
+      border-radius: var(--r-full);
+      font-weight: 800;
+      font-size: .9rem;
+      text-decoration: none;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      box-shadow: var(--shadow-gold);
+      transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+    }
+    .btn-primary:hover {
+      background: #f5b030;
+      box-shadow: 0 10px 32px rgba(232,160,32,.55);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      border: 2px solid rgba(255,255,255,.5);
+      color: var(--white);
+      padding: .88rem 1.8rem;
+      border-radius: var(--r-full);
+      font-weight: 600;
+      font-size: .9rem;
+      text-decoration: none;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      backdrop-filter: blur(4px);
+      transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease), transform var(--dur) var(--ease);
+    }
+    .btn-outline:hover {
+      border-color: rgba(255,255,255,.9);
+      background: rgba(255,255,255,.12);
+      transform: translateY(-2px);
+    }
+
+    .hero-card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .hero-card {
+      background: rgba(255,255,255,.1);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: var(--r-md);
+      padding: 1.5rem 1.3rem;
+      color: var(--white);
+      text-decoration: none;
+      transition: background var(--dur) var(--ease), transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+    }
+    .hero-card:hover {
+      background: rgba(255,255,255,.18);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,.2);
+    }
+    .hero-card-icon { font-size: 2rem; margin-bottom: .7rem; }
+    .hero-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: .35rem; }
+    .hero-card p { font-size: .81rem; color: rgba(255,255,255,.68); line-height: 1.55; }
+
+    /* ── STATS BAR ───────────────────────────────────────── */
+    .stats-bar {
+      background: var(--navy);
+      padding: 2rem 0;
+    }
+    .stats-inner {
+      max-width: 1260px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .stat-item {
+      text-align: center;
+      color: var(--white);
+      padding: .5rem 1rem;
+      border-radius: var(--r-sm);
+      transition: background var(--dur) var(--ease);
+    }
+    .stat-item:hover { background: rgba(255,255,255,.06); }
+    .stat-num {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      letter-spacing: -.02em;
+    }
+    .stat-label { font-size: .75rem; color: #9bb3d4; letter-spacing: .06em; text-transform: uppercase; margin-top: .3rem; }
+
+    /* ── SECTION GENERIC ─────────────────────────────────── */
+    section { padding: 5.5rem 0; }
+    .container { max-width: 1260px; margin: 0 auto; padding: 0 1.5rem; }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--sky);
+      margin-bottom: .75rem;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: var(--sky);
+      border-radius: var(--r-full);
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: .9rem;
+      letter-spacing: -.02em;
+    }
+    .section-title em { color: var(--blue); font-style: normal; }
+    .section-desc { font-size: 1.05rem; color: var(--muted); max-width: 560px; line-height: 1.75; }
+
+    /* ── ENSINO ──────────────────────────────────────────── */
+    .ensino { background: var(--light); }
+    .ensino-header { text-align: center; margin-bottom: 3rem; }
+    .ensino-header .section-desc { margin: 0 auto; }
+    .ensino-header .section-label { justify-content: center; }
+    .ensino-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .ensino-card {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+    }
+    .ensino-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-xl);
+    }
+    .ensino-card-img {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .ensino-card-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(13,35,70,.65) 0%, transparent 55%);
+    }
+    .ensino-card-level {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: .66rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .3rem .85rem;
+      border-radius: var(--r-full);
+      box-shadow: 0 2px 8px rgba(232,160,32,.4);
+    }
+    .ensino-card-body { padding: 1.6rem; flex: 1; display: flex; flex-direction: column; }
+    .ensino-card-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: .5rem;
+    }
+    .ensino-card-title em { color: var(--blue); font-style: normal; }
+    .ensino-card-desc { font-size: .87rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.3rem; flex: 1; }
+    .ensino-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      transition: gap var(--dur) var(--ease);
+    }
+    .ensino-card:hover .ensino-card-link { gap: .7rem; }
+    .ensino-card-link::after { content: '→'; font-size: 1rem; }
+
+    /* ── MOTIVOS ─────────────────────────────────────────── */
+    .motivos { background: var(--white); }
+    .motivos-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .motivos-list { list-style: none; }
+    .motivos-list li {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: background var(--dur) var(--ease);
+      border-radius: var(--r-xs);
+      padding-left: .4rem;
+    }
+    .motivos-list li:last-child { border-bottom: none; }
+    .motivo-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--r-sm);
+      background: linear-gradient(135deg, var(--blue), var(--sky));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 12px rgba(26,79,172,.25);
+    }
+    .motivo-text h4 { font-weight: 700; color: var(--navy); margin-bottom: .2rem; font-size: .95rem; }
+    .motivo-text p { font-size: .84rem; color: var(--muted); line-height: 1.6; }
+
+    .motivos-selos { display: flex; flex-direction: column; gap: 1.2rem; }
+    .selo-card {
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 1.4rem 1.5rem;
+      display: flex;
+      gap: 1.2rem;
+      align-items: center;
+      box-shadow: var(--shadow-xs);
+      transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+    }
+    .selo-card:hover { box-shadow: var(--shadow-md); transform: translateX(4px); }
+    .selo-icon { font-size: 2.2rem; flex-shrink: 0; }
+    .selo-card h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: .25rem; }
+    .selo-card p { font-size: .84rem; color: var(--muted); line-height: 1.5; }
+
+    /* ── VESTIBULARES ────────────────────────────────────── */
+    .vestibulares {
+      background: linear-gradient(135deg, var(--navy) 0%, #1a3a7a 100%);
+      padding: 5rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .vestibulares::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 380px; height: 380px;
+      border-radius: 50%;
+      background: rgba(30,141,193,.15);
+    }
+    .vestibulares::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: -60px;
+      width: 260px; height: 260px;
+      border-radius: 50%;
+      background: rgba(232,160,32,.07);
+    }
+    .vestibulares-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    .vest-text { color: var(--white); }
+    .vest-text .section-label { color: var(--gold); }
+    .vest-text .section-label::before { background: var(--gold); }
+    .vest-text .section-title { color: var(--white); }
+    .vest-text .section-desc { color: rgba(255,255,255,.72); max-width: 100%; }
+    .vest-text .btn-primary { margin-top: 1.8rem; display: inline-flex; }
+
+    .vest-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .vest-card {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--r-md);
+      padding: 1.6rem;
+      text-decoration: none;
+      color: var(--white);
+      transition: background var(--dur) var(--ease), transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+    }
+    .vest-card:hover {
+      background: rgba(255,255,255,.15);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,.2);
+    }
+    .vest-card h4 { font-size: .98rem; font-weight: 700; margin-bottom: .35rem; }
+    .vest-card p { font-size: .81rem; color: rgba(255,255,255,.62); line-height: 1.55; }
+    .vest-card-icon { font-size: 1.6rem; margin-bottom: .7rem; }
+
+    /* ── MATRICULAS CTA ──────────────────────────────────── */
+    .matriculas-cta {
+      background: linear-gradient(135deg, var(--gold) 0%, #f5b030 100%);
+      padding: 4rem 0;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.3);
+    }
+    .matriculas-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .matriculas-text h2 {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--navy);
+      margin-bottom: .4rem;
+      letter-spacing: -.02em;
+    }
+    .matriculas-text p { color: rgba(13,35,70,.72); font-size: 1rem; }
+    .btn-navy {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      background: var(--navy);
+      color: var(--white);
+      padding: .95rem 2rem;
+      border-radius: var(--r-full);
+      font-weight: 800;
+      font-size: .9rem;
+      text-decoration: none;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 16px rgba(13,35,70,.3);
+      transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+      white-space: nowrap;
+    }
+    .btn-navy:hover {
+      background: #162d5a;
+      box-shadow: 0 8px 24px rgba(13,35,70,.4);
+      transform: translateY(-2px);
+    }
+
+    /* ── NOTICIAS ────────────────────────────────────────── */
+    .noticias { background: var(--light); }
+    .noticias-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .noticias-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--blue);
+      text-decoration: none;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      padding: .5rem 1.1rem;
+      border: 1.5px solid var(--blue);
+      border-radius: var(--r-full);
+      transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+    }
+    .noticias-link:hover { background: var(--blue); color: #fff; }
+    .noticias-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .noticia-card {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+    }
+    .noticia-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-xl); }
+    .noticia-img {
+      height: 200px;
+      background: linear-gradient(135deg, #1a4fac, #1e8dc1);
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .noticia-card.featured .noticia-img { height: 280px; }
+    .noticia-tag {
+      position: absolute;
+      bottom: .9rem; left: .9rem;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: .64rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .25rem .75rem;
+      border-radius: var(--r-full);
+      box-shadow: 0 2px 8px rgba(232,160,32,.4);
+    }
+    .noticia-body { padding: 1.4rem; flex: 1; display: flex; flex-direction: column; }
+    .noticia-date { font-size: .7rem; color: var(--muted); letter-spacing: .05em; margin-bottom: .5rem; }
+    .noticia-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.4;
+      margin-bottom: .7rem;
+      flex: 1;
+    }
+    .noticia-card.featured .noticia-title { font-size: 1.2rem; }
+    .noticia-read {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      font-size: .76rem;
+      font-weight: 700;
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    /* ── E-GENIO ─────────────────────────────────────────── */
+    .egenio { background: var(--white); padding: 5.5rem 0; }
+    .egenio-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .egenio-visual { position: relative; padding: 1.5rem; }
+    .egenio-phone {
+      background: linear-gradient(145deg, var(--navy), var(--sky));
+      border-radius: var(--r-xl);
+      padding: 2.5rem 2rem;
+      box-shadow: var(--shadow-xl), 0 0 0 1px rgba(255,255,255,.06) inset;
+      text-align: center;
+      color: var(--white);
+    }
+    .egenio-phone-icon { font-size: 4rem; margin-bottom: 1rem; }
+    .egenio-phone h3 { font-size: 1.6rem; font-weight: 900; }
+    .egenio-phone p { font-size: .88rem; color: rgba(255,255,255,.72); margin-top: .5rem; }
+    .egenio-features { display: flex; flex-direction: column; gap: .75rem; margin-top: 1.75rem; text-align: left; }
+    .egenio-feat {
+      display: flex; gap: .7rem; align-items: center;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--r-sm);
+      padding: .8rem 1rem;
+      font-size: .85rem;
+      font-weight: 500;
+      transition: background var(--dur) var(--ease);
+    }
+    .egenio-feat:hover { background: rgba(255,255,255,.17); }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer { background: var(--navy); color: #9bb3d4; }
+    .footer-top {
+      padding: 4rem 0 2.5rem;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 2.5rem;
+    }
+    .footer-brand svg { height: 44px; width: auto; margin-bottom: 1.4rem; display: block; }
+    .footer-brand p { font-size: .87rem; line-height: 1.75; color: #8aa5c8; max-width: 240px; }
+    .footer-brand .socials { display: flex; gap: .7rem; margin-top: 1.3rem; }
+    .socials a {
+      width: 38px; height: 38px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--r-sm);
+      display: flex; align-items: center; justify-content: center;
+      color: #9bb3d4;
+      font-size: .9rem;
+      text-decoration: none;
+      transition: background var(--dur) var(--ease), color var(--dur) var(--ease), transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+    }
+    .socials a:hover {
+      background: var(--gold);
+      color: var(--navy);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(232,160,32,.4);
+    }
+    .footer-col h4 {
+      color: var(--white);
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+    .footer-col ul a {
+      color: #8aa5c8;
+      text-decoration: none;
+      font-size: .86rem;
+      transition: color var(--dur) var(--ease), padding-left var(--dur) var(--ease);
+      padding-left: 0;
+      display: block;
+    }
+    .footer-col ul a:hover { color: var(--gold); padding-left: 4px; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding: 1.4rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: .78rem;
+      color: #6a88b0;
+    }
+    .footer-contact { display: flex; flex-direction: column; gap: .4rem; }
+    .footer-contact a { color: var(--gold); text-decoration: none; font-weight: 600; transition: color var(--dur); }
+    .footer-contact a:hover { color: #f5c54a; }
+
+    /* ── CONVENIO BAR ────────────────────────────────────── */
+    .convenio-bar {
+      background: var(--blue);
+      padding: 1.1rem 0;
+      text-align: center;
+    }
+    .convenio-bar a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: .86rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      transition: color var(--dur) var(--ease);
+    }
+    .convenio-bar a:hover { color: var(--gold); }
+
+    /* ── ANIMATIONS ──────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-text { animation: fadeUp .75s var(--ease) both; }
+    .hero-card-grid { animation: fadeUp .75s .18s var(--ease) both; }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 960px) {
+      .hero-content, .motivos-inner, .vestibulares-inner, .egenio-inner { grid-template-columns: 1fr; }
+      .hero-badge { display: none; }
+      .noticias-grid { grid-template-columns: 1fr 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      nav { display: none; }
+    }
+    @media (max-width: 600px) {
+      .noticias-grid { grid-template-columns: 1fr; }
+      .vest-cards { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-left">
+      <a href="tel:08007700189">
+        <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        0800 77 00 189
+      </a>
+      <a href="#">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.063.526 4.009 1.449 5.71L.099 23.14c-.099.411.265.774.677.677l5.431-1.35A11.93 11.93 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.79 9.79 0 01-5.002-1.369l-.358-.213-3.72.924.94-3.625-.234-.371A9.794 9.794 0 012.182 12C2.182 6.589 6.589 2.182 12 2.182S21.818 6.589 21.818 12 17.411 21.818 12 21.818z"/></svg>
+        (11) 99105-9999
+      </a>
+      <a href="#">📍 Unidade de São Carlos/SP</a>
+    </div>
+    <div class="topbar-right">
+      <a href="#">Atendimento</a>
+      <a href="#" class="topbar-cta">Conheça o Objetivo</a>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <svg width="200" height="40" viewBox="0 0 263 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_814_245)">
+<path d="M66.6359 51.4042C66.0841 51.4042 65.6035 51.2206 65.1942 50.8539C64.7848 50.4872 64.5795 49.9369 64.5795 49.2029C64.5795 48.6194 64.7136 47.9859 64.9805 47.3018C65.2474 46.6184 65.6157 45.9427 66.0841 45.2759C66.5519 44.6091 67.087 44.0044 67.6895 43.4624C68.2914 42.9211 68.9349 42.4834 69.6208 42.1493C70.3061 41.8159 70.9914 41.6489 71.6773 41.6489C72.3632 41.6489 73.0068 41.8326 73.5079 42.1992C74.0097 42.5659 74.2606 43.0497 74.2606 43.6499C74.2606 44.1004 74.1014 44.4255 73.7838 44.6257C73.4662 44.826 73.0896 44.8843 72.6552 44.8011C72.6885 44.6507 72.718 44.501 72.7431 44.3506C72.7681 44.2009 72.7809 44.0422 72.7809 43.8751C72.7809 43.5418 72.7142 43.2416 72.5801 42.9748C72.446 42.7086 72.1617 42.5749 71.7273 42.5749C71.2589 42.5749 70.7829 42.7336 70.2978 43.0503C69.8127 43.3671 69.3488 43.7798 68.9061 44.2885C68.4627 44.7972 68.0661 45.3559 67.7145 45.9644C67.3635 46.573 67.0876 47.1693 66.8868 47.7529C66.686 48.3365 66.5859 48.8619 66.5859 49.3284C66.5859 49.862 66.7777 50.1289 67.1627 50.1289C67.5477 50.1289 67.9737 49.9414 68.4415 49.5658C68.9093 49.1908 69.3821 48.7198 69.8589 48.1529C70.3356 47.5859 70.7906 47.0068 71.2256 46.4143C71.66 45.8224 72.0366 45.3181 72.3542 44.9009C72.4043 44.8177 72.471 44.7755 72.5551 44.7755C72.6218 44.7921 72.7514 44.8299 72.9439 44.8881C73.1358 44.947 73.3161 45.034 73.4829 45.1505C73.6497 45.2676 73.7338 45.4173 73.7338 45.6009C73.7338 45.768 73.6625 45.9804 73.5207 46.2389C73.3783 46.4975 73.2115 46.7809 73.019 47.0894C72.8265 47.3978 72.659 47.7062 72.5172 48.0147C72.3748 48.3231 72.3042 48.6194 72.3042 48.9028C72.3042 49.1198 72.3626 49.3239 72.48 49.5159C72.5968 49.7078 72.7893 49.8032 73.0568 49.8032C73.4579 49.8032 74.0225 49.5075 74.7495 48.915C75.4765 48.3231 76.2169 47.3184 76.9689 45.9011L77.4457 46.3765C77.0446 47.2768 76.5634 48.0735 76.0032 48.7653C75.4431 49.4576 74.8534 49.9996 74.2355 50.3912C73.617 50.7829 72.9895 50.9787 72.3542 50.9787C71.6683 50.9787 71.1589 50.7617 70.8246 50.3285C70.4903 49.8953 70.3061 49.4282 70.2727 48.9278V48.803C69.6035 49.6035 68.9895 50.237 68.4293 50.7041C67.8692 51.1706 67.2711 51.4042 66.6359 51.4042Z" fill="#FBCA00"/>
+<path d="M84.8188 50.729C84.1669 50.729 83.669 50.5665 83.3263 50.2414C82.9837 49.9164 82.8124 49.5036 82.8124 49.0032C82.8124 48.6699 82.8708 48.3154 82.9882 47.9404C83.105 47.5654 83.2224 47.1859 83.3392 46.8026C83.456 46.4193 83.515 46.052 83.515 45.702C83.515 45.352 83.4271 45.0807 83.2519 44.9392C83.0761 44.7978 82.8714 44.7268 82.6372 44.7268C82.1355 44.7268 81.6215 44.9316 81.0947 45.3398C80.5679 45.7487 80.0578 46.2613 79.565 46.8781C79.0716 47.495 78.6077 48.1375 78.1733 48.8042C77.7383 49.471 77.3623 50.0719 77.0447 50.6049C76.7271 50.6049 76.4261 50.5505 76.1419 50.4424C75.8576 50.3336 75.6151 50.1467 75.4149 49.8793C75.4316 49.7961 75.5278 49.5414 75.703 49.1165C75.8788 48.6916 76.0752 48.1829 76.2927 47.591C76.5096 46.9991 76.702 46.3777 76.8695 45.7276C77.0363 45.0775 77.1204 44.4856 77.1204 43.9519C77.2372 43.8188 77.4168 43.685 77.6594 43.5519C77.9013 43.4188 78.1566 43.3517 78.4242 43.3517C79.0094 43.3517 79.302 43.6019 79.302 44.1023C79.302 44.3025 79.2641 44.5988 79.189 44.9904C79.114 45.3827 79.0094 45.8281 78.8753 46.3285C79.3097 45.7449 79.7864 45.1946 80.3049 44.6775C80.8227 44.1611 81.3623 43.7394 81.9224 43.4144C82.4826 43.0893 83.0466 42.9268 83.6151 42.9268C84.3337 42.9268 84.865 43.1686 85.2076 43.6518C85.5503 44.1355 85.7216 44.6692 85.7216 45.2528C85.7216 45.7532 85.6375 46.2197 85.4707 46.6535C85.3032 47.0874 85.1403 47.4956 84.9818 47.8789C84.8227 48.2629 84.7437 48.6379 84.7437 49.0045C84.7437 49.2714 84.8066 49.4588 84.9317 49.5676C85.0569 49.6764 85.1948 49.7302 85.3456 49.7302C85.7466 49.7302 86.1643 49.5388 86.5994 49.1549C87.0338 48.7716 87.4476 48.284 87.8409 47.6914C88.2336 47.0995 88.5808 46.5032 88.8817 45.9029L89.3077 46.253C88.9568 47.0701 88.5596 47.8162 88.1162 48.4913C87.6728 49.1664 87.1794 49.7084 86.6366 50.1173C86.0931 50.5256 85.4868 50.7303 84.8182 50.7303L84.8188 50.729Z" fill="#FBCA00"/>
+<path d="M89.8845 51.0292C89.1318 51.0292 88.6179 50.7828 88.342 50.2914C88.0661 49.7999 87.9281 49.2618 87.9281 48.6782C87.9281 48.1445 88.0121 47.5987 88.179 47.04C88.3458 46.4814 88.5762 45.9605 88.8687 45.4768C89.1613 44.993 89.4873 44.6059 89.8466 44.3134C90.2059 44.0216 90.5697 43.8757 90.9374 43.8757C91.0542 43.8757 91.1921 43.8969 91.3513 43.9385C91.5097 43.98 91.6227 44.0428 91.69 44.1259C91.4892 44.3761 91.2845 44.6846 91.0753 45.0512C90.8662 45.4179 90.6743 45.8057 90.4985 46.2146C90.3227 46.6235 90.1848 47.0362 90.0847 47.4528C89.9846 47.87 89.9345 48.2533 89.9345 48.6033C89.9345 48.9533 89.9974 49.2119 90.1225 49.4288C90.2476 49.6457 90.469 49.7539 90.7872 49.7539C91.1055 49.7539 91.4854 49.5747 91.9281 49.2163C92.3708 48.858 92.7937 48.4453 93.1947 47.9781C92.6596 47.4944 92.2752 46.9652 92.041 46.3899C91.8068 45.8146 91.69 45.1184 91.69 44.3013C91.69 43.9513 91.7779 43.5507 91.9531 43.1008C92.1289 42.6503 92.4125 42.2587 92.8059 41.9253C93.1985 41.5919 93.7292 41.4249 94.3984 41.4249C95.117 41.4249 95.6233 41.6252 95.9159 42.0252C96.2085 42.4251 96.3548 42.9005 96.3548 43.4509C96.3548 44.0677 96.1918 44.7601 95.8658 45.5267C95.5399 46.2939 95.151 47.0189 94.6993 47.703C94.9002 47.8028 95.1337 47.8527 95.4013 47.8527C95.6522 47.8527 95.9531 47.7945 96.3041 47.6774C96.6551 47.5609 96.9977 47.3645 97.3326 47.09C97.6669 46.8148 97.9345 46.4437 98.1353 45.9772L98.587 46.3022C98.2187 47.1527 97.7298 47.774 97.1196 48.1656C96.5088 48.5579 95.9114 48.7531 95.3262 48.7531C95.1087 48.7531 94.8912 48.7326 94.6743 48.6904C94.4568 48.6488 94.256 48.5944 94.0724 48.5278C93.504 49.1952 92.852 49.7782 92.1161 50.2786C91.3801 50.779 90.6365 51.0292 89.8838 51.0292H89.8845ZM93.8472 47.177C94.2483 46.5934 94.5909 45.9682 94.8758 45.3014C95.16 44.6347 95.3018 44.0178 95.3018 43.4502C95.3018 43.0669 95.2428 42.7873 95.126 42.6126C95.0086 42.4373 94.8334 42.3496 94.5992 42.3496C94.2816 42.3496 93.955 42.5748 93.6207 43.0247C93.2864 43.4752 93.119 44.0421 93.119 44.7255C93.119 45.0756 93.1819 45.5011 93.307 46.0008C93.4321 46.5013 93.6118 46.8929 93.846 47.1763L93.8472 47.177Z" fill="#FBCA00"/>
+<path d="M100.493 51.5046C99.6573 51.5046 98.9842 51.3331 98.4741 50.9921C97.964 50.6503 97.6002 50.2165 97.3833 49.6918C97.1665 49.1664 97.0574 48.6289 97.0574 48.0786C97.0574 47.5955 97.1241 47.2198 97.2582 46.953C97.3923 46.6868 97.5591 46.4904 97.76 46.3656C97.9608 46.2402 98.1488 46.1448 98.324 46.0776C98.4998 46.0111 98.6288 45.9362 98.7128 45.8524C99.1305 45.4192 99.5611 44.9143 100.004 44.339C100.447 43.7637 100.828 43.1258 101.145 42.4257V42.1755C101.145 41.5087 101.258 41.0378 101.484 40.762C101.71 40.4868 101.973 40.3492 102.274 40.3492C102.475 40.3492 102.62 40.3992 102.713 40.4996C102.805 40.5994 102.859 40.7165 102.876 40.8496C102.876 40.9495 102.855 41.0666 102.813 41.1997C102.771 41.3334 102.75 41.5164 102.75 41.75C102.75 42.2504 102.871 42.8218 103.114 43.463C103.356 44.1055 103.599 44.785 103.841 45.5017C104.083 46.219 104.205 46.9524 104.205 47.703C104.205 47.9033 104.196 48.0869 104.18 48.2533C104.163 48.4203 104.138 48.5783 104.105 48.7287L104.048 48.8874L103.93 49.24C103.851 49.4751 103.773 49.6709 103.695 49.8274C103.642 49.9324 103.637 49.9618 103.576 50.0623C103.223 50.6497 103.172 50.6715 102.561 51.0055C101.951 51.3389 101.261 51.5059 100.492 51.5059L100.493 51.5046ZM100.318 50.404C100.652 50.404 100.961 50.3202 101.245 50.1538C101.53 49.9874 101.755 49.7455 101.922 49.4281C101.236 49.2784 100.618 49.0116 100.066 48.6276C99.5142 48.2443 99.0882 47.8521 98.7872 47.4521C98.553 47.502 98.4363 47.7273 98.4363 48.1279C98.4363 48.6782 98.5947 49.1952 98.913 49.6783C99.2306 50.1621 99.699 50.4033 100.318 50.4033V50.404ZM102.123 48.6782C102.157 48.5617 102.177 48.4241 102.186 48.2654C102.194 48.1074 102.199 47.9864 102.199 47.9026C102.182 47.152 102.081 46.4104 101.898 45.6764C101.714 44.9431 101.53 44.1925 101.346 43.4252C101.045 43.9423 100.694 44.5009 100.293 45.1011C99.8915 45.7014 99.5149 46.1851 99.1639 46.5518C99.4308 47.0023 99.8241 47.4272 100.343 47.8271C100.86 48.227 101.455 48.5112 102.123 48.6775V48.6782Z" fill="#FBCA00"/>
+<path d="M133.92 6.15237H142.679V26.2196C142.679 26.2196 142.409 31.6191 138.006 34.5031C132.864 37.8722 129.478 37.0915 129.478 37.0915V29.4742C129.478 29.4742 131.504 29.343 132.517 28.5124C133.709 27.5365 133.927 26.7405 133.927 25.9976C133.927 25.1779 133.92 6.15173 133.92 6.15173L133.92 6.15237Z" fill="#004388"/>
+<path d="M144.68 37.0179V6.15234H162.032V13.499H153.061V17.5675H160.995V24.8944H152.914V29.6219H161.663V36.9437L144.68 37.0179Z" fill="#004388"/>
+<path d="M185.764 6.10376H193.772V36.9437H185.764V6.10376Z" fill="#004388"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M86.9843 6.00134C95.8466 6.00134 103.03 13.1669 103.03 22.0046C103.03 30.8422 95.8466 38.0066 86.9843 38.0066C78.1219 38.0066 70.9381 30.8422 70.9381 22.0046C70.9381 13.1669 78.1219 6.00134 86.9843 6.00134ZM87.1331 13.7857C91.7664 13.7857 95.5232 17.5311 95.5232 22.1524C95.5232 26.7738 91.7671 30.5191 87.1331 30.5191C82.4992 30.5191 78.743 26.7725 78.743 22.1524C78.743 17.5323 82.4992 13.7857 87.1331 13.7857Z" fill="#004388"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M239.751 6.00134C248.612 6.00134 255.797 13.1669 255.797 22.0046C255.797 30.8422 248.612 38.0066 239.751 38.0066C230.89 38.0066 223.705 30.8422 223.705 22.0046C223.705 13.1669 230.889 6.00134 239.751 6.00134ZM239.899 13.7857C244.533 13.7857 248.287 17.5311 248.287 22.1524C248.287 26.7738 244.533 30.5191 239.899 30.5191C235.265 30.5191 231.508 26.7725 231.508 22.1524C231.508 17.5323 235.264 13.7857 239.899 13.7857Z" fill="#004388"/>
+<path d="M208.161 36.9437L195.405 6.10376H204.229L211.199 22.8909L218.21 6.10376H227.033L214.279 36.9437H208.161Z" fill="#004388"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M113.607 13.0549V17.7882H116.574C116.574 17.7882 118.798 17.5668 118.798 15.4968C118.798 13.1682 116.796 13.0549 116.796 13.0549H113.607ZM113.607 25.1842V29.9175H117.537C117.537 29.9175 119.984 29.7697 119.984 27.6984C119.984 25.3711 118.353 25.1836 118.353 25.1836H113.607V25.1842ZM105.746 6.15295V36.9443H118.575C118.575 36.9443 127.994 35.699 127.994 28.5872C127.994 23.1148 122.061 20.7478 122.061 20.7478C122.061 20.7478 126.139 19.0521 126.139 14.6092C126.139 6.84405 117.166 6.15295 117.166 6.15295H105.746Z" fill="#004388"/>
+<path d="M163.739 6.15234V13.4805H170.041V36.9437H178.044V13.4805H184.349V6.15234H163.739Z" fill="#004388"/>
+<path d="M44.8381 6.61692C46.2016 6.24002 47.6389 6.03845 49.123 6.03845C57.9488 6.03845 65.1037 13.1733 65.1037 21.9764C65.1037 30.7795 57.9488 37.9144 49.123 37.9144C47.6453 37.9144 46.2145 37.7141 44.8561 37.3398L60.2112 22.1172L44.8381 6.61692Z" fill="#004388"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M42.1304 13.7576C46.6815 13.7576 50.3716 17.437 50.3716 21.9765C50.3716 26.5159 46.6822 30.194 42.1304 30.194C37.5786 30.194 33.8904 26.5146 33.8904 21.9765C33.8904 17.4383 37.5799 13.7576 42.1304 13.7576ZM40.5622 8.51489L53.7133 22.0462L40.3569 35.3049C36.0104 32.4567 33.141 27.55 33.141 21.9758C33.141 16.4017 36.0418 11.3305 40.5616 8.51489H40.5622Z" fill="#004388"/>
+<path d="M20.79 16.618C25.9482 16.618 30.0483 20.6628 30.0483 26.5543C30.0483 33.2816 25.4631 37.9861 17.9681 37.9861C10.4731 37.9861 6.02075 33.3257 6.02075 26.5985C6.02075 21.7621 8.53342 17.7608 11.664 12.8368L16.0727 6.02185H24.8459L17.483 17.1017C18.5854 16.7939 19.6871 16.618 20.7894 16.618H20.79ZM13.1192 26.9504C13.1192 29.94 14.971 31.7426 17.8808 31.7426C20.7907 31.7426 22.6425 29.94 22.6425 26.9504C22.6425 23.9608 20.7907 22.114 17.8808 22.114C14.971 22.114 13.1192 23.9608 13.1192 26.9504Z" fill="#004388"/>
+<path d="M49.5041 3.23572C39.0627 3.23572 30.5981 11.6766 30.5981 22.0904C30.5981 32.5041 39.0633 40.9456 49.5041 40.9456C59.9449 40.9456 68.4101 32.5041 68.4101 22.0904C68.4101 11.6766 59.9462 3.23572 49.5041 3.23572ZM49.5041 40.028C39.5702 40.028 31.5176 31.9973 31.5176 22.0904C31.5176 12.1834 39.5702 4.15269 49.5041 4.15269C59.438 4.15269 67.4906 12.1834 67.4906 22.0904C67.4906 31.9973 59.438 40.028 49.5041 40.028Z" fill="url(#paint0_linear_814_245)"/>
+<path d="M18.1907 40.3083C16.0226 40.3083 13.1782 39.8636 10.3627 38.1192C7.88663 36.5847 5.98159 34.4334 4.85487 31.8981C3.0679 27.877 3.86097 23.8079 4.49234 21.7403C5.94694 16.9814 7.0634 15.0508 15.3528 2.95801L16.0945 3.46353C7.87508 15.4546 6.77017 17.3609 5.35214 22.0021C4.7567 23.9506 4.00726 27.7797 5.67617 31.5353C6.72975 33.9055 8.51415 35.9192 10.8369 37.3584C14.6226 39.7042 18.4711 39.5462 20.4288 39.2429L20.4416 39.241C22.2889 39.0087 25.7717 38.1723 28.3402 35.1814C29.9225 33.3398 30.4981 31.4175 30.7149 30.6938C31.7242 27.3235 31.0903 24.4138 30.7708 23.319C30.4217 22.1243 29.4952 18.9497 26.4082 16.8899C24.509 15.6229 22.6636 15.3535 21.9585 15.2966C19.1776 15.0713 17.03 16.1982 15.997 16.8893L15.4965 16.1457C16.6264 15.3893 18.9787 14.1582 22.0303 14.4039C22.8054 14.4666 24.833 14.761 26.9074 16.1451C30.2664 18.386 31.2591 21.7877 31.6331 23.0681C31.9751 24.2391 32.654 27.351 31.576 30.9498C31.3444 31.7234 30.7291 33.7775 29.0229 35.7637C26.2607 38.9792 22.5385 39.8783 20.561 40.1285C19.9341 40.2251 19.1256 40.3077 18.192 40.3077L18.1907 40.3083Z" fill="url(#paint1_linear_814_245)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_814_245" x1="30.5981" y1="22.0904" x2="68.4101" y2="22.0904" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FBCA00"/>
+<stop offset="0.25" stop-color="#FFF9D1"/>
+<stop offset="0.3" stop-color="#F9EFBF"/>
+<stop offset="0.39" stop-color="#ECD792"/>
+<stop offset="0.52" stop-color="#D6AF4B"/>
+<stop offset="0.6" stop-color="#C8951A"/>
+<stop offset="0.82" stop-color="#E8CD75"/>
+<stop offset="0.87" stop-color="#F1DC8D"/>
+<stop offset="1" stop-color="#FFF9D1"/>
+</linearGradient>
+<linearGradient id="paint1_linear_814_245" x1="3.75959" y1="21.6335" x2="32.1593" y2="21.6335" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FBCA00"/>
+<stop offset="0.25" stop-color="#FFF9D1"/>
+<stop offset="0.3" stop-color="#F9EFBF"/>
+<stop offset="0.39" stop-color="#ECD792"/>
+<stop offset="0.52" stop-color="#D6AF4B"/>
+<stop offset="0.6" stop-color="#C8951A"/>
+<stop offset="0.82" stop-color="#E8CD75"/>
+<stop offset="0.87" stop-color="#F1DC8D"/>
+<stop offset="1" stop-color="#FFF9D1"/>
+</linearGradient>
+<clipPath id="clip0_814_245">
+<rect width="263" height="52" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+    </a>
+    <nav>
+      <div class="nav-item">
+        <a class="nav-link" href="#">Objetivo ▾</a>
+        <div class="dropdown">
+          <a href="#">Sobre o Objetivo</a>
+          <a href="#">Proposta Pedagógica</a>
+          <a href="#">e-GENIO</a>
+          <a href="#">Convênios</a>
+          <a href="#">Unidade de São Carlos/SP</a>
+          <a href="#">Nossos Resultados</a>
+          <a href="#">Dados Institucionais</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a class="nav-link" href="#">Ensino ▾</a>
+        <div class="dropdown">
+          <a href="#">Educação Infantil</a>
+          <a href="#">Ensino Fundamental</a>
+          <a href="#">Ensino Médio</a>
+          <a href="#">Pré-Vestibular</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a class="nav-link" href="#">Vestibulares ▾</a>
+        <div class="dropdown">
+          <a href="#">Resoluções Comentadas</a>
+          <a href="#">Simulados</a>
+          <a href="#">Fique por Dentro</a>
+          <a href="#">Aprovações</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a class="nav-link" href="#">Matrículas ▾</a>
+        <div class="dropdown">
+          <a href="#">Agende uma Visita</a>
+          <a href="#">Desafio – Fundamental e Médio</a>
+          <a href="#">Concurso de Bolsas – Pré-Vestibular</a>
+        </div>
+      </div>
+    </nav>
+    <a href="#" class="btn-area-restrita">Área Restrita</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-badge">
+    <span>60</span>
+    ANOS
+    <span style="font-size:.6rem; margin-top:.1rem;">DE EXCELÊNCIA</span>
+  </div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <span class="hero-tag">✦ Matrículas Abertas 2027</span>
+      <h1 class="hero-title">Educação que<br/>forma <em>campeões</em><br/>e futuros líderes</h1>
+      <p class="hero-sub">Da Educação Infantil ao Pré-Vestibular, o Objetivo oferece uma trajetória completa, construída sobre 60 anos de resultados comprovados e uma proposta pedagógica que transforma vidas.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn-primary">Agende uma Visita</a>
+        <a href="#" class="btn-outline">Conheça o Objetivo</a>
+      </div>
+    </div>
+    <div class="hero-card-grid">
+      <a class="hero-card" href="#">
+        <div class="hero-card-icon">🌱</div>
+        <h3>Educação Infantil</h3>
+        <p>Respeito à criança e desenvolvimento pleno nos primeiros anos.</p>
+      </a>
+      <a class="hero-card" href="#">
+        <div class="hero-card-icon">📐</div>
+        <h3>Ensino Fundamental</h3>
+        <p>Criatividade e programação orientada para a excelência.</p>
+      </a>
+      <a class="hero-card" href="#">
+        <div class="hero-card-icon">🎓</div>
+        <h3>Ensino Médio</h3>
+        <p>Preparação sólida para o ENEM e os grandes vestibulares.</p>
+      </a>
+      <a class="hero-card" href="#">
+        <div class="hero-card-icon">🏆</div>
+        <h3>Pré-Vestibular</h3>
+        <p>Estrutura completa para o ingresso nas melhores universidades.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-num">60</div>
+      <div class="stat-label">Anos de história</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">17.100+</div>
+      <div class="stat-label">Medalhas em olimpíadas</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">1º</div>
+      <div class="stat-label">Lugar no ENEM – SP</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">9×</div>
+      <div class="stat-label">Melhor de São Paulo</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Dedicação ao aluno</div>
+    </div>
+  </div>
+</div>
+
+<!-- ENSINO -->
+<section class="ensino">
+  <div class="container">
+    <div class="ensino-header">
+      <p class="section-label">Sistema de Ensino</p>
+      <h2 class="section-title">Conheça o Sistema de Ensino <em>Objetivo</em></h2>
+      <p class="section-desc">Da primeira infância à aprovação na universidade : uma jornada completa de aprendizado e crescimento.</p>
+    </div>
+    <div class="ensino-grid">
+      <a class="ensino-card" href="#">
+        <div class="ensino-card-img" style="background: linear-gradient(135deg,#1e8dc1,#1a4fac); background-image: url('https://www.objetivo.br/assets/img/photo/img-home-educacao-infantil.jpg?vs12012024'), linear-gradient(135deg,#1e8dc1,#1a4fac);">
+          <div class="ensino-card-img-overlay"></div>
+          <span class="ensino-card-level">Educação Infantil</span>
+        </div>
+        <div class="ensino-card-body">
+          <h3 class="ensino-card-title">Educação <em>Infantil</em></h3>
+          <p class="ensino-card-desc">A proposta educacional da Educação Infantil é sempre pautada pelo respeito à criança e pelo desenvolvimento integral desde os primeiros anos.</p>
+          <span class="ensino-card-link">Saiba mais</span>
+        </div>
+      </a>
+      <a class="ensino-card" href="#">
+        <div class="ensino-card-img" style="background-image: url('https://www.objetivo.br/assets/img/photo/img-home-ensino-fundamental.jpg?vs12012024'), linear-gradient(135deg,#0d2346,#1a4fac);">
+          <div class="ensino-card-img-overlay"></div>
+          <span class="ensino-card-level">Ensino Fundamental</span>
+        </div>
+        <div class="ensino-card-body">
+          <h3 class="ensino-card-title">Ensino <em>Fundamental</em></h3>
+          <p class="ensino-card-desc">Estimula a criatividade do aluno por meio de uma programação orientada que desenvolve habilidades cognitivas e socioemocionais.</p>
+          <span class="ensino-card-link">Saiba mais</span>
+        </div>
+      </a>
+      <a class="ensino-card" href="#">
+        <div class="ensino-card-img" style="background-image: url('https://www.objetivo.br/assets/img/photo/img-home-ensino-medio.jpg?vs12012024'), linear-gradient(135deg,#1a4fac,#1e8dc1);">
+          <div class="ensino-card-img-overlay"></div>
+          <span class="ensino-card-level">Ensino Médio</span>
+        </div>
+        <div class="ensino-card-body">
+          <h3 class="ensino-card-title">Ensino <em>Médio</em></h3>
+          <p class="ensino-card-desc">Prepara o aluno de forma sólida para o ENEM e os principais vestibulares, com metodologia atualizada e corpo docente qualificado.</p>
+          <span class="ensino-card-link">Saiba mais</span>
+        </div>
+      </a>
+      <a class="ensino-card" href="#">
+        <div class="ensino-card-img" style="background-image: url('https://www.objetivo.br/assets/img/photo/img-home-curso-objetivo.jpg?vs12012024'), linear-gradient(135deg,#0d2346,#1e8dc1);">
+          <div class="ensino-card-img-overlay"></div>
+          <span class="ensino-card-level">Pré-Vestibular</span>
+        </div>
+        <div class="ensino-card-body">
+          <h3 class="ensino-card-title"><em>Pré-Vestibular</em></h3>
+          <p class="ensino-card-desc">Estrutura completa para preparar o aluno para o ingresso na universidade, com resolução de provas e aprovações históricas.</p>
+          <span class="ensino-card-link">Saiba mais</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- MOTIVOS -->
+<section class="motivos">
+  <div class="container">
+    <div class="motivos-inner">
+      <div>
+        <p class="section-label">Por que escolher o Objetivo</p>
+        <h2 class="section-title">Motivos para estudar<br/>no <em>Objetivo</em></h2>
+        <ul class="motivos-list">
+          <li>
+            <div class="motivo-icon">🥇</div>
+            <div class="motivo-text">
+              <h4>Mais de 17.100 medalhas e troféus em olimpíadas científicas</h4>
+              <p>Tradição única de excelência acadêmica reconhecida em competições nacionais e internacionais.</p>
+            </div>
+          </li>
+          <li>
+            <div class="motivo-icon">🎓</div>
+            <div class="motivo-text">
+              <h4>Aprovações nos principais vestibulares do país</h4>
+              <p>USP, UNICAMP, FUVEST, ENEM: nossos alunos entram nas melhores universidades do Brasil.</p>
+            </div>
+          </li>
+          <li>
+            <div class="motivo-icon">🏅</div>
+            <div class="motivo-text">
+              <h4>Primeiros lugares no ENEM em São Paulo</h4>
+              <p>Resultado que consolida o Objetivo como referência em educação de alta performance.</p>
+            </div>
+          </li>
+          <li>
+            <div class="motivo-icon">📚</div>
+            <div class="motivo-text">
+              <h4>Material didático em constante atualização</h4>
+              <p>Conteúdo próprio, moderno e alinhado com as exigências dos exames atuais.</p>
+            </div>
+          </li>
+          <li>
+            <div class="motivo-icon">👩‍🏫</div>
+            <div class="motivo-text">
+              <h4>Corpo docente em aperfeiçoamento contínuo</h4>
+              <p>Professores qualificados e em constante capacitação para oferecer o melhor ensino.</p>
+            </div>
+          </li>
+          <li>
+            <div class="motivo-icon">🏛️</div>
+            <div class="motivo-text">
+              <h4>Estrutura completa em nossas unidades</h4>
+              <p>Laboratórios, bibliotecas, quadras e ambientes modernos que favorecem o aprendizado.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="motivos-selos">
+        <div class="selo-card">
+          <div class="selo-icon">🏆</div>
+          <div>
+            <h3>7 anos consecutivos: O Melhor de São Paulo</h3>
+            <p>Colégio Objetivo vencedor por sete anos consecutivos do prêmio O Melhor de São Paulo na categoria Serviços.</p>
+          </div>
+        </div>
+        <div class="selo-card">
+          <div class="selo-icon">⭐</div>
+          <div>
+            <h3>9 anos consecutivos: Curso Objetivo</h3>
+            <p>Curso Objetivo vencedor por nove anos consecutivos do prêmio O Melhor de São Paulo na categoria Serviços.</p>
+          </div>
+        </div>
+        <div class="selo-card">
+          <div class="selo-icon">🥇</div>
+          <div>
+            <h3>1º lugar no ENEM em São Paulo</h3>
+            <p>O Objetivo ocupa o primeiro lugar no ENEM no Estado de São Paulo, comprovando décadas de dedicação à excelência.</p>
+          </div>
+        </div>
+        <div class="selo-card" style="background: var(--navy); border-left-color: var(--sky);">
+          <div class="selo-icon">📍</div>
+          <div>
+            <h3 style="color: var(--white);">Unidade de São Carlos/SP</h3>
+            <p style="color:#9bb3d4;">O Objetivo está presente em diversas regiões de São Paulo para atender você.</p>
+            <a href="#" style="color:var(--gold);font-weight:700;font-size:.85rem;text-decoration:none;">Visitar Unidade →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VESTIBULARES -->
+<section class="vestibulares">
+  <div class="container">
+    <div class="vestibulares-inner">
+      <div class="vest-text">
+        <p class="section-label">Vestibulares & ENEM</p>
+        <h2 class="section-title">Prepare-se para<br/>as maiores provas</h2>
+        <p class="section-desc">Acesse resoluções comentadas, simulados e tudo sobre os principais vestibulares do Brasil. O Objetivo coloca você à frente.</p>
+        <a href="#" class="btn-primary">Fique por Dentro</a>
+      </div>
+      <div class="vest-cards">
+        <a class="vest-card" href="#">
+          <div class="vest-card-icon">📝</div>
+          <h4>Resoluções Comentadas</h4>
+          <p>FUVEST, UNICAMP, ENEM e mais, resolvidas pelo nosso time de professores.</p>
+        </a>
+        <a class="vest-card" href="#">
+          <div class="vest-card-icon">⏱️</div>
+          <h4>Simulados</h4>
+          <p>Treine em condições reais de prova com nossos simulados periódicos.</p>
+        </a>
+        <a class="vest-card" href="#">
+          <div class="vest-card-icon">🎉</div>
+          <h4>Aprovações</h4>
+          <p>Confira a lista histórica de alunos aprovados nas melhores universidades.</p>
+        </a>
+        <a class="vest-card" href="#">
+          <div class="vest-card-icon">✅</div>
+          <h4>Concurso de Bolsas</h4>
+          <p>Inscreva-se no Concurso de Bolsas para o Pré-Vestibular Objetivo.</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MATRÍCULAS CTA -->
+<section class="matriculas-cta">
+  <div class="container">
+    <div class="matriculas-inner">
+      <div class="matriculas-text">
+        <h2>Matrículas abertas para 2027!</h2>
+        <p>Venha conhecer a estrutura do Objetivo e garantir a vaga do seu filho. Agende uma visita hoje mesmo.</p>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="#" class="btn-navy">Agendar Visita</a>
+        <a href="#" class="btn-navy" style="background:#fff;color:var(--navy);">Desafio – Fund. e Médio</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- E-GENIO -->
+<section class="egenio">
+  <div class="container">
+    <div class="egenio-inner">
+      <div class="egenio-visual">
+        <div class="egenio-phone">
+          <div class="egenio-phone-icon">💻</div>
+          <h3>e-GENIO</h3>
+          <p>A plataforma digital do Objetivo para alunos, pais e educadores</p>
+          <div class="egenio-features">
+            <div class="egenio-feat">📖 Conteúdos e aulas digitais</div>
+            <div class="egenio-feat">📊 Acompanhamento de desempenho</div>
+            <div class="egenio-feat">👨‍👩‍👧 Portal para responsáveis</div>
+            <div class="egenio-feat">🔔 Comunicados e avisos</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="section-label">Tecnologia educacional</p>
+        <h2 class="section-title">O <em>e-GENIO</em>: sua escola<br/>também no digital</h2>
+        <p class="section-desc" style="max-width:100%;">A plataforma e-GENIO é o ambiente digital do Objetivo, um espaço integrado onde alunos acessam conteúdos, tarefas e resultados, e os responsáveis acompanham a evolução escolar em tempo real.</p>
+        <br/>
+        <p class="section-desc" style="max-width:100%; font-size:.92rem;">Com recursos modernos e interface intuitiva, o e-GENIO une a excelência do ensino presencial à praticidade do digital, garantindo continuidade e engajamento no aprendizado.</p>
+        <br/>
+        <a href="#" class="btn-primary" style="background:var(--navy); color:var(--white); display:inline-block; margin-top:.5rem;">Conheça o e-GENIO</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOTÍCIAS -->
+<section class="noticias">
+  <div class="container">
+    <div class="noticias-header">
+      <div>
+        <p class="section-label">Acontece no Objetivo</p>
+        <h2 class="section-title">Últimas <em>Notícias</em></h2>
+      </div>
+      <a class="noticias-link" href="#">Ver todas →</a>
+    </div>
+    <div class="noticias-grid">
+      <a class="noticia-card featured" href="#">
+        <div class="noticia-img" style="background: linear-gradient(135deg,#0d2346 0%,#1a4fac 60%,#e8a020 100%); background-image: url('https://sdc.objetivo.br/wp-content/uploads/thumb-60anos-objetivo.jpg'), linear-gradient(135deg,#0d2346,#1a4fac);">
+          <span class="noticia-tag">Institucional</span>
+        </div>
+        <div class="noticia-body">
+          <div class="noticia-date">📅 2025 · Destaque</div>
+          <h3 class="noticia-title">Há 60 anos, o Objetivo iniciou o curso das realizações</h3>
+          <span class="noticia-read">Leia mais →</span>
+        </div>
+      </a>
+      <a class="noticia-card" href="#">
+        <div class="noticia-img" style="background: linear-gradient(135deg,#1a4fac,#1e8dc1); background-image: url('https://sdc.objetivo.br/wp-content/uploads/10102025-noticia-estadao-150anos.jpg'), linear-gradient(135deg,#1a4fac,#1e8dc1);">
+          <span class="noticia-tag">Parceria</span>
+        </div>
+        <div class="noticia-body">
+          <div class="noticia-date">📅 2025</div>
+          <h3 class="noticia-title">150 anos do Estadão e 60 anos do Objetivo: uma parceria marcada pela história</h3>
+          <span class="noticia-read">Leia mais →</span>
+        </div>
+      </a>
+      <a class="noticia-card" href="#">
+        <div class="noticia-img" style="background: linear-gradient(135deg,#0d2346,#1e8dc1);">
+          <span class="noticia-tag">Resultados</span>
+        </div>
+        <div class="noticia-body">
+          <div class="noticia-date">📅 2025</div>
+          <h3 class="noticia-title">Alunos do Objetivo conquistam mais de 17.100 medalhas em olimpíadas científicas</h3>
+          <span class="noticia-read">Leia mais →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SEGMENTOS / MICRO-BANNERS -->
+<section id="segmentos" style="background:#f4f7fc; padding:5rem 0;">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:2.5rem;">
+      <p class="section-label">Ecossistemas por Segmento</p>
+      <h2 class="section-title" style="margin:0 auto .8rem;">Navegue pelo seu <em>segmento</em></h2>
+      <p class="section-desc" style="margin:0 auto; max-width:560px;">Cada etapa de ensino tem sua própria identidade visual. Clique para explorar o ecossistema de conteúdo que corresponde ao seu momento.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:1.2rem;">
+
+      <!-- Infantil -->
+      <a href="#" style="text-decoration:none; border-radius:12px; overflow:hidden; display:block; position:relative; min-height:200px; background:linear-gradient(135deg,#27ae60,#2ecc71); box-shadow:0 4px 20px rgba(39,174,96,.25); transition:transform .25s, box-shadow .25s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 12px 36px rgba(39,174,96,.35)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 20px rgba(39,174,96,.25)'">
+        <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.05) 0,rgba(255,255,255,.05) 1px,transparent 1px,transparent 20px);"></div>
+        <div style="position:relative;z-index:2;padding:2rem 1.5rem;">
+          <div style="font-size:2.5rem;margin-bottom:.8rem;">🌱</div>
+          <div style="display:inline-block;background:rgba(255,255,255,.25);color:#fff;font-size:.65rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:.2rem .7rem;border-radius:20px;margin-bottom:.7rem;">Seg. Verde</div>
+          <h3 style="font-family:'Inter',sans-serif;font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:.4rem;">Educação Infantil</h3>
+          <p style="font-size:.83rem;color:rgba(255,255,255,.82);line-height:1.55;">Berçário ao Pré-escola · 0 a 5 anos</p>
+          <div style="margin-top:1.2rem;display:flex;align-items:center;gap:.4rem;color:#fff;font-size:.8rem;font-weight:700;">Ver conteúdos <span>→</span></div>
+        </div>
+      </a>
+
+      <!-- Fundamental I -->
+      <a href="#" style="text-decoration:none; border-radius:12px; overflow:hidden; display:block; position:relative; min-height:200px; background:linear-gradient(135deg,#e67e22,#f39c12); box-shadow:0 4px 20px rgba(230,126,34,.25); transition:transform .25s, box-shadow .25s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 12px 36px rgba(230,126,34,.35)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 20px rgba(230,126,34,.25)'">
+        <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.05) 0,rgba(255,255,255,.05) 1px,transparent 1px,transparent 20px);"></div>
+        <div style="position:relative;z-index:2;padding:2rem 1.5rem;">
+          <div style="font-size:2.5rem;margin-bottom:.8rem;">📐</div>
+          <div style="display:inline-block;background:rgba(255,255,255,.25);color:#fff;font-size:.65rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:.2rem .7rem;border-radius:20px;margin-bottom:.7rem;">Seg. Laranja</div>
+          <h3 style="font-family:'Inter',sans-serif;font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:.4rem;">Fundamental I</h3>
+          <p style="font-size:.83rem;color:rgba(255,255,255,.82);line-height:1.55;">1º ao 5º ano · 6 a 10 anos</p>
+          <div style="margin-top:1.2rem;display:flex;align-items:center;gap:.4rem;color:#fff;font-size:.8rem;font-weight:700;">Ver conteúdos <span>→</span></div>
+        </div>
+      </a>
+
+      <!-- Fundamental II -->
+      <a href="#" style="text-decoration:none; border-radius:12px; overflow:hidden; display:block; position:relative; min-height:200px; background:linear-gradient(135deg,#8e44ad,#9b59b6); box-shadow:0 4px 20px rgba(142,68,173,.25); transition:transform .25s, box-shadow .25s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 12px 36px rgba(142,68,173,.35)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 20px rgba(142,68,173,.25)'">
+        <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.05) 0,rgba(255,255,255,.05) 1px,transparent 1px,transparent 20px);"></div>
+        <div style="position:relative;z-index:2;padding:2rem 1.5rem;">
+          <div style="font-size:2.5rem;margin-bottom:.8rem;">🔬</div>
+          <div style="display:inline-block;background:rgba(255,255,255,.25);color:#fff;font-size:.65rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:.2rem .7rem;border-radius:20px;margin-bottom:.7rem;">Seg. Roxo</div>
+          <h3 style="font-family:'Inter',sans-serif;font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:.4rem;">Fundamental II</h3>
+          <p style="font-size:.83rem;color:rgba(255,255,255,.82);line-height:1.55;">6º ao 9º ano · 11 a 14 anos</p>
+          <div style="margin-top:1.2rem;display:flex;align-items:center;gap:.4rem;color:#fff;font-size:.8rem;font-weight:700;">Ver conteúdos <span>→</span></div>
+        </div>
+      </a>
+
+      <!-- Ensino Médio -->
+      <a href="#" style="text-decoration:none; border-radius:12px; overflow:hidden; display:block; position:relative; min-height:200px; background:linear-gradient(135deg,#1a4fac,#1e8dc1); box-shadow:0 4px 20px rgba(26,79,172,.25); transition:transform .25s, box-shadow .25s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 12px 36px rgba(26,79,172,.35)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 20px rgba(26,79,172,.25)'">
+        <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.05) 0,rgba(255,255,255,.05) 1px,transparent 1px,transparent 20px);"></div>
+        <div style="position:relative;z-index:2;padding:2rem 1.5rem;">
+          <div style="font-size:2.5rem;margin-bottom:.8rem;">🎓</div>
+          <div style="display:inline-block;background:rgba(255,255,255,.25);color:#fff;font-size:.65rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:.2rem .7rem;border-radius:20px;margin-bottom:.7rem;">Seg. Azul</div>
+          <h3 style="font-family:'Inter',sans-serif;font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:.4rem;">Ensino Médio</h3>
+          <p style="font-size:.83rem;color:rgba(255,255,255,.82);line-height:1.55;">1ª à 3ª série · ENEM & Vestibulares</p>
+          <div style="margin-top:1.2rem;display:flex;align-items:center;gap:.4rem;color:#fff;font-size:.8rem;font-weight:700;">Ver conteúdos <span>→</span></div>
+        </div>
+      </a>
+
+      <!-- Pré-Vestibular -->
+      <a href="#" style="text-decoration:none; border-radius:12px; overflow:hidden; display:block; position:relative; min-height:200px; background:linear-gradient(135deg,#c0392b,#e74c3c); box-shadow:0 4px 20px rgba(192,57,43,.25); transition:transform .25s, box-shadow .25s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 12px 36px rgba(192,57,43,.35)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 20px rgba(192,57,43,.25)'">
+        <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.05) 0,rgba(255,255,255,.05) 1px,transparent 1px,transparent 20px);"></div>
+        <div style="position:relative;z-index:2;padding:2rem 1.5rem;">
+          <div style="font-size:2.5rem;margin-bottom:.8rem;">🏆</div>
+          <div style="display:inline-block;background:rgba(255,255,255,.25);color:#fff;font-size:.65rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:.2rem .7rem;border-radius:20px;margin-bottom:.7rem;">Seg. Vermelho</div>
+          <h3 style="font-family:'Inter',sans-serif;font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:.4rem;">Pré-Vestibular</h3>
+          <p style="font-size:.83rem;color:rgba(255,255,255,.82);line-height:1.55;">Aprovação nas melhores universidades</p>
+          <div style="margin-top:1.2rem;display:flex;align-items:center;gap:.4rem;color:#fff;font-size:.8rem;font-weight:700;">Ver conteúdos <span>→</span></div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE INTERATIVA -->
+<section id="timeline" style="background:#fff; padding:5rem 0;">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:3.5rem;">
+      <p class="section-label">Página "Sobre": Prévia do Recurso</p>
+      <h2 class="section-title" style="margin:0 auto .8rem;">60 Anos de <em>História</em></h2>
+      <p class="section-desc" style="margin:0 auto;">Clique em cada marco para conhecer a história do Objetivo ao longo de seis décadas de excelência.</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:200px 1fr; gap:0; max-width:860px; margin:0 auto; position:relative;">
+
+      <!-- COLUNA ESQUERDA: Linha + Bolinhas -->
+      <div style="position:relative; display:flex; flex-direction:column; align-items:center;">
+        <!-- Linha vertical -->
+        <div style="position:absolute; left:50%; top:0; bottom:0; width:2px; background:linear-gradient(to bottom,#1a4fac 0%,#e8a020 100%); transform:translateX(-50%); border-radius:2px;"></div>
+
+        <!-- Dot 1965 -->
+        <div class="tl-dot" data-id="tl1" onclick="tlClick(this)" style="
+          position:relative; z-index:2; cursor:pointer;
+          width:52px; height:52px; border-radius:50%;
+          background:#fff; border:2px solid #1a4fac;
+          display:flex; align-items:center; justify-content:center;
+          flex-direction:column; margin-bottom:0;
+          box-shadow:0 2px 12px rgba(26,79,172,.18);
+          transition:all .25s cubic-bezier(.4,0,.2,1);
+          margin-top:24px;
+        ">
+          <span style="font-size:.62rem; font-weight:800; color:#1a4fac; line-height:1; letter-spacing:-.02em;">1965</span>
+        </div>
+        <div style="flex:1; min-height:40px;"></div>
+
+        <!-- Dot 1975 -->
+        <div class="tl-dot" data-id="tl2" onclick="tlClick(this)" style="
+          position:relative; z-index:2; cursor:pointer;
+          width:52px; height:52px; border-radius:50%;
+          background:#fff; border:2px solid #1a4fac;
+          display:flex; align-items:center; justify-content:center;
+          flex-direction:column;
+          box-shadow:0 2px 12px rgba(26,79,172,.18);
+          transition:all .25s cubic-bezier(.4,0,.2,1);
+        ">
+          <span style="font-size:.62rem; font-weight:800; color:#1a4fac; line-height:1; letter-spacing:-.02em;">1975</span>
+        </div>
+        <div style="flex:1; min-height:40px;"></div>
+
+        <!-- Dot 1990 -->
+        <div class="tl-dot" data-id="tl3" onclick="tlClick(this)" style="
+          position:relative; z-index:2; cursor:pointer;
+          width:52px; height:52px; border-radius:50%;
+          background:#fff; border:2px solid #1a4fac;
+          display:flex; align-items:center; justify-content:center;
+          flex-direction:column;
+          box-shadow:0 2px 12px rgba(26,79,172,.18);
+          transition:all .25s cubic-bezier(.4,0,.2,1);
+        ">
+          <span style="font-size:.62rem; font-weight:800; color:#1a4fac; line-height:1; letter-spacing:-.02em;">1990</span>
+        </div>
+        <div style="flex:1; min-height:40px;"></div>
+
+        <!-- Dot 2010 -->
+        <div class="tl-dot" data-id="tl4" onclick="tlClick(this)" style="
+          position:relative; z-index:2; cursor:pointer;
+          width:52px; height:52px; border-radius:50%;
+          background:#fff; border:2px solid #1a4fac;
+          display:flex; align-items:center; justify-content:center;
+          flex-direction:column;
+          box-shadow:0 2px 12px rgba(26,79,172,.18);
+          transition:all .25s cubic-bezier(.4,0,.2,1);
+        ">
+          <span style="font-size:.62rem; font-weight:800; color:#1a4fac; line-height:1; letter-spacing:-.02em;">2010</span>
+        </div>
+        <div style="flex:1; min-height:40px;"></div>
+
+        <!-- Dot 2025 -->
+        <div class="tl-dot" data-id="tl5" onclick="tlClick(this)" style="
+          position:relative; z-index:2; cursor:pointer;
+          width:60px; height:60px; border-radius:50%;
+          background:linear-gradient(135deg,#e8a020,#f5c54a);
+          border:3px solid #fff;
+          display:flex; align-items:center; justify-content:center;
+          flex-direction:column;
+          box-shadow:0 4px 20px rgba(232,160,32,.45);
+          transition:all .25s cubic-bezier(.4,0,.2,1);
+          margin-bottom:24px;
+        ">
+          <span style="font-size:.58rem; font-weight:900; color:#0d2346; line-height:1; letter-spacing:-.02em;">2025</span>
+          <span style="font-size:.48rem; font-weight:700; color:#0d2346; margin-top:1px;">🏆</span>
+        </div>
+      </div>
+
+      <!-- COLUNA DIREITA: Cards expansíveis -->
+      <div style="padding-left:2rem; display:flex; flex-direction:column; gap:0;">
+
+        <!-- Card 1965 -->
+        <div id="tl1" class="tl-card" style="
+          margin-top:12px;
+          background:#f0f4fb; border:1.5px solid #dde3f0;
+          border-radius:16px; overflow:hidden;
+          max-height:64px;
+          transition:max-height .45s cubic-bezier(.4,0,.2,1), box-shadow .25s, border-color .25s;
+          cursor:pointer; margin-bottom:0;
+        " onclick="tlClick(document.querySelector('[data-id=tl1]'))">
+          <div style="padding:1.1rem 1.4rem; display:flex; align-items:center; justify-content:space-between;">
+            <div>
+              <div style="font-size:.65rem; font-weight:800; color:#1a4fac; letter-spacing:.12em; text-transform:uppercase; margin-bottom:.2rem;">1965</div>
+              <h4 style="font-size:1rem; font-weight:700; color:#0d2346; margin:0;">Fundação do Objetivo</h4>
+            </div>
+            <span class="tl-arrow" style="font-size:1rem; color:#1a4fac; transition:transform .3s; flex-shrink:0; margin-left:1rem;">›</span>
+          </div>
+          <div class="tl-body" style="padding:0 1.4rem 1.4rem; border-top:1px solid #dde3f0; margin-top:.2rem;">
+            <p style="font-size:.88rem; color:#5a6478; line-height:1.7; padding-top:1rem;">Nasce em São Paulo o Colégio Objetivo, com a missão de transformar a educação brasileira por meio de um método de ensino inovador e rigoroso. Uma história que mudaria a vida de gerações inteiras.</p>
+          </div>
+        </div>
+
+        <div style="flex:1; min-height:40px;"></div>
+
+        <!-- Card 1975 -->
+        <div id="tl2" class="tl-card" style="
+          background:#f0f4fb; border:1.5px solid #dde3f0;
+          border-radius:16px; overflow:hidden;
+          max-height:64px;
+          transition:max-height .45s cubic-bezier(.4,0,.2,1), box-shadow .25s, border-color .25s;
+          cursor:pointer;
+        " onclick="tlClick(document.querySelector('[data-id=tl2]'))">
+          <div style="padding:1.1rem 1.4rem; display:flex; align-items:center; justify-content:space-between;">
+            <div>
+              <div style="font-size:.65rem; font-weight:800; color:#1a4fac; letter-spacing:.12em; text-transform:uppercase; margin-bottom:.2rem;">1975</div>
+              <h4 style="font-size:1rem; font-weight:700; color:#0d2346; margin:0;">Expansão para o Interior de SP</h4>
+            </div>
+            <span class="tl-arrow" style="font-size:1rem; color:#1a4fac; transition:transform .3s; flex-shrink:0; margin-left:1rem;">›</span>
+          </div>
+          <div class="tl-body" style="padding:0 1.4rem 1.4rem; border-top:1px solid #dde3f0; margin-top:.2rem;">
+            <p style="font-size:.88rem; color:#5a6478; line-height:1.7; padding-top:1rem;">O método Objetivo chega ao interior do estado, incluindo São Carlos/SP, levando excelência educacional para novas regiões e consolidando a rede de unidades conveniadas que hoje forma estudantes em todo o Brasil.</p>
+          </div>
+        </div>
+
+        <div style="flex:1; min-height:40px;"></div>
+
+        <!-- Card 1990 -->
+        <div id="tl3" class="tl-card" style="
+          background:#f0f4fb; border:1.5px solid #dde3f0;
+          border-radius:16px; overflow:hidden;
+          max-height:64px;
+          transition:max-height .45s cubic-bezier(.4,0,.2,1), box-shadow .25s, border-color .25s;
+          cursor:pointer;
+        " onclick="tlClick(document.querySelector('[data-id=tl3]'))">
+          <div style="padding:1.1rem 1.4rem; display:flex; align-items:center; justify-content:space-between;">
+            <div>
+              <div style="font-size:.65rem; font-weight:800; color:#1a4fac; letter-spacing:.12em; text-transform:uppercase; margin-bottom:.2rem;">1990</div>
+              <h4 style="font-size:1rem; font-weight:700; color:#0d2346; margin:0;">1º Lugar no ENEM em SP</h4>
+            </div>
+            <span class="tl-arrow" style="font-size:1rem; color:#1a4fac; transition:transform .3s; flex-shrink:0; margin-left:1rem;">›</span>
+          </div>
+          <div class="tl-body" style="padding:0 1.4rem 1.4rem; border-top:1px solid #dde3f0; margin-top:.2rem;">
+            <p style="font-size:.88rem; color:#5a6478; line-height:1.7; padding-top:1rem;">O Objetivo conquista pela primeira vez o primeiro lugar no ENEM no Estado de São Paulo, marca que se repetiria por décadas. Um resultado que comprova a solidez do método pedagógico e a dedicação do corpo docente.</p>
+          </div>
+        </div>
+
+        <div style="flex:1; min-height:40px;"></div>
+
+        <!-- Card 2010 -->
+        <div id="tl4" class="tl-card" style="
+          background:#f0f4fb; border:1.5px solid #dde3f0;
+          border-radius:16px; overflow:hidden;
+          max-height:64px;
+          transition:max-height .45s cubic-bezier(.4,0,.2,1), box-shadow .25s, border-color .25s;
+          cursor:pointer;
+        " onclick="tlClick(document.querySelector('[data-id=tl4]'))">
+          <div style="padding:1.1rem 1.4rem; display:flex; align-items:center; justify-content:space-between;">
+            <div>
+              <div style="font-size:.65rem; font-weight:800; color:#1a4fac; letter-spacing:.12em; text-transform:uppercase; margin-bottom:.2rem;">2010</div>
+              <h4 style="font-size:1rem; font-weight:700; color:#0d2346; margin:0;">Plataforma e-GENIO</h4>
+            </div>
+            <span class="tl-arrow" style="font-size:1rem; color:#1a4fac; transition:transform .3s; flex-shrink:0; margin-left:1rem;">›</span>
+          </div>
+          <div class="tl-body" style="padding:0 1.4rem 1.4rem; border-top:1px solid #dde3f0; margin-top:.2rem;">
+            <p style="font-size:.88rem; color:#5a6478; line-height:1.7; padding-top:1rem;">Lançamento do e-GENIO, consolidando a transformação digital do Objetivo e integrando ensino presencial com tecnologia. Alunos, pais e educadores passam a contar com um ambiente digital completo e integrado.</p>
+          </div>
+        </div>
+
+        <div style="flex:1; min-height:40px;"></div>
+
+        <!-- Card 2025 -->
+        <div id="tl5" class="tl-card" style="
+          background:linear-gradient(135deg,#0d2346,#1a4fac);
+          border:1.5px solid #1a4fac;
+          border-radius:16px; overflow:hidden;
+          max-height:68px;
+          transition:max-height .45s cubic-bezier(.4,0,.2,1), box-shadow .25s;
+          cursor:pointer; margin-bottom:12px;
+        " onclick="tlClick(document.querySelector('[data-id=tl5]'))">
+          <div style="padding:1.1rem 1.4rem; display:flex; align-items:center; justify-content:space-between;">
+            <div>
+              <div style="font-size:.65rem; font-weight:800; color:#e8a020; letter-spacing:.12em; text-transform:uppercase; margin-bottom:.2rem;">2025</div>
+              <h4 style="font-size:1rem; font-weight:700; color:#fff; margin:0;">60 Anos de Excelência 🏆</h4>
+            </div>
+            <span class="tl-arrow" style="font-size:1rem; color:#e8a020; transition:transform .3s; flex-shrink:0; margin-left:1rem;">›</span>
+          </div>
+          <div class="tl-body" style="padding:0 1.4rem 1.4rem; border-top:1px solid rgba(255,255,255,.15); margin-top:.2rem;">
+            <p style="font-size:.88rem; color:rgba(255,255,255,.8); line-height:1.7; padding-top:1rem;">Seis décadas formando campeões, líderes e profissionais. Mais de 17.100 medalhas em olimpíadas científicas e incontáveis aprovações nas melhores universidades do Brasil. O Objetivo segue transformando vidas.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:3rem;">
+      <a href="#" style="display:inline-flex;align-items:center;gap:.5rem;background:var(--navy);color:#fff;padding:.9rem 2rem;border-radius:9999px;font-weight:700;font-size:.88rem;text-decoration:none;letter-spacing:.04em;text-transform:uppercase;box-shadow:0 4px 16px rgba(13,35,70,.25);transition:all .22s;" onmouseover="this.style.background='#1a4fac';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--navy)';this.style.transform=''">Ver história completa →</a>
+    </div>
+  </div>
+
+  <style>
+    .tl-dot:hover {
+      transform: scale(1.15);
+      box-shadow: 0 6px 24px rgba(26,79,172,.3) !important;
+    }
+    .tl-dot.active {
+      background: #1a4fac !important;
+      border-color: #1a4fac !important;
+      box-shadow: 0 0 0 4px rgba(26,79,172,.2), 0 6px 20px rgba(26,79,172,.35) !important;
+    }
+    .tl-dot.active span { color: #fff !important; }
+    .tl-dot[data-id="tl5"].active {
+      background: linear-gradient(135deg,#e8a020,#f5c54a) !important;
+      box-shadow: 0 0 0 5px rgba(232,160,32,.25), 0 8px 28px rgba(232,160,32,.5) !important;
+    }
+    .tl-card.active {
+      max-height: 300px !important;
+      border-color: #1a4fac !important;
+      box-shadow: 0 8px 32px rgba(13,35,70,.13) !important;
+      background: #fff !important;
+    }
+    #tl5.active {
+      background: linear-gradient(135deg,#0d2346,#1a4fac) !important;
+      border-color: #e8a020 !important;
+      box-shadow: 0 8px 32px rgba(13,35,70,.25) !important;
+    }
+    .tl-card.active .tl-arrow { transform: rotate(90deg); }
+  </style>
+
+  <script>
+    function tlClick(dot) {
+      const id = dot.dataset.id;
+      const card = document.getElementById(id);
+      const isActive = card.classList.contains('active');
+
+      // Close all
+      document.querySelectorAll('.tl-dot').forEach(d => d.classList.remove('active'));
+      document.querySelectorAll('.tl-card').forEach(c => c.classList.remove('active'));
+
+      if (!isActive) {
+        dot.classList.add('active');
+        card.classList.add('active');
+      }
+    }
+  </script>
+</section>
+
+
+<!-- BLOG / NOTÍCIAS PROTÓTIPO -->
+<section id="blog" style="background:#f4f7fc; padding:5rem 0;">
+  <div class="container">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2.5rem;gap:1rem;flex-wrap:wrap;">
+      <div>
+        <p class="section-label">Blog e Notícias: Gerenciado via WordPress</p>
+        <h2 class="section-title" style="margin-bottom:.4rem;">Novidades do <em>Objetivo</em></h2>
+        <p style="font-size:.85rem;color:#5a6478;">A equipe de marketing publica diretamente no painel WordPress, sem precisar de desenvolvedor.</p>
+      </div>
+      <div style="display:flex;gap:.7rem;flex-wrap:wrap;">
+        <button onclick="filterBlog(this,'todos')" style="background:var(--navy);color:#fff;border:none;padding:.45rem 1rem;border-radius:20px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:inherit;">Todos</button>
+        <button onclick="filterBlog(this,'noticias')" style="background:#fff;color:var(--navy);border:1px solid #d6dce8;padding:.45rem 1rem;border-radius:20px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:inherit;">Notícias</button>
+        <button onclick="filterBlog(this,'eventos')" style="background:#fff;color:var(--navy);border:1px solid #d6dce8;padding:.45rem 1rem;border-radius:20px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:inherit;">Eventos</button>
+        <button onclick="filterBlog(this,'resultados')" style="background:#fff;color:var(--navy);border:1px solid #d6dce8;padding:.45rem 1rem;border-radius:20px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:inherit;">Resultados</button>
+      </div>
+    </div>
+
+    <!-- Grid de posts -->
+    <div id="blog-grid" style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:1.5rem;">
+
+      <!-- Post destaque -->
+      <div class="blog-post" data-cat="noticias" style="background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 12px rgba(13,35,70,.07);cursor:pointer;" onclick="openPost(this)">
+        <div style="height:260px;background:linear-gradient(135deg,#0d2346,#1a4fac);position:relative;display:flex;align-items:flex-end;padding:1.2rem;">
+          <div style="position:absolute;top:.8rem;left:.8rem;background:#e8a020;color:#0d2346;font-size:.65rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .7rem;border-radius:2px;">📌 Destaque</div>
+          <div>
+            <div style="color:rgba(255,255,255,.65);font-size:.72rem;margin-bottom:.4rem;">15 Mar 2025 · Notícias</div>
+            <h3 style="font-size:1.25rem;font-weight:800;color:#fff;line-height:1.3;">60 anos do Objetivo: uma trajetória de conquistas e transformações</h3>
+          </div>
+        </div>
+        <div style="padding:1.2rem;">
+          <p style="font-size:.88rem;color:#5a6478;line-height:1.6;margin-bottom:1rem;">Seis décadas dedicadas à formação de gerações. Relembre os marcos mais importantes da história do Objetivo e como cada etapa moldou a instituição que somos hoje.</p>
+          <span style="font-size:.8rem;font-weight:700;color:#1a4fac;text-transform:uppercase;letter-spacing:.06em;">Ler artigo completo →</span>
+        </div>
+      </div>
+
+      <!-- Post 2 -->
+      <div class="blog-post" data-cat="resultados" style="background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 12px rgba(13,35,70,.07);cursor:pointer;" onclick="openPost(this)">
+        <div style="height:160px;background:linear-gradient(135deg,#1a4fac,#1e8dc1);position:relative;display:flex;align-items:flex-end;padding:1rem;">
+          <div style="position:absolute;top:.7rem;left:.7rem;background:rgba(255,255,255,.2);color:#fff;font-size:.6rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .6rem;border-radius:2px;">Resultados</div>
+        </div>
+        <div style="padding:1rem;">
+          <div style="color:#5a6478;font-size:.7rem;margin-bottom:.4rem;">10 Mar 2025</div>
+          <h4 style="font-size:.95rem;font-weight:700;color:#0d2346;line-height:1.35;margin-bottom:.6rem;">Alunos conquistam medalhas na Olimpíada de Matemática</h4>
+          <span style="font-size:.77rem;font-weight:700;color:#1a4fac;">Ler mais →</span>
+        </div>
+      </div>
+
+      <!-- Post 3 -->
+      <div class="blog-post" data-cat="eventos" style="background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 12px rgba(13,35,70,.07);cursor:pointer;" onclick="openPost(this)">
+        <div style="height:160px;background:linear-gradient(135deg,#27ae60,#2ecc71);position:relative;display:flex;align-items:flex-end;padding:1rem;">
+          <div style="position:absolute;top:.7rem;left:.7rem;background:rgba(255,255,255,.2);color:#fff;font-size:.6rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .6rem;border-radius:2px;">Eventos</div>
+        </div>
+        <div style="padding:1rem;">
+          <div style="color:#5a6478;font-size:.7rem;margin-bottom:.4rem;">05 Mar 2025</div>
+          <h4 style="font-size:.95rem;font-weight:700;color:#0d2346;line-height:1.35;margin-bottom:.6rem;">Aulão gratuito ENEM 2025: inscrições abertas</h4>
+          <span style="font-size:.77rem;font-weight:700;color:#1a4fac;">Ler mais →</span>
+        </div>
+      </div>
+
+      <!-- Post 4 -->
+      <div class="blog-post" data-cat="eventos" style="background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 12px rgba(13,35,70,.07);cursor:pointer;" onclick="openPost(this)">
+        <div style="height:130px;background:linear-gradient(135deg,#8e44ad,#9b59b6);position:relative;display:flex;align-items:flex-end;padding:1rem;">
+          <div style="position:absolute;top:.7rem;left:.7rem;background:rgba(255,255,255,.2);color:#fff;font-size:.6rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .6rem;border-radius:2px;">Eventos</div>
+        </div>
+        <div style="padding:1rem;">
+          <div style="color:#5a6478;font-size:.7rem;margin-bottom:.3rem;">28 Fev 2025</div>
+          <h4 style="font-size:.88rem;font-weight:700;color:#0d2346;line-height:1.35;margin-bottom:.5rem;">Feira de Ciências reúne projetos inovadores</h4>
+          <span style="font-size:.75rem;font-weight:700;color:#1a4fac;">Ler mais →</span>
+        </div>
+      </div>
+
+      <!-- Post 5 -->
+      <div class="blog-post" data-cat="noticias" style="background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 12px rgba(13,35,70,.07);cursor:pointer;" onclick="openPost(this)">
+        <div style="height:130px;background:linear-gradient(135deg,#e67e22,#f39c12);position:relative;display:flex;align-items:flex-end;padding:1rem;">
+          <div style="position:absolute;top:.7rem;left:.7rem;background:rgba(255,255,255,.2);color:#fff;font-size:.6rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .6rem;border-radius:2px;">Notícias</div>
+        </div>
+        <div style="padding:1rem;">
+          <div style="color:#5a6478;font-size:.7rem;margin-bottom:.3rem;">20 Fev 2025</div>
+          <h4 style="font-size:.88rem;font-weight:700;color:#0d2346;line-height:1.35;margin-bottom:.5rem;">Nova parceria Objetivo & Estadão completa 60 anos</h4>
+          <span style="font-size:.75rem;font-weight:700;color:#1a4fac;">Ler mais →</span>
+        </div>
+      </div>
+
+      <!-- Post 6 -->
+      <div class="blog-post" data-cat="resultados" style="background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 12px rgba(13,35,70,.07);cursor:pointer;" onclick="openPost(this)">
+        <div style="height:130px;background:linear-gradient(135deg,#c0392b,#e74c3c);position:relative;display:flex;align-items:flex-end;padding:1rem;">
+          <div style="position:absolute;top:.7rem;left:.7rem;background:rgba(255,255,255,.2);color:#fff;font-size:.6rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .6rem;border-radius:2px;">Resultados</div>
+        </div>
+        <div style="padding:1rem;">
+          <div style="color:#5a6478;font-size:.7rem;margin-bottom:.3rem;">15 Fev 2025</div>
+          <h4 style="font-size:.88rem;font-weight:700;color:#0d2346;line-height:1.35;margin-bottom:.5rem;">Aprovações no vestibular FUVEST 2025</h4>
+          <span style="font-size:.75rem;font-weight:700;color:#1a4fac;">Ler mais →</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Artigo expandido (oculto por padrão) -->
+    <div id="article-view" style="display:none;margin-top:2rem;background:#fff;border-radius:12px;padding:2.5rem;box-shadow:0 4px 24px rgba(13,35,70,.1);">
+      <button onclick="closePost()" style="background:none;border:1px solid #d6dce8;padding:.4rem .9rem;border-radius:3px;cursor:pointer;font-family:inherit;font-size:.82rem;font-weight:600;color:#5a6478;margin-bottom:1.5rem;">← Voltar ao blog</button>
+      <div style="font-size:.72rem;font-weight:800;color:#1a4fac;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem;">Notícias · 15 Mar 2025</div>
+      <h2 style="font-size:1.6rem;font-weight:800;color:#0d2346;margin-bottom:1rem;line-height:1.3;">60 anos do Objetivo: uma trajetória de conquistas e transformações</h2>
+      <div style="height:3px;width:60px;background:#e8a020;border-radius:2px;margin-bottom:1.5rem;"></div>
+      <p style="font-size:.95rem;color:#5a6478;line-height:1.8;margin-bottom:1rem;">Em 2025, o Colégio Objetivo celebra seis décadas de uma jornada marcada por inovação pedagógica, resultados expressivos e um compromisso inabalável com a excelência educacional. Desde sua fundação, em 1965, a instituição nunca deixou de reinventar seus métodos para acompanhar as transformações do mundo e as necessidades dos estudantes.</p>
+      <p style="font-size:.95rem;color:#5a6478;line-height:1.8;margin-bottom:1rem;">Ao longo dessas décadas, o Objetivo acumulou mais de 17.100 medalhas e troféus em olimpíadas científicas, conquistou o primeiro lugar no ENEM no Estado de São Paulo em múltiplas ocasiões e foi eleito por sete anos consecutivos o Melhor Colégio de São Paulo pelo prêmio O Melhor de São Paulo.</p>
+      <p style="font-size:.95rem;color:#5a6478;line-height:1.8;">A unidade de São Carlos/SP faz parte desta história, levando o método Objetivo e seus resultados comprovados para o interior do estado, formando gerações de estudantes que hoje ocupam posições de destaque nas melhores universidades e empresas do Brasil.</p>
+    </div>
+
+    <div style="text-align:center;margin-top:2.5rem;">
+      <a href="#" style="background:var(--navy);color:#fff;padding:.85rem 2rem;border-radius:3px;font-weight:700;font-size:.9rem;text-decoration:none;letter-spacing:.04em;text-transform:uppercase;display:inline-block;">Ver todos os artigos →</a>
+      <p style="margin-top:.8rem;font-size:.78rem;color:#5a6478;">Publicações gerenciadas pela equipe de marketing via <strong>WordPress</strong>, sem precisar de desenvolvedor.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONVENIO BAR -->
+<div class="convenio-bar">
+  <a href="#">⭐ Seja uma Escola Conveniada do Sistema de Ensino Objetivo. Saiba mais →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <svg width="180" height="40" viewBox="0 0 263 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_814_245)">
+<path d="M66.6359 51.4042C66.0841 51.4042 65.6035 51.2206 65.1942 50.8539C64.7848 50.4872 64.5795 49.9369 64.5795 49.2029C64.5795 48.6194 64.7136 47.9859 64.9805 47.3018C65.2474 46.6184 65.6157 45.9427 66.0841 45.2759C66.5519 44.6091 67.087 44.0044 67.6895 43.4624C68.2914 42.9211 68.9349 42.4834 69.6208 42.1493C70.3061 41.8159 70.9914 41.6489 71.6773 41.6489C72.3632 41.6489 73.0068 41.8326 73.5079 42.1992C74.0097 42.5659 74.2606 43.0497 74.2606 43.6499C74.2606 44.1004 74.1014 44.4255 73.7838 44.6257C73.4662 44.826 73.0896 44.8843 72.6552 44.8011C72.6885 44.6507 72.718 44.501 72.7431 44.3506C72.7681 44.2009 72.7809 44.0422 72.7809 43.8751C72.7809 43.5418 72.7142 43.2416 72.5801 42.9748C72.446 42.7086 72.1617 42.5749 71.7273 42.5749C71.2589 42.5749 70.7829 42.7336 70.2978 43.0503C69.8127 43.3671 69.3488 43.7798 68.9061 44.2885C68.4627 44.7972 68.0661 45.3559 67.7145 45.9644C67.3635 46.573 67.0876 47.1693 66.8868 47.7529C66.686 48.3365 66.5859 48.8619 66.5859 49.3284C66.5859 49.862 66.7777 50.1289 67.1627 50.1289C67.5477 50.1289 67.9737 49.9414 68.4415 49.5658C68.9093 49.1908 69.3821 48.7198 69.8589 48.1529C70.3356 47.5859 70.7906 47.0068 71.2256 46.4143C71.66 45.8224 72.0366 45.3181 72.3542 44.9009C72.4043 44.8177 72.471 44.7755 72.5551 44.7755C72.6218 44.7921 72.7514 44.8299 72.9439 44.8881C73.1358 44.947 73.3161 45.034 73.4829 45.1505C73.6497 45.2676 73.7338 45.4173 73.7338 45.6009C73.7338 45.768 73.6625 45.9804 73.5207 46.2389C73.3783 46.4975 73.2115 46.7809 73.019 47.0894C72.8265 47.3978 72.659 47.7062 72.5172 48.0147C72.3748 48.3231 72.3042 48.6194 72.3042 48.9028C72.3042 49.1198 72.3626 49.3239 72.48 49.5159C72.5968 49.7078 72.7893 49.8032 73.0568 49.8032C73.4579 49.8032 74.0225 49.5075 74.7495 48.915C75.4765 48.3231 76.2169 47.3184 76.9689 45.9011L77.4457 46.3765C77.0446 47.2768 76.5634 48.0735 76.0032 48.7653C75.4431 49.4576 74.8534 49.9996 74.2355 50.3912C73.617 50.7829 72.9895 50.9787 72.3542 50.9787C71.6683 50.9787 71.1589 50.7617 70.8246 50.3285C70.4903 49.8953 70.3061 49.4282 70.2727 48.9278V48.803C69.6035 49.6035 68.9895 50.237 68.4293 50.7041C67.8692 51.1706 67.2711 51.4042 66.6359 51.4042Z" fill="#FBCA00"/>
+<path d="M84.8188 50.729C84.1669 50.729 83.669 50.5665 83.3263 50.2414C82.9837 49.9164 82.8124 49.5036 82.8124 49.0032C82.8124 48.6699 82.8708 48.3154 82.9882 47.9404C83.105 47.5654 83.2224 47.1859 83.3392 46.8026C83.456 46.4193 83.515 46.052 83.515 45.702C83.515 45.352 83.4271 45.0807 83.2519 44.9392C83.0761 44.7978 82.8714 44.7268 82.6372 44.7268C82.1355 44.7268 81.6215 44.9316 81.0947 45.3398C80.5679 45.7487 80.0578 46.2613 79.565 46.8781C79.0716 47.495 78.6077 48.1375 78.1733 48.8042C77.7383 49.471 77.3623 50.0719 77.0447 50.6049C76.7271 50.6049 76.4261 50.5505 76.1419 50.4424C75.8576 50.3336 75.6151 50.1467 75.4149 49.8793C75.4316 49.7961 75.5278 49.5414 75.703 49.1165C75.8788 48.6916 76.0752 48.1829 76.2927 47.591C76.5096 46.9991 76.702 46.3777 76.8695 45.7276C77.0363 45.0775 77.1204 44.4856 77.1204 43.9519C77.2372 43.8188 77.4168 43.685 77.6594 43.5519C77.9013 43.4188 78.1566 43.3517 78.4242 43.3517C79.0094 43.3517 79.302 43.6019 79.302 44.1023C79.302 44.3025 79.2641 44.5988 79.189 44.9904C79.114 45.3827 79.0094 45.8281 78.8753 46.3285C79.3097 45.7449 79.7864 45.1946 80.3049 44.6775C80.8227 44.1611 81.3623 43.7394 81.9224 43.4144C82.4826 43.0893 83.0466 42.9268 83.6151 42.9268C84.3337 42.9268 84.865 43.1686 85.2076 43.6518C85.5503 44.1355 85.7216 44.6692 85.7216 45.2528C85.7216 45.7532 85.6375 46.2197 85.4707 46.6535C85.3032 47.0874 85.1403 47.4956 84.9818 47.8789C84.8227 48.2629 84.7437 48.6379 84.7437 49.0045C84.7437 49.2714 84.8066 49.4588 84.9317 49.5676C85.0569 49.6764 85.1948 49.7302 85.3456 49.7302C85.7466 49.7302 86.1643 49.5388 86.5994 49.1549C87.0338 48.7716 87.4476 48.284 87.8409 47.6914C88.2336 47.0995 88.5808 46.5032 88.8817 45.9029L89.3077 46.253C88.9568 47.0701 88.5596 47.8162 88.1162 48.4913C87.6728 49.1664 87.1794 49.7084 86.6366 50.1173C86.0931 50.5256 85.4868 50.7303 84.8182 50.7303L84.8188 50.729Z" fill="#FBCA00"/>
+<path d="M89.8845 51.0292C89.1318 51.0292 88.6179 50.7828 88.342 50.2914C88.0661 49.7999 87.9281 49.2618 87.9281 48.6782C87.9281 48.1445 88.0121 47.5987 88.179 47.04C88.3458 46.4814 88.5762 45.9605 88.8687 45.4768C89.1613 44.993 89.4873 44.6059 89.8466 44.3134C90.2059 44.0216 90.5697 43.8757 90.9374 43.8757C91.0542 43.8757 91.1921 43.8969 91.3513 43.9385C91.5097 43.98 91.6227 44.0428 91.69 44.1259C91.4892 44.3761 91.2845 44.6846 91.0753 45.0512C90.8662 45.4179 90.6743 45.8057 90.4985 46.2146C90.3227 46.6235 90.1848 47.0362 90.0847 47.4528C89.9846 47.87 89.9345 48.2533 89.9345 48.6033C89.9345 48.9533 89.9974 49.2119 90.1225 49.4288C90.2476 49.6457 90.469 49.7539 90.7872 49.7539C91.1055 49.7539 91.4854 49.5747 91.9281 49.2163C92.3708 48.858 92.7937 48.4453 93.1947 47.9781C92.6596 47.4944 92.2752 46.9652 92.041 46.3899C91.8068 45.8146 91.69 45.1184 91.69 44.3013C91.69 43.9513 91.7779 43.5507 91.9531 43.1008C92.1289 42.6503 92.4125 42.2587 92.8059 41.9253C93.1985 41.5919 93.7292 41.4249 94.3984 41.4249C95.117 41.4249 95.6233 41.6252 95.9159 42.0252C96.2085 42.4251 96.3548 42.9005 96.3548 43.4509C96.3548 44.0677 96.1918 44.7601 95.8658 45.5267C95.5399 46.2939 95.151 47.0189 94.6993 47.703C94.9002 47.8028 95.1337 47.8527 95.4013 47.8527C95.6522 47.8527 95.9531 47.7945 96.3041 47.6774C96.6551 47.5609 96.9977 47.3645 97.3326 47.09C97.6669 46.8148 97.9345 46.4437 98.1353 45.9772L98.587 46.3022C98.2187 47.1527 97.7298 47.774 97.1196 48.1656C96.5088 48.5579 95.9114 48.7531 95.3262 48.7531C95.1087 48.7531 94.8912 48.7326 94.6743 48.6904C94.4568 48.6488 94.256 48.5944 94.0724 48.5278C93.504 49.1952 92.852 49.7782 92.1161 50.2786C91.3801 50.779 90.6365 51.0292 89.8838 51.0292H89.8845ZM93.8472 47.177C94.2483 46.5934 94.5909 45.9682 94.8758 45.3014C95.16 44.6347 95.3018 44.0178 95.3018 43.4502C95.3018 43.0669 95.2428 42.7873 95.126 42.6126C95.0086 42.4373 94.8334 42.3496 94.5992 42.3496C94.2816 42.3496 93.955 42.5748 93.6207 43.0247C93.2864 43.4752 93.119 44.0421 93.119 44.7255C93.119 45.0756 93.1819 45.5011 93.307 46.0008C93.4321 46.5013 93.6118 46.8929 93.846 47.1763L93.8472 47.177Z" fill="#FBCA00"/>
+<path d="M100.493 51.5046C99.6573 51.5046 98.9842 51.3331 98.4741 50.9921C97.964 50.6503 97.6002 50.2165 97.3833 49.6918C97.1665 49.1664 97.0574 48.6289 97.0574 48.0786C97.0574 47.5955 97.1241 47.2198 97.2582 46.953C97.3923 46.6868 97.5591 46.4904 97.76 46.3656C97.9608 46.2402 98.1488 46.1448 98.324 46.0776C98.4998 46.0111 98.6288 45.9362 98.7128 45.8524C99.1305 45.4192 99.5611 44.9143 100.004 44.339C100.447 43.7637 100.828 43.1258 101.145 42.4257V42.1755C101.145 41.5087 101.258 41.0378 101.484 40.762C101.71 40.4868 101.973 40.3492 102.274 40.3492C102.475 40.3492 102.62 40.3992 102.713 40.4996C102.805 40.5994 102.859 40.7165 102.876 40.8496C102.876 40.9495 102.855 41.0666 102.813 41.1997C102.771 41.3334 102.75 41.5164 102.75 41.75C102.75 42.2504 102.871 42.8218 103.114 43.463C103.356 44.1055 103.599 44.785 103.841 45.5017C104.083 46.219 104.205 46.9524 104.205 47.703C104.205 47.9033 104.196 48.0869 104.18 48.2533C104.163 48.4203 104.138 48.5783 104.105 48.7287L104.048 48.8874L103.93 49.24C103.851 49.4751 103.773 49.6709 103.695 49.8274C103.642 49.9324 103.637 49.9618 103.576 50.0623C103.223 50.6497 103.172 50.6715 102.561 51.0055C101.951 51.3389 101.261 51.5059 100.492 51.5059L100.493 51.5046ZM100.318 50.404C100.652 50.404 100.961 50.3202 101.245 50.1538C101.53 49.9874 101.755 49.7455 101.922 49.4281C101.236 49.2784 100.618 49.0116 100.066 48.6276C99.5142 48.2443 99.0882 47.8521 98.7872 47.4521C98.553 47.502 98.4363 47.7273 98.4363 48.1279C98.4363 48.6782 98.5947 49.1952 98.913 49.6783C99.2306 50.1621 99.699 50.4033 100.318 50.4033V50.404ZM102.123 48.6782C102.157 48.5617 102.177 48.4241 102.186 48.2654C102.194 48.1074 102.199 47.9864 102.199 47.9026C102.182 47.152 102.081 46.4104 101.898 45.6764C101.714 44.9431 101.53 44.1925 101.346 43.4252C101.045 43.9423 100.694 44.5009 100.293 45.1011C99.8915 45.7014 99.5149 46.1851 99.1639 46.5518C99.4308 47.0023 99.8241 47.4272 100.343 47.8271C100.86 48.227 101.455 48.5112 102.123 48.6775V48.6782Z" fill="#FBCA00"/>
+<path d="M133.92 6.15237H142.679V26.2196C142.679 26.2196 142.409 31.6191 138.006 34.5031C132.864 37.8722 129.478 37.0915 129.478 37.0915V29.4742C129.478 29.4742 131.504 29.343 132.517 28.5124C133.709 27.5365 133.927 26.7405 133.927 25.9976C133.927 25.1779 133.92 6.15173 133.92 6.15173L133.92 6.15237Z" fill="#ffffff"/>
+<path d="M144.68 37.0179V6.15234H162.032V13.499H153.061V17.5675H160.995V24.8944H152.914V29.6219H161.663V36.9437L144.68 37.0179Z" fill="#ffffff"/>
+<path d="M185.764 6.10376H193.772V36.9437H185.764V6.10376Z" fill="#ffffff"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M86.9843 6.00134C95.8466 6.00134 103.03 13.1669 103.03 22.0046C103.03 30.8422 95.8466 38.0066 86.9843 38.0066C78.1219 38.0066 70.9381 30.8422 70.9381 22.0046C70.9381 13.1669 78.1219 6.00134 86.9843 6.00134ZM87.1331 13.7857C91.7664 13.7857 95.5232 17.5311 95.5232 22.1524C95.5232 26.7738 91.7671 30.5191 87.1331 30.5191C82.4992 30.5191 78.743 26.7725 78.743 22.1524C78.743 17.5323 82.4992 13.7857 87.1331 13.7857Z" fill="#ffffff"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M239.751 6.00134C248.612 6.00134 255.797 13.1669 255.797 22.0046C255.797 30.8422 248.612 38.0066 239.751 38.0066C230.89 38.0066 223.705 30.8422 223.705 22.0046C223.705 13.1669 230.889 6.00134 239.751 6.00134ZM239.899 13.7857C244.533 13.7857 248.287 17.5311 248.287 22.1524C248.287 26.7738 244.533 30.5191 239.899 30.5191C235.265 30.5191 231.508 26.7725 231.508 22.1524C231.508 17.5323 235.264 13.7857 239.899 13.7857Z" fill="#ffffff"/>
+<path d="M208.161 36.9437L195.405 6.10376H204.229L211.199 22.8909L218.21 6.10376H227.033L214.279 36.9437H208.161Z" fill="#ffffff"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M113.607 13.0549V17.7882H116.574C116.574 17.7882 118.798 17.5668 118.798 15.4968C118.798 13.1682 116.796 13.0549 116.796 13.0549H113.607ZM113.607 25.1842V29.9175H117.537C117.537 29.9175 119.984 29.7697 119.984 27.6984C119.984 25.3711 118.353 25.1836 118.353 25.1836H113.607V25.1842ZM105.746 6.15295V36.9443H118.575C118.575 36.9443 127.994 35.699 127.994 28.5872C127.994 23.1148 122.061 20.7478 122.061 20.7478C122.061 20.7478 126.139 19.0521 126.139 14.6092C126.139 6.84405 117.166 6.15295 117.166 6.15295H105.746Z" fill="#ffffff"/>
+<path d="M163.739 6.15234V13.4805H170.041V36.9437H178.044V13.4805H184.349V6.15234H163.739Z" fill="#ffffff"/>
+<path d="M44.8381 6.61692C46.2016 6.24002 47.6389 6.03845 49.123 6.03845C57.9488 6.03845 65.1037 13.1733 65.1037 21.9764C65.1037 30.7795 57.9488 37.9144 49.123 37.9144C47.6453 37.9144 46.2145 37.7141 44.8561 37.3398L60.2112 22.1172L44.8381 6.61692Z" fill="#ffffff"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M42.1304 13.7576C46.6815 13.7576 50.3716 17.437 50.3716 21.9765C50.3716 26.5159 46.6822 30.194 42.1304 30.194C37.5786 30.194 33.8904 26.5146 33.8904 21.9765C33.8904 17.4383 37.5799 13.7576 42.1304 13.7576ZM40.5622 8.51489L53.7133 22.0462L40.3569 35.3049C36.0104 32.4567 33.141 27.55 33.141 21.9758C33.141 16.4017 36.0418 11.3305 40.5616 8.51489H40.5622Z" fill="#ffffff"/>
+<path d="M20.79 16.618C25.9482 16.618 30.0483 20.6628 30.0483 26.5543C30.0483 33.2816 25.4631 37.9861 17.9681 37.9861C10.4731 37.9861 6.02075 33.3257 6.02075 26.5985C6.02075 21.7621 8.53342 17.7608 11.664 12.8368L16.0727 6.02185H24.8459L17.483 17.1017C18.5854 16.7939 19.6871 16.618 20.7894 16.618H20.79ZM13.1192 26.9504C13.1192 29.94 14.971 31.7426 17.8808 31.7426C20.7907 31.7426 22.6425 29.94 22.6425 26.9504C22.6425 23.9608 20.7907 22.114 17.8808 22.114C14.971 22.114 13.1192 23.9608 13.1192 26.9504Z" fill="#ffffff"/>
+<path d="M49.5041 3.23572C39.0627 3.23572 30.5981 11.6766 30.5981 22.0904C30.5981 32.5041 39.0633 40.9456 49.5041 40.9456C59.9449 40.9456 68.4101 32.5041 68.4101 22.0904C68.4101 11.6766 59.9462 3.23572 49.5041 3.23572ZM49.5041 40.028C39.5702 40.028 31.5176 31.9973 31.5176 22.0904C31.5176 12.1834 39.5702 4.15269 49.5041 4.15269C59.438 4.15269 67.4906 12.1834 67.4906 22.0904C67.4906 31.9973 59.438 40.028 49.5041 40.028Z" fill="url(#paint0_linear_814_245)"/>
+<path d="M18.1907 40.3083C16.0226 40.3083 13.1782 39.8636 10.3627 38.1192C7.88663 36.5847 5.98159 34.4334 4.85487 31.8981C3.0679 27.877 3.86097 23.8079 4.49234 21.7403C5.94694 16.9814 7.0634 15.0508 15.3528 2.95801L16.0945 3.46353C7.87508 15.4546 6.77017 17.3609 5.35214 22.0021C4.7567 23.9506 4.00726 27.7797 5.67617 31.5353C6.72975 33.9055 8.51415 35.9192 10.8369 37.3584C14.6226 39.7042 18.4711 39.5462 20.4288 39.2429L20.4416 39.241C22.2889 39.0087 25.7717 38.1723 28.3402 35.1814C29.9225 33.3398 30.4981 31.4175 30.7149 30.6938C31.7242 27.3235 31.0903 24.4138 30.7708 23.319C30.4217 22.1243 29.4952 18.9497 26.4082 16.8899C24.509 15.6229 22.6636 15.3535 21.9585 15.2966C19.1776 15.0713 17.03 16.1982 15.997 16.8893L15.4965 16.1457C16.6264 15.3893 18.9787 14.1582 22.0303 14.4039C22.8054 14.4666 24.833 14.761 26.9074 16.1451C30.2664 18.386 31.2591 21.7877 31.6331 23.0681C31.9751 24.2391 32.654 27.351 31.576 30.9498C31.3444 31.7234 30.7291 33.7775 29.0229 35.7637C26.2607 38.9792 22.5385 39.8783 20.561 40.1285C19.9341 40.2251 19.1256 40.3077 18.192 40.3077L18.1907 40.3083Z" fill="url(#paint1_linear_814_245)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_814_245" x1="30.5981" y1="22.0904" x2="68.4101" y2="22.0904" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FBCA00"/>
+<stop offset="0.25" stop-color="#FFF9D1"/>
+<stop offset="0.3" stop-color="#F9EFBF"/>
+<stop offset="0.39" stop-color="#ECD792"/>
+<stop offset="0.52" stop-color="#D6AF4B"/>
+<stop offset="0.6" stop-color="#C8951A"/>
+<stop offset="0.82" stop-color="#E8CD75"/>
+<stop offset="0.87" stop-color="#F1DC8D"/>
+<stop offset="1" stop-color="#FFF9D1"/>
+</linearGradient>
+<linearGradient id="paint1_linear_814_245" x1="3.75959" y1="21.6335" x2="32.1593" y2="21.6335" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FBCA00"/>
+<stop offset="0.25" stop-color="#FFF9D1"/>
+<stop offset="0.3" stop-color="#F9EFBF"/>
+<stop offset="0.39" stop-color="#ECD792"/>
+<stop offset="0.52" stop-color="#D6AF4B"/>
+<stop offset="0.6" stop-color="#C8951A"/>
+<stop offset="0.82" stop-color="#E8CD75"/>
+<stop offset="0.87" stop-color="#F1DC8D"/>
+<stop offset="1" stop-color="#FFF9D1"/>
+</linearGradient>
+<clipPath id="clip0_814_245">
+<rect width="263" height="52" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+        <p>60 anos transformando vidas por meio da educação de excelência, da Educação Infantil ao Pré-Vestibular.</p>
+        <div class="socials">
+          <a href="#" title="Instagram">📷</a>
+          <a href="#" title="Facebook">f</a>
+          <a href="#" title="YouTube">▶</a>
+          <a href="#" title="LinkedIn">in</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Ensino</h4>
+        <ul>
+          <li><a href="#">Educação Infantil</a></li>
+          <li><a href="#">Ensino Fundamental</a></li>
+          <li><a href="#">Ensino Médio</a></li>
+          <li><a href="#">Pré-Vestibular</a></li>
+          <li><a href="#">Proposta Pedagógica</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Vestibulares</h4>
+        <ul>
+          <li><a href="#">Resoluções Comentadas</a></li>
+          <li><a href="#">Simulados</a></li>
+          <li><a href="#">Aprovações</a></li>
+          <li><a href="#">Fique por Dentro</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <div class="footer-contact">
+          <a href="tel:08007700189">0800 77 00 189</a>
+          <a href="#">(11) 99105-9999 (WhatsApp)</a>
+          <a href="#">Central de Atendimento</a>
+          <a href="#">Área Restrita</a>
+          <a href="#">Unidade de São Carlos/SP</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Colégio e Cursinho Objetivo. Todos os direitos reservados.</span>
+      <span>Desenvolvido por <strong style="color:#e8a020;">L9 Propaganda</strong></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function filterBlog(btn, cat) {
+    document.querySelectorAll('#blog-grid .blog-post').forEach(p => {
+      p.style.display = (cat === 'todos' || p.dataset.cat === cat) ? '' : 'none';
+    });
+    document.querySelectorAll('[onclick^="filterBlog"]').forEach(b => {
+      b.style.background = '#fff'; b.style.color = 'var(--navy)'; b.style.border = '1px solid #d6dce8';
+    });
+    btn.style.background = 'var(--navy)'; btn.style.color = '#fff'; btn.style.border = '1px solid var(--navy)';
+    document.getElementById('article-view').style.display = 'none';
+  }
+  function openPost(el) {
+    document.getElementById('article-view').style.display = 'block';
+    document.getElementById('article-view').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+  function closePost() {
+    document.getElementById('article-view').style.display = 'none';
+    document.getElementById('blog').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+</script>
+</body>
+</html>
