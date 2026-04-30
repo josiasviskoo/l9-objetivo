@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shop Objetivo – Excursões e Passeios</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0d2346;
+      --blue:   #1a4fac;
+      --sky:    #1e8dc1;
+      --gold:   #e8a020;
+      --red:    #c0392b;
+      --light:  #f0f4fb;
+      --white:  #ffffff;
+      --text:   #1a1e2e;
+      --muted:  #5a6478;
+      --border: #dde3f0;
+
+      /* Sombras padronizadas */
+      --shadow-xs:  0 1px 3px rgba(13,35,70,.08);
+      --shadow-sm:  0 2px 8px rgba(13,35,70,.10);
+      --shadow-md:  0 4px 20px rgba(13,35,70,.12);
+      --shadow-lg:  0 8px 32px rgba(13,35,70,.14);
+      --shadow-xl:  0 16px 48px rgba(13,35,70,.18);
+      --shadow-gold: 0 8px 28px rgba(232,160,32,.40);
+
+      /* Border radius padronizados */
+      --r-xs:  6px;
+      --r-sm:  10px;
+      --r-md:  14px;
+      --r-lg:  20px;
+      --r-xl:  28px;
+      --r-full: 9999px;
+
+      /* Transição global */
+      --ease: cubic-bezier(.4,0,.2,1);
+      --dur: .22s;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── TOP BAR ─────────────────────────────────────────── */
+    .topbar {
+      background: var(--navy);
+      color: #9bb3d4;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .03em;
+      padding: .5rem 0;
+    }
+    .topbar-inner {
+      max-width: 1260px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .topbar-left { display: flex; gap: 1.4rem; flex-wrap: wrap; }
+    .topbar-right { display: flex; gap: .75rem; align-items: center; }
+    .topbar a {
+      color: #9bb3d4;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: .35rem;
+      transition: color var(--dur) var(--ease);
+      border-radius: var(--r-xs);
+      padding: .15rem .35rem;
+    }
+    .topbar a:hover { color: var(--gold); }
+    .topbar-cta {
+      background: var(--gold);
+      color: var(--navy) !important;
+      padding: .35rem 1rem;
+      border-radius: var(--r-full);
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(232,160,32,.35);
+      transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease) !important;
+    }
+    .topbar-cta:hover {
+      background: #f5b030 !important;
+      color: var(--navy) !important;
+      box-shadow: 0 4px 14px rgba(232,160,32,.5) !important;
+      transform: translateY(-1px);
+    }
+    .topbar svg { width: 13px; height: 13px; fill: currentColor; flex-shrink: 0; }
+
+    /* ── HEADER / NAV ────────────────────────────────────── */
+    header {
+      background: var(--white);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 2px solid rgba(13,35,70,.08);
+      box-shadow: var(--shadow-md);
+    }
+    .header-inner {
+      max-width: 1260px;
+      margin: 0 auto;
+      padding: .85rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+    .logo img, .logo svg { height: 48px; width: auto; display: block; transition: opacity var(--dur); }
+    .logo:hover img, .logo:hover svg { opacity: .85; }
+
+    nav { display: flex; align-items: center; gap: .15rem; }
+    .nav-item { position: relative; }
+    .nav-link {
+      display: block;
+      padding: .6rem .9rem;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--navy);
+      text-decoration: none;
+      border-radius: var(--r-xs);
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+      white-space: nowrap;
+    }
+    .nav-link:hover, .nav-item:hover > .nav-link {
+      background: var(--light);
+      color: var(--blue);
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      min-width: 248px;
+      box-shadow: var(--shadow-xl);
+      z-index: 200;
+      overflow: hidden;
+      padding: .4rem;
+    }
+    .nav-item:hover .dropdown { display: block; animation: dropIn .18s var(--ease); }
+    @keyframes dropIn {
+      from { opacity:0; transform: translateY(-6px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+    .dropdown a {
+      display: flex;
+      align-items: center;
+      padding: .6rem .85rem;
+      font-size: .84rem;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      border-radius: var(--r-xs);
+      transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+      gap: .5rem;
+    }
+    .dropdown a:hover { background: var(--light); color: var(--blue); }
+
+    .btn-area-restrita {
+      background: var(--navy);
+      color: var(--white) !important;
+      padding: .6rem 1.25rem;
+      border-radius: var(--r-full);
+      font-size: .82rem;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      box-shadow: 0 3px 12px rgba(13,35,70,.25);
+      transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+    }
+    .btn-area-restrita:hover {
+      background: var(--blue);
+      box-shadow: 0 6px 20px rgba(26,79,172,.35);
+      transform: translateY(-1px);
+    }
+
+    /* ── SHOP SPECIFIC STYLES ────────────────────────────── */
+    .shop-hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+      padding: 5rem 1.5rem;
+      text-align: center;
+      color: var(--white);
+    }
+    .shop-hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .shop-hero h1 em { color: var(--gold); font-style: normal; }
+    .shop-hero p {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.8);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .shop-container {
+      max-width: 1260px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+    }
+    
+    .shop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .product-card {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .product-img {
+      height: 220px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .product-content {
+      padding: 1.8rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-date {
+      font-size: 0.8rem;
+      color: var(--sky);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .product-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 0.8rem;
+      line-height: 1.3;
+    }
+
+    .product-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      flex: 1;
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+    }
+
+    .product-price {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--navy);
+    }
+
+    .product-price span {
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .btn-buy {
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: var(--r-full);
+      font-weight: 800;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: var(--shadow-gold);
+      transition: background var(--dur) var(--ease), transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-buy:hover {
+      background: #f5b030;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(232, 160, 32, 0.5);
+    }
+
+    /* ── POPUP (MODAL) ───────────────────────────────────── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(13, 35, 70, 0.7);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s var(--ease), visibility 0.3s;
+      padding: 1.5rem;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      width: 100%;
+      max-width: 480px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow-xl);
+      transform: scale(0.95);
+      transition: transform 0.3s var(--ease);
+      position: relative;
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--muted);
+      cursor: pointer;
+      transition: color var(--dur) var(--ease);
+    }
+
+    .modal-close:hover { color: var(--red); }
+
+    .modal-header { text-align: center; margin-bottom: 2rem; }
+    .modal-header h2 { font-size: 1.6rem; font-weight: 900; color: var(--navy); margin-bottom: 0.5rem; }
+    .modal-header p { font-size: 0.9rem; color: var(--muted); }
+
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      font-family: inherit;
+      font-size: 1rem;
+      color: var(--text);
+      transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+    }
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--sky);
+      box-shadow: 0 0 0 3px rgba(30, 141, 193, 0.15);
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--blue);
+      color: var(--white);
+      border: none;
+      padding: 1rem;
+      border-radius: var(--r-full);
+      font-weight: 800;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      box-shadow: 0 4px 16px rgba(26, 79, 172, 0.3);
+      transition: background var(--dur) var(--ease), transform var(--dur) var(--ease);
+    }
+    .btn-submit:hover {
+      background: var(--navy);
+      transform: translateY(-2px);
+    }
+
+    .checkout-summary {
+      background: var(--light);
+      border-radius: var(--r-sm);
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .checkout-summary h4 { font-size: 0.95rem; color: var(--navy); margin-bottom: 0.2rem; }
+    .checkout-summary p { font-size: 0.8rem; color: var(--muted); }
+    .checkout-summary .price { font-size: 1.2rem; font-weight: 800; color: var(--navy); }
+
+    /* FOOTER (Simple copy from index) */
+    footer { background: var(--navy); color: #9bb3d4; padding: 4rem 0 2.5rem; margin-top: 4rem;}
+    .footer-inner { max-width: 1260px; margin: 0 auto; padding: 0 1.5rem; text-align: center; }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-left">
+        <a href="tel:1633745001">
+          <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+          (16) 3374-5001
+        </a>
+        <a href="#">📍 Unidade de São Carlos/SP</a>
+      </div>
+      <div class="topbar-right">
+        <a href="index.html">Voltar ao site</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <img src="logos/OBJ-Sao-Carlos-Logo-AZUL.png" alt="Objetivo São Carlos" />
+      </a>
+      <nav>
+        <div class="nav-item">
+          <a class="nav-link" href="index.html">Início</a>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link" href="#" style="color: var(--gold); display: flex; align-items: center; gap: 0.4rem;">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+            Shop
+          </a>
+        </div>
+      </nav>
+      <div style="display: flex; gap: .5rem;">
+        <a href="#" class="btn-area-restrita" style="background: var(--sky);">Financeiro</a>
+        <a href="#" class="btn-area-restrita" onclick="openLogin()">Login Aluno</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SHOP -->
+  <section class="shop-hero">
+    <h1>Objetivo <em>Shop</em></h1>
+    <p>Adquira pacotes de excursões, passeios escolares e eventos exclusivos para nossos alunos de forma rápida e segura.</p>
+  </section>
+
+  <!-- SHOP GRID -->
+  <main class="shop-container">
+    <div class="shop-grid">
+      <!-- Item 1 -->
+      <article class="product-card">
+        <img src="assets/img/acampamento.png" alt="Acampamento de Férias NR" class="product-img" />
+        <div class="product-content">
+          <div class="product-date">📅 15 a 20 de Julho, 2024</div>
+          <h3 class="product-title">Acampamento de Férias NR</h3>
+          <p class="product-desc">Cinco dias inesquecíveis no Acampamento NR. Inclui transporte, alimentação completa, monitoria especializada e atividades ao ar livre. Exclusivo para o Ensino Fundamental II.</p>
+          <div class="product-footer">
+            <div class="product-price">R$ 1.850<span>,00</span></div>
+            <button class="btn-buy" onclick="openCheckout('Acampamento de Férias NR', 'R$ 1.850,00')">
+              Comprar
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Item 2 -->
+      <article class="product-card">
+        <img src="assets/img/museu_zoologia.png" alt="Visita ao Museu de Zoologia USP" class="product-img" />
+        <div class="product-content">
+          <div class="product-date">📅 12 de Agosto, 2024</div>
+          <h3 class="product-title">Museu de Zoologia USP</h3>
+          <p class="product-desc">Uma viagem pela história evolutiva da biodiversidade. Transporte, lanche da tarde e ingressos inclusos. Atividade pedagógica obrigatória para alunos do 1º ano do Ensino Médio.</p>
+          <div class="product-footer">
+            <div class="product-price">R$ 120<span>,00</span></div>
+            <button class="btn-buy" onclick="openCheckout('Museu de Zoologia USP', 'R$ 120,00')">
+              Comprar
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Item 3 -->
+      <article class="product-card">
+        <img src="assets/img/hopi_hari.png" alt="Hopi Hari - Dia da Diversão" class="product-img" />
+        <div class="product-content">
+          <div class="product-date">📅 10 de Outubro, 2024</div>
+          <h3 class="product-title">Hopi Hari - Diversão</h3>
+          <p class="product-desc">Comemore a semana da criança com um dia inteiro de diversão no maior parque de diversões de São Paulo. Transporte e passaporte para todas as atrações inclusos.</p>
+          <div class="product-footer">
+            <div class="product-price">R$ 290<span>,00</span></div>
+            <button class="btn-buy" onclick="openCheckout('Hopi Hari - Diversão', 'R$ 290,00')">
+              Comprar
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <!-- MODAL CHECKOUT / LOGIN -->
+  <div class="modal-overlay" id="checkoutModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      
+      <div id="loginStep">
+        <div class="modal-header">
+          <h2>Área do Aluno</h2>
+          <p>Faça login para continuar sua compra</p>
+        </div>
+        <form onsubmit="event.preventDefault(); doLogin();">
+          <div class="form-group">
+            <label for="ra">Registro Acadêmico (RA)</label>
+            <input type="text" id="ra" placeholder="Digite seu RA..." required>
+          </div>
+          <div class="form-group">
+            <label for="password">Senha</label>
+            <input type="password" id="password" placeholder="Sua senha..." required>
+          </div>
+          <button type="submit" class="btn-submit">Entrar e Continuar</button>
+        </form>
+      </div>
+
+      <div id="checkoutStep" style="display: none;">
+        <div class="modal-header">
+          <h2>Finalizar Compra</h2>
+          <p>Confirme os dados do pagamento</p>
+        </div>
+        <div class="checkout-summary">
+          <div>
+            <h4 id="checkoutItemName">Item Nome</h4>
+            <p>1x Ingresso Estudante</p>
+          </div>
+          <div class="price" id="checkoutItemPrice">R$ 0,00</div>
+        </div>
+        <form onsubmit="event.preventDefault(); finishCheckout();">
+          <div class="form-group">
+            <label for="cardName">Nome no Cartão</label>
+            <input type="text" id="cardName" placeholder="Como impresso no cartão" required>
+          </div>
+          <div class="form-group">
+            <label for="cardNumber">Número do Cartão</label>
+            <input type="text" id="cardNumber" placeholder="0000 0000 0000 0000" required>
+          </div>
+          <div style="display:flex; gap: 1rem;">
+            <div class="form-group" style="flex:1">
+              <label for="cardExpiry">Validade</label>
+              <input type="text" id="cardExpiry" placeholder="MM/AA" required>
+            </div>
+            <div class="form-group" style="flex:1">
+              <label for="cardCvv">CVV</label>
+              <input type="text" id="cardCvv" placeholder="123" required>
+            </div>
+          </div>
+          <button type="submit" class="btn-submit" style="background: var(--gold); color: var(--navy);">Confirmar Pagamento</button>
+        </form>
+      </div>
+      
+      <div id="successStep" style="display: none; text-align: center; padding: 2rem 0;">
+        <div style="font-size: 4rem; margin-bottom: 1rem;">✅</div>
+        <h2 style="color: var(--navy); font-weight: 900; font-size: 1.8rem; margin-bottom: 0.5rem;">Compra Confirmada!</h2>
+        <p style="color: var(--muted); margin-bottom: 2rem;">Os detalhes do passeio foram enviados para o email cadastrado.</p>
+        <button class="btn-submit" onclick="closeModal()">Fechar</button>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <img src="logos/OBJ-Sao-Carlos-Logo-AZUL.png" alt="Objetivo São Carlos" style="height: 44px; filter: brightness(0) invert(1); margin-bottom: 1rem; opacity: 0.8;" />
+      <p>&copy; 2024 Colégio e Cursinho Objetivo São Carlos. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    const modal = document.getElementById('checkoutModal');
+    const loginStep = document.getElementById('loginStep');
+    const checkoutStep = document.getElementById('checkoutStep');
+    const successStep = document.getElementById('successStep');
+    
+    let isLogged = false;
+
+    function openLogin() {
+      modal.classList.add('active');
+      showStep('login');
+    }
+
+    function openCheckout(itemName, itemPrice) {
+      document.getElementById('checkoutItemName').innerText = itemName;
+      document.getElementById('checkoutItemPrice').innerText = itemPrice;
+      
+      modal.classList.add('active');
+      if (isLogged) {
+        showStep('checkout');
+      } else {
+        showStep('login');
+      }
+    }
+
+    function closeModal() {
+      modal.classList.remove('active');
+      setTimeout(() => {
+        // Reset forms
+        document.querySelectorAll('form').forEach(f => f.reset());
+      }, 300);
+    }
+
+    function showStep(step) {
+      loginStep.style.display = 'none';
+      checkoutStep.style.display = 'none';
+      successStep.style.display = 'none';
+
+      if (step === 'login') loginStep.style.display = 'block';
+      if (step === 'checkout') checkoutStep.style.display = 'block';
+      if (step === 'success') successStep.style.display = 'block';
+    }
+
+    function doLogin() {
+      // Simulando o login
+      isLogged = true;
+      const itemName = document.getElementById('checkoutItemName').innerText;
+      if (itemName && itemName !== 'Item Nome') {
+        showStep('checkout');
+      } else {
+        closeModal();
+      }
+    }
+
+    function finishCheckout() {
+      // Simula finalização
+      showStep('success');
+    }
+
+    // Close on overlay click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>
