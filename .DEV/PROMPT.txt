@@ -1,0 +1,25 @@
+a pasta do projeto e toda a estrutura fica na "plugin", ele é um plugin Wordpress
+
+A versão atual está correta.
+Preciso das seguintes atualizações:
+----
+
+No produto "Hospedagem Web":
+- Analise o link https://site.viskoo.com.br/hospedagem/ e todos os elementos que estão sendo abordados e atualize a página de hospeedagem web.
+- Crie uma nova página, utilize as imagens da página antiga (https://site.viskoo.com.br/hospedagem/).
+
+----
+Antes de implementar:
+1. Liste quais funções/arquivos serão modificados
+2. Liste quais funções dependem das que serão alteradas
+3. Identifique riscos de regressão
+4. Identifique riscos de segurança introduzidos pelas mudanças
+5. Aguarde minha confirmação antes de escrever qualquer código
+
+Regras de desenvolvimento:
+- Modifique APENAS o que foi listado acima
+- Não refatore, renomeie ou reorganize nada além do solicitado
+- Se identificar algo que pode quebrar, me avise antes de prosseguir
+- Mantenha o mesmo padrão de código já existente
+- Pense em economizar tokens da IA para implementar da melhor forma
+

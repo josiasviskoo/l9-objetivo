@@ -1,0 +1,10 @@
+1. Atualizar o computador local com tudo que está no GitHub
+
+git pull --rebase --autostash origin $(git branch --show-current)
+
+2. Enviar suas alterações para o GitHub
+
+git add -A && git commit -m "Sync" && git pull --rebase --autostash origin $(git branch --show-current) && git push origin $(git branch --show-current)
+
+
+
