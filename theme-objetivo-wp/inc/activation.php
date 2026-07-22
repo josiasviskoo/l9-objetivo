@@ -52,14 +52,24 @@ add_action( 'init', 'objetivo_maybe_run_activation_seed', 20 );
  * (ver commit), reseeds parciais (ex.: media_sideload_image travando por
  * imagem externa) podiam rodar objetivo_seed_cpt_content() mais de uma vez
  * e duplicar os cards. Roda uma vez, junta os posts com título repetido em
- * cada CPT e manda os excedentes pra lixeira (mantém o mais antigo).
+ * cada CPT (e nos produtos do WooCommerce, mesmo problema) e manda os
+ * excedentes pra lixeira (mantém o mais antigo).
+ *
+ * v2: passou a cobrir também o post type 'product' — v1 só olhava os CPTs
+ * do tema e deixou produtos duplicados (ex.: "Acampamento de Férias NR"
+ * repetido no grid da loja) passar batido em sites onde v1 já tinha rodado.
  */
 function objetivo_dedupe_seed_cpts() {
-	if ( get_option( 'objetivo_deduped_seed_cpts_v1' ) ) {
+	if ( get_option( 'objetivo_deduped_seed_cpts_v2' ) ) {
 		return;
 	}
 
-	foreach ( array_keys( objetivo_cpt_definitions() ) as $post_type ) {
+	$post_types = array_keys( objetivo_cpt_definitions() );
+	if ( objetivo_is_woocommerce_active() ) {
+		$post_types[] = 'product';
+	}
+
+	foreach ( $post_types as $post_type ) {
 		$posts = get_posts( array(
 			'post_type'      => $post_type,
 			'posts_per_page' => -1,
@@ -80,7 +90,7 @@ function objetivo_dedupe_seed_cpts() {
 		}
 	}
 
-	update_option( 'objetivo_deduped_seed_cpts_v1', 1 );
+	update_option( 'objetivo_deduped_seed_cpts_v2', 1 );
 }
 add_action( 'init', 'objetivo_dedupe_seed_cpts', 21 );
 

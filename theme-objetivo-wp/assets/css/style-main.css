@@ -325,6 +325,7 @@ ul.primary-menu { display: flex; align-items: center; gap: .15rem; list-style: n
 .tl-card-highlight .tl-arrow { color: #e8a020; }
 .tl-card-highlight .tl-body { border-top-color: rgba(255,255,255,.15); }
 .tl-card-highlight .tl-body p { color: rgba(255,255,255,.8); }
+.tl-card.active.tl-card-highlight { background: linear-gradient(135deg,#0d2346,#1a4fac); }
 
 /* ── BLOG / NOTÍCIAS ─────────────────────────────────── */
 #blog { background: #f4f7fc; }
