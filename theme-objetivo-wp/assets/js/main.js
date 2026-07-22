@@ -7,7 +7,7 @@
 
 	/* ---- Menu mobile ------------------------------------------------- */
 	var toggle = document.querySelector( '.nav-toggle' );
-	var nav = document.getElementById( 'primary-menu' );
+	var nav = document.getElementById( 'nav-wrap' );
 
 	if ( toggle && nav ) {
 		toggle.addEventListener( 'click', function () {
@@ -25,6 +25,26 @@
 			}
 		} );
 	}
+
+	/* ---- Dropdown do menu principal ------------------------------------
+	 * :hover puro fecha o submenu assim que o ponteiro sai do <li>, o que
+	 * é rápido demais em movimentos diagonais até o dropdown. Aqui damos
+	 * uma folga de 400ms antes de fechar, cancelada se o mouse voltar.
+	 */
+	document.querySelectorAll( '.primary-menu li.menu-item-has-children' ).forEach( function ( item ) {
+		var closeTimer;
+
+		item.addEventListener( 'mouseenter', function () {
+			clearTimeout( closeTimer );
+			item.classList.add( 'is-open' );
+		} );
+
+		item.addEventListener( 'mouseleave', function () {
+			closeTimer = setTimeout( function () {
+				item.classList.remove( 'is-open' );
+			}, 400 );
+		} );
+	} );
 
 	/* ---- Timeline interativa ------------------------------------------
 	 * Generaliza o comportamento do protótipo estático (que tinha 4

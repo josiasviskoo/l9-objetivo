@@ -71,15 +71,30 @@ $convenio_label = objetivo_opt( 'convenio', 'label' );
 					<a href="tel:<?php echo esc_attr( objetivo_opt( 'contato', 'phone_tel' ) ); ?>"><?php echo esc_html( objetivo_opt( 'contato', 'phone_display' ) ); ?></a>
 					<a href="https://wa.me/<?php echo esc_attr( objetivo_opt( 'contato', 'whatsapp_number' ) ); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html( objetivo_opt( 'contato', 'whatsapp_display' ) ); ?></a>
 					<a href="<?php echo esc_url( objetivo_opt( 'contato', 'atendimento_url' ) ); ?>"><?php esc_html_e( 'Central de Atendimento', 'objetivo' ); ?></a>
-					<a href="<?php echo esc_url( objetivo_opt( 'header', 'area_restrita_url' ) ); ?>"><?php esc_html_e( 'Área Restrita', 'objetivo' ); ?></a>
+					<?php if ( objetivo_opt( 'header', 'area_restrita_url' ) ) : ?>
+						<a href="<?php echo esc_url( objetivo_opt( 'header', 'area_restrita_url' ) ); ?>"><?php esc_html_e( 'Área Restrita', 'objetivo' ); ?></a>
+					<?php endif; ?>
 					<a href="#"><?php echo esc_html( objetivo_opt( 'contato', 'address_label' ) ); ?></a>
 				</div>
 			</div>
 		</div>
 
+		<?php
+		$developed_by     = objetivo_opt( 'footer', 'developed_by' );
+		$developed_by_url = objetivo_opt( 'footer', 'developed_by_url' );
+		?>
 		<div class="footer-bottom">
 			<span>&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php echo esc_html( objetivo_opt( 'footer', 'copyright' ) ); ?></span>
-			<span><?php esc_html_e( 'Desenvolvido por', 'objetivo' ); ?> <strong style="color:#e8a020;"><?php echo esc_html( objetivo_opt( 'footer', 'developed_by' ) ); ?></strong></span>
+			<?php if ( $developed_by ) : ?>
+				<span>
+					<?php esc_html_e( 'Desenvolvido por', 'objetivo' ); ?>
+					<?php if ( $developed_by_url ) : ?>
+						<a href="<?php echo esc_url( $developed_by_url ); ?>" target="_blank" rel="noopener noreferrer" style="color:#e8a020;font-weight:700;"><?php echo esc_html( $developed_by ); ?></a>
+					<?php else : ?>
+						<strong style="color:#e8a020;"><?php echo esc_html( $developed_by ); ?></strong>
+					<?php endif; ?>
+				</span>
+			<?php endif; ?>
 		</div>
 	</div>
 </footer>

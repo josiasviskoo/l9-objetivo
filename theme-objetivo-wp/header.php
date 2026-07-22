@@ -48,25 +48,37 @@
 			<?php endif; ?>
 		</div>
 
-		<button class="nav-toggle" aria-label="<?php esc_attr_e( 'Abrir menu', 'objetivo' ); ?>" aria-expanded="false" aria-controls="primary-menu">
+		<button class="nav-toggle" aria-label="<?php esc_attr_e( 'Abrir menu', 'objetivo' ); ?>" aria-expanded="false" aria-controls="nav-wrap">
 			<span></span><span></span><span></span>
 		</button>
 
-		<nav id="primary-menu">
-			<?php
-			wp_nav_menu( array(
-				'theme_location' => 'primary',
-				'container'      => false,
-				'menu_class'     => 'primary-menu',
-				'fallback_cb'    => false,
-				'depth'          => 2,
-			) );
-			?>
-		</nav>
+		<div class="nav-wrap" id="nav-wrap">
+			<nav id="primary-menu">
+				<?php
+				wp_nav_menu( array(
+					'theme_location' => 'primary',
+					'container'      => false,
+					'menu_class'     => 'primary-menu',
+					'fallback_cb'    => false,
+					'depth'          => 2,
+				) );
+				?>
+			</nav>
 
-		<div class="header-actions">
-			<a href="<?php echo esc_url( objetivo_opt( 'header', 'financeiro_url' ) ); ?>" class="btn-area-restrita btn-financeiro"><?php esc_html_e( 'Financeiro', 'objetivo' ); ?></a>
-			<a href="<?php echo esc_url( objetivo_opt( 'header', 'area_restrita_url' ) ); ?>" class="btn-area-restrita"><?php esc_html_e( 'Área Restrita', 'objetivo' ); ?></a>
+			<?php
+			$financeiro_url     = objetivo_opt( 'header', 'financeiro_url' );
+			$area_restrita_url  = objetivo_opt( 'header', 'area_restrita_url' );
+			if ( $financeiro_url || $area_restrita_url ) :
+				?>
+				<div class="header-actions">
+					<?php if ( $financeiro_url ) : ?>
+						<a href="<?php echo esc_url( $financeiro_url ); ?>" class="btn-area-restrita btn-financeiro"><?php esc_html_e( 'Financeiro', 'objetivo' ); ?></a>
+					<?php endif; ?>
+					<?php if ( $area_restrita_url ) : ?>
+						<a href="<?php echo esc_url( $area_restrita_url ); ?>" class="btn-area-restrita"><?php esc_html_e( 'Área Restrita', 'objetivo' ); ?></a>
+					<?php endif; ?>
+				</div>
+			<?php endif; ?>
 		</div>
 	</div>
 </header>

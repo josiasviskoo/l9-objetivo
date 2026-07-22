@@ -32,8 +32,8 @@ function objetivo_customizer_definitions() {
 		'header'       => array(
 			'title'  => __( 'Cabeçalho', 'objetivo' ),
 			'fields' => array(
-				'financeiro_url'      => array( 'label' => __( 'Link "Financeiro"', 'objetivo' ), 'type' => 'url', 'default' => '#' ),
-				'area_restrita_url'   => array( 'label' => __( 'Link "Área Restrita"', 'objetivo' ), 'type' => 'url', 'default' => '#' ),
+				'financeiro_url'      => array( 'label' => __( 'Link "Financeiro" (deixe em branco para ocultar o botão)', 'objetivo' ), 'type' => 'url', 'default' => '' ),
+				'area_restrita_url'   => array( 'label' => __( 'Link "Área Restrita" (deixe em branco para ocultar o botão)', 'objetivo' ), 'type' => 'url', 'default' => '' ),
 			),
 		),
 		'hero'         => array(
@@ -168,12 +168,13 @@ function objetivo_customizer_definitions() {
 			'title'  => __( 'Rodapé', 'objetivo' ),
 			'fields' => array(
 				'brand_desc'    => array( 'label' => __( 'Descrição da marca', 'objetivo' ), 'type' => 'textarea', 'default' => 'Transformando vidas por meio da educação de excelência, da Educação Infantil ao Pré-Vestibular.' ),
-				'instagram_url' => array( 'label' => __( 'Instagram', 'objetivo' ), 'type' => 'url', 'default' => '#' ),
-				'facebook_url'  => array( 'label' => __( 'Facebook', 'objetivo' ), 'type' => 'url', 'default' => '#' ),
-				'youtube_url'   => array( 'label' => __( 'YouTube', 'objetivo' ), 'type' => 'url', 'default' => '#' ),
-				'linkedin_url'  => array( 'label' => __( 'LinkedIn', 'objetivo' ), 'type' => 'url', 'default' => '#' ),
+				'instagram_url' => array( 'label' => __( 'Instagram (deixe em branco para ocultar o ícone)', 'objetivo' ), 'type' => 'url', 'default' => '' ),
+				'facebook_url'  => array( 'label' => __( 'Facebook (deixe em branco para ocultar o ícone)', 'objetivo' ), 'type' => 'url', 'default' => '' ),
+				'youtube_url'   => array( 'label' => __( 'YouTube (deixe em branco para ocultar o ícone)', 'objetivo' ), 'type' => 'url', 'default' => '' ),
+				'linkedin_url'  => array( 'label' => __( 'LinkedIn (deixe em branco para ocultar o ícone)', 'objetivo' ), 'type' => 'url', 'default' => '' ),
 				'copyright'     => array( 'label' => __( 'Texto de copyright (o ano atual é adicionado automaticamente antes)', 'objetivo' ), 'type' => 'text', 'default' => 'Colégio e Cursinho Objetivo. Todos os direitos reservados.' ),
-				'developed_by'  => array( 'label' => __( 'Desenvolvido por', 'objetivo' ), 'type' => 'text', 'default' => 'L9 Propaganda' ),
+				'developed_by'     => array( 'label' => __( 'Desenvolvido por (nome)', 'objetivo' ), 'type' => 'text', 'default' => 'L9 Propaganda' ),
+				'developed_by_url' => array( 'label' => __( 'Desenvolvido por (link)', 'objetivo' ), 'type' => 'url', 'default' => 'https://l9propaganda.com.br/' ),
 			),
 		),
 	);

@@ -156,11 +156,16 @@ if ( objetivo_is_woocommerce_active() ) {
 
 	/**
 	 * Troca o wrapper padrão do WooCommerce (<div id="primary"><main id="main">)
-	 * pelo nosso <main class="shop-container"><div class="container">, usado
-	 * tanto na loja quanto na página de produto individual — sem isso, os
-	 * hooks woocommerce_before/after_main_content (chamados pelos templates
-	 * do WooCommerce, inclusive o archive-product.php deste tema) abririam
-	 * um <main> aninhado dentro do nosso.
+	 * pelo nosso <main class="shop-container">, usado tanto na loja quanto na
+	 * página de produto individual, carrinho, checkout e minha conta — sem
+	 * isso, os hooks woocommerce_before/after_main_content (chamados pelos
+	 * templates do WooCommerce, inclusive o archive-product.php deste tema)
+	 * abririam um <main> aninhado dentro do nosso.
+	 *
+	 * .shop-container já define a mesma largura/padding de .container (ver
+	 * style-main.css) — não aninhar um <div class="container"> aqui dentro,
+	 * senão o padding/max-width dobra e o conteúdo da loja fica mais
+	 * estreito que o resto do site.
 	 */
 	remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
 	remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 );
@@ -168,11 +173,11 @@ if ( objetivo_is_woocommerce_active() ) {
 	add_action( 'woocommerce_after_main_content', 'objetivo_woocommerce_wrapper_end', 10 );
 
 	function objetivo_woocommerce_wrapper_start() {
-		echo '<main id="content" class="shop-container"><div class="container">';
+		echo '<main id="content" class="shop-container">';
 	}
 
 	function objetivo_woocommerce_wrapper_end() {
-		echo '</div></main>';
+		echo '</main>';
 	}
 
 	/**
