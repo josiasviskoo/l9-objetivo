@@ -17,3 +17,4 @@ require_once OBJETIVO_THEME_DIR . '/inc/cpt.php';
 require_once OBJETIVO_THEME_DIR . '/inc/customizer.php';
 require_once OBJETIVO_THEME_DIR . '/inc/woocommerce.php';
 require_once OBJETIVO_THEME_DIR . '/inc/activation.php';
+require_once OBJETIVO_THEME_DIR . '/inc/elementor.php';

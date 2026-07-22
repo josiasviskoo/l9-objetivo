@@ -8,25 +8,29 @@ get_header();
 ?>
 
 <main id="content">
-	<?php while ( have_posts() ) : the_post(); ?>
-		<section class="page-hero">
-			<div class="container">
-				<h1><?php the_title(); ?></h1>
+	<?php while ( have_posts() ) : the_post();
+		if ( objetivo_is_built_with_elementor() ) :
+			the_content();
+		else : ?>
+			<section class="page-hero">
+				<div class="container">
+					<h1><?php the_title(); ?></h1>
+				</div>
+			</section>
+			<div class="container page-content">
+				<?php the_content(); ?>
+				<?php
+				wp_link_pages( array(
+					'before' => '<nav class="page-links">' . esc_html__( 'Páginas:', 'objetivo' ),
+					'after'  => '</nav>',
+				) );
+				if ( comments_open() || get_comments_number() ) {
+					comments_template();
+				}
+				?>
 			</div>
-		</section>
-		<div class="container page-content">
-			<?php the_content(); ?>
-			<?php
-			wp_link_pages( array(
-				'before' => '<nav class="page-links">' . esc_html__( 'Páginas:', 'objetivo' ),
-				'after'  => '</nav>',
-			) );
-			if ( comments_open() || get_comments_number() ) {
-				comments_template();
-			}
-			?>
-		</div>
-	<?php endwhile; ?>
+		<?php endif;
+	endwhile; ?>
 </main>
 
 <?php get_footer(); ?>
