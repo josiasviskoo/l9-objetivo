@@ -423,8 +423,13 @@ footer { background: var(--navy); color: #9bb3d4; }
 .shop-hero p { font-size: 1.1rem; color: rgba(255,255,255,.8); max-width: 600px; margin: 0 auto; line-height: 1.6; }
 .shop-container { max-width: 1260px; margin: 4rem auto; padding: 0 1.5rem; }
 
-.woocommerce ul.products {
-  display: grid !important; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+.woocommerce ul.products,
+.woocommerce ul.products.columns-2,
+.woocommerce ul.products.columns-3,
+.woocommerce ul.products.columns-4,
+.woocommerce ul.products.columns-5,
+.woocommerce ul.products.columns-6 {
+  display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 2rem !important;
   list-style: none !important; margin: 0 !important; padding: 0 !important;
 }
 .woocommerce ul.products li.product-card {
