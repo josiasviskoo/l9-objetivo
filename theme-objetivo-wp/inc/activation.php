@@ -48,6 +48,43 @@ function objetivo_maybe_run_activation_seed() {
 add_action( 'init', 'objetivo_maybe_run_activation_seed', 20 );
 
 /**
+ * Correção pontual: antes de objetivo_insert_seed_item() checar duplicata
+ * (ver commit), reseeds parciais (ex.: media_sideload_image travando por
+ * imagem externa) podiam rodar objetivo_seed_cpt_content() mais de uma vez
+ * e duplicar os cards. Roda uma vez, junta os posts com título repetido em
+ * cada CPT e manda os excedentes pra lixeira (mantém o mais antigo).
+ */
+function objetivo_dedupe_seed_cpts() {
+	if ( get_option( 'objetivo_deduped_seed_cpts_v1' ) ) {
+		return;
+	}
+
+	foreach ( array_keys( objetivo_cpt_definitions() ) as $post_type ) {
+		$posts = get_posts( array(
+			'post_type'      => $post_type,
+			'posts_per_page' => -1,
+			'post_status'    => array( 'publish', 'draft', 'pending', 'private' ),
+			'orderby'        => 'ID',
+			'order'          => 'ASC',
+			'fields'         => 'ids',
+		) );
+
+		$seen_titles = array();
+		foreach ( $posts as $post_id ) {
+			$title = get_the_title( $post_id );
+			if ( isset( $seen_titles[ $title ] ) ) {
+				wp_trash_post( $post_id );
+			} else {
+				$seen_titles[ $title ] = $post_id;
+			}
+		}
+	}
+
+	update_option( 'objetivo_deduped_seed_cpts_v1', 1 );
+}
+add_action( 'init', 'objetivo_dedupe_seed_cpts', 21 );
+
+/**
  * Sideload de uma imagem (por URL local do tema ou externa) para dentro da
  * Biblioteca de Mídia, definida como imagem destacada do post informado.
  */
@@ -80,6 +117,11 @@ function objetivo_sideload_featured_image( $image_url, $post_id, $desc = '' ) {
 }
 
 function objetivo_insert_seed_item( $post_type, $title, $excerpt, $meta = array(), $order = 0, $image_url = '' ) {
+	$existing_id = objetivo_find_post_by_title( $title, $post_type );
+	if ( $existing_id ) {
+		return $existing_id;
+	}
+
 	$post_id = wp_insert_post( array(
 		'post_type'    => $post_type,
 		'post_title'   => $title,
