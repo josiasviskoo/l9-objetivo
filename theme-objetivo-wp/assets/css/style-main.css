@@ -423,6 +423,13 @@ footer { background: var(--navy); color: #9bb3d4; }
 .shop-hero p { font-size: 1.1rem; color: rgba(255,255,255,.8); max-width: 600px; margin: 0 auto; line-height: 1.6; }
 .shop-container { max-width: 1260px; margin: 4rem auto; padding: 0 1.5rem; }
 
+#content.shop-container ul.products,
+#content.shop-container ul.products.columns-1,
+#content.shop-container ul.products.columns-2,
+#content.shop-container ul.products.columns-3,
+#content.shop-container ul.products.columns-4,
+#content.shop-container ul.products.columns-5,
+#content.shop-container ul.products.columns-6,
 .woocommerce ul.products,
 .woocommerce ul.products.columns-2,
 .woocommerce ul.products.columns-3,
@@ -432,10 +439,11 @@ footer { background: var(--navy); color: #9bb3d4; }
   display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 2rem !important;
   list-style: none !important; margin: 0 !important; padding: 0 !important;
 }
+#content.shop-container ul.products li.product-card,
 .woocommerce ul.products li.product-card {
   background: var(--white); border-radius: var(--r-lg); border: 1px solid var(--border); overflow: hidden;
   box-shadow: var(--shadow-sm); transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
-  display: flex; flex-direction: column; float: none; width: auto;
+  display: flex !important; flex-direction: column; float: none !important; width: auto !important; margin: 0 !important;
 }
 .woocommerce ul.products li.product-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-xl); }
 .product-card-media { display: block; height: 220px; overflow: hidden; }
@@ -505,7 +513,7 @@ footer { background: var(--navy); color: #9bb3d4; }
   .motivos-inner, .vestibulares-inner, .egenio-inner { grid-template-columns: 1fr; }
   .noticias-grid { grid-template-columns: 1fr 1fr; }
   .blog-grid { grid-template-columns: 1fr 1fr; }
-  .woocommerce ul.products { grid-template-columns: repeat(2, 1fr) !important; }
+  #content.shop-container ul.products, .woocommerce ul.products { grid-template-columns: repeat(2, 1fr) !important; }
   .segmentos-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-top { grid-template-columns: 1fr 1fr; }
   .hero-slider { min-height: 520px; }
@@ -540,7 +548,7 @@ footer { background: var(--navy); color: #9bb3d4; }
   .vest-cards { grid-template-columns: 1fr; }
   .footer-top { grid-template-columns: 1fr; }
   .blog-grid { grid-template-columns: 1fr; }
-  .woocommerce ul.products { grid-template-columns: 1fr !important; }
+  #content.shop-container ul.products, .woocommerce ul.products { grid-template-columns: 1fr !important; }
   .segmentos-grid { grid-template-columns: 1fr; }
   .timeline-wrap { grid-template-columns: 60px 1fr !important; }
   .tl-dot { transform: scale(.85); }
