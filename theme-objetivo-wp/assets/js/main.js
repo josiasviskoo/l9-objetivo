@@ -46,6 +46,65 @@
 		} );
 	} );
 
+	/* ---- Slider de banners da home ------------------------------------- */
+	var slider = document.getElementById( 'hero-slider' );
+
+	if ( slider ) {
+		var slides = slider.querySelectorAll( '.hero-slide' );
+		var dots = slider.querySelectorAll( '.hero-slider-dot' );
+		var prevBtn = slider.querySelector( '.hero-slider-prev' );
+		var nextBtn = slider.querySelector( '.hero-slider-next' );
+		var current = 0;
+		var autoplayTimer;
+
+		var goTo = function ( index ) {
+			current = ( index + slides.length ) % slides.length;
+			slides.forEach( function ( slide, i ) {
+				slide.classList.toggle( 'is-active', i === current );
+			} );
+			dots.forEach( function ( dot, i ) {
+				dot.classList.toggle( 'is-active', i === current );
+			} );
+		};
+
+		var startAutoplay = function () {
+			clearInterval( autoplayTimer );
+			if ( slides.length > 1 ) {
+				autoplayTimer = setInterval( function () {
+					goTo( current + 1 );
+				}, 6000 );
+			}
+		};
+
+		if ( prevBtn ) {
+			prevBtn.addEventListener( 'click', function () {
+				goTo( current - 1 );
+				startAutoplay();
+			} );
+		}
+
+		if ( nextBtn ) {
+			nextBtn.addEventListener( 'click', function () {
+				goTo( current + 1 );
+				startAutoplay();
+			} );
+		}
+
+		dots.forEach( function ( dot ) {
+			dot.addEventListener( 'click', function () {
+				goTo( parseInt( dot.getAttribute( 'data-index' ), 10 ) );
+				startAutoplay();
+			} );
+		} );
+
+		slider.addEventListener( 'mouseenter', function () {
+			clearInterval( autoplayTimer );
+		} );
+		slider.addEventListener( 'mouseleave', startAutoplay );
+
+		startAutoplay();
+	}
+
 	/* ---- Timeline interativa ------------------------------------------
 	 * Generaliza o comportamento do protótipo estático (que tinha 4
 	 * marcos fixos tl1..tl4) para qualquer quantidade de posts do CPT

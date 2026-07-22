@@ -36,20 +36,6 @@ function objetivo_customizer_definitions() {
 				'area_restrita_url'   => array( 'label' => __( 'Link "Área Restrita" (deixe em branco para ocultar o botão)', 'objetivo' ), 'type' => 'url', 'default' => '' ),
 			),
 		),
-		'hero'         => array(
-			'title'  => __( 'Hero (topo da home)', 'objetivo' ),
-			'fields' => array(
-				'tag'              => array( 'label' => __( 'Selo acima do título', 'objetivo' ), 'type' => 'text', 'default' => '✦ Matrículas Abertas 2027' ),
-				'title'            => array( 'label' => __( 'Título (use <em>palavra</em> para destaque dourado e <br> para quebra de linha)', 'objetivo' ), 'type' => 'textarea', 'default' => 'Educação que<br>forma <em>campeões</em><br>e futuros líderes' ),
-				'subtitle'         => array( 'label' => __( 'Subtítulo', 'objetivo' ), 'type' => 'textarea', 'default' => 'Da Educação Infantil ao Pré-Vestibular, o Objetivo oferece uma trajetória completa, construída sobre 60 anos de resultados comprovados e uma proposta pedagógica que transforma vidas.' ),
-				'btn_primary_label' => array( 'label' => __( 'Botão principal (texto)', 'objetivo' ), 'type' => 'text', 'default' => 'Agende uma Visita' ),
-				'btn_primary_url'   => array( 'label' => __( 'Botão principal (link)', 'objetivo' ), 'type' => 'url', 'default' => '#' ),
-				'btn_outline_label' => array( 'label' => __( 'Botão secundário (texto)', 'objetivo' ), 'type' => 'text', 'default' => 'Conheça o Objetivo' ),
-				'btn_outline_url'   => array( 'label' => __( 'Botão secundário (link)', 'objetivo' ), 'type' => 'url', 'default' => '#' ),
-				'image_1'          => array( 'label' => __( 'Imagem 1', 'objetivo' ), 'type' => 'image', 'default' => 'https://www.objetivo.br/assets/img/photo/img-home-educacao-infantil.jpg' ),
-				'image_2'          => array( 'label' => __( 'Imagem 2', 'objetivo' ), 'type' => 'image', 'default' => 'https://www.objetivo.br/assets/img/photo/img-home-ensino-fundamental.jpg' ),
-			),
-		),
 		'stats'        => array(
 			'title'  => __( 'Estatísticas', 'objetivo' ),
 			'fields' => array(

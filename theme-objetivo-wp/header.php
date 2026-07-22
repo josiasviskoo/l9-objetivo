@@ -81,4 +81,21 @@
 			<?php endif; ?>
 		</div>
 	</div>
+
+	<?php
+	$current_segmento = objetivo_get_current_segmento();
+	if ( $current_segmento ) :
+		$seg_color_from = get_post_meta( $current_segmento->ID, '_color_from', true );
+		$seg_color_to   = get_post_meta( $current_segmento->ID, '_color_to', true );
+		$seg_icon       = get_post_meta( $current_segmento->ID, '_icon_emoji', true );
+		$seg_label      = get_post_meta( $current_segmento->ID, '_badge_label', true );
+		$seg_label      = $seg_label ? $seg_label : get_the_title( $current_segmento );
+		?>
+		<div class="segmento-stripe" style="background: linear-gradient(90deg, <?php echo esc_attr( $seg_color_from ? $seg_color_from : 'var(--blue)' ); ?>, <?php echo esc_attr( $seg_color_to ? $seg_color_to : 'var(--sky)' ); ?>);">
+			<div class="container segmento-stripe-inner">
+				<?php if ( $seg_icon ) : ?><span class="segmento-stripe-icon"><?php echo esc_html( $seg_icon ); ?></span><?php endif; ?>
+				<span class="segmento-stripe-label"><?php echo esc_html( $seg_label ); ?></span>
+			</div>
+		</div>
+	<?php endif; ?>
 </header>

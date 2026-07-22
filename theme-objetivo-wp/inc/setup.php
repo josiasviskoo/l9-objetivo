@@ -35,6 +35,7 @@ function objetivo_setup() {
 	set_post_thumbnail_size( 640, 480, true );
 	add_image_size( 'objetivo-card', 640, 400, true );
 	add_image_size( 'objetivo-hero', 900, 1000, true );
+	add_image_size( 'objetivo-banner', 1920, 800, true );
 
 	register_nav_menus( array(
 		'primary'            => __( 'Principal (cabeçalho)', 'objetivo' ),
