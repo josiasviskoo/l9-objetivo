@@ -23,6 +23,23 @@ function objetivo_woocommerce_theme_support() {
 add_action( 'after_setup_theme', 'objetivo_woocommerce_theme_support' );
 
 /**
+ * A loja usa o template clássico (woocommerce/archive-product.php +
+ * content-product.php, com grid CSS próprio do tema), não os blocos do
+ * WooCommerce — mas o plugin carrega o CSS de blocos (wc-blocks-css) em
+ * toda página de qualquer forma. Esse CSS define seu próprio grid para
+ * `.wc-block-grid`/`.products` e tinha prioridade sobre o nosso em alguns
+ * casos, quebrando o alinhamento dos cards. Como não usamos blocos aqui,
+ * removemos por completo — zero motivo pra carregar.
+ */
+function objetivo_dequeue_wc_blocks_style() {
+	foreach ( array( 'wc-blocks-css', 'wc-blocks-style', 'wc-blocks-vendors-style', 'wc-blocks-style-shared' ) as $handle ) {
+		wp_dequeue_style( $handle );
+		wp_deregister_style( $handle );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'objetivo_dequeue_wc_blocks_style', 100 );
+
+/**
  * Mantemos a folha de estilos padrão do WooCommerce carregada (ela cuida da
  * estrutura responsiva de carrinho/checkout) e sobrepomos só a aparência
  * (cores, tipografia, botões) em assets/css/style-main.css, que carrega
