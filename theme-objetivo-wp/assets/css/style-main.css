@@ -423,7 +423,7 @@ footer { background: var(--navy); color: #9bb3d4; }
 .shop-container { max-width: 1260px; margin: 4rem auto; padding: 0 1.5rem; }
 
 .woocommerce ul.products {
-  display: grid !important; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;
+  display: grid !important; grid-template-columns: repeat(3, 1fr); gap: 2rem;
   list-style: none !important; margin: 0 !important; padding: 0 !important;
 }
 .woocommerce ul.products li.product-card {
@@ -499,6 +499,7 @@ footer { background: var(--navy); color: #9bb3d4; }
   .motivos-inner, .vestibulares-inner, .egenio-inner { grid-template-columns: 1fr; }
   .noticias-grid { grid-template-columns: 1fr 1fr; }
   .blog-grid { grid-template-columns: 1fr 1fr; }
+  .woocommerce ul.products { grid-template-columns: repeat(2, 1fr) !important; }
   .segmentos-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-top { grid-template-columns: 1fr 1fr; }
   .hero-slider { min-height: 520px; }
@@ -533,6 +534,7 @@ footer { background: var(--navy); color: #9bb3d4; }
   .vest-cards { grid-template-columns: 1fr; }
   .footer-top { grid-template-columns: 1fr; }
   .blog-grid { grid-template-columns: 1fr; }
+  .woocommerce ul.products { grid-template-columns: 1fr !important; }
   .segmentos-grid { grid-template-columns: 1fr; }
   .timeline-wrap { grid-template-columns: 60px 1fr !important; }
   .tl-dot { transform: scale(.85); }

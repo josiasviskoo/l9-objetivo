@@ -34,7 +34,7 @@ $query = new WP_Query( array_filter( array(
 		</div>
 	</section>
 
-	<div class="container page-content">
+	<div class="container">
 		<?php if ( $categories ) : ?>
 			<div class="blog-filters" style="margin-bottom:2.5rem;">
 				<a href="<?php echo esc_url( remove_query_arg( 'blog_cat' ) ); ?>" class="blog-filter-btn<?php echo '' === $current_cat ? ' active' : ''; ?>"><?php esc_html_e( 'Todos', 'objetivo' ); ?></a>

@@ -155,6 +155,18 @@ if ( objetivo_is_woocommerce_active() ) {
 	remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
 
 	/**
+	 * O tema não tem woocommerce/single-product.php próprio, então a página
+	 * de produto individual roda o template padrão do plugin, que injeta a
+	 * sidebar genérica do WooCommerce (busca de produtos, categorias etc.,
+	 * sem estilo do tema) e "Produtos relacionados" (card sem a classe
+	 * .product-card, portanto sem CSS do tema, e em ordem aleatória —
+	 * parece uma lista de links soltos). Removidos por completo.
+	 */
+	remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar' );
+	remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
+	remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
+
+	/**
 	 * Troca o wrapper padrão do WooCommerce (<div id="primary"><main id="main">)
 	 * pelo nosso <main class="shop-container">, usado tanto na loja quanto na
 	 * página de produto individual, carrinho, checkout e minha conta — sem
