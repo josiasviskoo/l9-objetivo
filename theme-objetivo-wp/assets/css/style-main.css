@@ -382,18 +382,61 @@ footer { background: var(--navy); color: #9bb3d4; }
 .footer-contact a:hover { color: #f5c54a; }
 
 /* ── PÁGINA GENÉRICA / POST ──────────────────────────── */
-.page-hero { background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%); padding: 4.5rem 1.5rem; color: var(--white); }
+.page-hero {
+  position: relative;
+  background: linear-gradient(120deg, var(--navy) 0%, var(--blue) 60%, var(--sky) 100%);
+  padding: 4.5rem 1.5rem;
+  color: var(--white);
+  overflow: hidden;
+}
+.page-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(ellipse 80% 80% at 75% 30%, rgba(30,141,193,.35) 0%, transparent 70%);
+}
+.page-hero .container { position: relative; z-index: 2; }
 .page-hero h1 { font-size: clamp(1.9rem, 4vw, 2.8rem); font-weight: 900; letter-spacing: -.02em; }
-.page-hero .post-cat { color: var(--gold); font-size: .78rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; margin-bottom: .6rem; }
-.page-hero .post-meta { color: rgba(255,255,255,.7); font-size: .85rem; margin-top: .6rem; display: flex; gap: .8rem; }
+.page-hero .article-meta { display: flex; align-items: center; gap: .9rem; margin-bottom: 1rem; flex-wrap: wrap; }
+.page-hero .post-cat { background: var(--gold); color: var(--navy); font-size: .66rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: .3rem .85rem; border-radius: var(--r-full); }
+.page-hero .post-meta { color: rgba(255,255,255,.7); font-size: .82rem; letter-spacing: .03em; }
+
+/* Post com imagem destacada: reserva espaço para o card sobreposto */
+.page-hero-post.has-cover { padding-bottom: 8rem; }
+
 .page-content { max-width: 860px; margin: 3.5rem auto; line-height: 1.8; color: var(--text); }
 .page-content h2, .page-content h3 { color: var(--navy); margin: 1.6rem 0 .8rem; font-weight: 800; }
 .page-content p { margin-bottom: 1.1rem; }
 .page-content ul, .page-content ol { margin: 0 0 1.1rem 1.4rem; }
 .page-content img { border-radius: var(--r-md); }
+
 .blog-grid-listing, .single-post-content { max-width: 1260px; }
-.single-post-thumb img { width: 100%; border-radius: var(--r-lg); margin-bottom: 2rem; }
-.post-tags { margin: 2rem 0; display: flex; gap: .5rem; flex-wrap: wrap; }
+
+/* Capa do artigo — sobrepõe o hero, no mesmo estilo dos cards do site */
+.article-cover {
+  max-width: 900px;
+  margin: -6rem auto 2.5rem;
+  position: relative;
+  z-index: 3;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+}
+.article-cover img { width: 100%; height: 380px; object-fit: cover; display: block; margin: 0; border-radius: 0; }
+
+/* Corpo do artigo — tipografia de leitura confortável */
+.article-body { max-width: 720px; margin: 0 auto; line-height: 1.9; color: var(--text); font-size: 1.05rem; }
+.article-body h2, .article-body h3 { color: var(--navy); margin: 2rem 0 1rem; font-weight: 800; }
+.article-body p { margin-bottom: 1.3rem; }
+.article-body ul, .article-body ol { margin: 0 0 1.3rem 1.4rem; }
+.article-body img { border-radius: var(--r-md); margin: 1.5rem 0; }
+.article-body blockquote {
+  background: var(--light); border-left: 4px solid var(--gold); border-radius: var(--r-md);
+  padding: 1.5rem 1.8rem; margin: 2rem 0; font-style: italic; font-weight: 600; color: var(--navy);
+}
+.article-body a { color: var(--blue); }
+.article-body a:hover { color: var(--sky); }
+
+.post-tags { margin: 2rem 0 0; display: flex; gap: .5rem; flex-wrap: wrap; }
 .post-tags .tag { background: var(--light); color: var(--navy); font-size: .78rem; font-weight: 600; padding: .3rem .9rem; border-radius: var(--r-full); }
 .page-links { margin: 2rem 0; font-weight: 700; }
 
@@ -553,4 +596,8 @@ footer { background: var(--navy); color: #9bb3d4; }
   .timeline-wrap { grid-template-columns: 60px 1fr !important; }
   .tl-dot { transform: scale(.85); }
   .matriculas-inner { flex-direction: column; align-items: flex-start; }
+  .page-hero-post.has-cover { padding-bottom: 3.5rem; }
+  .article-cover { margin-top: -2.2rem; }
+  .article-cover img { height: 220px; }
+  .article-body { font-size: 1rem; }
 }

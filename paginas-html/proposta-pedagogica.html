@@ -1,0 +1,304 @@
+<!-- Proposta Pedagógica — Objetivo São Carlos -->
+<!-- Cole este bloco inteiro dentro de um widget HTML do Elementor -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+
+  /* ===== Objetivo São Carlos — conteúdo de página (inspirado no layout aprovado) ===== */
+  .obj-proposta {
+    --navy:   #0d2346;
+    --blue:   #1a4fac;
+    --sky:    #1e8dc1;
+    --gold:   #e8a020;
+    --light:  #f0f4fb;
+    --white:  #ffffff;
+    --text:   #1a1e2e;
+    --muted:  #5a6478;
+    --border: #dde3f0;
+    --shadow-xs: 0 1px 3px rgba(13,35,70,.08);
+    --shadow-sm: 0 2px 8px rgba(13,35,70,.10);
+    --shadow-md: 0 4px 20px rgba(13,35,70,.12);
+    --shadow-lg: 0 8px 32px rgba(13,35,70,.14);
+    --shadow-gold: 0 8px 28px rgba(232,160,32,.35);
+    --r-xs: 6px; --r-sm: 10px; --r-md: 14px; --r-lg: 20px; --r-xl: 28px; --r-full: 9999px;
+    --ease: cubic-bezier(.4,0,.2,1);
+    --dur: .22s;
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .obj-proposta, .obj-proposta *, .obj-proposta *::before, .obj-proposta *::after { box-sizing: border-box; }
+  .obj-proposta h1, .obj-proposta h2, .obj-proposta h3, .obj-proposta h4, .obj-proposta p, .obj-proposta ul, .obj-proposta ol, .obj-proposta li, .obj-proposta figure, .obj-proposta blockquote, .obj-proposta table { margin: 0; padding: 0; }
+  .obj-proposta img { max-width: 100%; display: block; }
+  .obj-proposta a { text-decoration: none; }
+  .obj-proposta .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+  .obj-proposta section { padding: 4.5rem 0; }
+  .obj-proposta section + section { padding-top: 0; }
+
+  .obj-proposta .section-label {
+    display: inline-flex; align-items: center; gap: .4rem;
+    font-size: .7rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--sky); margin-bottom: .75rem;
+  }
+  .obj-proposta .section-label::before { content: ''; display: block; width: 18px; height: 2px; background: var(--sky); border-radius: var(--r-full); }
+  .obj-proposta .section-title { font-size: clamp(1.7rem, 3vw, 2.3rem); font-weight: 900; color: var(--navy); line-height: 1.22; margin-bottom: 1rem; letter-spacing: -.02em; }
+  .obj-proposta .section-title em { color: var(--blue); font-style: normal; }
+  .obj-proposta .lead { font-size: 1.08rem; color: var(--muted); line-height: 1.85; max-width: 760px; }
+  .obj-proposta p.body-text { font-size: 1rem; color: var(--muted); line-height: 1.85; max-width: 760px; margin-bottom: 1.3rem; }
+  .obj-proposta p.body-text:last-child { margin-bottom: 0; }
+  .obj-proposta p.body-text strong { color: var(--navy); }
+
+  /* ---- Page hero / banner ---- */
+  .obj-proposta .page-hero {
+    position: relative;
+    background: linear-gradient(120deg, #0d2346 0%, #1a4fac 60%, #1e8dc1 100%);
+    padding: 3.6rem 0;
+    overflow: hidden;
+  }
+  .obj-proposta .page-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: radial-gradient(ellipse 80% 80% at 75% 30%, rgba(30,141,193,.35) 0%, transparent 70%);
+  }
+  .obj-proposta .page-hero .container { position: relative; z-index: 2; }
+  .obj-proposta .page-hero .section-label { color: var(--gold); }
+  .obj-proposta .page-hero .section-label::before { background: var(--gold); }
+  .obj-proposta .page-hero .section-title { color: var(--white); margin-bottom: .7rem; }
+  .obj-proposta .page-hero .section-title em { color: var(--gold); }
+  .obj-proposta .page-hero .lead { color: rgba(255,255,255,.8); max-width: 620px; }
+
+  /* ---- Buttons ---- */
+  .obj-proposta .btn-primary {
+    display: inline-flex; align-items: center; gap: .45rem;
+    background: var(--gold); color: var(--navy);
+    padding: .9rem 2rem; border-radius: var(--r-full);
+    font-weight: 800; font-size: .85rem; letter-spacing: .03em; text-transform: uppercase;
+    box-shadow: var(--shadow-gold);
+    transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+    border: none; cursor: pointer;
+  }
+  .obj-proposta .btn-primary:hover { background: #f5b030; box-shadow: 0 10px 32px rgba(232,160,32,.5); transform: translateY(-2px); }
+  .obj-proposta .btn-outline {
+    display: inline-flex; align-items: center; gap: .45rem;
+    border: 2px solid var(--navy); color: var(--navy);
+    padding: .85rem 1.8rem; border-radius: var(--r-full);
+    font-weight: 700; font-size: .85rem; letter-spacing: .03em; text-transform: uppercase;
+    transition: background var(--dur) var(--ease), color var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  .obj-proposta .btn-outline:hover { background: var(--navy); color: #fff; transform: translateY(-2px); }
+  .obj-proposta .btn-outline-white {
+    display: inline-flex; align-items: center; gap: .45rem;
+    border: 2px solid rgba(255,255,255,.55); color: var(--white);
+    padding: .85rem 1.8rem; border-radius: var(--r-full);
+    font-weight: 700; font-size: .85rem; letter-spacing: .03em; text-transform: uppercase;
+    transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  .obj-proposta .btn-outline-white:hover { border-color: rgba(255,255,255,.9); background: rgba(255,255,255,.12); transform: translateY(-2px); }
+  .obj-proposta .btn-navy {
+    display: inline-flex; align-items: center; gap: .45rem;
+    background: var(--navy); color: #fff;
+    padding: .95rem 2rem; border-radius: var(--r-full);
+    font-weight: 800; font-size: .85rem; letter-spacing: .03em; text-transform: uppercase;
+    box-shadow: 0 4px 16px rgba(13,35,70,.3);
+    transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  .obj-proposta .btn-navy:hover { background: #162d5a; box-shadow: 0 8px 24px rgba(13,35,70,.4); transform: translateY(-2px); }
+
+  /* ---- Feature / motivo cards (icon + text) ---- */
+  .obj-proposta .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.3rem; margin-top: 2.2rem; }
+  .obj-proposta .feature-card {
+    background: var(--light); border: 1px solid var(--border);
+    border-radius: var(--r-lg); padding: 1.6rem;
+    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+  .obj-proposta .feature-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+  .obj-proposta .feature-icon {
+    width: 52px; height: 52px; border-radius: var(--r-sm);
+    background: linear-gradient(135deg, var(--blue), var(--sky));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; margin-bottom: 1rem;
+    box-shadow: 0 4px 12px rgba(26,79,172,.25);
+  }
+  .obj-proposta .feature-card h4 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: .45rem; }
+  .obj-proposta .feature-card p { font-size: .87rem; color: var(--muted); line-height: 1.65; }
+
+  /* ---- Chips (values / tags) ---- */
+  .obj-proposta .chip-grid { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.8rem; }
+  .obj-proposta .chip {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: var(--white); border: 1.5px solid var(--border);
+    color: var(--navy); font-size: .85rem; font-weight: 600;
+    padding: .6rem 1.15rem; border-radius: var(--r-full);
+    box-shadow: var(--shadow-xs);
+    transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  .obj-proposta .chip:hover { border-color: var(--sky); box-shadow: var(--shadow-sm); transform: translateY(-2px); }
+  .obj-proposta .chip .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+
+  /* ---- Quote block ---- */
+  .obj-proposta .quote-block {
+    position: relative;
+    background: var(--light); border-left: 4px solid var(--gold);
+    border-radius: var(--r-md);
+    padding: 1.8rem 2rem;
+    margin: 2rem 0;
+  }
+  .obj-proposta .quote-block p { font-size: 1.1rem; font-weight: 600; color: var(--navy); line-height: 1.6; font-style: italic; }
+
+  /* ---- Unit cards ---- */
+  .obj-proposta .unit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+  .obj-proposta .unit-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg);
+    box-shadow: var(--shadow-sm); overflow: hidden; display: flex; flex-direction: column;
+    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+  .obj-proposta .unit-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+  .obj-proposta .unit-card-top { background: linear-gradient(135deg, var(--navy), var(--blue)); padding: 1.3rem 1.5rem; }
+  .obj-proposta .unit-card-level { display: inline-block; background: var(--gold); color: var(--navy); font-size: .64rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: .3rem .8rem; border-radius: var(--r-full); margin-bottom: .6rem; }
+  .obj-proposta .unit-card-top h3 { color: var(--white); font-size: 1.1rem; font-weight: 800; }
+  .obj-proposta .unit-card-body { padding: 1.4rem 1.5rem; flex: 1; display: flex; flex-direction: column; gap: .55rem; }
+  .obj-proposta .unit-card-row { display: flex; align-items: flex-start; gap: .6rem; font-size: .87rem; color: var(--muted); line-height: 1.5; }
+  .obj-proposta .unit-card-row .ico { flex-shrink: 0; }
+  .obj-proposta .unit-card-row strong { color: var(--navy); }
+  .obj-proposta .unit-card-actions { display: flex; gap: .6rem; padding: 0 1.5rem 1.4rem; flex-wrap: wrap; }
+  .obj-proposta .unit-card-actions a { flex: 1; justify-content: center; padding-inline: 1rem; font-size: .74rem; }
+
+  /* ---- Program cards ---- */
+  .obj-proposta .program-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.4rem; margin-top: 2rem; }
+  .obj-proposta .program-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg);
+    padding: 1.6rem; box-shadow: var(--shadow-xs);
+    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+  .obj-proposta .program-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+  .obj-proposta .program-card .feature-icon { margin-bottom: .9rem; }
+  .obj-proposta .program-card h4 { font-size: 1.02rem; font-weight: 800; color: var(--navy); margin-bottom: .5rem; }
+  .obj-proposta .program-card p { font-size: .86rem; color: var(--muted); line-height: 1.65; }
+  .obj-proposta .program-card ul { list-style: none; display: flex; flex-direction: column; gap: .55rem; margin-top: .8rem; }
+  .obj-proposta .program-card ul li { display: flex; gap: .55rem; font-size: .84rem; color: var(--muted); line-height: 1.55; }
+  .obj-proposta .program-card ul li::before { content: '✓'; color: var(--sky); font-weight: 800; flex-shrink: 0; }
+  .obj-proposta .program-group-title { display: flex; align-items: center; gap: .8rem; margin: 3rem 0 .5rem; }
+  .obj-proposta .program-group-title h3 { font-size: 1.3rem; font-weight: 900; color: var(--navy); }
+  .obj-proposta .program-group-title span { flex: 1; height: 1px; background: var(--border); }
+  .obj-proposta section .program-group-title:first-of-type { margin-top: 0; }
+
+  /* ---- Timeline ---- */
+  .obj-proposta .timeline { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.1rem; }
+  .obj-proposta .tl-item { display: grid; grid-template-columns: 100px 1fr; gap: 1.3rem; }
+  .obj-proposta .tl-year {
+    display: flex; align-items: flex-start; justify-content: flex-end;
+    font-size: 1.15rem; font-weight: 900; color: var(--gold);
+    padding-top: 1.2rem; text-align: right; line-height: 1.2;
+  }
+  .obj-proposta .tl-card {
+    position: relative;
+    background: var(--light); border: 1px solid var(--border); border-radius: var(--r-md);
+    padding: 1.2rem 1.4rem;
+  }
+  .obj-proposta .tl-card::before {
+    content: ''; position: absolute; left: -1.05rem; top: 1.5rem;
+    width: 10px; height: 10px; border-radius: 50%; background: var(--blue);
+    box-shadow: 0 0 0 4px rgba(26,79,172,.15);
+  }
+  .obj-proposta .tl-card h4 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: .3rem; }
+  .obj-proposta .tl-card p { font-size: .87rem; color: var(--muted); line-height: 1.6; }
+
+  /* ---- Info / schedule cards ---- */
+  .obj-proposta .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.3rem; margin-top: 2rem; }
+  .obj-proposta .info-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg);
+    padding: 1.5rem; box-shadow: var(--shadow-xs);
+  }
+  .obj-proposta .info-card .tag { display: inline-block; background: rgba(30,141,193,.12); color: var(--sky); font-size: .68rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: .28rem .75rem; border-radius: var(--r-full); margin-bottom: .8rem; }
+  .obj-proposta .info-card h4 { font-size: 1.02rem; font-weight: 800; color: var(--navy); margin-bottom: .6rem; }
+  .obj-proposta .info-card ul { list-style: none; display: flex; flex-direction: column; gap: .4rem; }
+  .obj-proposta .info-card li { font-size: .87rem; color: var(--muted); display: flex; justify-content: space-between; gap: .8rem; }
+  .obj-proposta .info-card li strong { color: var(--navy); font-weight: 700; }
+
+  /* ---- Tables (discount tables etc) ---- */
+  .obj-proposta .table-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+  .obj-proposta .table-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-sm); }
+  .obj-proposta .table-card-head { background: linear-gradient(135deg, var(--navy), var(--blue)); color: var(--white); padding: 1rem 1.4rem; font-weight: 800; font-size: .92rem; }
+  .obj-proposta table { width: 100%; border-collapse: collapse; }
+  .obj-proposta table td { padding: .75rem 1.4rem; font-size: .87rem; color: var(--muted); border-bottom: 1px solid var(--border); }
+  .obj-proposta table tr:last-child td { border-bottom: none; }
+  .obj-proposta table td.pct { text-align: right; font-weight: 800; color: var(--blue); }
+  .obj-proposta table tr:last-child td.pct { color: var(--gold); }
+
+  /* ---- CTA banner ---- */
+  .obj-proposta .cta-banner {
+    background: linear-gradient(135deg, var(--gold) 0%, #f5b030 100%);
+    border-radius: var(--r-xl);
+    padding: 2.6rem 2.8rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+  }
+  .obj-proposta .cta-banner h3 { font-size: 1.5rem; font-weight: 900; color: var(--navy); margin-bottom: .35rem; letter-spacing: -.02em; }
+  .obj-proposta .cta-banner p { color: rgba(13,35,70,.72); font-size: .95rem; }
+
+  /* ---- Portal / redirect page ---- */
+  .obj-proposta .portal-box {
+    max-width: 620px; margin: 0 auto; text-align: center;
+    background: var(--light); border: 1px solid var(--border); border-radius: var(--r-xl);
+    padding: 3.2rem 2.5rem; box-shadow: var(--shadow-sm);
+  }
+  .obj-proposta .portal-icon {
+    width: 78px; height: 78px; margin: 0 auto 1.4rem; border-radius: 50%;
+    background: linear-gradient(135deg, var(--navy), var(--sky));
+    display: flex; align-items: center; justify-content: center; font-size: 2.2rem;
+    box-shadow: var(--shadow-md);
+  }
+  .obj-proposta .portal-box h2 { font-size: 1.5rem; font-weight: 900; color: var(--navy); margin-bottom: .8rem; }
+  .obj-proposta .portal-box p { color: var(--muted); font-size: .96rem; line-height: 1.7; margin-bottom: 1.8rem; }
+
+  /* ---- Article / blog post ---- */
+  .obj-proposta .article-meta { display: flex; align-items: center; gap: .9rem; margin-bottom: 1rem; flex-wrap: wrap; }
+  .obj-proposta .article-tag { background: var(--gold); color: var(--navy); font-size: .66rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: .3rem .85rem; border-radius: var(--r-full); }
+  .obj-proposta .article-date { font-size: .8rem; color: rgba(255,255,255,.7); letter-spacing: .03em; }
+  .obj-proposta .article-cover { border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-lg); margin: -3.6rem auto 2.5rem; max-width: 900px; position: relative; z-index: 3; }
+  .obj-proposta .article-cover img { width: 100%; height: 340px; object-fit: cover; }
+  .obj-proposta .article-body { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.3rem; }
+  .obj-proposta .article-body p { font-size: 1.02rem; color: var(--text); line-height: 1.9; }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 720px) {
+    .obj-proposta .cta-banner { flex-direction: column; align-items: flex-start; text-align: left; }
+    .obj-proposta .tl-item { grid-template-columns: 70px 1fr; gap: .9rem; }
+    .obj-proposta .tl-year { font-size: .95rem; padding-top: 1rem; }
+    .obj-proposta .article-cover { margin-top: -2.2rem; }
+    .obj-proposta .article-cover img { height: 220px; }
+  }
+
+</style>
+<div class="obj-proposta">
+
+<section class="page-hero">
+  <div class="container">
+    <p class="section-label">Objetivo São Carlos</p>
+    <h1 class="section-title">Proposta <em>Pedagógica</em></h1>
+    <p class="lead">Formar o indivíduo para um mundo globalizado e para os seus novos parâmetros envolve a capacidade de utilização dos recursos infindáveis da informática, da computação e da telemática — uma revolução cultural tão transformadora quanto foi, no seu tempo, a invenção da imprensa.</p>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <p class="body-text">A absorção do novo, contudo, não pode prescindir de uma sólida formação, de uma compreensão lúcida das novas realidades e do domínio de equipamentos básicos para a vida — o domínio de recursos tecnológicos é passaporte privilegiado para o mundo futuro.</p>
+
+    <div class="chip-grid">
+      <span class="chip"><span class="dot"></span>Competência linguística</span>
+      <span class="chip"><span class="dot"></span>Raciocínio lógico e matemático</span>
+      <span class="chip"><span class="dot"></span>Iniciação científica</span>
+      <span class="chip"><span class="dot"></span>Consciência do meio ambiente</span>
+      <span class="chip"><span class="dot"></span>Visão histórica</span>
+      <span class="chip"><span class="dot"></span>Experiência artística</span>
+      <span class="chip"><span class="dot"></span>Formação ética</span>
+      <span class="chip"><span class="dot"></span>Construção da cidadania</span>
+      <span class="chip"><span class="dot"></span>Domínio de recursos tecnológicos</span>
+    </div>
+
+    <div class="quote-block" style="margin-top:2.4rem;">
+      <p>“Esses são os caminhos. São esses os ideais que alimentam nossa proposta educacional.”</p>
+    </div>
+  </div>
+</section>
+
+</div>

@@ -1,0 +1,312 @@
+<!-- Educação Infantil — Objetivo São Carlos -->
+<!-- Cole este bloco inteiro dentro de um widget HTML do Elementor -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+
+  /* ===== Objetivo São Carlos — conteúdo de página (inspirado no layout aprovado) ===== */
+  .obj-ed-infantil {
+    --navy:   #0d2346;
+    --blue:   #1a4fac;
+    --sky:    #1e8dc1;
+    --gold:   #e8a020;
+    --light:  #f0f4fb;
+    --white:  #ffffff;
+    --text:   #1a1e2e;
+    --muted:  #5a6478;
+    --border: #dde3f0;
+    --shadow-xs: 0 1px 3px rgba(13,35,70,.08);
+    --shadow-sm: 0 2px 8px rgba(13,35,70,.10);
+    --shadow-md: 0 4px 20px rgba(13,35,70,.12);
+    --shadow-lg: 0 8px 32px rgba(13,35,70,.14);
+    --shadow-gold: 0 8px 28px rgba(232,160,32,.35);
+    --r-xs: 6px; --r-sm: 10px; --r-md: 14px; --r-lg: 20px; --r-xl: 28px; --r-full: 9999px;
+    --ease: cubic-bezier(.4,0,.2,1);
+    --dur: .22s;
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .obj-ed-infantil, .obj-ed-infantil *, .obj-ed-infantil *::before, .obj-ed-infantil *::after { box-sizing: border-box; }
+  .obj-ed-infantil h1, .obj-ed-infantil h2, .obj-ed-infantil h3, .obj-ed-infantil h4, .obj-ed-infantil p, .obj-ed-infantil ul, .obj-ed-infantil ol, .obj-ed-infantil li, .obj-ed-infantil figure, .obj-ed-infantil blockquote, .obj-ed-infantil table { margin: 0; padding: 0; }
+  .obj-ed-infantil img { max-width: 100%; display: block; }
+  .obj-ed-infantil a { text-decoration: none; }
+  .obj-ed-infantil .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+  .obj-ed-infantil section { padding: 4.5rem 0; }
+  .obj-ed-infantil section + section { padding-top: 0; }
+
+  .obj-ed-infantil .section-label {
+    display: inline-flex; align-items: center; gap: .4rem;
+    font-size: .7rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--sky); margin-bottom: .75rem;
+  }
+  .obj-ed-infantil .section-label::before { content: ''; display: block; width: 18px; height: 2px; background: var(--sky); border-radius: var(--r-full); }
+  .obj-ed-infantil .section-title { font-size: clamp(1.7rem, 3vw, 2.3rem); font-weight: 900; color: var(--navy); line-height: 1.22; margin-bottom: 1rem; letter-spacing: -.02em; }
+  .obj-ed-infantil .section-title em { color: var(--blue); font-style: normal; }
+  .obj-ed-infantil .lead { font-size: 1.08rem; color: var(--muted); line-height: 1.85; max-width: 760px; }
+  .obj-ed-infantil p.body-text { font-size: 1rem; color: var(--muted); line-height: 1.85; max-width: 760px; margin-bottom: 1.3rem; }
+  .obj-ed-infantil p.body-text:last-child { margin-bottom: 0; }
+  .obj-ed-infantil p.body-text strong { color: var(--navy); }
+
+  /* ---- Page hero / banner ---- */
+  .obj-ed-infantil .page-hero {
+    position: relative;
+    background: linear-gradient(120deg, #0d2346 0%, #1a4fac 60%, #1e8dc1 100%);
+    padding: 3.6rem 0;
+    overflow: hidden;
+  }
+  .obj-ed-infantil .page-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: radial-gradient(ellipse 80% 80% at 75% 30%, rgba(30,141,193,.35) 0%, transparent 70%);
+  }
+  .obj-ed-infantil .page-hero .container { position: relative; z-index: 2; }
+  .obj-ed-infantil .page-hero .section-label { color: var(--gold); }
+  .obj-ed-infantil .page-hero .section-label::before { background: var(--gold); }
+  .obj-ed-infantil .page-hero .section-title { color: var(--white); margin-bottom: .7rem; }
+  .obj-ed-infantil .page-hero .section-title em { color: var(--gold); }
+  .obj-ed-infantil .page-hero .lead { color: rgba(255,255,255,.8); max-width: 620px; }
+
+  /* ---- Buttons ---- */
+  .obj-ed-infantil .btn-primary {
+    display: inline-flex; align-items: center; gap: .45rem;
+    background: var(--gold); color: var(--navy);
+    padding: .9rem 2rem; border-radius: var(--r-full);
+    font-weight: 800; font-size: .85rem; letter-spacing: .03em; text-transform: uppercase;
+    box-shadow: var(--shadow-gold);
+    transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+    border: none; cursor: pointer;
+  }
+  .obj-ed-infantil .btn-primary:hover { background: #f5b030; box-shadow: 0 10px 32px rgba(232,160,32,.5); transform: translateY(-2px); }
+  .obj-ed-infantil .btn-outline {
+    display: inline-flex; align-items: center; gap: .45rem;
+    border: 2px solid var(--navy); color: var(--navy);
+    padding: .85rem 1.8rem; border-radius: var(--r-full);
+    font-weight: 700; font-size: .85rem; letter-spacing: .03em; text-transform: uppercase;
+    transition: background var(--dur) var(--ease), color var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  .obj-ed-infantil .btn-outline:hover { background: var(--navy); color: #fff; transform: translateY(-2px); }
+  .obj-ed-infantil .btn-outline-white {
+    display: inline-flex; align-items: center; gap: .45rem;
+    border: 2px solid rgba(255,255,255,.55); color: var(--white);
+    padding: .85rem 1.8rem; border-radius: var(--r-full);
+    font-weight: 700; font-size: .85rem; letter-spacing: .03em; text-transform: uppercase;
+    transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  .obj-ed-infantil .btn-outline-white:hover { border-color: rgba(255,255,255,.9); background: rgba(255,255,255,.12); transform: translateY(-2px); }
+  .obj-ed-infantil .btn-navy {
+    display: inline-flex; align-items: center; gap: .45rem;
+    background: var(--navy); color: #fff;
+    padding: .95rem 2rem; border-radius: var(--r-full);
+    font-weight: 800; font-size: .85rem; letter-spacing: .03em; text-transform: uppercase;
+    box-shadow: 0 4px 16px rgba(13,35,70,.3);
+    transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  .obj-ed-infantil .btn-navy:hover { background: #162d5a; box-shadow: 0 8px 24px rgba(13,35,70,.4); transform: translateY(-2px); }
+
+  /* ---- Feature / motivo cards (icon + text) ---- */
+  .obj-ed-infantil .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.3rem; margin-top: 2.2rem; }
+  .obj-ed-infantil .feature-card {
+    background: var(--light); border: 1px solid var(--border);
+    border-radius: var(--r-lg); padding: 1.6rem;
+    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+  .obj-ed-infantil .feature-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+  .obj-ed-infantil .feature-icon {
+    width: 52px; height: 52px; border-radius: var(--r-sm);
+    background: linear-gradient(135deg, var(--blue), var(--sky));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; margin-bottom: 1rem;
+    box-shadow: 0 4px 12px rgba(26,79,172,.25);
+  }
+  .obj-ed-infantil .feature-card h4 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: .45rem; }
+  .obj-ed-infantil .feature-card p { font-size: .87rem; color: var(--muted); line-height: 1.65; }
+
+  /* ---- Chips (values / tags) ---- */
+  .obj-ed-infantil .chip-grid { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.8rem; }
+  .obj-ed-infantil .chip {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: var(--white); border: 1.5px solid var(--border);
+    color: var(--navy); font-size: .85rem; font-weight: 600;
+    padding: .6rem 1.15rem; border-radius: var(--r-full);
+    box-shadow: var(--shadow-xs);
+    transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  .obj-ed-infantil .chip:hover { border-color: var(--sky); box-shadow: var(--shadow-sm); transform: translateY(-2px); }
+  .obj-ed-infantil .chip .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+
+  /* ---- Quote block ---- */
+  .obj-ed-infantil .quote-block {
+    position: relative;
+    background: var(--light); border-left: 4px solid var(--gold);
+    border-radius: var(--r-md);
+    padding: 1.8rem 2rem;
+    margin: 2rem 0;
+  }
+  .obj-ed-infantil .quote-block p { font-size: 1.1rem; font-weight: 600; color: var(--navy); line-height: 1.6; font-style: italic; }
+
+  /* ---- Unit cards ---- */
+  .obj-ed-infantil .unit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+  .obj-ed-infantil .unit-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg);
+    box-shadow: var(--shadow-sm); overflow: hidden; display: flex; flex-direction: column;
+    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+  .obj-ed-infantil .unit-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+  .obj-ed-infantil .unit-card-top { background: linear-gradient(135deg, var(--navy), var(--blue)); padding: 1.3rem 1.5rem; }
+  .obj-ed-infantil .unit-card-level { display: inline-block; background: var(--gold); color: var(--navy); font-size: .64rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: .3rem .8rem; border-radius: var(--r-full); margin-bottom: .6rem; }
+  .obj-ed-infantil .unit-card-top h3 { color: var(--white); font-size: 1.1rem; font-weight: 800; }
+  .obj-ed-infantil .unit-card-body { padding: 1.4rem 1.5rem; flex: 1; display: flex; flex-direction: column; gap: .55rem; }
+  .obj-ed-infantil .unit-card-row { display: flex; align-items: flex-start; gap: .6rem; font-size: .87rem; color: var(--muted); line-height: 1.5; }
+  .obj-ed-infantil .unit-card-row .ico { flex-shrink: 0; }
+  .obj-ed-infantil .unit-card-row strong { color: var(--navy); }
+  .obj-ed-infantil .unit-card-actions { display: flex; gap: .6rem; padding: 0 1.5rem 1.4rem; flex-wrap: wrap; }
+  .obj-ed-infantil .unit-card-actions a { flex: 1; justify-content: center; padding-inline: 1rem; font-size: .74rem; }
+
+  /* ---- Program cards ---- */
+  .obj-ed-infantil .program-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.4rem; margin-top: 2rem; }
+  .obj-ed-infantil .program-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg);
+    padding: 1.6rem; box-shadow: var(--shadow-xs);
+    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+  .obj-ed-infantil .program-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+  .obj-ed-infantil .program-card .feature-icon { margin-bottom: .9rem; }
+  .obj-ed-infantil .program-card h4 { font-size: 1.02rem; font-weight: 800; color: var(--navy); margin-bottom: .5rem; }
+  .obj-ed-infantil .program-card p { font-size: .86rem; color: var(--muted); line-height: 1.65; }
+  .obj-ed-infantil .program-card ul { list-style: none; display: flex; flex-direction: column; gap: .55rem; margin-top: .8rem; }
+  .obj-ed-infantil .program-card ul li { display: flex; gap: .55rem; font-size: .84rem; color: var(--muted); line-height: 1.55; }
+  .obj-ed-infantil .program-card ul li::before { content: '✓'; color: var(--sky); font-weight: 800; flex-shrink: 0; }
+  .obj-ed-infantil .program-group-title { display: flex; align-items: center; gap: .8rem; margin: 3rem 0 .5rem; }
+  .obj-ed-infantil .program-group-title h3 { font-size: 1.3rem; font-weight: 900; color: var(--navy); }
+  .obj-ed-infantil .program-group-title span { flex: 1; height: 1px; background: var(--border); }
+  .obj-ed-infantil section .program-group-title:first-of-type { margin-top: 0; }
+
+  /* ---- Timeline ---- */
+  .obj-ed-infantil .timeline { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.1rem; }
+  .obj-ed-infantil .tl-item { display: grid; grid-template-columns: 100px 1fr; gap: 1.3rem; }
+  .obj-ed-infantil .tl-year {
+    display: flex; align-items: flex-start; justify-content: flex-end;
+    font-size: 1.15rem; font-weight: 900; color: var(--gold);
+    padding-top: 1.2rem; text-align: right; line-height: 1.2;
+  }
+  .obj-ed-infantil .tl-card {
+    position: relative;
+    background: var(--light); border: 1px solid var(--border); border-radius: var(--r-md);
+    padding: 1.2rem 1.4rem;
+  }
+  .obj-ed-infantil .tl-card::before {
+    content: ''; position: absolute; left: -1.05rem; top: 1.5rem;
+    width: 10px; height: 10px; border-radius: 50%; background: var(--blue);
+    box-shadow: 0 0 0 4px rgba(26,79,172,.15);
+  }
+  .obj-ed-infantil .tl-card h4 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: .3rem; }
+  .obj-ed-infantil .tl-card p { font-size: .87rem; color: var(--muted); line-height: 1.6; }
+
+  /* ---- Info / schedule cards ---- */
+  .obj-ed-infantil .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.3rem; margin-top: 2rem; }
+  .obj-ed-infantil .info-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg);
+    padding: 1.5rem; box-shadow: var(--shadow-xs);
+  }
+  .obj-ed-infantil .info-card .tag { display: inline-block; background: rgba(30,141,193,.12); color: var(--sky); font-size: .68rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: .28rem .75rem; border-radius: var(--r-full); margin-bottom: .8rem; }
+  .obj-ed-infantil .info-card h4 { font-size: 1.02rem; font-weight: 800; color: var(--navy); margin-bottom: .6rem; }
+  .obj-ed-infantil .info-card ul { list-style: none; display: flex; flex-direction: column; gap: .4rem; }
+  .obj-ed-infantil .info-card li { font-size: .87rem; color: var(--muted); display: flex; justify-content: space-between; gap: .8rem; }
+  .obj-ed-infantil .info-card li strong { color: var(--navy); font-weight: 700; }
+
+  /* ---- Tables (discount tables etc) ---- */
+  .obj-ed-infantil .table-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+  .obj-ed-infantil .table-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-sm); }
+  .obj-ed-infantil .table-card-head { background: linear-gradient(135deg, var(--navy), var(--blue)); color: var(--white); padding: 1rem 1.4rem; font-weight: 800; font-size: .92rem; }
+  .obj-ed-infantil table { width: 100%; border-collapse: collapse; }
+  .obj-ed-infantil table td { padding: .75rem 1.4rem; font-size: .87rem; color: var(--muted); border-bottom: 1px solid var(--border); }
+  .obj-ed-infantil table tr:last-child td { border-bottom: none; }
+  .obj-ed-infantil table td.pct { text-align: right; font-weight: 800; color: var(--blue); }
+  .obj-ed-infantil table tr:last-child td.pct { color: var(--gold); }
+
+  /* ---- CTA banner ---- */
+  .obj-ed-infantil .cta-banner {
+    background: linear-gradient(135deg, var(--gold) 0%, #f5b030 100%);
+    border-radius: var(--r-xl);
+    padding: 2.6rem 2.8rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+  }
+  .obj-ed-infantil .cta-banner h3 { font-size: 1.5rem; font-weight: 900; color: var(--navy); margin-bottom: .35rem; letter-spacing: -.02em; }
+  .obj-ed-infantil .cta-banner p { color: rgba(13,35,70,.72); font-size: .95rem; }
+
+  /* ---- Portal / redirect page ---- */
+  .obj-ed-infantil .portal-box {
+    max-width: 620px; margin: 0 auto; text-align: center;
+    background: var(--light); border: 1px solid var(--border); border-radius: var(--r-xl);
+    padding: 3.2rem 2.5rem; box-shadow: var(--shadow-sm);
+  }
+  .obj-ed-infantil .portal-icon {
+    width: 78px; height: 78px; margin: 0 auto 1.4rem; border-radius: 50%;
+    background: linear-gradient(135deg, var(--navy), var(--sky));
+    display: flex; align-items: center; justify-content: center; font-size: 2.2rem;
+    box-shadow: var(--shadow-md);
+  }
+  .obj-ed-infantil .portal-box h2 { font-size: 1.5rem; font-weight: 900; color: var(--navy); margin-bottom: .8rem; }
+  .obj-ed-infantil .portal-box p { color: var(--muted); font-size: .96rem; line-height: 1.7; margin-bottom: 1.8rem; }
+
+  /* ---- Article / blog post ---- */
+  .obj-ed-infantil .article-meta { display: flex; align-items: center; gap: .9rem; margin-bottom: 1rem; flex-wrap: wrap; }
+  .obj-ed-infantil .article-tag { background: var(--gold); color: var(--navy); font-size: .66rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: .3rem .85rem; border-radius: var(--r-full); }
+  .obj-ed-infantil .article-date { font-size: .8rem; color: rgba(255,255,255,.7); letter-spacing: .03em; }
+  .obj-ed-infantil .article-cover { border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-lg); margin: -3.6rem auto 2.5rem; max-width: 900px; position: relative; z-index: 3; }
+  .obj-ed-infantil .article-cover img { width: 100%; height: 340px; object-fit: cover; }
+  .obj-ed-infantil .article-body { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.3rem; }
+  .obj-ed-infantil .article-body p { font-size: 1.02rem; color: var(--text); line-height: 1.9; }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 720px) {
+    .obj-ed-infantil .cta-banner { flex-direction: column; align-items: flex-start; text-align: left; }
+    .obj-ed-infantil .tl-item { grid-template-columns: 70px 1fr; gap: .9rem; }
+    .obj-ed-infantil .tl-year { font-size: .95rem; padding-top: 1rem; }
+    .obj-ed-infantil .article-cover { margin-top: -2.2rem; }
+    .obj-ed-infantil .article-cover img { height: 220px; }
+  }
+
+</style>
+<div class="obj-ed-infantil">
+
+<section class="page-hero">
+  <div class="container">
+    <p class="section-label">Sistema de Ensino Objetivo</p>
+    <h1 class="section-title">Educação <em>Infantil</em></h1>
+    <p class="lead">A Educação Infantil do Objetivo São Carlos é uma etapa essencial para o desenvolvimento das crianças, marcada por descobertas, aprendizados e vivências que contribuem para a formação integral.</p>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <p class="body-text">Oferecemos um ambiente acolhedor, seguro e estimulante, planejado para promover o desenvolvimento emocional, social, cognitivo e físico, respeitando o ritmo e a individualidade de cada criança.</p>
+    <p class="body-text">Por meio de experiências lúdicas, jogos, brincadeiras e interações em grupo, incentivamos a autonomia, a curiosidade e o prazer em aprender, tornando a criança protagonista do seu próprio desenvolvimento.</p>
+    <p class="body-text">Ao longo dessa fase, promovemos um ambiente de letramento, preparando os alunos de forma natural e segura para o Ensino Fundamental.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🌱</div>
+        <h4>Desenvolvimento Integral</h4>
+        <p>Desenvolvimento emocional, social, cognitivo e físico, respeitando o ritmo de cada criança.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧩</div>
+        <h4>Aprendizagem pelo Brincar</h4>
+        <p>Jogos, brincadeiras e interações em grupo que estimulam autonomia e curiosidade.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📖</div>
+        <h4>Preparação para o Fundamental</h4>
+        <p>Ambiente de letramento que prepara a criança de forma natural e segura para a próxima etapa.</p>
+      </div>
+    </div>
+
+    <div class="quote-block">
+      <p>“No Objetivo São Carlos, aprender é uma experiência leve, afetiva e cheia de significado.”</p>
+    </div>
+  </div>
+</section>
+
+</div>
