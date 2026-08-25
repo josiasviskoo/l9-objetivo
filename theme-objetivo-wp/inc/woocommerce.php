@@ -2,7 +2,7 @@
 /**
  * Integração com o WooCommerce: a aba "Shop" do layout aprovado vira a loja
  * de excursões/eventos. O tema declara suporte ao WooCommerce, adiciona uma
- * aba nativa de produto "Detalhes do Evento" (data, local, vagas — sem
+ * aba nativa de produto "Detalhes do Evento" (data, local, vagas - sem
  * precisar de ACF) e assume o controle total do CSS da loja.
  */
 
@@ -25,16 +25,28 @@ add_action( 'after_setup_theme', 'objetivo_woocommerce_theme_support' );
 /**
  * A loja usa o template clássico (woocommerce/archive-product.php +
  * content-product.php, com grid CSS próprio do tema), não os blocos do
- * WooCommerce — mas o plugin carrega o CSS de blocos (wc-blocks-css) em
+ * WooCommerce - mas o plugin carrega o CSS de blocos (wc-blocks-css) em
  * toda página de qualquer forma. Esse CSS define seu próprio grid para
- * `.wc-block-grid`/`.products` e tinha prioridade sobre o nosso em alguns
- * casos, quebrando o alinhamento dos cards. Como não usamos blocos aqui,
- * removemos por completo — zero motivo pra carregar.
+ * `.wc-block-grid`/`.products` (às vezes via auto-fill/minmax) e tinha
+ * prioridade sobre o nosso em alguns casos, quebrando o alinhamento dos
+ * cards (2 por linha + 1 orfã, em vez de 3 por linha). Como não usamos
+ * blocos aqui, removemos por completo - zero motivo pra carregar.
+ *
+ * Em vez de uma lista fixa de handles (que fica desatualizada a cada nova
+ * versão do WooCommerce, que já renomeou esses handles mais de uma vez),
+ * varremos todos os estilos registrados e removemos qualquer um que
+ * comece com "wc-block" - cobre handles novos/renomeados automaticamente.
  */
 function objetivo_dequeue_wc_blocks_style() {
-	foreach ( array( 'wc-blocks-css', 'wc-blocks-style', 'wc-blocks-vendors-style', 'wc-blocks-style-shared' ) as $handle ) {
-		wp_dequeue_style( $handle );
-		wp_deregister_style( $handle );
+	global $wp_styles;
+	if ( empty( $wp_styles->registered ) ) {
+		return;
+	}
+	foreach ( array_keys( $wp_styles->registered ) as $handle ) {
+		if ( 0 === strpos( $handle, 'wc-block' ) ) {
+			wp_dequeue_style( $handle );
+			wp_deregister_style( $handle );
+		}
 	}
 }
 add_action( 'wp_enqueue_scripts', 'objetivo_dequeue_wc_blocks_style', 100 );
@@ -43,11 +55,11 @@ add_action( 'wp_enqueue_scripts', 'objetivo_dequeue_wc_blocks_style', 100 );
  * Mantemos a folha de estilos padrão do WooCommerce carregada (ela cuida da
  * estrutura responsiva de carrinho/checkout) e sobrepomos só a aparência
  * (cores, tipografia, botões) em assets/css/style-main.css, que carrega
- * depois — evita reconstruir do zero o CSS estrutural do WooCommerce.
+ * depois - evita reconstruir do zero o CSS estrutural do WooCommerce.
  */
 
 /**
- * Avisa no admin se o WooCommerce não estiver ativo — a aba Shop depende
+ * Avisa no admin se o WooCommerce não estiver ativo - a aba Shop depende
  * dele para gerenciar os eventos/excursões.
  */
 function objetivo_woocommerce_admin_notice() {
@@ -55,7 +67,7 @@ function objetivo_woocommerce_admin_notice() {
 		return;
 	}
 	echo '<div class="notice notice-warning"><p>' .
-		esc_html__( 'O tema Objetivo foi feito para funcionar com o plugin WooCommerce ativo — ele gerencia a aba "Shop" de excursões e eventos. Instale e ative o WooCommerce para liberar a loja.', 'objetivo' ) .
+		esc_html__( 'O tema Objetivo foi feito para funcionar com o plugin WooCommerce ativo - ele gerencia a aba "Shop" de excursões e eventos. Instale e ative o WooCommerce para liberar a loja.', 'objetivo' ) .
 		'</p></div>';
 }
 add_action( 'admin_notices', 'objetivo_woocommerce_admin_notice' );
@@ -166,7 +178,7 @@ if ( objetivo_is_woocommerce_active() ) {
 	add_action( 'woocommerce_single_product_summary', 'objetivo_show_event_details_single', 6 );
 
 	/**
-	 * Remove os breadcrumbs padrão da loja — o hero customizado do
+	 * Remove os breadcrumbs padrão da loja - o hero customizado do
 	 * archive-product.php já cumpre esse papel visualmente.
 	 */
 	remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
@@ -176,7 +188,7 @@ if ( objetivo_is_woocommerce_active() ) {
 	 * de produto individual roda o template padrão do plugin, que injeta a
 	 * sidebar genérica do WooCommerce (busca de produtos, categorias etc.,
 	 * sem estilo do tema) e "Produtos relacionados" (card sem a classe
-	 * .product-card, portanto sem CSS do tema, e em ordem aleatória —
+	 * .product-card, portanto sem CSS do tema, e em ordem aleatória -
 	 * parece uma lista de links soltos). Removidos por completo.
 	 */
 	remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar' );
@@ -186,13 +198,13 @@ if ( objetivo_is_woocommerce_active() ) {
 	/**
 	 * Troca o wrapper padrão do WooCommerce (<div id="primary"><main id="main">)
 	 * pelo nosso <main class="shop-container">, usado tanto na loja quanto na
-	 * página de produto individual, carrinho, checkout e minha conta — sem
+	 * página de produto individual, carrinho, checkout e minha conta - sem
 	 * isso, os hooks woocommerce_before/after_main_content (chamados pelos
 	 * templates do WooCommerce, inclusive o archive-product.php deste tema)
 	 * abririam um <main> aninhado dentro do nosso.
 	 *
 	 * .shop-container já define a mesma largura/padding de .container (ver
-	 * style-main.css) — não aninhar um <div class="container"> aqui dentro,
+	 * style-main.css) - não aninhar um <div class="container"> aqui dentro,
 	 * senão o padding/max-width dobra e o conteúdo da loja fica mais
 	 * estreito que o resto do site.
 	 */
@@ -211,7 +223,7 @@ if ( objetivo_is_woocommerce_active() ) {
 
 	/**
 	 * "Comprar" no lugar do texto padrão "Adicionar ao carrinho", como no
-	 * layout aprovado — mantendo o link/AJAX nativo do WooCommerce.
+	 * layout aprovado - mantendo o link/AJAX nativo do WooCommerce.
 	 */
 	function objetivo_add_to_cart_text( $text, $product = null ) {
 		return __( 'Comprar', 'objetivo' );

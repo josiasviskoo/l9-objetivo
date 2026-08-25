@@ -1,6 +1,6 @@
 /**
  * Filtro por categoria do bloco "Novidades do Objetivo" na home. Os posts
- * já são reais (WordPress), então isso só mostra/esconde no cliente — a
+ * já são reais (WordPress), então isso só mostra/esconde no cliente - a
  * listagem completa com paginação real fica na página com o modelo "Blog".
  */
 ( function () {

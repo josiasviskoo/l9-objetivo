@@ -2,7 +2,7 @@
 /**
  * Registra os 6 Custom Post Types que tornam editável todo o conteúdo
  * repetível da home (cards de Ensino, Motivos, Selos, Segmentos, Timeline e
- * Vestibulares) — sem depender de nenhum plugin de campos.
+ * Vestibulares) - sem depender de nenhum plugin de campos.
  *
  * Cada item da config vira um CPT (via loop genérico) + um meta box (via
  * objetivo_register_cpt_meta_box(), de inc/meta-boxes.php).
@@ -56,7 +56,7 @@ function objetivo_cpt_definitions() {
 			'menu_icon'   => 'dashicons-star-filled',
 			'description' => __( 'Cards de selos e prêmios ao lado da lista de Motivos.', 'objetivo' ),
 			'fields'      => array(
-				array( 'key' => '_icon_emoji', 'label' => __( 'Ícone (emoji) — usado se não houver imagem', 'objetivo' ), 'type' => 'text', 'placeholder' => '📍' ),
+				array( 'key' => '_icon_emoji', 'label' => __( 'Ícone (emoji) - usado se não houver imagem', 'objetivo' ), 'type' => 'text', 'placeholder' => '📍' ),
 				array( 'key' => '_is_dark', 'label' => __( 'Estilo escuro', 'objetivo' ), 'type' => 'checkbox', 'description' => __( 'Usa o card azul-marinho (ex.: "Unidade de São Carlos").', 'objetivo' ) ),
 				array( 'key' => '_objetivo_url', 'label' => __( 'Link (opcional)', 'objetivo' ), 'type' => 'url' ),
 			),
@@ -131,7 +131,7 @@ function objetivo_register_cpts() {
 			)
 		);
 
-		objetivo_register_cpt_meta_box( $post_type, $def['fields'], __( 'Detalhes', 'objetivo' ) . ' — ' . $def['singular'] );
+		objetivo_register_cpt_meta_box( $post_type, $def['fields'], __( 'Detalhes', 'objetivo' ) . ' - ' . $def['singular'] );
 	}
 }
 add_action( 'init', 'objetivo_register_cpts' );
@@ -154,7 +154,7 @@ add_action( 'pre_get_posts', 'objetivo_cpt_admin_order' );
 
 /**
  * Helper de consulta: retorna os posts publicados de um dos CPTs do tema,
- * já ordenados por menu_order — usado pelos template-parts da home.
+ * já ordenados por menu_order - usado pelos template-parts da home.
  */
 function objetivo_get_items( $post_type, $limit = -1 ) {
 	return get_posts(

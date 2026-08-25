@@ -1,6 +1,6 @@
 <?php
 /**
- * Arquivo de categoria/tag/data (ex.: /categoria/noticias/) — usa o mesmo
+ * Arquivo de categoria/tag/data (ex.: /categoria/noticias/) - usa o mesmo
  * grid visual do template-blog.php.
  */
 get_header();

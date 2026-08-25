@@ -1,6 +1,6 @@
 <?php
 /**
- * Timeline interativa "Nossa História" — marcos do CPT objetivo_timeline.
+ * Timeline interativa "Nossa História" - marcos do CPT objetivo_timeline.
  * O JS (assets/js/main.js) generaliza o comportamento por data-id, então
  * funciona com qualquer quantidade de marcos cadastrados.
  */

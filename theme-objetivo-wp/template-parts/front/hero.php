@@ -1,6 +1,6 @@
 <?php
 /**
- * Seção Hero da home — slider de banners gerenciado pelo CPT
+ * Seção Hero da home - slider de banners gerenciado pelo CPT
  * objetivo_banner (Aparência → wp-admin → Banners da Home).
  */
 $banners = objetivo_get_items( 'objetivo_banner' );

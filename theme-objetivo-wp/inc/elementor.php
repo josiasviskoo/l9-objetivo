@@ -2,7 +2,7 @@
 /**
  * Compatibilidade com Elementor: quando uma página é editada com o
  * Elementor, os templates do tema (page.php, template-sobre.php) pulam o
- * banner "page-hero" e o wrapper `.container` — senão o layout do Elementor
+ * banner "page-hero" e o wrapper `.container` - senão o layout do Elementor
  * (sobretudo seções full-width) fica preso dentro da largura/gap do tema.
  */
 

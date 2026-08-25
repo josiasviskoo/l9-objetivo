@@ -3,7 +3,7 @@
  * Template Name: Blog
  *
  * Listagem completa e paginada de posts, com filtro por categoria via link
- * (?blog_cat=slug) — destino do "Ver todas"/"Ver todos os artigos" da home.
+ * (?blog_cat=slug) - destino do "Ver todas"/"Ver todos os artigos" da home.
  */
 get_header();
 

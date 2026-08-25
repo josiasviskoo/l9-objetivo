@@ -9,7 +9,7 @@
  * duplicar conteúdo em reativações.
  *
  * IMPORTANTE: o seed não roda direto em `after_switch_theme` porque esse
- * hook dispara antes de `init` — ou seja, antes dos nossos CPTs e das
+ * hook dispara antes de `init` - ou seja, antes dos nossos CPTs e das
  * taxonomias do WooCommerce (product_cat, product_type) serem registrados.
  * Em vez disso, `after_switch_theme` só liga uma flag, e o seed de fato
  * roda no próximo `init` (prioridade 20, depois do WooCommerce registrar
@@ -55,7 +55,7 @@ add_action( 'init', 'objetivo_maybe_run_activation_seed', 20 );
  * cada CPT (e nos produtos do WooCommerce, mesmo problema) e manda os
  * excedentes pra lixeira (mantém o mais antigo).
  *
- * v2: passou a cobrir também o post type 'product' — v1 só olhava os CPTs
+ * v2: passou a cobrir também o post type 'product' - v1 só olhava os CPTs
  * do tema e deixou produtos duplicados (ex.: "Acampamento de Férias NR"
  * repetido no grid da loja) passar batido em sites onde v1 já tinha rodado.
  */
@@ -99,7 +99,7 @@ add_action( 'init', 'objetivo_dedupe_seed_cpts', 21 );
  * Biblioteca de Mídia, definida como imagem destacada do post informado.
  */
 /**
- * get_page_by_title() foi descontinuada no core (WP 6.2+) — este helper faz
+ * get_page_by_title() foi descontinuada no core (WP 6.2+) - este helper faz
  * a mesma checagem de "já existe post com este título" via WP_Query, que é
  * a substituição recomendada pelo próprio WordPress.
  */
@@ -417,7 +417,7 @@ function objetivo_seed_woocommerce_products() {
 
 /**
  * Menu principal com a mesma estrutura de dropdowns do layout aprovado.
- * Itens sem página real ficam com link "#" — o admin edita o destino em
+ * Itens sem página real ficam com link "#" - o admin edita o destino em
  * Aparência → Menus assim que criar as páginas correspondentes.
  */
 function objetivo_seed_menu( $sobre_id, $blog_id ) {
@@ -483,16 +483,16 @@ function objetivo_seed_menu( $sobre_id, $blog_id ) {
 	$locations = get_theme_mod( 'nav_menu_locations', array() );
 	$locations['primary'] = $menu_id;
 
-	// Colunas do rodapé — os mesmos links curados do layout aprovado, em
+	// Colunas do rodapé - os mesmos links curados do layout aprovado, em
 	// menus próprios para o admin editar em Aparência → Menus.
 	$footer_ensino_items = array( 'Educação Infantil', 'Ensino Fundamental', 'Ensino Médio', 'Pré-Vestibular', 'Proposta Pedagógica' );
-	$footer_ensino_id    = objetivo_seed_simple_menu( 'Rodapé — Ensino', $footer_ensino_items );
+	$footer_ensino_id    = objetivo_seed_simple_menu( 'Rodapé - Ensino', $footer_ensino_items );
 	if ( $footer_ensino_id ) {
 		$locations['footer-ensino'] = $footer_ensino_id;
 	}
 
 	$footer_vest_items = array( 'Resoluções Comentadas', 'Simulados', 'Aprovações', 'Fique por Dentro' );
-	$footer_vest_id    = objetivo_seed_simple_menu( 'Rodapé — Vestibulares', $footer_vest_items );
+	$footer_vest_id    = objetivo_seed_simple_menu( 'Rodapé - Vestibulares', $footer_vest_items );
 	if ( $footer_vest_id ) {
 		$locations['footer-vestibulares'] = $footer_vest_id;
 	}

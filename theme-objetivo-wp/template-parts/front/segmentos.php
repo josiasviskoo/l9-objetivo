@@ -1,6 +1,6 @@
 <?php
 /**
- * Seção "Navegue pelo seu segmento" — banners coloridos do CPT
+ * Seção "Navegue pelo seu segmento" - banners coloridos do CPT
  * objetivo_segmento.
  */
 $items = objetivo_get_items( 'objetivo_segmento' );

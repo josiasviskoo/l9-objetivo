@@ -2,7 +2,7 @@
 /**
  * Fallback obrigatório do tema (WordPress exige index.php). Como
  * front-page.php sempre assume a página inicial, este arquivo só entra em
- * cena em contextos incomuns — mantém o mesmo grid do archive.php.
+ * cena em contextos incomuns - mantém o mesmo grid do archive.php.
  */
 get_header();
 ?>

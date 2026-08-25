@@ -1,6 +1,6 @@
 <?php
 /**
- * Seção "Sistema de Ensino" — cards vindos do CPT objetivo_ensino.
+ * Seção "Sistema de Ensino" - cards vindos do CPT objetivo_ensino.
  */
 $items = objetivo_get_items( 'objetivo_ensino' );
 if ( ! $items ) {

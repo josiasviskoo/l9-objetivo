@@ -5,7 +5,7 @@
  * repetir boilerplate para as dezenas de textos globais do layout (contato,
  * hero, estatísticas, textos de cada seção, rodapé, etc).
  *
- * Os "default" abaixo reproduzem o texto exato do layout aprovado — o site
+ * Os "default" abaixo reproduzem o texto exato do layout aprovado - o site
  * já nasce idêntico à referência e o cliente edita tudo depois pelo
  * Personalizar (Aparência → Personalizar) sem precisar de desenvolvedor.
  */
@@ -39,14 +39,14 @@ function objetivo_customizer_definitions() {
 		'stats'        => array(
 			'title'  => __( 'Estatísticas', 'objetivo' ),
 			'fields' => array(
-				'stat1_num'   => array( 'label' => __( 'Estatística 1 — número', 'objetivo' ), 'type' => 'text', 'default' => '17.100+' ),
-				'stat1_label' => array( 'label' => __( 'Estatística 1 — rótulo', 'objetivo' ), 'type' => 'text', 'default' => 'Medalhas em olimpíadas' ),
-				'stat2_num'   => array( 'label' => __( 'Estatística 2 — número', 'objetivo' ), 'type' => 'text', 'default' => '1º' ),
-				'stat2_label' => array( 'label' => __( 'Estatística 2 — rótulo', 'objetivo' ), 'type' => 'text', 'default' => 'Lugar no ENEM – SP' ),
-				'stat3_num'   => array( 'label' => __( 'Estatística 3 — número', 'objetivo' ), 'type' => 'text', 'default' => '9×' ),
-				'stat3_label' => array( 'label' => __( 'Estatística 3 — rótulo', 'objetivo' ), 'type' => 'text', 'default' => 'Melhor de São Paulo' ),
-				'stat4_num'   => array( 'label' => __( 'Estatística 4 — número', 'objetivo' ), 'type' => 'text', 'default' => '100%' ),
-				'stat4_label' => array( 'label' => __( 'Estatística 4 — rótulo', 'objetivo' ), 'type' => 'text', 'default' => 'Dedicação ao aluno' ),
+				'stat1_num'   => array( 'label' => __( 'Estatística 1 - número', 'objetivo' ), 'type' => 'text', 'default' => '17.100+' ),
+				'stat1_label' => array( 'label' => __( 'Estatística 1 - rótulo', 'objetivo' ), 'type' => 'text', 'default' => 'Medalhas em olimpíadas' ),
+				'stat2_num'   => array( 'label' => __( 'Estatística 2 - número', 'objetivo' ), 'type' => 'text', 'default' => '1º' ),
+				'stat2_label' => array( 'label' => __( 'Estatística 2 - rótulo', 'objetivo' ), 'type' => 'text', 'default' => 'Lugar no ENEM – SP' ),
+				'stat3_num'   => array( 'label' => __( 'Estatística 3 - número', 'objetivo' ), 'type' => 'text', 'default' => '9×' ),
+				'stat3_label' => array( 'label' => __( 'Estatística 3 - rótulo', 'objetivo' ), 'type' => 'text', 'default' => 'Melhor de São Paulo' ),
+				'stat4_num'   => array( 'label' => __( 'Estatística 4 - número', 'objetivo' ), 'type' => 'text', 'default' => '100%' ),
+				'stat4_label' => array( 'label' => __( 'Estatística 4 - rótulo', 'objetivo' ), 'type' => 'text', 'default' => 'Dedicação ao aluno' ),
 			),
 		),
 		'sec_ensino'   => array(
@@ -92,8 +92,8 @@ function objetivo_customizer_definitions() {
 				'title'    => array( 'label' => __( 'Título', 'objetivo' ), 'type' => 'textarea', 'default' => 'O <em>e-GENIO</em>: sua escola<br>também no digital' ),
 				'desc_1'   => array( 'label' => __( 'Parágrafo 1', 'objetivo' ), 'type' => 'textarea', 'default' => 'A plataforma e-GENIO é o ambiente digital do Objetivo, um espaço integrado onde alunos acessam conteúdos, tarefas e resultados, e os responsáveis acompanham a evolução escolar em tempo real.' ),
 				'desc_2'   => array( 'label' => __( 'Parágrafo 2', 'objetivo' ), 'type' => 'textarea', 'default' => 'Com recursos modernos e interface intuitiva, o e-GENIO une a excelência do ensino presencial à praticidade do digital, garantindo continuidade e engajamento no aprendizado.' ),
-				'phone_title'    => array( 'label' => __( 'Cartão — título', 'objetivo' ), 'type' => 'text', 'default' => 'e-GENIO' ),
-				'phone_subtitle' => array( 'label' => __( 'Cartão — subtítulo', 'objetivo' ), 'type' => 'textarea', 'default' => 'A plataforma digital do Objetivo para alunos, pais e educadores' ),
+				'phone_title'    => array( 'label' => __( 'Cartão - título', 'objetivo' ), 'type' => 'text', 'default' => 'e-GENIO' ),
+				'phone_subtitle' => array( 'label' => __( 'Cartão - subtítulo', 'objetivo' ), 'type' => 'textarea', 'default' => 'A plataforma digital do Objetivo para alunos, pais e educadores' ),
 				'feature_1' => array( 'label' => __( 'Recurso 1', 'objetivo' ), 'type' => 'text', 'default' => '📖 Conteúdos e aulas digitais' ),
 				'feature_2' => array( 'label' => __( 'Recurso 2', 'objetivo' ), 'type' => 'text', 'default' => '📊 Acompanhamento de desempenho' ),
 				'feature_3' => array( 'label' => __( 'Recurso 3', 'objetivo' ), 'type' => 'text', 'default' => '👨‍👩‍👧 Portal para responsáveis' ),
@@ -125,7 +125,7 @@ function objetivo_customizer_definitions() {
 				'title'    => array( 'label' => __( 'Título', 'objetivo' ), 'type' => 'text', 'default' => 'Nossa <em>História</em>' ),
 				'desc'     => array( 'label' => __( 'Descrição', 'objetivo' ), 'type' => 'textarea', 'default' => 'Conheça a história de excelência e tradição do Objetivo em São Carlos.' ),
 				'cta_label' => array( 'label' => __( 'Botão "Ver história completa" (texto)', 'objetivo' ), 'type' => 'text', 'default' => 'Ver história completa' ),
-				'cta_url'   => array( 'label' => __( 'Botão "Ver história completa" (link — crie a página com o modelo "Nossa História")', 'objetivo' ), 'type' => 'url', 'default' => '#' ),
+				'cta_url'   => array( 'label' => __( 'Botão "Ver história completa" (link - crie a página com o modelo "Nossa História")', 'objetivo' ), 'type' => 'url', 'default' => '#' ),
 			),
 		),
 		'sec_blog'      => array(

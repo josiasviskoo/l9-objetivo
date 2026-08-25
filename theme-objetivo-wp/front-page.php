@@ -1,6 +1,6 @@
 <?php
 /**
- * Home institucional — reproduz, seção por seção, o layout aprovado em
+ * Home institucional - reproduz, seção por seção, o layout aprovado em
  * layout-apresentado/index.html. Cada template-part busca seu próprio
  * conteúdo (CPT ou Customizer) e não renderiza nada se não houver itens.
  */

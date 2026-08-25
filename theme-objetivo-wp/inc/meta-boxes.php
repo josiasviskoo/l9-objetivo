@@ -1,6 +1,6 @@
 <?php
 /**
- * Meta box genérico orientado a config — evita repetir boilerplate de
+ * Meta box genérico orientado a config - evita repetir boilerplate de
  * add_meta_box()/save_post para cada um dos 6 Custom Post Types do tema.
  *
  * Uso: objetivo_register_cpt_meta_box( 'objetivo_ensino', $fields, 'Detalhes do card' );

@@ -1,7 +1,7 @@
 <?php
 /**
  * Vincula uma Página (post type nativo) a um dos itens do CPT
- * objetivo_segmento — o mesmo CPT usado na seção "Navegue pelo seu
+ * objetivo_segmento - o mesmo CPT usado na seção "Navegue pelo seu
  * segmento" da home, que já tem cor/ícone/rótulo geridos em
  * Segmentos por Cor no wp-admin. Ao selecionar aqui, o header mostra uma
  * faixa com a cor daquele segmento sempre que a página estiver ativa,
@@ -37,7 +37,7 @@ function objetivo_render_segmento_meta_box( $post ) {
 	}
 
 	echo '<select name="_objetivo_segmento_id" id="_objetivo_segmento_id" style="width:100%;">';
-	echo '<option value="">' . esc_html__( '— Nenhum —', 'objetivo' ) . '</option>';
+	echo '<option value="">' . esc_html__( 'Nenhum', 'objetivo' ) . '</option>';
 	foreach ( $segmentos as $segmento ) {
 		printf(
 			'<option value="%1$d" %2$s>%3$s</option>',

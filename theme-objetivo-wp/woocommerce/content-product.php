@@ -1,6 +1,6 @@
 <?php
 /**
- * Card de produto (excursão/evento) — fiel ao shop.html: imagem, data do
+ * Card de produto (excursão/evento) - fiel ao shop.html: imagem, data do
  * evento, título, resumo, preço e botão "Comprar" (add-to-cart real via
  * woocommerce_template_loop_add_to_cart(), com suporte a AJAX).
  */

@@ -40,8 +40,8 @@ function objetivo_setup() {
 	register_nav_menus( array(
 		'primary'            => __( 'Principal (cabeçalho)', 'objetivo' ),
 		'topbar'              => __( 'Barra superior', 'objetivo' ),
-		'footer-ensino'       => __( 'Rodapé — Ensino', 'objetivo' ),
-		'footer-vestibulares' => __( 'Rodapé — Vestibulares', 'objetivo' ),
+		'footer-ensino'       => __( 'Rodapé - Ensino', 'objetivo' ),
+		'footer-vestibulares' => __( 'Rodapé - Vestibulares', 'objetivo' ),
 	) );
 }
 add_action( 'after_setup_theme', 'objetivo_setup' );
@@ -55,7 +55,7 @@ function objetivo_content_width() {
 add_action( 'after_setup_theme', 'objetivo_content_width', 0 );
 
 /**
- * Widget areas — usadas como reforço opcional em páginas genéricas/blog.
+ * Widget areas - usadas como reforço opcional em páginas genéricas/blog.
  */
 function objetivo_widgets_init() {
 	register_sidebar( array(
@@ -125,7 +125,7 @@ function objetivo_kses_em( $text ) {
 
 /**
  * Helper: URL de imagem padrão do tema (fallback quando o CPT não tem
- * imagem destacada definida — nunca deveria acontecer após o seed, mas
+ * imagem destacada definida - nunca deveria acontecer após o seed, mas
  * evita <img src=""> quebrado se o admin remover a imagem).
  */
 function objetivo_theme_image( $filename ) {
@@ -167,7 +167,7 @@ function objetivo_get_blog_page_url() {
 }
 
 /**
- * Gradientes de marca usados como fundo para posts sem imagem destacada —
+ * Gradientes de marca usados como fundo para posts sem imagem destacada -
  * cicla pelas cores do sistema para dar variedade visual sem exigir que
  * toda notícia tenha foto.
  */

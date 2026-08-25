@@ -1,5 +1,5 @@
 /* =========================================================================
-   Objetivo São Carlos — folha de estilos principal do tema
+   Objetivo São Carlos - folha de estilos principal do tema
    Consolida o CSS do layout aprovado (index.html + shop.html) e adiciona:
    menu mobile funcional, grid de Segmentos/Timeline orientado a dados,
    restilo do WooCommerce (loja + carrinho/checkout/conta) e páginas
@@ -372,6 +372,7 @@ footer { background: var(--navy); color: #9bb3d4; }
 .footer-brand .socials { display: flex; gap: .7rem; margin-top: 1.3rem; }
 .socials a { width: 38px; height: 38px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.1); border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; color: #9bb3d4; font-size: .9rem; text-decoration: none; transition: background var(--dur) var(--ease), color var(--dur) var(--ease), transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
 .socials a:hover { background: var(--gold); color: var(--navy); transform: translateY(-3px); box-shadow: 0 6px 16px rgba(232,160,32,.4); }
+.socials svg { width: 17px; height: 17px; fill: currentColor; flex-shrink: 0; }
 .footer-col h4 { color: var(--white); font-size: .75rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 1.2rem; }
 .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
 .footer-col ul a { color: #8aa5c8; text-decoration: none; font-size: .86rem; transition: color var(--dur) var(--ease), padding-left var(--dur) var(--ease); padding-left: 0; display: block; }
@@ -411,7 +412,7 @@ footer { background: var(--navy); color: #9bb3d4; }
 
 .blog-grid-listing, .single-post-content { max-width: 1260px; }
 
-/* Capa do artigo — sobrepõe o hero, no mesmo estilo dos cards do site */
+/* Capa do artigo - sobrepõe o hero, no mesmo estilo dos cards do site */
 .article-cover {
   max-width: 900px;
   margin: -6rem auto 2.5rem;
@@ -423,7 +424,7 @@ footer { background: var(--navy); color: #9bb3d4; }
 }
 .article-cover img { width: 100%; height: 380px; object-fit: cover; display: block; margin: 0; border-radius: 0; }
 
-/* Corpo do artigo — tipografia de leitura confortável */
+/* Corpo do artigo - tipografia de leitura confortável */
 .article-body { max-width: 720px; margin: 0 auto; line-height: 1.9; color: var(--text); font-size: 1.05rem; }
 .article-body h2, .article-body h3 { color: var(--navy); margin: 2rem 0 1rem; font-weight: 800; }
 .article-body p { margin-bottom: 1.3rem; }
@@ -466,6 +467,15 @@ footer { background: var(--navy); color: #9bb3d4; }
 .shop-hero p { font-size: 1.1rem; color: rgba(255,255,255,.8); max-width: 600px; margin: 0 auto; line-height: 1.6; }
 .shop-container { max-width: 1260px; margin: 4rem auto; padding: 0 1.5rem; }
 
+/*
+ * Grid de 3 colunas, forçado com máxima especificidade + !important em
+ * TODAS as propriedades de dimensionamento - o WooCommerce (core e, quando
+ * carregado, blocos) define seu próprio grid/float em `ul.products`
+ * (às vezes com auto-fill/minmax, que quebra os cards em 2 colunas + 1 órfã
+ * antes de preencher a linha), então nada aqui pode ficar por conta do
+ * valor padrão do navegador - cada propriedade que poderia alterar quantas
+ * colunas cabem por linha é redeclarada explicitamente.
+ */
 #content.shop-container ul.products,
 #content.shop-container ul.products.columns-1,
 #content.shop-container ul.products.columns-2,
@@ -474,19 +484,32 @@ footer { background: var(--navy); color: #9bb3d4; }
 #content.shop-container ul.products.columns-5,
 #content.shop-container ul.products.columns-6,
 .woocommerce ul.products,
+.woocommerce ul.products.columns-1,
 .woocommerce ul.products.columns-2,
 .woocommerce ul.products.columns-3,
 .woocommerce ul.products.columns-4,
 .woocommerce ul.products.columns-5,
-.woocommerce ul.products.columns-6 {
-  display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 2rem !important;
-  list-style: none !important; margin: 0 !important; padding: 0 !important;
+.woocommerce ul.products.columns-6,
+ul.products {
+  --columns: 3 !important;
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  grid-auto-flow: row !important;
+  column-gap: 2rem !important; row-gap: 2rem !important; gap: 2rem !important;
+  justify-content: stretch !important; align-items: stretch !important;
+  list-style: none !important; margin: 0 !important; padding: 0 !important; width: 100% !important;
+  float: none !important;
 }
+#content.shop-container ul.products li.product,
 #content.shop-container ul.products li.product-card,
+.woocommerce ul.products li.product,
 .woocommerce ul.products li.product-card {
   background: var(--white); border-radius: var(--r-lg); border: 1px solid var(--border); overflow: hidden;
   box-shadow: var(--shadow-sm); transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
-  display: flex !important; flex-direction: column; float: none !important; width: auto !important; margin: 0 !important;
+  display: flex !important; flex-direction: column !important;
+  float: none !important; clear: none !important;
+  width: auto !important; max-width: none !important; min-width: 0 !important;
+  margin: 0 !important; grid-column: auto !important;
 }
 .woocommerce ul.products li.product-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-xl); }
 .product-card-media { display: block; height: 220px; overflow: hidden; }
@@ -525,7 +548,7 @@ footer { background: var(--navy); color: #9bb3d4; }
 .woocommerce-tabs ul.tabs li a { color: var(--navy); font-weight: 700; }
 .woocommerce-tabs ul.tabs li.active a { color: var(--blue); }
 
-/* Carrinho / Checkout / Minha Conta — restilo de cores sobre o CSS estrutural padrão do WooCommerce */
+/* Carrinho / Checkout / Minha Conta - restilo de cores sobre o CSS estrutural padrão do WooCommerce */
 .woocommerce table.shop_table { border-radius: var(--r-md); border-color: var(--border); }
 .woocommerce table.shop_table th { color: var(--navy); background: var(--light); }
 .woocommerce-cart table.cart img, .woocommerce-checkout table.cart img { border-radius: var(--r-sm); }

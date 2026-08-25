@@ -1,6 +1,6 @@
 <?php
 /**
- * Seção "Últimas Notícias" — 3 posts reais mais recentes (o primeiro em
+ * Seção "Últimas Notícias" - 3 posts reais mais recentes (o primeiro em
  * destaque), com fallback de gradiente quando não há imagem destacada.
  */
 $posts = get_posts( array(

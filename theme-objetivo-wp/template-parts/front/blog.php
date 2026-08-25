@@ -1,6 +1,6 @@
 <?php
 /**
- * Seção "Novidades do Objetivo" — grid de posts reais com filtro de
+ * Seção "Novidades do Objetivo" - grid de posts reais com filtro de
  * categoria (assets/js/blog-filter.js) e link "Ler mais" para o permalink
  * de verdade (substitui o painel falso do protótipo).
  */

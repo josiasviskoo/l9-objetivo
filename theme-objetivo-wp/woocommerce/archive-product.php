@@ -1,6 +1,6 @@
 <?php
 /**
- * Loja "Objetivo Shop" — mantém o loop nativo do WooCommerce (hooks de
+ * Loja "Objetivo Shop" - mantém o loop nativo do WooCommerce (hooks de
  * ordenação, paginação, notices, filtros de plugins continuam funcionando)
  * mas envolve tudo com o hero e o grid de cards do layout aprovado.
  *
@@ -26,7 +26,7 @@ get_header( 'shop' );
  * Hook: woocommerce_before_main_content.
  * Objetivo: substituímos woocommerce_output_content_wrapper() (ver
  * inc/woocommerce.php) por <main class="shop-container"><div class="container">,
- * então não abrimos wrapper manualmente aqui — evita <main> aninhado.
+ * então não abrimos wrapper manualmente aqui - evita <main> aninhado.
  */
 do_action( 'woocommerce_before_main_content' );
 

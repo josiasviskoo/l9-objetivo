@@ -2,7 +2,7 @@
 /**
  * Template Name: Nossa História
  *
- * Página institucional com a timeline interativa completa — destino do
+ * Página institucional com a timeline interativa completa - destino do
  * botão "Ver história completa" na home.
  */
 get_header();
