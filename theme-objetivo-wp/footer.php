@@ -1,15 +1,9 @@
 <?php
 /**
- * Barra de convênio + rodapé (marca, colunas de menu gerenciáveis via
- * Aparência → Menus, contato e créditos).
+ * Rodapé (marca, colunas de menu gerenciáveis via Aparência → Menus,
+ * contato e créditos).
  */
-$convenio_label = objetivo_opt( 'convenio', 'label' );
 ?>
-<?php if ( $convenio_label ) : ?>
-<div class="convenio-bar">
-	<a href="<?php echo esc_url( objetivo_opt( 'convenio', 'url' ) ); ?>">⭐ <?php echo esc_html( $convenio_label ); ?> →</a>
-</div>
-<?php endif; ?>
 
 <footer>
 	<div class="container">

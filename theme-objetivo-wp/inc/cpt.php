@@ -21,14 +21,9 @@ function objetivo_cpt_definitions() {
 			'singular'    => __( 'Banner do Slider', 'objetivo' ),
 			'plural'      => __( 'Banners da Home (Slider)', 'objetivo' ),
 			'menu_icon'   => 'dashicons-images-alt2',
-			'description' => __( 'Slides do banner rotativo no topo da home. O título vira o título do slide (a última palavra recebe destaque dourado automaticamente) e a imagem destacada é o fundo do slide.', 'objetivo' ),
+			'description' => __( 'Slides do banner rotativo no topo da home. A imagem destacada é o banner exibido no desktop; use o campo abaixo para a versão de celular (se não for definida, a imagem destacada é usada também no mobile). O título é só um rótulo interno, não aparece no site.', 'objetivo' ),
 			'fields'      => array(
-				array( 'key' => '_tag_label', 'label' => __( 'Selo acima do título', 'objetivo' ), 'type' => 'text', 'placeholder' => '✦ Matrículas Abertas 2027' ),
-				array( 'key' => '_subtitle', 'label' => __( 'Subtítulo', 'objetivo' ), 'type' => 'textarea' ),
-				array( 'key' => '_btn1_label', 'label' => __( 'Botão 1 (texto)', 'objetivo' ), 'type' => 'text', 'placeholder' => 'Agende uma Visita' ),
-				array( 'key' => '_btn1_url', 'label' => __( 'Botão 1 (link)', 'objetivo' ), 'type' => 'url' ),
-				array( 'key' => '_btn2_label', 'label' => __( 'Botão 2 (texto, opcional)', 'objetivo' ), 'type' => 'text', 'placeholder' => 'Conheça o Objetivo' ),
-				array( 'key' => '_btn2_url', 'label' => __( 'Botão 2 (link)', 'objetivo' ), 'type' => 'url' ),
+				array( 'key' => '_mobile_image', 'label' => __( 'Banner - Versão Mobile', 'objetivo' ), 'type' => 'image', 'help' => __( 'Opcional. Se vazio, a imagem destacada (desktop) é usada também em telas de celular.', 'objetivo' ) ),
 			),
 		),
 		'objetivo_ensino'      => array(

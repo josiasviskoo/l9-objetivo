@@ -160,26 +160,14 @@ function objetivo_seed_cpt_content() {
 	// Banners do slider da home.
 	$banners = array(
 		array(
-			'title'    => 'Educação que forma campeões',
-			'img'      => 'https://www.objetivo.br/assets/img/photo/img-home-educacao-infantil.jpg',
-			'meta'     => array(
-				'_tag_label'  => '✦ Matrículas Abertas 2027',
-				'_subtitle'   => 'Da Educação Infantil ao Pré-Vestibular, o Objetivo oferece uma trajetória completa, construída sobre 60 anos de resultados comprovados e uma proposta pedagógica que transforma vidas.',
-				'_btn1_label' => 'Agende uma Visita',
-				'_btn1_url'   => '#',
-				'_btn2_label' => 'Conheça o Objetivo',
-				'_btn2_url'   => '#',
-			),
+			'title' => 'Educação que forma campeões',
+			'img'   => 'https://www.objetivo.br/assets/img/photo/img-home-educacao-infantil.jpg',
+			'meta'  => array(),
 		),
 		array(
-			'title'    => 'Estrutura pensada para você',
-			'img'      => 'https://www.objetivo.br/assets/img/photo/img-home-ensino-fundamental.jpg',
-			'meta'     => array(
-				'_tag_label'  => '60 anos de tradição',
-				'_subtitle'   => 'Laboratórios, bibliotecas e um corpo docente qualificado em constante aperfeiçoamento, prontos para levar seu filho mais longe.',
-				'_btn1_label' => 'Conheça a Estrutura',
-				'_btn1_url'   => '#',
-			),
+			'title' => 'Estrutura pensada para você',
+			'img'   => 'https://www.objetivo.br/assets/img/photo/img-home-ensino-fundamental.jpg',
+			'meta'  => array(),
 		),
 	);
 	foreach ( $banners as $i => $banner ) {

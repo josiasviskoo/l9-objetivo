@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'OBJETIVO_THEME_VERSION', '1.0.7' );
+define( 'OBJETIVO_THEME_VERSION', '1.2.0' );
 define( 'OBJETIVO_THEME_DIR', get_template_directory() );
 define( 'OBJETIVO_THEME_URI', get_template_directory_uri() );
 

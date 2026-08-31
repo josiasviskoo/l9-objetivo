@@ -128,21 +128,13 @@ ul.primary-menu { display: flex; align-items: center; gap: .15rem; list-style: n
 /* ── HERO SLIDER ─────────────────────────────────────── */
 .hero-slider { position: relative; min-height: 640px; overflow: hidden; }
 .hero-slide {
-  position: absolute; inset: 0; display: flex; align-items: center;
-  background-color: #0d2346; background-image: linear-gradient(120deg, #0d2346 0%, #1a4fac 60%, #1e8dc1 100%);
-  background-size: cover; background-position: center;
+  position: absolute; inset: 0;
+  background-color: #0d2346;
   opacity: 0; visibility: hidden; transition: opacity .7s var(--ease); z-index: 1;
 }
 .hero-slide.is-active { opacity: 1; visibility: visible; z-index: 2; }
-.hero-bg-pattern { position: absolute; inset: 0; background-image: radial-gradient(ellipse 80% 80% at 70% 50%, rgba(30,141,193,.35) 0%, transparent 70%), repeating-linear-gradient(45deg, rgba(255,255,255,.03) 0px, rgba(255,255,255,.03) 1px, transparent 1px, transparent 32px); }
-.hero-slide-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(13,35,70,.88) 0%, rgba(13,35,70,.62) 48%, rgba(13,35,70,.18) 100%); }
-.hero-content { position: relative; z-index: 2; max-width: 1260px; margin: 0 auto; padding: 5rem 1.5rem; width: 100%; }
-.hero-text { color: var(--white); max-width: 560px; animation: fadeUp .75s var(--ease) both; }
-.hero-tag { display: inline-flex; align-items: center; gap: .4rem; background: rgba(232,160,32,.18); border: 1px solid rgba(232,160,32,.5); color: var(--gold); font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: .35rem 1rem; border-radius: var(--r-full); margin-bottom: 1.2rem; }
-.hero-title { font-size: clamp(2.2rem, 4vw, 3.6rem); font-weight: 900; line-height: 1.12; margin-bottom: 1.2rem; }
-.hero-title em { color: var(--gold); font-style: normal; }
-.hero-sub { font-size: 1.1rem; font-weight: 400; color: rgba(255,255,255,.78); line-height: 1.75; margin-bottom: 2.2rem; }
-.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+.hero-slide-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
+.hero-slide-bg-mobile { display: none; }
 
 .btn-primary { display: inline-flex; align-items: center; gap: .45rem; background: var(--gold); color: var(--navy); padding: .9rem 2rem; border-radius: var(--r-full); font-weight: 800; font-size: .9rem; text-decoration: none; letter-spacing: .03em; text-transform: uppercase; box-shadow: var(--shadow-gold); transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease); border: none; cursor: pointer; }
 .btn-primary:hover { background: #f5b030; box-shadow: 0 10px 32px rgba(232,160,32,.55); transform: translateY(-2px); }
@@ -360,11 +352,6 @@ ul.primary-menu { display: flex; align-items: center; gap: .15rem; list-style: n
 .pagination .page-numbers.current { background: var(--navy); color: #fff; border-color: var(--navy); }
 .pagination .page-numbers:hover:not(.current) { background: var(--light); }
 
-/* ── CONVENIO BAR ────────────────────────────────────── */
-.convenio-bar { background: var(--blue); padding: 1.1rem 0; text-align: center; }
-.convenio-bar a { color: var(--white); text-decoration: none; font-size: .86rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; transition: color var(--dur) var(--ease); }
-.convenio-bar a:hover { color: var(--gold); }
-
 /* ── FOOTER ──────────────────────────────────────────── */
 footer { background: var(--navy); color: #9bb3d4; }
 .footer-top { padding: 4rem 0 2.5rem; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 2.5rem; }
@@ -500,6 +487,21 @@ ul.products {
   list-style: none !important; margin: 0 !important; padding: 0 !important; width: 100% !important;
   float: none !important;
 }
+/*
+ * O clearfix nativo do WooCommerce (woocommerce-layout.css) injeta
+ * `content:" "` no ::before/::after de ul.products para limpar o float
+ * antigo. Como viramos o container em grid acima, esses pseudo-elementos
+ * passam a contar como itens reais do grid (célula fantasma antes do
+ * primeiro produto) - é isso que empurrava os cards e sobrava só 2 por
+ * linha em vez de 3. Removendo o content, eles saem do fluxo do grid.
+ */
+#content.shop-container ul.products::before,
+#content.shop-container ul.products::after,
+.woocommerce ul.products::before,
+.woocommerce ul.products::after {
+  content: none !important;
+  display: none !important;
+}
 #content.shop-container ul.products li.product,
 #content.shop-container ul.products li.product-card,
 .woocommerce ul.products li.product,
@@ -623,4 +625,6 @@ ul.products {
   .article-cover { margin-top: -2.2rem; }
   .article-cover img { height: 220px; }
   .article-body { font-size: 1rem; }
+  .hero-slide-bg-desktop { display: none; }
+  .hero-slide-bg-mobile { display: block; }
 }

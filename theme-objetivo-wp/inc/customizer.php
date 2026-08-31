@@ -136,13 +136,6 @@ function objetivo_customizer_definitions() {
 				'desc'  => array( 'label' => __( 'Descrição curta', 'objetivo' ), 'type' => 'textarea', 'default' => 'Fique por dentro das novidades, resultados e eventos do Objetivo São Carlos.' ),
 			),
 		),
-		'convenio'      => array(
-			'title'  => __( 'Faixa: Convênio', 'objetivo' ),
-			'fields' => array(
-				'label' => array( 'label' => __( 'Texto', 'objetivo' ), 'type' => 'text', 'default' => 'Seja uma Escola Conveniada do Sistema de Ensino Objetivo. Saiba mais' ),
-				'url'   => array( 'label' => __( 'Link', 'objetivo' ), 'type' => 'url', 'default' => '#' ),
-			),
-		),
 		'shop'          => array(
 			'title'  => __( 'Loja (Objetivo Shop)', 'objetivo' ),
 			'fields' => array(

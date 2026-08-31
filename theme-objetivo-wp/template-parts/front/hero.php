@@ -1,7 +1,9 @@
 <?php
 /**
  * Seção Hero da home - slider de banners gerenciado pelo CPT
- * objetivo_banner (Aparência → wp-admin → Banners da Home).
+ * objetivo_banner (Aparência → wp-admin → Banners da Home). Cada slide é só
+ * imagem: a imagem destacada é a versão desktop e o meta "_mobile_image" é a
+ * versão mobile (opcional - cai para a desktop se não for definida).
  */
 $banners = objetivo_get_items( 'objetivo_banner' );
 if ( ! $banners ) {
@@ -11,34 +13,17 @@ if ( ! $banners ) {
 <section class="hero-slider" id="hero-slider">
 	<div class="hero-slides">
 		<?php foreach ( $banners as $i => $banner ) :
-			$img       = get_the_post_thumbnail_url( $banner, 'objetivo-banner' );
-			$tag       = get_post_meta( $banner->ID, '_tag_label', true );
-			$subtitle  = get_post_meta( $banner->ID, '_subtitle', true );
-			$btn1_label = get_post_meta( $banner->ID, '_btn1_label', true );
-			$btn1_url   = get_post_meta( $banner->ID, '_btn1_url', true );
-			$btn2_label = get_post_meta( $banner->ID, '_btn2_label', true );
-			$btn2_url   = get_post_meta( $banner->ID, '_btn2_url', true );
+			$desktop_img = get_the_post_thumbnail_url( $banner, 'objetivo-banner' );
+			$mobile_id   = (int) get_post_meta( $banner->ID, '_mobile_image', true );
+			$mobile_img  = $mobile_id ? wp_get_attachment_image_url( $mobile_id, 'objetivo-banner-mobile' ) : $desktop_img;
 			?>
-			<div class="hero-slide<?php echo 0 === $i ? ' is-active' : ''; ?>" <?php if ( $img ) : ?>style="background-image:url('<?php echo esc_url( $img ); ?>');"<?php endif; ?>>
-				<div class="hero-bg-pattern"></div>
-				<div class="hero-slide-overlay"></div>
-				<div class="hero-content">
-					<div class="hero-text">
-						<?php if ( $tag ) : ?><span class="hero-tag"><?php echo esc_html( $tag ); ?></span><?php endif; ?>
-						<h1 class="hero-title"><?php echo objetivo_highlight_last_word( get_the_title( $banner ) ); ?></h1>
-						<?php if ( $subtitle ) : ?><p class="hero-sub"><?php echo esc_html( $subtitle ); ?></p><?php endif; ?>
-						<?php if ( $btn1_label || $btn2_label ) : ?>
-							<div class="hero-actions">
-								<?php if ( $btn1_label ) : ?>
-									<a href="<?php echo esc_url( $btn1_url ? $btn1_url : '#' ); ?>" class="btn-primary"><?php echo esc_html( $btn1_label ); ?></a>
-								<?php endif; ?>
-								<?php if ( $btn2_label ) : ?>
-									<a href="<?php echo esc_url( $btn2_url ? $btn2_url : '#' ); ?>" class="btn-outline"><?php echo esc_html( $btn2_label ); ?></a>
-								<?php endif; ?>
-							</div>
-						<?php endif; ?>
-					</div>
-				</div>
+			<div class="hero-slide<?php echo 0 === $i ? ' is-active' : ''; ?>">
+				<?php if ( $desktop_img ) : ?>
+					<div class="hero-slide-bg hero-slide-bg-desktop" style="background-image:url('<?php echo esc_url( $desktop_img ); ?>');"></div>
+				<?php endif; ?>
+				<?php if ( $mobile_img ) : ?>
+					<div class="hero-slide-bg hero-slide-bg-mobile" style="background-image:url('<?php echo esc_url( $mobile_img ); ?>');"></div>
+				<?php endif; ?>
 			</div>
 		<?php endforeach; ?>
 	</div>
