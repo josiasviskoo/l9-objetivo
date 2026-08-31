@@ -13,10 +13,13 @@ function objetivo_setup() {
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'automatic-feed-links' );
+	// Logo com altura fixa (96px, 2x o tamanho exibido no header) e largura
+	// livre - evita distorcer logos mais compridas/estreitas ao redimensionar
+	// para caber na altura padrão do cabeçalho (ver .logo img em style-main.css).
 	add_theme_support( 'custom-logo', array(
 		'height'      => 96,
-		'width'       => 96,
-		'flex-height' => true,
+		'width'       => 400,
+		'flex-height' => false,
 		'flex-width'  => true,
 	) );
 	add_theme_support( 'html5', array(
@@ -35,8 +38,10 @@ function objetivo_setup() {
 	set_post_thumbnail_size( 640, 480, true );
 	add_image_size( 'objetivo-card', 640, 400, true );
 	add_image_size( 'objetivo-hero', 900, 1000, true );
-	add_image_size( 'objetivo-banner', 1920, 800, true );
-	add_image_size( 'objetivo-banner-mobile', 960, 1280, true );
+	// crop = false: só redimensiona (sem cortar) - o banner precisa mostrar a
+	// imagem inteira, nunca uma versão mascarada/cortada dela.
+	add_image_size( 'objetivo-banner', 1920, 800, false );
+	add_image_size( 'objetivo-banner-mobile', 960, 1280, false );
 
 	register_nav_menus( array(
 		'primary'            => __( 'Principal (cabeçalho)', 'objetivo' ),
@@ -46,6 +51,24 @@ function objetivo_setup() {
 	) );
 }
 add_action( 'after_setup_theme', 'objetivo_setup' );
+
+/**
+ * Destaque de item de menu via hífens: em Aparência → Menus, o admin digita
+ * o rótulo do item como "--Exame de Bolsas--" e o tema exibe só "Exame de
+ * Bolsas" (sem os hifens), marcando o <li> com a classe "menu-item-destaque"
+ * (ver .menu-item-destaque em style-main.css). Funciona em qualquer
+ * wp_nav_menu() do tema - principal, rodapé, topbar.
+ */
+function objetivo_highlight_menu_items( $items ) {
+	foreach ( $items as $item ) {
+		if ( preg_match( '/^--(.+)--$/', trim( $item->title ), $matches ) ) {
+			$item->title      = trim( $matches[1] );
+			$item->classes[]  = 'menu-item-destaque';
+		}
+	}
+	return $items;
+}
+add_filter( 'wp_nav_menu_objects', 'objetivo_highlight_menu_items' );
 
 /**
  * Larguras de conteúdo usadas por embeds/oEmbed.
@@ -96,16 +119,6 @@ function objetivo_enqueue_assets() {
 		OBJETIVO_THEME_VERSION,
 		true
 	);
-
-	if ( is_front_page() ) {
-		wp_enqueue_script(
-			'objetivo-blog-filter',
-			OBJETIVO_THEME_URI . '/assets/js/blog-filter.js',
-			array(),
-			OBJETIVO_THEME_VERSION,
-			true
-		);
-	}
 
 	if ( is_singular() && comments_open() ) {
 		wp_enqueue_script( 'comment-reply' );

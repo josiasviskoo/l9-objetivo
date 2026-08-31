@@ -255,14 +255,16 @@ function objetivo_seed_cpt_content() {
 }
 
 /**
- * Posts reais (categorias Notícias/Eventos/Resultados) que alimentam tanto
- * o bloco "Últimas Notícias" quanto o "Blog/Novidades" da home.
+ * Posts reais (categorias Notícias/Eventos/Resultados/Novidades) que
+ * alimentam tanto o bloco "Últimas Notícias" (todos os posts) quanto o
+ * "Novidades do Objetivo" da home (só os da categoria Novidades).
  */
 function objetivo_seed_blog_content() {
 	$categories = array(
 		'noticias'   => 'Notícias',
 		'eventos'    => 'Eventos',
 		'resultados' => 'Resultados',
+		'novidades'  => 'Novidades',
 	);
 	$cat_ids = array();
 	foreach ( $categories as $slug => $name ) {
@@ -279,20 +281,26 @@ function objetivo_seed_blog_content() {
 			'Objetivo São Carlos: uma trajetória de conquistas e transformações',
 			"O Colégio Objetivo São Carlos celebra uma jornada marcada por inovação pedagógica, resultados expressivos e um compromisso inabalável com a excelência educacional. Nossa instituição nunca deixou de reinventar seus métodos para acompanhar as transformações do mundo e as necessidades dos estudantes.\n\nAo longo dessa jornada, o Objetivo acumulou milhares de medalhas e troféus em olimpíadas científicas, conquistando posições de destaque no ENEM e reconhecimento pela qualidade de ensino.\n\nTemos orgulho de fazer parte da história de São Carlos, levando o método Objetivo e seus resultados comprovados para o interior do estado, formando gerações de estudantes que hoje ocupam posições de destaque nas melhores universidades e empresas do Brasil.",
 		),
-		array( 'noticias', '150 anos do Estadão e 60 anos do Objetivo: uma parceria marcada pela história', 'Duas instituições centenárias na educação e no jornalismo brasileiro celebram décadas de parceria dedicada à formação de leitores críticos e bem informados.' ),
+		array( array( 'noticias', 'novidades' ), '150 anos do Estadão e 60 anos do Objetivo: uma parceria marcada pela história', 'Duas instituições centenárias na educação e no jornalismo brasileiro celebram décadas de parceria dedicada à formação de leitores críticos e bem informados.' ),
 		array( 'resultados', 'Alunos do Objetivo conquistam mais de 17.100 medalhas em olimpíadas científicas', 'O resultado consolida o Objetivo como uma das instituições mais premiadas do país em olimpíadas de conhecimento, fruto de um trabalho contínuo de incentivo à pesquisa e ao raciocínio científico.' ),
 		array( 'resultados', 'Alunos conquistam medalhas na Olimpíada de Matemática', 'Mais uma turma de alunos do Objetivo São Carlos se destaca na Olimpíada Brasileira de Matemática, reforçando a tradição da escola em competições acadêmicas.' ),
 		array( 'eventos', 'Aulão gratuito ENEM: inscrições abertas', 'O Objetivo São Carlos abre as inscrições para o aulão gratuito de revisão para o ENEM, aberto à comunidade e com professores especialistas em cada área do conhecimento.' ),
 		array( 'eventos', 'Feira de Ciências reúne projetos inovadores', 'Alunos de todos os segmentos apresentaram projetos científicos desenvolvidos ao longo do ano na tradicional Feira de Ciências do Objetivo.' ),
-		array( 'noticias', 'Nova parceria Objetivo & Estadão', 'A parceria amplia o acesso dos alunos a conteúdos jornalísticos de qualidade, incentivando a leitura crítica e a atualidade nos estudos.' ),
+		array( array( 'noticias', 'novidades' ), 'Nova parceria Objetivo & Estadão', 'A parceria amplia o acesso dos alunos a conteúdos jornalísticos de qualidade, incentivando a leitura crítica e a atualidade nos estudos.' ),
 		array( 'resultados', 'Aprovações no vestibular FUVEST', 'Confira a lista de aprovados do Objetivo São Carlos na FUVEST, resultado de dedicação dos alunos e da metodologia consolidada do curso.' ),
 	);
 
 	foreach ( $posts as $i => $item ) {
-		list( $cat_slug, $title, $content ) = $item;
+		list( $cat_slugs, $title, $content ) = $item;
 		if ( objetivo_find_post_by_title( $title, 'post' ) ) {
 			continue;
 		}
+		$post_cats = array_map(
+			function ( $slug ) use ( $cat_ids ) {
+				return $cat_ids[ $slug ];
+			},
+			(array) $cat_slugs
+		);
 		$post_id = wp_insert_post( array(
 			'post_type'    => 'post',
 			'post_title'   => $title,
@@ -300,7 +308,7 @@ function objetivo_seed_blog_content() {
 			'post_excerpt' => wp_trim_words( $content, 24 ),
 			'post_status'  => 'publish',
 			'post_date'    => gmdate( 'Y-m-d H:i:s', strtotime( '-' . $i . ' days' ) ),
-			'post_category' => array( $cat_ids[ $cat_slug ] ),
+			'post_category' => $post_cats,
 		) );
 		if ( is_wp_error( $post_id ) ) {
 			continue;

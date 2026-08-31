@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<!-- saved from url=(0089)file:///home/josias-viskoo/Downloads/L9-objetivo/transcricoes/checklist-atualizacoes.html -->
+<html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checklist de Atualizações — Site Objetivo</title>
+<style>
+  :root{
+    --bg:#f5f6f4;
+    --card:#ffffff;
+    --ink:#1e2a22;
+    --ink-soft:#5a6b5f;
+    --border:#dfe4dd;
+    --accent:#1f7a4d;
+    --accent-soft:#e5f3ea;
+    --accent-2:#0f6b8c;
+    --done-bg:#eef7f0;
+    --done-ink:#7c8a80;
+    --warn:#b3541e;
+    --warn-bg:#fdf1e7;
+    --chip:#eef1ec;
+    --shadow:0 1px 2px rgba(20,30,20,.05), 0 4px 14px rgba(20,30,20,.05);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#12160f;
+      --card:#191f19;
+      --ink:#e9efe6;
+      --ink-soft:#9fb0a2;
+      --border:#2b352c;
+      --accent:#4fbf85;
+      --accent-soft:#1c2e21;
+      --accent-2:#5bb7d6;
+      --done-bg:#16211a;
+      --done-ink:#6c7d70;
+      --warn:#e0975a;
+      --warn-bg:#2c2013;
+      --chip:#212a20;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 4px 14px rgba(0,0,0,.25);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#12160f;
+    --card:#191f19;
+    --ink:#e9efe6;
+    --ink-soft:#9fb0a2;
+    --border:#2b352c;
+    --accent:#4fbf85;
+    --accent-soft:#1c2e21;
+    --accent-2:#5bb7d6;
+    --done-bg:#16211a;
+    --done-ink:#6c7d70;
+    --warn:#e0975a;
+    --warn-bg:#2c2013;
+    --chip:#212a20;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 4px 14px rgba(0,0,0,.25);
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    margin:0;
+    padding:32px 16px 80px;
+  }
+  .wrap{max-width:880px;margin:0 auto;}
+
+  header.page{margin-bottom:24px;}
+  h1{font-size:1.6rem;margin:0 0 6px;letter-spacing:-.01em;}
+  .sub{color:var(--ink-soft);font-size:.92rem;margin:0 0 20px;line-height:1.5;}
+
+  .progress-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:16px 18px;
+    box-shadow:var(--shadow);
+    margin-bottom:24px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .progress-ring-wrap{position:relative;width:56px;height:56px;flex:0 0 auto;}
+  .progress-ring-wrap svg{transform:rotate(-90deg);}
+  .progress-ring-track{fill:none;stroke:var(--chip);stroke-width:6;}
+  .progress-ring-bar{fill:none;stroke:var(--accent);stroke-width:6;stroke-linecap:round;transition:stroke-dashoffset .3s ease;}
+  .progress-ring-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--accent);}
+  .progress-text{flex:1;min-width:0;}
+  .progress-text strong{font-size:1rem;}
+  .progress-text span{display:block;color:var(--ink-soft);font-size:.85rem;margin-top:2px;}
+  .reset-btn{
+    border:1px solid var(--border);
+    background:transparent;
+    color:var(--ink-soft);
+    padding:8px 12px;
+    border-radius:8px;
+    font-size:.8rem;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .reset-btn:hover{border-color:var(--accent);color:var(--accent);}
+
+  .filters{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
+  .filters button{
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--ink-soft);
+    padding:6px 12px;
+    border-radius:999px;
+    font-size:.8rem;
+    cursor:pointer;
+  }
+  .filters button.active{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:#fff;
+  }
+
+  section.group{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    box-shadow:var(--shadow);
+    margin-bottom:16px;
+    overflow:hidden;
+  }
+  .group-head{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 18px;
+    cursor:pointer;
+    user-select:none;
+  }
+  .group-num{
+    flex:0 0 auto;
+    width:26px;height:26px;
+    border-radius:8px;
+    background:var(--accent-soft);
+    color:var(--accent);
+    font-size:.78rem;
+    font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .group-title{flex:1;font-size:1rem;font-weight:600;}
+  .group-count{
+    font-size:.76rem;
+    color:var(--ink-soft);
+    background:var(--chip);
+    padding:3px 9px;
+    border-radius:999px;
+    white-space:nowrap;
+  }
+  .group-caret{
+    color:var(--ink-soft);
+    transition:transform .2s ease;
+    font-size:.8rem;
+  }
+  section.group.collapsed .group-caret{transform:rotate(-90deg);}
+  .group-body{
+    border-top:1px solid var(--border);
+    padding:6px 8px 10px;
+  }
+  section.group.collapsed .group-body{display:none;}
+
+  .item{
+    display:flex;
+    gap:12px;
+    padding:12px 12px;
+    border-radius:10px;
+    align-items:flex-start;
+  }
+  .item:hover{background:var(--accent-soft);}
+  .item input[type="checkbox"]{
+    margin-top:3px;
+    width:18px;height:18px;
+    accent-color:var(--accent);
+    flex:0 0 auto;
+    cursor:pointer;
+  }
+  .item label{cursor:pointer;flex:1;}
+  .item-title{font-size:.92rem;font-weight:600;line-height:1.4;}
+  .item-detail{font-size:.84rem;color:var(--ink-soft);line-height:1.5;margin-top:3px;}
+  .item-quote{
+    font-size:.78rem;
+    color:var(--ink-soft);
+    margin-top:6px;
+    padding:6px 10px;
+    background:var(--chip);
+    border-left:2px solid var(--border);
+    border-radius:4px;
+    font-style:italic;
+  }
+  .tag{
+    display:inline-block;
+    font-size:.68rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    padding:2px 7px;
+    border-radius:5px;
+    margin-left:8px;
+    vertical-align:middle;
+  }
+  .tag.decidir{background:var(--warn-bg);color:var(--warn);}
+
+  .item.done{opacity:.6;}
+  .item.done .item-title{text-decoration:line-through;color:var(--done-ink);}
+  .item.done .item-detail{text-decoration:line-through;}
+
+  footer.page{
+    margin-top:32px;
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:.78rem;
+    line-height:1.6;
+  }
+
+  [hidden]{display:none!important;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="page">
+    <h1>Checklist de Atualizações — Site Objetivo</h1>
+    <p class="sub">Lista consolidada de tudo o que foi pedido na reunião de revisão do site (transcrições em <code>objetivo.srt</code>, <code>objetivo.tsv</code>, <code>objetivo.txt</code> e <code>transcricao-youtube.txt</code> — mesma reunião, formatos diferentes). Marque os itens conforme forem corrigidos; o progresso fica salvo neste navegador.</p>
+  </header>
+
+  <div class="progress-card">
+    <div class="progress-ring-wrap">
+      <svg width="56" height="56" viewBox="0 0 56 56">
+        <circle class="progress-ring-track" cx="28" cy="28" r="24"></circle>
+        <circle class="progress-ring-bar" id="ringBar" cx="28" cy="28" r="24" stroke-dasharray="150.8" stroke-dashoffset="150.8" style="stroke-dashoffset: 138.736;"></circle>
+      </svg>
+      <div class="progress-ring-label" id="ringLabel">8%</div>
+    </div>
+    <div class="progress-text">
+      <strong id="progressCount">4 de 50 concluídos</strong>
+      <span>Organizado por página/seção do site, na ordem em que foram discutidos na reunião.</span>
+    </div>
+    <button class="reset-btn" id="resetBtn" type="button">Desmarcar tudo</button>
+  </div>
+
+  <div class="filters">
+    <button type="button" class="active" data-filter="all">Todos</button>
+    <button type="button" data-filter="open">Pendentes</button>
+    <button type="button" data-filter="done">Concluídos</button>
+    <button type="button" id="expandAll">Expandir tudo</button>
+    <button type="button" id="collapseAll">Recolher tudo</button>
+  </div>
+
+  <div id="groups"><section class="group" data-group-index="0"><div class="group-head">
+    <div class="group-num">1</div>
+    <div class="group-title">Página Principal (Home) — geral</div>
+    <div class="group-count" data-role="count">4/4</div>
+    <div class="group-caret">▾</div>
+  </div><div class="group-body"><div class="item done" data-id="item_1">
+      <input type="checkbox" id="item_1">
+      <label for="item_1">
+        <div class="item-title">Revisão geral da página principal</div>
+        <div class="item-detail">Dar uma "geral" na home: conferir todos os links, revisar o menu e revisar os produtos listados na aba Shop.</div>
+      </label>
+    </div><div class="item done" data-id="item_2">
+      <input type="checkbox" id="item_2">
+      <label for="item_2">
+        <div class="item-title">Corrigir alinhamento pendente</div>
+        <div class="item-detail">Ajuste de alinhamento já apontado anteriormente e que a equipe ainda não implementou.</div>
+      </label>
+    </div><div class="item done" data-id="item_3">
+      <input type="checkbox" id="item_3">
+      <label for="item_3">
+        <div class="item-title">Adicionar imagem no artigo único do blog</div>
+        <div class="item-detail">Só foi enviado um artigo até agora; falta colocar a imagem correspondente nele.</div>
+      </label>
+    </div><div class="item done" data-id="item_4">
+      <input type="checkbox" id="item_4">
+      <label for="item_4">
+        <div class="item-title">Trocar a logo</div>
+        <div class="item-detail">Usar a versão horizontal da logo, na cor azul, em versão invertida — fica melhor no topo do site.</div>
+      </label>
+    </div></div></section><section class="group" data-group-index="1"><div class="group-head">
+    <div class="group-num">2</div>
+    <div class="group-title">Menu Principal — estrutura e organização</div>
+    <div class="group-count" data-role="count">0/8</div>
+    <div class="group-caret">▾</div>
+  </div><div class="group-body"><div class="item" data-id="item_5">
+      <input type="checkbox" id="item_5">
+      <label for="item_5">
+        <div class="item-title">Definir organização final do menu<span class="tag decidir">já decidido</span></div>
+        <div class="item-detail">Estrutura combinada: Home (logo) → Unidades → Proposta Pedagógica → Programas Extracurriculares → Exame de Bolsas (destacado) → Blog → Shop → Sobre (com submenu).</div>
+      </label>
+    </div><div class="item" data-id="item_6">
+      <input type="checkbox" id="item_6">
+      <label for="item_6">
+        <div class="item-title">Remover item genérico "Ensino" do menu</div>
+        <div class="item-detail">Os itens de ensino (Educação Infantil, Fundamental 1/2/3, Médio) ficam organizados dentro de Proposta Pedagógica, não como um menu "Ensino" à parte.</div>
+      </label>
+    </div><div class="item" data-id="item_7">
+      <input type="checkbox" id="item_7">
+      <label for="item_7">
+        <div class="item-title">Unidades como item separado no menu</div>
+        <div class="item-detail">Unidades não entra dentro de Proposta Pedagógica/Ensino — fica como item independente do menu.</div>
+      </label>
+    </div><div class="item" data-id="item_8">
+      <input type="checkbox" id="item_8">
+      <label for="item_8">
+        <div class="item-title">Programas Extracurriculares como item próprio</div>
+        <div class="item-detail">Ficou decidido manter separado (não dentro de Ensino), pois também é uma página "sobre" o programa, como a Proposta Pedagógica.</div>
+      </label>
+    </div><div class="item" data-id="item_9">
+      <input type="checkbox" id="item_9">
+      <label for="item_9">
+        <div class="item-title">Exame de Bolsas destacado no topo do menu</div>
+        <div class="item-detail">Deve ficar em posição de destaque, visualmente diferente dos demais itens.</div>
+      </label>
+    </div><div class="item" data-id="item_10">
+      <input type="checkbox" id="item_10">
+      <label for="item_10">
+        <div class="item-title">Permitir reordenar o menu direto no WordPress</div>
+        <div class="item-detail">Confirmar que a ordem final dos itens pode ser ajustada pelo próprio cliente/dono depois, direto no painel.</div>
+      </label>
+    </div><div class="item" data-id="item_11">
+      <input type="checkbox" id="item_11">
+      <label for="item_11">
+        <div class="item-title">Criar item "Sobre" com submenu "Linha do Tempo"</div>
+        <div class="item-detail">A página "Sobre" ainda não existe como item de menu. Criar o item "Sobre" e, dentro dele, o submenu "Linha do Tempo".</div>
+      </label>
+    </div><div class="item" data-id="item_12">
+      <input type="checkbox" id="item_12">
+      <label for="item_12">
+        <div class="item-title">Confirmar navegação dos cards de Ensino</div>
+        <div class="item-detail">Verificar que ao clicar em Educação Infantil / Fundamental 1, 2, 3 / Médio, cada um abre sua página respectiva corretamente.</div>
+      </label>
+    </div></div></section><section class="group" data-group-index="2"><div class="group-head">
+    <div class="group-num">3</div>
+    <div class="group-title">Página de Unidades</div>
+    <div class="group-count" data-role="count">0/2</div>
+    <div class="group-caret">▾</div>
+  </div><div class="group-body"><div class="item" data-id="item_13">
+      <input type="checkbox" id="item_13">
+      <label for="item_13">
+        <div class="item-title">Centralizar texto dos botões</div>
+        <div class="item-detail">Botões como "Agendar visita" estão com o texto alinhado à esquerda — ficou estranho. Centralizar.</div>
+      </label>
+    </div><div class="item" data-id="item_14">
+      <input type="checkbox" id="item_14">
+      <label for="item_14">
+        <div class="item-title">Remover faixa/selo de "franqueado"</div>
+        <div class="item-detail">Retirar a faixa que menciona ser franqueado/conveniado na página de unidades — "arrancar fora".</div>
+      </label>
+    </div></div></section><section class="group" data-group-index="3"><div class="group-head">
+    <div class="group-num">4</div>
+    <div class="group-title">Proposta Pedagógica</div>
+    <div class="group-count" data-role="count">0/1</div>
+    <div class="group-caret">▾</div>
+  </div><div class="group-body"><div class="item" data-id="item_15">
+      <input type="checkbox" id="item_15">
+      <label for="item_15">
+        <div class="item-title">Remover hifenização do texto</div>
+        <div class="item-detail">O layout atual está quebrando palavras com hífen no meio do texto — tirar esses hífens, ficou feio.</div>
+      </label>
+    </div></div></section><section class="group" data-group-index="4"><div class="group-head">
+    <div class="group-num">5</div>
+    <div class="group-title">Exame de Bolsas</div>
+    <div class="group-count" data-role="count">0/2</div>
+    <div class="group-caret">▾</div>
+  </div><div class="group-body"><div class="item" data-id="item_16">
+      <input type="checkbox" id="item_16">
+      <label for="item_16">
+        <div class="item-title">Avaliar link externo para landing page em produção</div>
+        <div class="item-detail">Em vez de manter o conteúdo antigo (que tinha as informações do R15) na própria página, considerar linkar para a landing page externa que já está funcionando.</div>
+      </label>
+    </div><div class="item" data-id="item_17">
+      <input type="checkbox" id="item_17">
+      <label for="item_17">
+        <div class="item-title">Confirmar troca para "Exame de Bolsas Agendado"<span class="tag decidir">a confirmar</span></div>
+        <div class="item-detail">As inscrições do Exame de Bolsas atual encerram nesta sexta-feira; uma nova versão ("agendado") está em desenvolvimento e deve substituir a atual em breve.</div>
+      </label>
+    </div></div></section><section class="group" data-group-index="5"><div class="group-head">
+    <div class="group-num">6</div>
+    <div class="group-title">Página Sobre / Linha do Tempo</div>
+    <div class="group-count" data-role="count">0/2</div>
+    <div class="group-caret">▾</div>
+  </div><div class="group-body"><div class="item" data-id="item_18">
+      <input type="checkbox" id="item_18">
+      <label for="item_18">
+        <div class="item-title">Criar/publicar a página Sobre com a linha do tempo</div>
+        <div class="item-detail">Usar o conteúdo/material que já foi enviado para montar a página "Sobre", incluindo a seção de linha do tempo.</div>
+      </label>
+    </div><div class="item" data-id="item_19">
+      <input type="checkbox" id="item_19">
+      <label for="item_19">
+        <div class="item-title">Ajustar texto cortado na seção Sobre</div>
+        <div class="item-detail">Parte do texto da seção ficou cortada — revisar e ajustar o corte.</div>
+      </label>
+    </div></div></section><section class="group" data-group-index="6"><div class="group-head">
+    <div class="group-num">7</div>
+    <div class="group-title">Home — Banner Principal</div>
+    <div class="group-count" data-role="count">0/2</div>
+    <div class="group-caret">▾</div>
+  </div><div class="group-body"><div class="item" data-id="item_20">
+      <input type="checkbox" id="item_20">
+      <label for="item_20">
+        <div class="item-title">Trocar o banner principal provisório</div>
+        <div class="item-detail">O banner atual é apenas provisório; substituir por um banner de campanha ativa.</div>
+      </label>
+    </div><div class="item" data-id="item_21">
+      <input type="checkbox" id="item_21">
+      <label for="item_21">
+        <div class="item-title">Redimensionar banners nos formatos corretos</div>
+        <div class="item-detail">Formatos necessários: 1920x600 (desktop) e 1080x1080 (mobile). Pegar os banners ativos, ajustar o formato (ex.: via IA) sem alterar as informações originais.</div>
+      </label>
+    </div></div></section><section class="group" data-group-index="7"><div class="group-head">
+    <div class="group-num">8</div>
+    <div class="group-title">Home — Seção "Motivos para estudar no Objetivo" (7 anos consecutivos)</div>
+    <div class="group-count" data-role="count">0/3</div>
+    <div class="group-caret">▾</div>
+  </div><div class="group-body"><div class="item" data-id="item_22">
+      <input type="checkbox" id="item_22">
+      <label for="item_22">
+        <div class="item-title">Corrigir imagem cortada em cima e embaixo</div>
+        <div class="item-detail">A imagem da seção "7 anos consecutivos / melhor colocação" está sendo cortada pela máscara atual — ajustar o recorte.</div>
+      </label>
+    </div><div class="item" data-id="item_23">
+      <input type="checkbox" id="item_23">
+      <label for="item_23">
+        <div class="item-title">Remover o bloco "Unidade São Carlos" desta seção</div>
+        <div class="item-detail">Como existem várias unidades, esse bloco específico não faz mais sentido aqui; melhor tirar.</div>
+      </label>
+    </div><div class="item" data-id="item_24">
+      <input type="checkbox" id="item_24">
+      <label for="item_24">
+        <div class="item-title">Reorganizar layout em 3 + 3</div>
+        <div class="item-detail">Colocar o título principal, depois 3 elementos em uma linha e mais 3 na linha de baixo, para ficar mais alinhado (em vez do formato atual).</div>
+      </label>
+    </div></div></section><section class="group" data-group-index="8"><div class="group-head">
+    <div class="group-num">9</div>
+    <div class="group-title">Home — Carrossel de Unidades</div>
+    <div class="group-count" data-role="count">0/1</div>
+    <div class="group-caret">▾</div>
+  </div><div class="group-body"><div class="item" data-id="item_25">
+      <input type="checkbox" id="item_25">
+      <label for="item_25">
+        <div class="item-title">Substituir cards estáticos por carrossel</div>
+        <div class="item-detail">Transformar os 6 cards de unidades em um carrossel, posicionado logo abaixo da seção "Motivos para estudar".</div>
+      </label>
+    </div></div></section><section class="group" data-group-index="9"><div class="group-head">
+    <div class="group-num">10</div>
+    <div class="group-title">Home — Seção eGênio → Teste Vocacional</div>
+    <div class="group-count" data-role="count">0/3</div>
+    <div class="group-caret">▾</div>
+  </div><div class="group-body"><div class="item" data-id="item_26">
+      <input type="checkbox" id="item_26">
+      <label for="item_26">
+        <div class="item-title">Substituir eGênio por Teste Vocacional</div>
+        <div class="item-detail">A seção/produto "eGênio" não existe mais; trocar pelo "Teste Vocacional" (teste que indica qual curso combina mais com a pessoa).</div>
+      </label>
+    </div><div class="item" data-id="item_27">
+      <input type="checkbox" id="item_27">
+      <label for="item_27">
+        <div class="item-title">Usar link/subdomínio ov.objetivo.br</div>
+        <div class="item-detail">O teste vocacional é acessado por um link (subdomínio "ov"), que abre uma página do Objetivo normal com um frame reaproveitável.</div>
+      </label>
+    </div><div class="item" data-id="item_28">
+      <input type="checkbox" id="item_28">
+      <label for="item_28">
+        <div class="item-title">Reaproveitar texto atual da seção para o novo conteúdo</div>
+        <div class="item-detail">Usar o texto já existente na home (algo como "Qual a carreira ideal para você? Descubra") no lugar do texto antigo do eGênio, no mesmo formato de seção.</div>
+      </label>
+    </div></div></section><section class="group" data-group-index="10"><div class="group-head">
+    <div class="group-num">11</div>
+    <div class="group-title">Blog / Notícias</div>
+    <div class="group-count" data-role="count">0/3</div>
+    <div class="group-caret">▾</div>
+  </div><div class="group-body"><div class="item" data-id="item_29">
+      <input type="checkbox" id="item_29">
+      <label for="item_29">
+        <div class="item-title">Padronizar dimensão das fotos com margem de segurança</div>
+        <div class="item-detail">Imagens em 1920x1080, com soft-crop/redimensionamento — criar margem de segurança no enquadramento para não cortar elementos importantes.</div>
+      </label>
+    </div><div class="item" data-id="item_30">
+      <input type="checkbox" id="item_30">
+      <label for="item_30">
+        <div class="item-title">Pré-estabelecer categorias de notícias<span class="tag decidir">já decidido</span></div>
+        <div class="item-detail">Categorias definidas: Eventos, Notícias, Palestras, Feiras, Objetivo na Mídia, Vestibulares, Jogos, Interclasse.</div>
+      </label>
+    </div><div class="item" data-id="item_31">
+      <input type="checkbox" id="item_31">
+      <label for="item_31">
+        <div class="item-title">Confirmar que categorias vazias ficam ocultas</div>
+        <div class="item-detail">Categorias sem nenhum artigo publicado não devem aparecer na listagem (evitar categoria vazia visível ao clicar).</div>
+      </label>
+    </div></div></section><section class="group" data-group-index="11"><div class="group-head">
+    <div class="group-num">12</div>
+    <div class="group-title">Cards de Ensino (Educação Infantil / Fundamental / Médio)</div>
+    <div class="group-count" data-role="count">0/4</div>
+    <div class="group-caret">▾</div>
+  </div><div class="group-body"><div class="item" data-id="item_32">
+      <input type="checkbox" id="item_32">
+      <label for="item_32">
+        <div class="item-title">Trocar fundo verde sólido por imagem com overlay verde</div>
+        <div class="item-detail">Nos boxes de cada segmento (Educação Infantil, Fundamental 1/2/3, Médio), usar uma imagem de fundo com um filtro/overlay verde por cima, mantendo a identidade de cor de cada segmento.</div>
+      </label>
+    </div><div class="item" data-id="item_33">
+      <input type="checkbox" id="item_33">
+      <label for="item_33">
+        <div class="item-title">Inverter posição do gradiente</div>
+        <div class="item-detail">Colocar o gradiente verde na parte de baixo do card e a imagem mais visível na parte de cima (inverso do padrão atual do site), evitando exigir imagens com muito "céu"/cenário em cima.</div>
+      </label>
+    </div><div class="item" data-id="item_34">
+      <input type="checkbox" id="item_34">
+      <label for="item_34">
+        <div class="item-title">Usar imagens mais verticais</div>
+        <div class="item-detail">Preferir fotos em formato vertical para funcionar melhor com esse novo gradiente.</div>
+      </label>
+    </div><div class="item" data-id="item_35">
+      <input type="checkbox" id="item_35">
+      <label for="item_35">
+        <div class="item-title">Remover o ícone dos cards</div>
+        <div class="item-detail">Com a imagem de fundo já identificando a faixa etária, o ícone fica redundante/estranho — remover.</div>
+      </label>
+    </div></div></section><section class="group" data-group-index="12"><div class="group-head">
+    <div class="group-num">13</div>
+    <div class="group-title">Seção lateral "Ano" (avanço / inovação / hoje)</div>
+    <div class="group-count" data-role="count">0/1</div>
+    <div class="group-caret">▾</div>
+  </div><div class="group-body"><div class="item" data-id="item_36">
+      <input type="checkbox" id="item_36">
+      <label for="item_36">
+        <div class="item-title">Substituir a palavra por um número de ano</div>
+        <div class="item-detail">No bloco do lado esquerdo que hoje mostra palavras como "avanço", "inovação", "hoje", trocar por um número de ano.</div>
+      </label>
+    </div></div></section><section class="group" data-group-index="13"><div class="group-head">
+    <div class="group-num">14</div>
+    <div class="group-title">Seção "Novidades"</div>
+    <div class="group-count" data-role="count">0/1</div>
+    <div class="group-caret">▾</div>
+  </div><div class="group-body"><div class="item" data-id="item_37">
+      <input type="checkbox" id="item_37">
+      <label for="item_37">
+        <div class="item-title">Inverter a lógica de exibição da seção Novidades</div>
+        <div class="item-detail">A seção "Novidades" deve puxar automaticamente os artigos publicados na categoria "novidades" do blog, em vez de depender de conteúdo separado/manual. Publicar um artigo como "novidade" já faz ele aparecer nessa seção e também em Notícias.</div>
+      </label>
+    </div></div></section><section class="group" data-group-index="14"><div class="group-head">
+    <div class="group-num">15</div>
+    <div class="group-title">Rodapé (Footer)</div>
+    <div class="group-count" data-role="count">0/6</div>
+    <div class="group-caret">▾</div>
+  </div><div class="group-body"><div class="item" data-id="item_38">
+      <input type="checkbox" id="item_38">
+      <label for="item_38">
+        <div class="item-title">Manter estrutura atual do rodapé</div>
+        <div class="item-detail">Decidido não replicar ali a mesma quantidade de informação do banner de Exame de Bolsas — já existe uma seção própria (carrossel) para isso.</div>
+      </label>
+    </div><div class="item" data-id="item_39">
+      <input type="checkbox" id="item_39">
+      <label for="item_39">
+        <div class="item-title">Atualizar os dois números de WhatsApp</div>
+        <div class="item-detail">Um WhatsApp para o Objetivo Júnior e outro para o Objetivo normal.</div>
+      </label>
+    </div><div class="item" data-id="item_40">
+      <input type="checkbox" id="item_40">
+      <label for="item_40">
+        <div class="item-title">Replicar o menu principal no rodapé</div>
+        <div class="item-detail">Replicar a mesma estrutura/itens do menu de ensino também na parte de baixo do site.</div>
+      </label>
+    </div><div class="item" data-id="item_41">
+      <input type="checkbox" id="item_41">
+      <label for="item_41">
+        <div class="item-title">Atualizar ícones e créditos do rodapé</div>
+        <div class="item-detail">Atualizar ano para 2026 e o crédito de desenvolvimento ("Desenvolvido pela M9").</div>
+      </label>
+    </div><div class="item" data-id="item_42">
+      <input type="checkbox" id="item_42">
+      <label for="item_42">
+        <div class="item-title">Reorganizar ícones de redes sociais em duas linhas</div>
+        <div class="item-detail">Linha de cima = Objetivo normal: Instagram, Facebook, Threads, YouTube, LinkedIn. Linha de baixo = Objetivo Júnior: Instagram, Facebook, Threads.</div>
+      </label>
+    </div><div class="item" data-id="item_43">
+      <input type="checkbox" id="item_43">
+      <label for="item_43">
+        <div class="item-title">Alinhar os ícones à esquerda nas duas linhas</div>
+        <div class="item-detail">Para que o ícone do Instagram fique alinhado embaixo do Instagram da linha de cima (e assim por diante), sem precisar de rótulo/texto explicando "Júnior"/"Normal".</div>
+      </label>
+    </div></div></section><section class="group" data-group-index="15"><div class="group-head">
+    <div class="group-num">16</div>
+    <div class="group-title">Botões da Home (Conheça o Objetivo / Atendimento)</div>
+    <div class="group-count" data-role="count">0/3</div>
+    <div class="group-caret">▾</div>
+  </div><div class="group-body"><div class="item" data-id="item_44">
+      <input type="checkbox" id="item_44">
+      <label for="item_44">
+        <div class="item-title">Revisar destino do botão "Conheça o Objetivo"</div>
+        <div class="item-detail">Atualmente esse botão leva para a página "Sobre" — confirmar se deve continuar assim.</div>
+      </label>
+    </div><div class="item" data-id="item_45">
+      <input type="checkbox" id="item_45">
+      <label for="item_45">
+        <div class="item-title">Renomear "Atendimento" para "Matrículas e Transferências"</div>
+        <div class="item-detail">Como já existe o WhatsApp fixo do lado esquerdo para atendimento geral, faz mais sentido este botão levar direto para matrículas e transferências.</div>
+      </label>
+    </div><div class="item" data-id="item_46">
+      <input type="checkbox" id="item_46">
+      <label for="item_46">
+        <div class="item-title">Redirecionar o botão para a landing page do Objetivo Conecta</div>
+        <div class="item-detail">Apontar o link para a landing page de captação do Objetivo Conecta (ex.: objetivosaocarlos.com.br/captação), já usada para matrículas e transferências.</div>
+      </label>
+    </div></div></section><section class="group" data-group-index="16"><div class="group-head">
+    <div class="group-num">17</div>
+    <div class="group-title">Infraestrutura / Publicação</div>
+    <div class="group-count" data-role="count">0/4</div>
+    <div class="group-caret">▾</div>
+  </div><div class="group-body"><div class="item" data-id="item_47">
+      <input type="checkbox" id="item_47">
+      <label for="item_47">
+        <div class="item-title">Avaliar migração para servidor mais rápido</div>
+        <div class="item-detail">Upload e carregamento dos links no servidor atual está demorando; considerar migrar para outro servidor para agilizar o processo.</div>
+      </label>
+    </div><div class="item" data-id="item_48">
+      <input type="checkbox" id="item_48">
+      <label for="item_48">
+        <div class="item-title">Publicar via upload direto (sem arquivo compactado)</div>
+        <div class="item-detail">Combinado que o envio será feito subindo direto no servidor, não por arquivo compactado.</div>
+      </label>
+    </div><div class="item" data-id="item_49">
+      <input type="checkbox" id="item_49">
+      <label for="item_49">
+        <div class="item-title">Agendar a atualização em produção para depois do período de inscrições</div>
+        <div class="item-detail">Como há inscrições abertas até sábado, a atualização do site em produção deve ocorrer na semana seguinte.</div>
+      </label>
+    </div><div class="item" data-id="item_50">
+      <input type="checkbox" id="item_50">
+      <label for="item_50">
+        <div class="item-title">Apresentar antes de subir em definitivo</div>
+        <div class="item-detail">Reforçado que o próximo passo é apresentar as atualizações feitas (não publicar direto em produção) para validação antes de "subir".</div>
+      </label>
+    </div></div></section></div>
+
+  <footer class="page">
+    Gerado a partir das transcrições da pasta <code>transcricoes/</code>. Progresso salvo localmente via <code>localStorage</code> — não é sincronizado entre dispositivos/navegadores.
+  </footer>
+</div>
+
+<script>
+const DATA = [
+  {
+    title: "Página Principal (Home) — geral",
+    items: [
+      { t: "Revisão geral da página principal", d: "Dar uma \"geral\" na home: conferir todos os links, revisar o menu e revisar os produtos listados na aba Shop." },
+      { t: "Corrigir alinhamento pendente", d: "Ajuste de alinhamento já apontado anteriormente e que a equipe ainda não implementou." },
+      { t: "Adicionar imagem no artigo único do blog", d: "Só foi enviado um artigo até agora; falta colocar a imagem correspondente nele." },
+      { t: "Trocar a logo", d: "Usar a versão horizontal da logo, na cor azul, em versão invertida — fica melhor no topo do site." }
+    ]
+  },
+  {
+    title: "Menu Principal — estrutura e organização",
+    items: [
+      { t: "Definir organização final do menu", d: "Estrutura combinada: Home (logo) → Unidades → Proposta Pedagógica → Programas Extracurriculares → Exame de Bolsas (destacado) → Blog → Shop → Sobre (com submenu).", tag: "decidido" },
+      { t: "Remover item genérico \"Ensino\" do menu", d: "Os itens de ensino (Educação Infantil, Fundamental 1/2/3, Médio) ficam organizados dentro de Proposta Pedagógica, não como um menu \"Ensino\" à parte." },
+      { t: "Unidades como item separado no menu", d: "Unidades não entra dentro de Proposta Pedagógica/Ensino — fica como item independente do menu." },
+      { t: "Programas Extracurriculares como item próprio", d: "Ficou decidido manter separado (não dentro de Ensino), pois também é uma página \"sobre\" o programa, como a Proposta Pedagógica." },
+      { t: "Exame de Bolsas destacado no topo do menu", d: "Deve ficar em posição de destaque, visualmente diferente dos demais itens." },
+      { t: "Permitir reordenar o menu direto no WordPress", d: "Confirmar que a ordem final dos itens pode ser ajustada pelo próprio cliente/dono depois, direto no painel." },
+      { t: "Criar item \"Sobre\" com submenu \"Linha do Tempo\"", d: "A página \"Sobre\" ainda não existe como item de menu. Criar o item \"Sobre\" e, dentro dele, o submenu \"Linha do Tempo\"." },
+      { t: "Confirmar navegação dos cards de Ensino", d: "Verificar que ao clicar em Educação Infantil / Fundamental 1, 2, 3 / Médio, cada um abre sua página respectiva corretamente." }
+    ]
+  },
+  {
+    title: "Página de Unidades",
+    items: [
+      { t: "Centralizar texto dos botões", d: "Botões como \"Agendar visita\" estão com o texto alinhado à esquerda — ficou estranho. Centralizar." },
+      { t: "Remover faixa/selo de \"franqueado\"", d: "Retirar a faixa que menciona ser franqueado/conveniado na página de unidades — \"arrancar fora\"." }
+    ]
+  },
+  {
+    title: "Proposta Pedagógica",
+    items: [
+      { t: "Remover hifenização do texto", d: "O layout atual está quebrando palavras com hífen no meio do texto — tirar esses hífens, ficou feio." }
+    ]
+  },
+  {
+    title: "Exame de Bolsas",
+    items: [
+      { t: "Avaliar link externo para landing page em produção", d: "Em vez de manter o conteúdo antigo (que tinha as informações do R15) na própria página, considerar linkar para a landing page externa que já está funcionando." },
+      { t: "Confirmar troca para \"Exame de Bolsas Agendado\"", d: "As inscrições do Exame de Bolsas atual encerram nesta sexta-feira; uma nova versão (\"agendado\") está em desenvolvimento e deve substituir a atual em breve.", tag: "decidir" }
+    ]
+  },
+  {
+    title: "Página Sobre / Linha do Tempo",
+    items: [
+      { t: "Criar/publicar a página Sobre com a linha do tempo", d: "Usar o conteúdo/material que já foi enviado para montar a página \"Sobre\", incluindo a seção de linha do tempo." },
+      { t: "Ajustar texto cortado na seção Sobre", d: "Parte do texto da seção ficou cortada — revisar e ajustar o corte." }
+    ]
+  },
+  {
+    title: "Home — Banner Principal",
+    items: [
+      { t: "Trocar o banner principal provisório", d: "O banner atual é apenas provisório; substituir por um banner de campanha ativa." },
+      { t: "Redimensionar banners nos formatos corretos", d: "Formatos necessários: 1920x600 (desktop) e 1080x1080 (mobile). Pegar os banners ativos, ajustar o formato (ex.: via IA) sem alterar as informações originais." }
+    ]
+  },
+  {
+    title: "Home — Seção \"Motivos para estudar no Objetivo\" (7 anos consecutivos)",
+    items: [
+      { t: "Corrigir imagem cortada em cima e embaixo", d: "A imagem da seção \"7 anos consecutivos / melhor colocação\" está sendo cortada pela máscara atual — ajustar o recorte." },
+      { t: "Remover o bloco \"Unidade São Carlos\" desta seção", d: "Como existem várias unidades, esse bloco específico não faz mais sentido aqui; melhor tirar." },
+      { t: "Reorganizar layout em 3 + 3", d: "Colocar o título principal, depois 3 elementos em uma linha e mais 3 na linha de baixo, para ficar mais alinhado (em vez do formato atual)." }
+    ]
+  },
+  {
+    title: "Home — Carrossel de Unidades",
+    items: [
+      { t: "Substituir cards estáticos por carrossel", d: "Transformar os 6 cards de unidades em um carrossel, posicionado logo abaixo da seção \"Motivos para estudar\"." }
+    ]
+  },
+  {
+    title: "Home — Seção eGênio → Teste Vocacional",
+    items: [
+      { t: "Substituir eGênio por Teste Vocacional", d: "A seção/produto \"eGênio\" não existe mais; trocar pelo \"Teste Vocacional\" (teste que indica qual curso combina mais com a pessoa)." },
+      { t: "Usar link/subdomínio ov.objetivo.br", d: "O teste vocacional é acessado por um link (subdomínio \"ov\"), que abre uma página do Objetivo normal com um frame reaproveitável." },
+      { t: "Reaproveitar texto atual da seção para o novo conteúdo", d: "Usar o texto já existente na home (algo como \"Qual a carreira ideal para você? Descubra\") no lugar do texto antigo do eGênio, no mesmo formato de seção." }
+    ]
+  },
+  {
+    title: "Blog / Notícias",
+    items: [
+      { t: "Padronizar dimensão das fotos com margem de segurança", d: "Imagens em 1920x1080, com soft-crop/redimensionamento — criar margem de segurança no enquadramento para não cortar elementos importantes." },
+      { t: "Pré-estabelecer categorias de notícias", d: "Categorias definidas: Eventos, Notícias, Palestras, Feiras, Objetivo na Mídia, Vestibulares, Jogos, Interclasse.", tag: "decidido" },
+      { t: "Confirmar que categorias vazias ficam ocultas", d: "Categorias sem nenhum artigo publicado não devem aparecer na listagem (evitar categoria vazia visível ao clicar)." }
+    ]
+  },
+  {
+    title: "Cards de Ensino (Educação Infantil / Fundamental / Médio)",
+    items: [
+      { t: "Trocar fundo verde sólido por imagem com overlay verde", d: "Nos boxes de cada segmento (Educação Infantil, Fundamental 1/2/3, Médio), usar uma imagem de fundo com um filtro/overlay verde por cima, mantendo a identidade de cor de cada segmento." },
+      { t: "Inverter posição do gradiente", d: "Colocar o gradiente verde na parte de baixo do card e a imagem mais visível na parte de cima (inverso do padrão atual do site), evitando exigir imagens com muito \"céu\"/cenário em cima." },
+      { t: "Usar imagens mais verticais", d: "Preferir fotos em formato vertical para funcionar melhor com esse novo gradiente." },
+      { t: "Remover o ícone dos cards", d: "Com a imagem de fundo já identificando a faixa etária, o ícone fica redundante/estranho — remover." }
+    ]
+  },
+  {
+    title: "Seção lateral \"Ano\" (avanço / inovação / hoje)",
+    items: [
+      { t: "Substituir a palavra por um número de ano", d: "No bloco do lado esquerdo que hoje mostra palavras como \"avanço\", \"inovação\", \"hoje\", trocar por um número de ano." }
+    ]
+  },
+  {
+    title: "Seção \"Novidades\"",
+    items: [
+      { t: "Inverter a lógica de exibição da seção Novidades", d: "A seção \"Novidades\" deve puxar automaticamente os artigos publicados na categoria \"novidades\" do blog, em vez de depender de conteúdo separado/manual. Publicar um artigo como \"novidade\" já faz ele aparecer nessa seção e também em Notícias." }
+    ]
+  },
+  {
+    title: "Rodapé (Footer)",
+    items: [
+      { t: "Manter estrutura atual do rodapé", d: "Decidido não replicar ali a mesma quantidade de informação do banner de Exame de Bolsas — já existe uma seção própria (carrossel) para isso." },
+      { t: "Atualizar os dois números de WhatsApp", d: "Um WhatsApp para o Objetivo Júnior e outro para o Objetivo normal." },
+      { t: "Replicar o menu principal no rodapé", d: "Replicar a mesma estrutura/itens do menu de ensino também na parte de baixo do site." },
+      { t: "Atualizar ícones e créditos do rodapé", d: "Atualizar ano para 2026 e o crédito de desenvolvimento (\"Desenvolvido pela M9\")." },
+      { t: "Reorganizar ícones de redes sociais em duas linhas", d: "Linha de cima = Objetivo normal: Instagram, Facebook, Threads, YouTube, LinkedIn. Linha de baixo = Objetivo Júnior: Instagram, Facebook, Threads." },
+      { t: "Alinhar os ícones à esquerda nas duas linhas", d: "Para que o ícone do Instagram fique alinhado embaixo do Instagram da linha de cima (e assim por diante), sem precisar de rótulo/texto explicando \"Júnior\"/\"Normal\"." }
+    ]
+  },
+  {
+    title: "Botões da Home (Conheça o Objetivo / Atendimento)",
+    items: [
+      { t: "Revisar destino do botão \"Conheça o Objetivo\"", d: "Atualmente esse botão leva para a página \"Sobre\" — confirmar se deve continuar assim." },
+      { t: "Renomear \"Atendimento\" para \"Matrículas e Transferências\"", d: "Como já existe o WhatsApp fixo do lado esquerdo para atendimento geral, faz mais sentido este botão levar direto para matrículas e transferências." },
+      { t: "Redirecionar o botão para a landing page do Objetivo Conecta", d: "Apontar o link para a landing page de captação do Objetivo Conecta (ex.: objetivosaocarlos.com.br/captação), já usada para matrículas e transferências." }
+    ]
+  },
+  {
+    title: "Infraestrutura / Publicação",
+    items: [
+      { t: "Avaliar migração para servidor mais rápido", d: "Upload e carregamento dos links no servidor atual está demorando; considerar migrar para outro servidor para agilizar o processo." },
+      { t: "Publicar via upload direto (sem arquivo compactado)", d: "Combinado que o envio será feito subindo direto no servidor, não por arquivo compactado." },
+      { t: "Agendar a atualização em produção para depois do período de inscrições", d: "Como há inscrições abertas até sábado, a atualização do site em produção deve ocorrer na semana seguinte." },
+      { t: "Apresentar antes de subir em definitivo", d: "Reforçado que o próximo passo é apresentar as atualizações feitas (não publicar direto em produção) para validação antes de \"subir\"." }
+    ]
+  }
+];
+
+const groupsEl = document.getElementById('groups');
+let idCounter = 0;
+const allItemIds = [];
+
+DATA.forEach((group, gi) => {
+  const section = document.createElement('section');
+  section.className = 'group';
+  section.dataset.groupIndex = gi;
+
+  const head = document.createElement('div');
+  head.className = 'group-head';
+  head.innerHTML = `
+    <div class="group-num">${gi + 1}</div>
+    <div class="group-title">${group.title}</div>
+    <div class="group-count" data-role="count"></div>
+    <div class="group-caret">▾</div>
+  `;
+  head.addEventListener('click', () => {
+    section.classList.toggle('collapsed');
+  });
+
+  const body = document.createElement('div');
+  body.className = 'group-body';
+
+  group.items.forEach(item => {
+    idCounter++;
+    const id = 'item_' + idCounter;
+    allItemIds.push(id);
+
+    const row = document.createElement('div');
+    row.className = 'item';
+    row.dataset.id = id;
+
+    const tagHtml = item.tag
+      ? `<span class="tag decidir">${item.tag === 'decidido' ? 'já decidido' : 'a confirmar'}</span>`
+      : '';
+
+    row.innerHTML = `
+      <input type="checkbox" id="${id}">
+      <label for="${id}">
+        <div class="item-title">${item.t}${tagHtml}</div>
+        <div class="item-detail">${item.d}</div>
+      </label>
+    `;
+    body.appendChild(row);
+  });
+
+  section.appendChild(head);
+  section.appendChild(body);
+  groupsEl.appendChild(section);
+});
+
+const STORAGE_KEY = 'objetivo-checklist-v1';
+
+function loadState(){
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  } catch(e){
+    return {};
+  }
+}
+function saveState(state){
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch(e){}
+}
+
+let state = loadState();
+
+function applyState(){
+  document.querySelectorAll('.item').forEach(row => {
+    const id = row.dataset.id;
+    const checked = !!state[id];
+    const cb = row.querySelector('input[type="checkbox"]');
+    cb.checked = checked;
+    row.classList.toggle('done', checked);
+  });
+  updateCounts();
+}
+
+function updateCounts(){
+  let total = 0, done = 0;
+  document.querySelectorAll('section.group').forEach(section => {
+    const items = section.querySelectorAll('.item');
+    let gDone = 0;
+    items.forEach(i => { if (i.classList.contains('done')) gDone++; });
+    section.querySelector('[data-role="count"]').textContent = `${gDone}/${items.length}`;
+    total += items.length;
+    done += gDone;
+  });
+  document.getElementById('progressCount').textContent = `${done} de ${total} concluídos`;
+  const pct = total ? Math.round((done/total)*100) : 0;
+  document.getElementById('ringLabel').textContent = pct + '%';
+  const circumference = 150.8;
+  const offset = circumference - (pct/100)*circumference;
+  document.getElementById('ringBar').style.strokeDashoffset = offset;
+  applyFilter(currentFilter);
+}
+
+groupsEl.addEventListener('change', (e) => {
+  if (e.target.matches('input[type="checkbox"]')) {
+    const row = e.target.closest('.item');
+    const id = row.dataset.id;
+    state[id] = e.target.checked;
+    row.classList.toggle('done', e.target.checked);
+    saveState(state);
+    updateCounts();
+  }
+});
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  if (!confirm('Desmarcar todos os itens concluídos?')) return;
+  state = {};
+  saveState(state);
+  applyState();
+});
+
+let currentFilter = 'all';
+function applyFilter(filter){
+  currentFilter = filter;
+  document.querySelectorAll('.item').forEach(row => {
+    const done = row.classList.contains('done');
+    let show = true;
+    if (filter === 'open') show = !done;
+    if (filter === 'done') show = done;
+    row.hidden = !show;
+  });
+}
+
+document.querySelectorAll('.filters button[data-filter]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filters button[data-filter]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyFilter(btn.dataset.filter);
+  });
+});
+
+document.getElementById('expandAll').addEventListener('click', () => {
+  document.querySelectorAll('section.group').forEach(s => s.classList.remove('collapsed'));
+});
+document.getElementById('collapseAll').addEventListener('click', () => {
+  document.querySelectorAll('section.group').forEach(s => s.classList.add('collapsed'));
+});
+
+applyState();
+</script>
+
+
+</body></html>

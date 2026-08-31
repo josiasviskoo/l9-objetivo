@@ -13,6 +13,10 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
+<?php
+$financeiro_url    = objetivo_opt( 'header', 'financeiro_url' );
+$area_restrita_url = objetivo_opt( 'header', 'area_restrita_url' );
+?>
 <div class="topbar">
 	<div class="topbar-inner">
 		<div class="topbar-left">
@@ -32,6 +36,12 @@
 				<?php wp_nav_menu( array( 'theme_location' => 'topbar', 'container' => false, 'menu_class' => 'topbar-menu', 'depth' => 1 ) ); ?>
 			<?php endif; ?>
 			<a href="<?php echo esc_url( objetivo_opt( 'contato', 'topbar_cta_url' ) ); ?>" class="topbar-cta"><?php echo esc_html( objetivo_opt( 'contato', 'topbar_cta_label' ) ); ?></a>
+			<?php if ( $financeiro_url ) : ?>
+				<a href="<?php echo esc_url( $financeiro_url ); ?>" class="btn-area-restrita btn-financeiro"><?php esc_html_e( 'Financeiro', 'objetivo' ); ?></a>
+			<?php endif; ?>
+			<?php if ( $area_restrita_url ) : ?>
+				<a href="<?php echo esc_url( $area_restrita_url ); ?>" class="btn-area-restrita"><?php esc_html_e( 'Área Restrita', 'objetivo' ); ?></a>
+			<?php endif; ?>
 		</div>
 	</div>
 </div>
@@ -64,21 +74,6 @@
 				) );
 				?>
 			</nav>
-
-			<?php
-			$financeiro_url     = objetivo_opt( 'header', 'financeiro_url' );
-			$area_restrita_url  = objetivo_opt( 'header', 'area_restrita_url' );
-			if ( $financeiro_url || $area_restrita_url ) :
-				?>
-				<div class="header-actions">
-					<?php if ( $financeiro_url ) : ?>
-						<a href="<?php echo esc_url( $financeiro_url ); ?>" class="btn-area-restrita btn-financeiro"><?php esc_html_e( 'Financeiro', 'objetivo' ); ?></a>
-					<?php endif; ?>
-					<?php if ( $area_restrita_url ) : ?>
-						<a href="<?php echo esc_url( $area_restrita_url ); ?>" class="btn-area-restrita"><?php esc_html_e( 'Área Restrita', 'objetivo' ); ?></a>
-					<?php endif; ?>
-				</div>
-			<?php endif; ?>
 		</div>
 	</div>
 

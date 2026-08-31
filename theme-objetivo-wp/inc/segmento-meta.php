@@ -1,86 +1,94 @@
 <?php
 /**
- * Vincula uma Página (post type nativo) a um dos itens do CPT
- * objetivo_segmento - o mesmo CPT usado na seção "Navegue pelo seu
- * segmento" da home, que já tem cor/ícone/rótulo geridos em
- * Segmentos por Cor no wp-admin. Ao selecionar aqui, o header mostra uma
- * faixa com a cor daquele segmento sempre que a página estiver ativa,
- * sinalizando ao visitante em qual ecossistema (Educação Infantil,
- * Fundamental, etc.) ele está navegando.
+ * Cria, dinamicamente, um Modelo de Página (Atributos da página → Modelo)
+ * para cada item do CPT objetivo_segmento - o mesmo CPT usado na seção
+ * "Navegue pelo seu segmento" da home, que já tem cor/ícone/rótulo geridos
+ * em Segmentos por Cor no wp-admin. Não são arquivos físicos: o modelo
+ * "aparece" na lista porque é injetado via theme_page_templates, e ao
+ * escolher um deles a página renderiza normalmente (page.php) com uma
+ * faixa fina no topo do header, na cor daquele segmento - sinalizando ao
+ * visitante em qual ecossistema (Educação Infantil, Fundamental etc.) ele
+ * está navegando. Como a lista vem do CPT, renomear/criar/excluir um
+ * segmento em Segmentos por Cor atualiza os modelos disponíveis
+ * automaticamente, sem precisar editar código.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-function objetivo_add_segmento_meta_box() {
-	add_meta_box(
-		'objetivo_page_segmento',
-		__( 'Segmento (faixa colorida no menu)', 'objetivo' ),
-		'objetivo_render_segmento_meta_box',
-		'page',
-		'side',
-		'default'
-	);
-}
-add_action( 'add_meta_boxes', 'objetivo_add_segmento_meta_box' );
-
-function objetivo_render_segmento_meta_box( $post ) {
-	wp_nonce_field( 'objetivo_save_segmento', 'objetivo_segmento_nonce' );
-
-	$selected  = get_post_meta( $post->ID, '_objetivo_segmento_id', true );
-	$segmentos = objetivo_get_items( 'objetivo_segmento' );
-
-	if ( ! $segmentos ) {
-		echo '<p>' . esc_html__( 'Nenhum segmento cadastrado ainda. Crie em Segmentos por Cor.', 'objetivo' ) . '</p>';
-		return;
-	}
-
-	echo '<select name="_objetivo_segmento_id" id="_objetivo_segmento_id" style="width:100%;">';
-	echo '<option value="">' . esc_html__( 'Nenhum', 'objetivo' ) . '</option>';
-	foreach ( $segmentos as $segmento ) {
-		printf(
-			'<option value="%1$d" %2$s>%3$s</option>',
-			(int) $segmento->ID,
-			selected( $selected, (string) $segmento->ID, false ),
-			esc_html( get_the_title( $segmento ) )
-		);
-	}
-	echo '</select>';
-	echo '<p class="description">' . esc_html__( 'Indica qual segmento (cor) esta página representa. O menu mostra uma faixa com essa cor enquanto o visitante está nela.', 'objetivo' ) . '</p>';
+/**
+ * Padrão do "arquivo" de modelo virtual: segmento-{ID do post do CPT}.php.
+ */
+function objetivo_segmento_template_slug( $segmento_id ) {
+	return 'segmento-' . (int) $segmento_id . '.php';
 }
 
-function objetivo_save_segmento_meta( $post_id ) {
-	if ( ! isset( $_POST['objetivo_segmento_nonce'] ) ||
-		! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['objetivo_segmento_nonce'] ) ), 'objetivo_save_segmento' )
-	) {
-		return;
+/**
+ * Injeta um modelo por segmento cadastrado na lista de "Atributos da
+ * página → Modelo", com o próprio nome do segmento como rótulo.
+ */
+function objetivo_segmento_page_templates( $post_templates, $theme, $post, $post_type ) {
+	if ( 'page' !== $post_type ) {
+		return $post_templates;
 	}
 
-	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-		return;
+	foreach ( objetivo_get_items( 'objetivo_segmento' ) as $segmento ) {
+		$post_templates[ objetivo_segmento_template_slug( $segmento->ID ) ] = get_the_title( $segmento );
 	}
 
-	if ( ! current_user_can( 'edit_page', $post_id ) ) {
-		return;
-	}
-
-	if ( isset( $_POST['_objetivo_segmento_id'] ) ) {
-		update_post_meta( $post_id, '_objetivo_segmento_id', absint( $_POST['_objetivo_segmento_id'] ) );
-	}
+	return $post_templates;
 }
-add_action( 'save_post_page', 'objetivo_save_segmento_meta' );
+add_filter( 'theme_page_templates', 'objetivo_segmento_page_templates', 10, 4 );
+
+/**
+ * Os modelos acima não existem como arquivo no tema - quando uma página usa
+ * um deles, renderiza com o page.php normal (banner + conteúdo do editor).
+ * A faixa de cor é adicionada à parte, pelo header (ver
+ * objetivo_get_current_segmento() logo abaixo).
+ */
+function objetivo_segmento_template_include( $template ) {
+	if ( ! is_page() ) {
+		return $template;
+	}
+
+	$slug = get_page_template_slug( get_queried_object_id() );
+	if ( $slug && preg_match( '/^segmento-\d+\.php$/', $slug ) ) {
+		$page_template = locate_template( 'page.php' );
+		if ( $page_template ) {
+			return $page_template;
+		}
+	}
+
+	return $template;
+}
+add_filter( 'template_include', 'objetivo_segmento_template_include' );
 
 /**
  * Segmento vinculado à página atual (se houver), usado pelo header para
- * desenhar a faixa colorida. Retorna null fora de páginas ou sem vínculo.
+ * desenhar a faixa colorida. Resolve primeiro pelo Modelo de Página
+ * (segmento-{ID}.php); se a página não usa nenhum desses modelos, cai para
+ * o meta "_objetivo_segmento_id" - compatibilidade com páginas vinculadas
+ * pelo seletor manual que existia antes deste recurso virar Modelo de
+ * Página. Retorna null fora de páginas ou sem vínculo.
  */
 function objetivo_get_current_segmento() {
 	if ( ! is_page() ) {
 		return null;
 	}
 
-	$segmento_id = get_post_meta( get_queried_object_id(), '_objetivo_segmento_id', true );
+	$post_id     = get_queried_object_id();
+	$segmento_id = 0;
+
+	$template_slug = get_page_template_slug( $post_id );
+	if ( $template_slug && preg_match( '/^segmento-(\d+)\.php$/', $template_slug, $matches ) ) {
+		$segmento_id = (int) $matches[1];
+	}
+
+	if ( ! $segmento_id ) {
+		$segmento_id = (int) get_post_meta( $post_id, '_objetivo_segmento_id', true );
+	}
+
 	if ( ! $segmento_id ) {
 		return null;
 	}

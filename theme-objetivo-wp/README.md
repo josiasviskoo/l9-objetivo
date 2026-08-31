@@ -19,7 +19,8 @@ ou diretamente pelo wp-admin depois de instalado.
 4. Na primeira ativação, o tema popula automaticamente (uma única vez):
    - os cards de Ensino, Motivos, Selos, Segmentos, Timeline e Vestibulares
      (com os mesmos textos/imagens do layout aprovado);
-   - 8 posts de exemplo nas categorias Notícias/Eventos/Resultados;
+   - 8 posts de exemplo nas categorias Notícias/Eventos/Resultados (2 deles
+     também na categoria Novidades);
    - as páginas **Nossa História** (modelo de timeline completa) e **Blog**
      (modelo de listagem paginada com filtro por categoria);
    - 3 produtos de exemplo na loja (Acampamento NR, Museu de Zoologia USP,
@@ -39,10 +40,11 @@ ou diretamente pelo wp-admin depois de instalado.
 | O que editar | Onde |
 |---|---|
 | Cards de Ensino, Motivos, Selos, Segmentos, Timeline, Vestibulares | Menus próprios no admin (ex.: "Sistema de Ensino", "Motivos para Estudar" etc.) - cada item tem título, descrição, imagem e campos extras próprios. A ordem é definida pelo campo "Ordem" (Atributos de página) de cada item. |
-| Notícias / Blog | Posts nativos do WordPress, nas categorias Notícias, Eventos e Resultados |
+| Notícias / Blog | Posts nativos do WordPress. A home mostra 2 seções: "Últimas Notícias" traz os posts mais recentes de qualquer categoria; "Novidades do Objetivo" só mostra posts da categoria **Novidades** - marque essa categoria no post para ele aparecer lá. |
 | Textos fixos (hero, estatísticas, textos de cada seção, rodapé, contato) | Aparência → Personalizar → painel **"Conteúdo do site Objetivo"** |
-| Menus (cabeçalho, rodapé) | Aparência → Menus |
+| Menus (cabeçalho, rodapé) | Aparência → Menus. Para destacar um item (cor dourada), edite o "Texto de navegação" do item envolvendo o texto em hifens duplos - ex.: `--Exame de Bolsas--`. O tema remove os hifens automaticamente e só aplica o destaque visual. |
 | Logo | Aparência → Personalizar → Identidade do Site (ou fica com o logo padrão do tema) |
+| Faixa colorida do segmento no topo de uma página (ex.: página da Educação Infantil com a faixa verde) | Ao editar a página, em **Atributos da página → Modelo**, escolha o modelo com o nome do segmento (ex.: "Educação Infantil"). A lista de modelos vem direto dos itens cadastrados em **Segmentos por Cor** - criar/renomear um segmento lá atualiza a lista de modelos automaticamente. |
 | Produtos/excursões da loja | Produtos (WooCommerce) → aba "Detalhes do Evento" para data/local/vagas |
 
 ## WooCommerce - configuração recomendada

@@ -66,6 +66,19 @@ section { padding: 5.5rem 0; }
 .topbar-cta:hover { background: #f5b030 !important; color: var(--navy) !important; box-shadow: 0 4px 14px rgba(232,160,32,.5) !important; transform: translateY(-1px); }
 .topbar svg { width: 13px; height: 13px; fill: currentColor; flex-shrink: 0; }
 
+/* Financeiro / Área Restrita - vivem na topbar (fundo navy), à direita do
+   "Conheça o Objetivo"; por isso usam azul/sky em vez de navy (que sumiria
+   no fundo). Especificidade `.topbar a.btn-*` para vencer ".topbar a". */
+.topbar a.btn-area-restrita {
+  background: var(--blue); color: var(--white) !important; padding: .35rem 1rem; border-radius: var(--r-full);
+  font-size: .78rem; font-weight: 700; letter-spacing: .03em; text-transform: uppercase;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+  transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease) !important;
+}
+.topbar a.btn-area-restrita:hover { background: var(--sky); box-shadow: 0 4px 14px rgba(0,0,0,.3); transform: translateY(-1px); color: var(--white) !important; }
+.topbar a.btn-financeiro { background: var(--sky); }
+.topbar a.btn-financeiro:hover { background: var(--blue); }
+
 /* ── HEADER / NAV ────────────────────────────────────── */
 header#masthead { background: var(--white); position: sticky; top: 0; z-index: 100; border-bottom: 2px solid rgba(13,35,70,.08); box-shadow: var(--shadow-md); }
 .header-inner { max-width: 1260px; margin: 0 auto; padding: .85rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
@@ -73,7 +86,16 @@ header#masthead { background: var(--white); position: sticky; top: 0; z-index: 1
 .segmento-stripe-inner { display: flex; align-items: center; justify-content: center; gap: .5rem; }
 .segmento-stripe-icon { font-size: 1rem; line-height: 1; }
 .segmento-stripe-label { color: var(--white); font-size: .78rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
-.logo img, .logo svg { height: 48px; width: auto; display: block; transition: opacity var(--dur); }
+.logo { flex-shrink: 0; }
+/*
+ * max-width:none sobrescreve o reset global "img{max-width:100%}" - sem
+ * isso, se o header-inner (flex) espremer o item .logo, a largura da logo
+ * é limitada por esse max-width enquanto a altura continua fixa em 48px,
+ * distorcendo (achatando) a imagem. flex-shrink:0 acima evita que o item
+ * seja espremido; max-width:none garante que a imagem nunca seja limitada
+ * mesmo assim - a largura sempre acompanha livremente a altura fixa.
+ */
+.logo img, .logo svg { height: 48px; width: auto; max-width: none; display: block; transition: opacity var(--dur); }
 .logo a:hover img { opacity: .85; }
 .logo .custom-logo-link { display: block; }
 
@@ -90,6 +112,15 @@ ul.primary-menu { display: flex; align-items: center; gap: .15rem; list-style: n
 .primary-menu li.menu-item-has-children > a::after { content: '▾'; margin-left: .3rem; font-size: .7em; }
 .primary-menu li.menu-item-shop > a { color: var(--gold); display: flex; align-items: center; gap: .4rem; }
 .primary-menu li.menu-item-shop > a::before { content: '🛍️'; font-size: .95em; }
+
+/*
+ * Destaque de item de menu via "--Texto--" no Aparência → Menus (ver
+ * objetivo_highlight_menu_items em inc/setup.php). A classe é aplicada pelo
+ * WordPress em qualquer wp_nav_menu() do tema (principal, rodapé, topbar),
+ * cada um com sua própria cor de link base - !important garante que o
+ * destaque sempre vença, independente do contexto.
+ */
+.menu-item-destaque > a { color: var(--gold) !important; font-weight: 800 !important; }
 
 .primary-menu .sub-menu {
   display: none; position: absolute; top: calc(100% + 8px); left: 0; background: var(--white);
@@ -109,15 +140,6 @@ ul.primary-menu { display: flex; align-items: center; gap: .15rem; list-style: n
 }
 .primary-menu .sub-menu a:hover { background: var(--light); color: var(--blue); }
 
-.header-actions { display: flex; gap: .5rem; flex-shrink: 0; }
-.btn-area-restrita {
-  background: var(--navy); color: var(--white) !important; padding: .6rem 1.25rem; border-radius: var(--r-full);
-  font-size: .82rem; font-weight: 700; text-decoration: none; letter-spacing: .03em; text-transform: uppercase;
-  white-space: nowrap; box-shadow: 0 3px 12px rgba(13,35,70,.25);
-  transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
-}
-.btn-area-restrita:hover { background: var(--blue); box-shadow: 0 6px 20px rgba(26,79,172,.35); transform: translateY(-1px); }
-.btn-financeiro { background: var(--sky); }
 
 .nav-toggle { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 40px; height: 40px; background: none; border: none; cursor: pointer; }
 .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--navy); border-radius: 2px; transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease); }
@@ -133,7 +155,7 @@ ul.primary-menu { display: flex; align-items: center; gap: .15rem; list-style: n
   opacity: 0; visibility: hidden; transition: opacity .7s var(--ease); z-index: 1;
 }
 .hero-slide.is-active { opacity: 1; visibility: visible; z-index: 2; }
-.hero-slide-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
+.hero-slide-bg { position: absolute; inset: 0; background-size: contain; background-position: center; background-repeat: no-repeat; }
 .hero-slide-bg-mobile { display: none; }
 
 .btn-primary { display: inline-flex; align-items: center; gap: .45rem; background: var(--gold); color: var(--navy); padding: .9rem 2rem; border-radius: var(--r-full); font-weight: 800; font-size: .9rem; text-decoration: none; letter-spacing: .03em; text-transform: uppercase; box-shadow: var(--shadow-gold); transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease); border: none; cursor: pointer; }
@@ -605,10 +627,6 @@ ul.products {
     margin: 0 0 .3rem; padding: .2rem .5rem; animation: none;
   }
   .primary-menu li.menu-item-has-children:hover > .sub-menu { animation: none; }
-  .header-actions {
-    display: flex; flex-direction: column; gap: .6rem; padding: 1rem; border-top: 1px solid var(--border);
-  }
-  .header-actions .btn-area-restrita { text-align: center; }
 }
 
 @media (max-width: 600px) {

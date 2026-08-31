@@ -1,17 +1,17 @@
 <?php
 /**
- * Seção "Novidades do Objetivo" - grid de posts reais com filtro de
- * categoria (assets/js/blog-filter.js) e link "Ler mais" para o permalink
- * de verdade (substitui o painel falso do protótipo).
+ * Seção "Novidades do Objetivo" - só os posts da categoria "Novidades"
+ * (diferente da seção "Últimas Notícias", que traz posts de qualquer
+ * categoria) - com link "Ler mais" para o permalink de verdade.
  */
 $posts = get_posts( array(
 	'post_type'      => 'post',
 	'posts_per_page' => 6,
+	'category_name'  => 'novidades',
 ) );
 if ( ! $posts ) {
 	return;
 }
-$categories = get_categories( array( 'hide_empty' => true ) );
 ?>
 <section id="blog">
 	<div class="container">
@@ -21,26 +21,17 @@ $categories = get_categories( array( 'hide_empty' => true ) );
 				<h2 class="section-title" style="margin-bottom:.4rem;"><?php echo objetivo_kses_em( objetivo_opt( 'sec_blog', 'title' ) ); ?></h2>
 				<p class="blog-subtitle"><?php echo esc_html( objetivo_opt( 'sec_blog', 'desc' ) ); ?></p>
 			</div>
-			<?php if ( $categories ) : ?>
-				<div class="blog-filters">
-					<button type="button" class="blog-filter-btn active" data-cat="todos"><?php esc_html_e( 'Todos', 'objetivo' ); ?></button>
-					<?php foreach ( $categories as $cat ) : ?>
-						<button type="button" class="blog-filter-btn" data-cat="<?php echo esc_attr( $cat->slug ); ?>"><?php echo esc_html( $cat->name ); ?></button>
-					<?php endforeach; ?>
-				</div>
-			<?php endif; ?>
 		</div>
 
 		<div id="blog-grid" class="blog-grid">
 			<?php foreach ( $posts as $i => $post ) :
 				setup_postdata( $post );
 				$cats     = get_the_category( $post->ID );
-				$cat_slug = $cats ? $cats[0]->slug : '';
 				$cat_name = $cats ? $cats[0]->name : '';
 				$img      = get_the_post_thumbnail_url( $post, 'objetivo-card' );
 				$bg       = $img ? "url('" . esc_url( $img ) . "')," : '';
 				?>
-				<a class="blog-post<?php echo 0 === $i ? ' blog-post-featured' : ''; ?>" data-cat="<?php echo esc_attr( $cat_slug ); ?>" href="<?php echo esc_url( get_permalink( $post ) ); ?>">
+				<a class="blog-post<?php echo 0 === $i ? ' blog-post-featured' : ''; ?>" href="<?php echo esc_url( get_permalink( $post ) ); ?>">
 					<div class="blog-post-img" style="background: <?php echo esc_attr( $bg . objetivo_post_gradient( $i ) ); ?>; background-size:cover; background-position:center;">
 						<?php if ( $cat_name ) : ?><span class="blog-post-tag"><?php echo 0 === $i ? '📌 ' : ''; ?><?php echo esc_html( $cat_name ); ?></span><?php endif; ?>
 						<?php if ( 0 === $i ) : ?>
