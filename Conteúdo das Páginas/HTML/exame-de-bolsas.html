@@ -1,70 +1,363 @@
-<!-- Fonte: Aba site_ Exame de bolsas_.docx -->
+<!-- Exame de Bolsas - Objetivo São Carlos -->
+<!-- Cole este bloco inteiro dentro de um widget HTML do Elementor -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <style>
-.opc{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--text,#1a1e2e);line-height:1.75;font-size:1rem;}
-.opc h3.opc-h{display:flex;align-items:center;gap:.6rem;font-size:1.2rem;font-weight:800;color:var(--navy,#0d2346);letter-spacing:-.01em;margin:2rem 0 .9rem;}
-.opc h3.opc-h:first-child{margin-top:0;}
-.opc h3.opc-h::before{content:'';width:20px;height:3px;border-radius:9999px;background:var(--gold,#e8a020);flex-shrink:0;}
-.opc h3.opc-h-card{margin-top:0;}
-.opc p.opc-p{margin:0 0 1.1rem;font-size:.98rem;color:var(--text,#1a1e2e);}
-.opc p.opc-p:last-child{margin-bottom:0;}
-.opc p.opc-lead{font-size:1.08rem;font-weight:600;color:var(--navy,#0d2346);}
-.opc strong{color:var(--navy,#0d2346);font-weight:700;}
-.opc em{font-style:italic;color:var(--blue,#1a4fac);font-weight:600;}
-.opc a.opc-link{color:var(--blue,#1a4fac);text-decoration:none;font-weight:600;border-bottom:1px solid rgba(26,79,172,.35);transition:color .2s ease,border-color .2s ease;}
-.opc a.opc-link:hover{color:var(--gold,#e8a020);border-color:var(--gold,#e8a020);}
-.opc ul.opc-list{list-style:none;margin:0 0 1.4rem;padding:0;display:flex;flex-direction:column;gap:.6rem;}
-.opc ul.opc-list li{display:flex;align-items:flex-start;gap:.7rem;background:var(--light,#f0f4fb);border:1px solid var(--border,#dde3f0);border-radius:14px;padding:.85rem 1.1rem;font-size:.93rem;line-height:1.55;}
-.opc ul.opc-list li::before{content:'\2713';flex-shrink:0;width:22px;height:22px;border-radius:9999px;background:linear-gradient(135deg,var(--blue,#1a4fac),var(--sky,#1e8dc1));color:#fff;font-size:.7rem;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:.1rem;}
-.opc hr.opc-divider{border:none;border-top:1px dashed var(--border,#dde3f0);margin:1.6rem 0;}
-.opc p.opc-cta{margin:1.2rem 0;}
-.opc a.opc-btn{display:inline-flex;align-items:center;gap:.45rem;background:var(--gold,#e8a020);color:var(--navy,#0d2346);padding:.8rem 1.8rem;border-radius:9999px;font-weight:800;font-size:.82rem;text-decoration:none;letter-spacing:.03em;text-transform:uppercase;box-shadow:0 8px 28px rgba(232,160,32,.4);transition:background .2s ease,transform .2s ease,box-shadow .2s ease;}
-.opc a.opc-btn:hover{background:#f5b030;transform:translateY(-2px);box-shadow:0 10px 32px rgba(232,160,32,.55);}
-.opc p.opc-highlight{display:inline-flex;background:linear-gradient(135deg,var(--gold,#e8a020),#f5b030);color:var(--navy,#0d2346);font-weight:800;padding:.65rem 1.2rem;border-radius:12px;margin:0 0 1.1rem;box-shadow:0 6px 18px rgba(232,160,32,.3);}
-.opc p.opc-info{display:flex;align-items:flex-start;gap:.6rem;margin:0 0 .55rem;font-size:.92rem;color:var(--text,#1a1e2e);}
-.opc p.opc-info .opc-info-icon{flex-shrink:0;font-size:1rem;line-height:1.4;}
-.opc div.opc-btn-row{display:flex;flex-wrap:wrap;gap:.6rem;margin:.9rem 0 1.2rem;}
-.opc a.opc-btn-sm{display:inline-flex;align-items:center;gap:.4rem;background:var(--blue,#1a4fac);color:#fff;padding:.55rem 1.2rem;border-radius:9999px;font-weight:700;font-size:.78rem;text-decoration:none;letter-spacing:.03em;text-transform:uppercase;transition:background .2s ease,transform .2s ease;}
-.opc a.opc-btn-sm:hover{background:var(--sky,#1e8dc1);transform:translateY(-1px);}
-.opc a.opc-btn-sm.opc-btn-outline{background:transparent;color:var(--blue,#1a4fac);border:1.5px solid var(--blue,#1a4fac);}
-.opc a.opc-btn-sm.opc-btn-outline:hover{background:var(--blue,#1a4fac);color:#fff;}
-.opc div.opc-percent-table{display:flex;flex-direction:column;gap:.4rem;margin:0 0 1.2rem;border:1px solid var(--border,#dde3f0);border-radius:14px;overflow:hidden;}
-.opc div.opc-percent-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.6rem 1rem;font-size:.88rem;background:var(--white,#fff);}
-.opc div.opc-percent-row:nth-child(even){background:var(--light,#f0f4fb);}
-.opc span.opc-percent-badge{flex-shrink:0;background:var(--navy,#0d2346);color:var(--gold,#e8a020);font-weight:800;font-size:.82rem;padding:.25rem .75rem;border-radius:9999px;}
-.opc div.opc-card{background:var(--white,#fff);border:1px solid var(--border,#dde3f0);border-radius:20px;padding:1.6rem 1.7rem;margin:0 0 1.3rem;box-shadow:var(--shadow-sm,0 2px 8px rgba(13,35,70,.10));transition:box-shadow .2s ease,transform .2s ease;}
-.opc div.opc-card:hover{box-shadow:var(--shadow-lg,0 8px 32px rgba(13,35,70,.14));transform:translateY(-2px);}
-.opc div.opc-card .opc-list,.opc div.opc-card .opc-percent-table{margin-bottom:0;}
-.opc div.opc-card .opc-btn-row{margin-bottom:0;}
-.opc div.opc-card-cta{background:var(--light,#f0f4fb);border:1px solid var(--border,#dde3f0);border-radius:16px;padding:1.4rem 1.6rem;display:flex;align-items:center;justify-content:space-between;gap:1.2rem;flex-wrap:wrap;}
-.opc div.opc-card-cta p{margin:0;font-weight:700;color:var(--navy,#0d2346);}
+
+  /* ===== Objetivo São Carlos - conteúdo de página (inspirado no layout aprovado) ===== */
+  .obj-bolsas {
+    --navy:   #0d2346;
+    --blue:   #1a4fac;
+    --sky:    #1e8dc1;
+    --gold:   #e8a020;
+    --light:  #f0f4fb;
+    --white:  #ffffff;
+    --text:   #1a1e2e;
+    --muted:  #5a6478;
+    --border: #dde3f0;
+    --shadow-xs: 0 1px 3px rgba(13,35,70,.08);
+    --shadow-sm: 0 2px 8px rgba(13,35,70,.10);
+    --shadow-md: 0 4px 20px rgba(13,35,70,.12);
+    --shadow-lg: 0 8px 32px rgba(13,35,70,.14);
+    --shadow-gold: 0 8px 28px rgba(232,160,32,.35);
+    --r-xs: 6px; --r-sm: 10px; --r-md: 14px; --r-lg: 20px; --r-xl: 28px; --r-full: 9999px;
+    --ease: cubic-bezier(.4,0,.2,1);
+    --dur: .22s;
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .obj-bolsas, .obj-bolsas *, .obj-bolsas *::before, .obj-bolsas *::after { box-sizing: border-box; }
+  .obj-bolsas h1, .obj-bolsas h2, .obj-bolsas h3, .obj-bolsas h4, .obj-bolsas p, .obj-bolsas ul, .obj-bolsas ol, .obj-bolsas li, .obj-bolsas figure, .obj-bolsas blockquote, .obj-bolsas table { margin: 0; padding: 0; }
+  .obj-bolsas img { max-width: 100%; display: block; }
+  .obj-bolsas a { text-decoration: none; }
+  .obj-bolsas .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+  .obj-bolsas section { padding: 4.5rem 0; }
+  .obj-bolsas section + section { padding-top: 0; }
+
+  .obj-bolsas .section-label {
+    display: inline-flex; align-items: center; gap: .4rem;
+    font-size: .7rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--sky); margin-bottom: .75rem;
+  }
+  .obj-bolsas .section-label::before { content: ''; display: block; width: 18px; height: 2px; background: var(--sky); border-radius: var(--r-full); }
+  .obj-bolsas .section-title { font-size: clamp(1.7rem, 3vw, 2.3rem); font-weight: 900; color: var(--navy); line-height: 1.22; margin-bottom: 1rem; letter-spacing: -.02em; }
+  .obj-bolsas .section-title em { color: var(--blue); font-style: normal; }
+  .obj-bolsas .lead { font-size: 1.08rem; color: var(--muted); line-height: 1.85; max-width: 760px; }
+  .obj-bolsas p.body-text { font-size: 1rem; color: var(--muted); line-height: 1.85; max-width: 760px; margin-bottom: 1.3rem; }
+  .obj-bolsas p.body-text:last-child { margin-bottom: 0; }
+  .obj-bolsas p.body-text strong { color: var(--navy); }
+
+  /* ---- Page hero / banner ---- */
+  .obj-bolsas .page-hero {
+    position: relative;
+    background: linear-gradient(120deg, #0d2346 0%, #1a4fac 60%, #1e8dc1 100%);
+    padding: 3.6rem 0;
+    overflow: hidden;
+  }
+  .obj-bolsas .page-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: radial-gradient(ellipse 80% 80% at 75% 30%, rgba(30,141,193,.35) 0%, transparent 70%);
+  }
+  .obj-bolsas .page-hero .container { position: relative; z-index: 2; }
+  .obj-bolsas .page-hero .section-label { color: var(--gold); }
+  .obj-bolsas .page-hero .section-label::before { background: var(--gold); }
+  .obj-bolsas .page-hero .section-title { color: var(--white); margin-bottom: .7rem; }
+  .obj-bolsas .page-hero .section-title em { color: var(--gold); }
+  .obj-bolsas .page-hero .lead { color: rgba(255,255,255,.8); max-width: 620px; }
+
+  /* ---- Buttons ---- */
+  .obj-bolsas .btn-primary {
+    display: inline-flex; align-items: center; gap: .45rem;
+    background: var(--gold); color: var(--navy);
+    padding: .9rem 2rem; border-radius: var(--r-full);
+    font-weight: 800; font-size: .85rem; letter-spacing: .03em; text-transform: uppercase;
+    box-shadow: var(--shadow-gold);
+    transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+    border: none; cursor: pointer;
+  }
+  .obj-bolsas .btn-primary:hover { background: #f5b030; box-shadow: 0 10px 32px rgba(232,160,32,.5); transform: translateY(-2px); }
+  .obj-bolsas .btn-outline {
+    display: inline-flex; align-items: center; gap: .45rem;
+    border: 2px solid var(--navy); color: var(--navy);
+    padding: .85rem 1.8rem; border-radius: var(--r-full);
+    font-weight: 700; font-size: .85rem; letter-spacing: .03em; text-transform: uppercase;
+    transition: background var(--dur) var(--ease), color var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  .obj-bolsas .btn-outline:hover { background: var(--navy); color: #fff; transform: translateY(-2px); }
+  .obj-bolsas .btn-outline-white {
+    display: inline-flex; align-items: center; gap: .45rem;
+    border: 2px solid rgba(255,255,255,.55); color: var(--white);
+    padding: .85rem 1.8rem; border-radius: var(--r-full);
+    font-weight: 700; font-size: .85rem; letter-spacing: .03em; text-transform: uppercase;
+    transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  .obj-bolsas .btn-outline-white:hover { border-color: rgba(255,255,255,.9); background: rgba(255,255,255,.12); transform: translateY(-2px); }
+  .obj-bolsas .btn-navy {
+    display: inline-flex; align-items: center; gap: .45rem;
+    background: var(--navy); color: #fff;
+    padding: .95rem 2rem; border-radius: var(--r-full);
+    font-weight: 800; font-size: .85rem; letter-spacing: .03em; text-transform: uppercase;
+    box-shadow: 0 4px 16px rgba(13,35,70,.3);
+    transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  .obj-bolsas .btn-navy:hover { background: #162d5a; box-shadow: 0 8px 24px rgba(13,35,70,.4); transform: translateY(-2px); }
+
+  /* ---- Feature / motivo cards (icon + text) ---- */
+  .obj-bolsas .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.3rem; margin-top: 2.2rem; }
+  .obj-bolsas .feature-card {
+    background: var(--light); border: 1px solid var(--border);
+    border-radius: var(--r-lg); padding: 1.6rem;
+    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+  .obj-bolsas .feature-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+  .obj-bolsas .feature-icon {
+    width: 52px; height: 52px; border-radius: var(--r-sm);
+    background: linear-gradient(135deg, var(--blue), var(--sky));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; margin-bottom: 1rem;
+    box-shadow: 0 4px 12px rgba(26,79,172,.25);
+  }
+  .obj-bolsas .feature-card h4 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: .45rem; }
+  .obj-bolsas .feature-card p { font-size: .87rem; color: var(--muted); line-height: 1.65; }
+
+  /* ---- Chips (values / tags) ---- */
+  .obj-bolsas .chip-grid { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.8rem; }
+  .obj-bolsas .chip {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: var(--white); border: 1.5px solid var(--border);
+    color: var(--navy); font-size: .85rem; font-weight: 600;
+    padding: .6rem 1.15rem; border-radius: var(--r-full);
+    box-shadow: var(--shadow-xs);
+    transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  .obj-bolsas .chip:hover { border-color: var(--sky); box-shadow: var(--shadow-sm); transform: translateY(-2px); }
+  .obj-bolsas .chip .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+
+  /* ---- Quote block ---- */
+  .obj-bolsas .quote-block {
+    position: relative;
+    background: var(--light); border-left: 4px solid var(--gold);
+    border-radius: var(--r-md);
+    padding: 1.8rem 2rem;
+    margin: 2rem 0;
+  }
+  .obj-bolsas .quote-block p { font-size: 1.1rem; font-weight: 600; color: var(--navy); line-height: 1.6; font-style: italic; }
+
+  /* ---- Unit cards ---- */
+  .obj-bolsas .unit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+  .obj-bolsas .unit-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg);
+    box-shadow: var(--shadow-sm); overflow: hidden; display: flex; flex-direction: column;
+    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+  .obj-bolsas .unit-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+  .obj-bolsas .unit-card-top { background: linear-gradient(135deg, var(--navy), var(--blue)); padding: 1.3rem 1.5rem; }
+  .obj-bolsas .unit-card-level { display: inline-block; background: var(--gold); color: var(--navy); font-size: .64rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: .3rem .8rem; border-radius: var(--r-full); margin-bottom: .6rem; }
+  .obj-bolsas .unit-card-top h3 { color: var(--white); font-size: 1.1rem; font-weight: 800; }
+  .obj-bolsas .unit-card-body { padding: 1.4rem 1.5rem; flex: 1; display: flex; flex-direction: column; gap: .55rem; }
+  .obj-bolsas .unit-card-row { display: flex; align-items: flex-start; gap: .6rem; font-size: .87rem; color: var(--muted); line-height: 1.5; }
+  .obj-bolsas .unit-card-row .ico { flex-shrink: 0; }
+  .obj-bolsas .unit-card-row strong { color: var(--navy); }
+  .obj-bolsas .unit-card-actions { display: flex; gap: .6rem; padding: 0 1.5rem 1.4rem; flex-wrap: wrap; }
+  .obj-bolsas .unit-card-actions a { flex: 1; justify-content: center; padding-inline: 1rem; font-size: .74rem; }
+
+  /* ---- Program cards ---- */
+  .obj-bolsas .program-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.4rem; margin-top: 2rem; }
+  .obj-bolsas .program-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg);
+    padding: 1.6rem; box-shadow: var(--shadow-xs);
+    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+  .obj-bolsas .program-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+  .obj-bolsas .program-card .feature-icon { margin-bottom: .9rem; }
+  .obj-bolsas .program-card h4 { font-size: 1.02rem; font-weight: 800; color: var(--navy); margin-bottom: .5rem; }
+  .obj-bolsas .program-card p { font-size: .86rem; color: var(--muted); line-height: 1.65; }
+  .obj-bolsas .program-card ul { list-style: none; display: flex; flex-direction: column; gap: .55rem; margin-top: .8rem; }
+  .obj-bolsas .program-card ul li { display: flex; gap: .55rem; font-size: .84rem; color: var(--muted); line-height: 1.55; }
+  .obj-bolsas .program-card ul li::before { content: '✓'; color: var(--sky); font-weight: 800; flex-shrink: 0; }
+  .obj-bolsas .program-group-title { display: flex; align-items: center; gap: .8rem; margin: 3rem 0 .5rem; }
+  .obj-bolsas .program-group-title h3 { font-size: 1.3rem; font-weight: 900; color: var(--navy); }
+  .obj-bolsas .program-group-title span { flex: 1; height: 1px; background: var(--border); }
+  .obj-bolsas section .program-group-title:first-of-type { margin-top: 0; }
+
+  /* ---- Timeline ---- */
+  .obj-bolsas .timeline { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.1rem; }
+  .obj-bolsas .tl-item { display: grid; grid-template-columns: 100px 1fr; gap: 1.3rem; }
+  .obj-bolsas .tl-year {
+    display: flex; align-items: flex-start; justify-content: flex-end;
+    font-size: 1.15rem; font-weight: 900; color: var(--gold);
+    padding-top: 1.2rem; text-align: right; line-height: 1.2;
+  }
+  .obj-bolsas .tl-card {
+    position: relative;
+    background: var(--light); border: 1px solid var(--border); border-radius: var(--r-md);
+    padding: 1.2rem 1.4rem;
+  }
+  .obj-bolsas .tl-card::before {
+    content: ''; position: absolute; left: -1.05rem; top: 1.5rem;
+    width: 10px; height: 10px; border-radius: 50%; background: var(--blue);
+    box-shadow: 0 0 0 4px rgba(26,79,172,.15);
+  }
+  .obj-bolsas .tl-card h4 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: .3rem; }
+  .obj-bolsas .tl-card p { font-size: .87rem; color: var(--muted); line-height: 1.6; }
+
+  /* ---- Info / schedule cards ---- */
+  .obj-bolsas .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.3rem; margin-top: 2rem; }
+  .obj-bolsas .info-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg);
+    padding: 1.5rem; box-shadow: var(--shadow-xs);
+  }
+  .obj-bolsas .info-card .tag { display: inline-block; background: rgba(30,141,193,.12); color: var(--sky); font-size: .68rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: .28rem .75rem; border-radius: var(--r-full); margin-bottom: .8rem; }
+  .obj-bolsas .info-card h4 { font-size: 1.02rem; font-weight: 800; color: var(--navy); margin-bottom: .6rem; }
+  .obj-bolsas .info-card ul { list-style: none; display: flex; flex-direction: column; gap: .4rem; }
+  .obj-bolsas .info-card li { font-size: .87rem; color: var(--muted); display: flex; justify-content: space-between; gap: .8rem; }
+  .obj-bolsas .info-card li strong { color: var(--navy); font-weight: 700; }
+
+  /* ---- Tables (discount tables etc) ---- */
+  .obj-bolsas .table-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+  .obj-bolsas .table-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-sm); }
+  .obj-bolsas .table-card-head { background: linear-gradient(135deg, var(--navy), var(--blue)); color: var(--white); padding: 1rem 1.4rem; font-weight: 800; font-size: .92rem; }
+  .obj-bolsas table { width: 100%; border-collapse: collapse; }
+  .obj-bolsas table td { padding: .75rem 1.4rem; font-size: .87rem; color: var(--muted); border-bottom: 1px solid var(--border); }
+  .obj-bolsas table tr:last-child td { border-bottom: none; }
+  .obj-bolsas table td.pct { text-align: right; font-weight: 800; color: var(--blue); }
+  .obj-bolsas table tr:last-child td.pct { color: var(--gold); }
+
+  /* ---- CTA banner ---- */
+  .obj-bolsas .cta-banner {
+    background: linear-gradient(135deg, var(--gold) 0%, #f5b030 100%);
+    border-radius: var(--r-xl);
+    padding: 2.6rem 2.8rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+  }
+  .obj-bolsas .cta-banner h3 { font-size: 1.5rem; font-weight: 900; color: var(--navy); margin-bottom: .35rem; letter-spacing: -.02em; }
+  .obj-bolsas .cta-banner p { color: rgba(13,35,70,.72); font-size: .95rem; }
+
+  /* ---- Portal / redirect page ---- */
+  .obj-bolsas .portal-box {
+    max-width: 620px; margin: 0 auto; text-align: center;
+    background: var(--light); border: 1px solid var(--border); border-radius: var(--r-xl);
+    padding: 3.2rem 2.5rem; box-shadow: var(--shadow-sm);
+  }
+  .obj-bolsas .portal-icon {
+    width: 78px; height: 78px; margin: 0 auto 1.4rem; border-radius: 50%;
+    background: linear-gradient(135deg, var(--navy), var(--sky));
+    display: flex; align-items: center; justify-content: center; font-size: 2.2rem;
+    box-shadow: var(--shadow-md);
+  }
+  .obj-bolsas .portal-box h2 { font-size: 1.5rem; font-weight: 900; color: var(--navy); margin-bottom: .8rem; }
+  .obj-bolsas .portal-box p { color: var(--muted); font-size: .96rem; line-height: 1.7; margin-bottom: 1.8rem; }
+
+  /* ---- Article / blog post ---- */
+  .obj-bolsas .article-meta { display: flex; align-items: center; gap: .9rem; margin-bottom: 1rem; flex-wrap: wrap; }
+  .obj-bolsas .article-tag { background: var(--gold); color: var(--navy); font-size: .66rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: .3rem .85rem; border-radius: var(--r-full); }
+  .obj-bolsas .article-date { font-size: .8rem; color: rgba(255,255,255,.7); letter-spacing: .03em; }
+  .obj-bolsas .article-cover { border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-lg); margin: -3.6rem auto 2.5rem; max-width: 900px; position: relative; z-index: 3; }
+  .obj-bolsas .article-cover img { width: 100%; height: 340px; object-fit: cover; }
+  .obj-bolsas .article-body { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.3rem; }
+  .obj-bolsas .article-body p { font-size: 1.02rem; color: var(--text); line-height: 1.9; }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 720px) {
+    .obj-bolsas .cta-banner { flex-direction: column; align-items: flex-start; text-align: left; }
+    .obj-bolsas .tl-item { grid-template-columns: 70px 1fr; gap: .9rem; }
+    .obj-bolsas .tl-year { font-size: .95rem; padding-top: 1rem; }
+    .obj-bolsas .article-cover { margin-top: -2.2rem; }
+    .obj-bolsas .article-cover img { height: 220px; }
+  }
+
 </style>
-<div class="opc">
-<h3 class="opc-h">Exame de Bolsas </h3>
-<p class="opc-p opc-lead">6º ano do Ensino Fundamental II</p>
-<p class="opc-p">e 1º ano do Ensino Médio</p>
-<p class="opc-highlight">Até 50% de desconto em 2027</p>
-<p class="opc-info"><span class="opc-info-icon">📅</span><span><strong>Data:</strong> Sábado, 29/08, às 9h</span></p>
-<p class="opc-cta"><a href="#" class="opc-btn">INSCREVA-SE AQUI</a></p>
-<hr class="opc-divider"/>
-<div class="opc-card"><h3 class="opc-h opc-h-card">Aulão preparatório</h3><p class="opc-info"><span class="opc-info-icon">📍</span><span><strong>Local:</strong> Colégio Objetivo São Carlos - R. Jesuíno de Arruda, 2625.</span></p></div>
-<div class="opc-card"><h3 class="opc-h opc-h-card">6os ANOS </h3><p class="opc-info"><span class="opc-info-icon">📅</span><span><strong>Data:</strong> Qui - 27/08</span></p><p class="opc-info"><span class="opc-info-icon">🕓</span><span><strong>Horário:</strong> 15h</span></p></div>
-<div class="opc-card"><h3 class="opc-h opc-h-card">1os ANOS</h3><p class="opc-info"><span class="opc-info-icon">📅</span><span><strong>Data:</strong> Sex - 28/08</span></p><p class="opc-info"><span class="opc-info-icon">🕓</span><span><strong>Horário:</strong> 15h</span></p></div>
-<hr class="opc-divider"/>
-<div class="opc-card"><h3 class="opc-h opc-h-card">Prova</h3><p class="opc-info"><span class="opc-info-icon">📍</span><span><strong>Local:</strong> Colégio Objetivo São Carlos - R. Jesuíno de Arruda, 2625.</span></p><p class="opc-info"><span class="opc-info-icon">📅</span><span><strong>Data:</strong> Sábado, 29/08</span></p><p class="opc-info"><span class="opc-info-icon">🕓</span><span><strong>Horário:</strong> 9h</span></p></div>
-<hr class="opc-divider"/>
-<h3 class="opc-h">Número de questões:</h3>
-<h3 class="opc-h">6º ano (Fundamental II): </h3>
-<p class="opc-p">20 questões </p>
-<h3 class="opc-h">1º ano (Ensino Médio): </h3>
-<p class="opc-p">30 questões </p>
-<hr class="opc-divider"/>
-<h3 class="opc-h">Divulgação dos resultados:</h3>
-<p class="opc-info"><span class="opc-info-icon">📅</span><span><strong>Data:</strong> Qui - 03/09</span></p>
-<p class="opc-info"><span class="opc-info-icon">📍</span><span><strong>Local:</strong> Presencialmente na Unidade Jesuíno</span></p>
-<p class="opc-info"><span class="opc-info-icon">🕓</span><span><strong>Horário:</strong> 7h às 17h.</span></p>
-<p class="opc-p">Durante a aplicação da prova teremos um café da manhã para os pais dos alunos. </p>
-<hr class="opc-divider"/>
-<h3 class="opc-h">Tabela de descontos:</h3>
-<div class="opc-card"><h3 class="opc-h opc-h-card">6º ano - Fundamental II: </h3><div class="opc-percent-table"><div class="opc-percent-row"><span>4 acertos</span><span class="opc-percent-badge">20%</span></div><div class="opc-percent-row"><span>5 a 10 acertos</span><span class="opc-percent-badge">25%</span></div><div class="opc-percent-row"><span>11 a 14 acertos</span><span class="opc-percent-badge">30%</span></div><div class="opc-percent-row"><span>15 a 17 acertos</span><span class="opc-percent-badge">35%</span></div><div class="opc-percent-row"><span>18 acertos</span><span class="opc-percent-badge">40%</span></div><div class="opc-percent-row"><span>19 acertos</span><span class="opc-percent-badge">45%</span></div><div class="opc-percent-row"><span>20 acertos</span><span class="opc-percent-badge">50%</span></div></div></div>
-<div class="opc-card"><h3 class="opc-h opc-h-card">1º ano - Ensino Médio:</h3><div class="opc-percent-table"><div class="opc-percent-row"><span>Até 6 acertos</span><span class="opc-percent-badge">20%</span></div><div class="opc-percent-row"><span>7 a 15 acertos</span><span class="opc-percent-badge">25%</span></div><div class="opc-percent-row"><span>16 a 22 acertos</span><span class="opc-percent-badge">30%</span></div><div class="opc-percent-row"><span>23 a 26 acertos</span><span class="opc-percent-badge">35%</span></div><div class="opc-percent-row"><span>27 a 28 acertos</span><span class="opc-percent-badge">40%</span></div><div class="opc-percent-row"><span>29 acertos</span><span class="opc-percent-badge">45%</span></div><div class="opc-percent-row"><span>30 acertos</span><span class="opc-percent-badge">50%</span></div></div><p class="opc-cta"><a href="#" class="opc-btn">INSCREVA-SE </a></p><p class="opc-cta"><a href="#" class="opc-btn">COMPROVANTE DE INSCRIÇÃO</a></p></div>
+<div class="obj-bolsas">
+
+<section class="page-hero">
+  <div class="container">
+    <p class="section-label">Matrículas 2027</p>
+    <h1 class="section-title">Exame de <em>Bolsas</em></h1>
+    <p class="lead">Para alunos do 6º ano do Ensino Fundamental II e do 1º ano do Ensino Médio - descontos de até 50% em 2027.</p>
+    <a href="#inscricao" class="btn-primary">Inscreva-se Aqui</a>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="info-grid">
+      <div class="info-card">
+        <span class="tag">Público-alvo</span>
+        <h4>Quem pode participar</h4>
+        <ul>
+          <li><span>Turma</span><strong>6º ano - Fund. II</strong></li>
+          <li><span>Turma</span><strong>1º ano - Ensino Médio</strong></li>
+          <li><span>Desconto máximo</span><strong>Até 50%</strong></li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <span class="tag">Prova</span>
+        <h4>Data e local</h4>
+        <ul>
+          <li><span>Data</span><strong>Sábado, 29/08</strong></li>
+          <li><span>Horário</span><strong>9h</strong></li>
+          <li><span>Local</span><strong>Col. Objetivo - R. Jesuíno de Arruda, 2625</strong></li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <span class="tag">Resultado</span>
+        <h4>Divulgação</h4>
+        <ul>
+          <li><span>Data</span><strong>Qui, 03/09</strong></li>
+          <li><span>Horário</span><strong>7h às 17h</strong></li>
+          <li><span>Local</span><strong>Presencial - Unidade Jesuíno</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="section-label" style="margin-top:3rem;">Preparação</p>
+    <h2 class="section-title">Aulão <em>Preparatório</em></h2>
+    <p class="lead">Local: Colégio Objetivo São Carlos - R. Jesuíno de Arruda, 2625.</p>
+    <div class="info-grid">
+      <div class="info-card">
+        <span class="tag">6os anos</span>
+        <h4>Aulão preparatório</h4>
+        <ul>
+          <li><span>Data</span><strong>Qui, 27/08</strong></li>
+          <li><span>Horário</span><strong>15h</strong></li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <span class="tag">1os anos</span>
+        <h4>Aulão preparatório</h4>
+        <ul>
+          <li><span>Data</span><strong>Sex, 28/08</strong></li>
+          <li><span>Horário</span><strong>15h</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="body-text" style="margin-top:2rem;">Número de questões: <strong>6º ano (Fundamental II) - 20 questões</strong> · <strong>1º ano (Ensino Médio) - 30 questões</strong>. Durante a aplicação da prova, teremos um café da manhã para os pais dos alunos.</p>
+
+    <p class="section-label" style="margin-top:3rem;">Bolsas</p>
+    <h2 class="section-title">Tabela de <em>Descontos</em></h2>
+    <div class="table-grid">
+      <div class="table-card">
+        <div class="table-card-head">6º ano - Fundamental II</div>
+        <table><tr><td>4 acertos</td><td class="pct">20%</td></tr><tr><td>5 a 10 acertos</td><td class="pct">25%</td></tr><tr><td>11 a 14 acertos</td><td class="pct">30%</td></tr><tr><td>15 a 17 acertos</td><td class="pct">35%</td></tr><tr><td>18 acertos</td><td class="pct">40%</td></tr><tr><td>19 acertos</td><td class="pct">45%</td></tr><tr><td>20 acertos</td><td class="pct">50%</td></tr></table>
+      </div>
+      <div class="table-card">
+        <div class="table-card-head">1º ano - Ensino Médio</div>
+        <table><tr><td>Até 6 acertos</td><td class="pct">20%</td></tr><tr><td>7 a 15 acertos</td><td class="pct">25%</td></tr><tr><td>16 a 22 acertos</td><td class="pct">30%</td></tr><tr><td>23 a 26 acertos</td><td class="pct">35%</td></tr><tr><td>27 a 28 acertos</td><td class="pct">40%</td></tr><tr><td>29 acertos</td><td class="pct">45%</td></tr><tr><td>30 acertos</td><td class="pct">50%</td></tr></table>
+      </div>
+    </div>
+
+    <div class="cta-banner" id="inscricao" style="margin-top:3rem;">
+      <div>
+        <h3>Garanta sua vaga no Exame de Bolsas</h3>
+        <p>Inscreva-se e receba o comprovante de inscrição por e-mail.</p>
+      </div>
+      <a href="#" class="btn-navy">Inscreva-se</a>
+    </div>
+  </div>
+</section>
+
 </div>

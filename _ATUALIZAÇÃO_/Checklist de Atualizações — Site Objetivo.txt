@@ -1,0 +1,176 @@
+CHECKLIST DE ATUALIZAÇÕES — SITE OBJETIVO
+Prompts de atualização reescritos a partir da reunião de revisão do site (transcricao.txt) e do checklist original.
+Cada item abaixo é um pedido de atualização pronto para ser enviado a uma IA/desenvolvedor, na ordem em que foram discutidos na reunião.
+
+================================================================================
+
+1. PÁGINA PRINCIPAL (HOME) — GERAL
+
+1.1 Faça uma revisão geral completa da página principal (home) do site. Percorra todos os links do menu e do rodapé para confirmar que nenhum está quebrado ou apontando para o lugar errado, revise a estrutura do menu de navegação e confira se os produtos listados na aba "Shop" estão corretos e atualizados.
+
+1.2 Corrija o problema de alinhamento na home que já havia sido apontado anteriormente e que ainda não foi implementado. Localize o elemento desalinhado e ajuste-o para ficar consistente com o restante do layout.
+
+1.3 O blog já recebeu um artigo, mas ele foi publicado sem imagem. Adicione a imagem correspondente a esse artigo único do blog.
+
+1.4 Troque a logo atual pela versão horizontal, na cor azul, em sua versão invertida — essa variação fica melhor no topo do site.
+
+================================================================================
+
+2. MENU PRINCIPAL — ESTRUTURA E ORGANIZAÇÃO
+
+2.1 [JÁ DECIDIDO] Reorganize o menu principal seguindo esta estrutura final combinada, da esquerda para a direita: Home (logo) → Unidades → Proposta Pedagógica → Programas Extracurriculares → Exame de Bolsas (em destaque visual) → Blog → Shop → Sobre (com submenu). Implemente essa ordem exatamente como definida.
+
+2.2 Remova o item genérico "Ensino" do menu principal. Os itens relacionados ao ensino (Educação Infantil, Fundamental 1/2/3, Médio) não devem ficar soltos em um menu próprio — organize-os dentro da página/seção "Proposta Pedagógica".
+
+2.3 Mantenha "Unidades" como um item independente do menu, sem aninhá-lo dentro de "Proposta Pedagógica" ou de qualquer submenu de ensino — ele deve ficar separado, no mesmo nível hierárquico dos demais itens principais.
+
+2.4 Mantenha "Programas Extracurriculares" como um item próprio do menu, fora do agrupamento de "Ensino", já que também funciona como uma página institucional "sobre o programa", assim como a Proposta Pedagógica.
+
+2.5 Dê destaque visual ao item "Exame de Bolsas" no menu, posicionando-o no topo/em evidência e com um estilo diferenciado (cor, botão ou badge) em relação aos demais itens do menu.
+
+2.6 Garanta que a ordem final dos itens do menu possa ser reorganizada diretamente pelo painel do WordPress, permitindo que o próprio cliente ajuste a sequência dos itens sem depender de alteração de código.
+
+2.7 Crie o item de menu "Sobre" (que hoje ainda não existe como item de navegação) e adicione a ele um submenu chamado "Linha do Tempo", que deve levar à seção de linha do tempo dentro da página Sobre.
+
+2.8 Teste e confirme a navegação dos cards de ensino: ao clicar em Educação Infantil, Fundamental 1, Fundamental 2, Fundamental 3 ou Ensino Médio, cada card deve abrir corretamente sua respectiva página.
+
+================================================================================
+
+3. PÁGINA DE UNIDADES
+
+3.1 Centralize o texto dos botões na página de Unidades — por exemplo, o botão "Agendar visita" está com o texto alinhado à esquerda, o que ficou visualmente estranho. Ajuste o alinhamento para centralizado.
+
+3.2 Remova a faixa/selo que menciona "franqueado" ou "conveniado" na página de Unidades. Esse elemento não deve mais aparecer — retire-o completamente do layout.
+
+================================================================================
+
+4. PROPOSTA PEDAGÓGICA
+
+4.1 Desative a hifenização automática do texto na página de Proposta Pedagógica. O layout atual está quebrando palavras com hífen no meio da linha, o que prejudica a leitura — ajuste o CSS/tipografia para eliminar esse comportamento.
+
+================================================================================
+
+5. EXAME DE BOLSAS
+
+5.1 Avalie substituir o conteúdo estático da página de Exame de Bolsas (que hoje reaproveita informações antigas de uma versão anterior) por um link externo direcionando para a landing page que já está em produção e funcionando.
+
+5.2 [A CONFIRMAR] Prepare a transição da página atual de "Exame de Bolsas" para uma nova versão chamada "Exame de Bolsas Agendado", já que as inscrições do exame atual encerram nesta sexta-feira e uma nova versão está em desenvolvimento para substituí-la em breve. Confirme com o cliente antes de publicar.
+
+================================================================================
+
+6. PÁGINA SOBRE / LINHA DO TEMPO
+
+6.1 Crie e publique a página "Sobre" utilizando o conteúdo/material que já foi enviado, incluindo obrigatoriamente a seção de linha do tempo institucional.
+
+6.2 Revise a seção "Sobre" e corrija o trecho de texto que está sendo cortado/truncado, garantindo que todo o conteúdo apareça sem cortes.
+
+================================================================================
+
+7. HOME — BANNER PRINCIPAL
+
+7.1 Substitua o banner principal provisório da home por um banner de campanha ativa. Utilize os banners que estiverem em uso no momento (a serem enviados) no lugar do banner provisório atual.
+
+7.2 Redimensione os banners para os formatos corretos: 1920x600 (desktop) e 1080x1080 (mobile). Ajuste apenas o formato/enquadramento das artes ativas, sem alterar nenhuma das informações originais do banner.
+
+================================================================================
+
+8. HOME — SEÇÃO "MOTIVOS PARA ESTUDAR NO OBJETIVO" (7 ANOS CONSECUTIVOS)
+
+8.1 Corrija o recorte da imagem na seção "7 anos consecutivos / melhor colocação": a máscara atual está cortando a imagem tanto na parte de cima quanto embaixo. Ajuste o enquadramento para que a imagem apareça completa.
+
+8.2 Remova o bloco específico "Unidade São Carlos" dessa seção. Como o site agora representa várias unidades, esse bloco isolado não faz mais sentido nesse contexto.
+
+8.3 Reorganize o layout dessa seção no formato "3 + 3": mantenha o título principal no topo, distribua três elementos em uma linha e os outros três em uma segunda linha logo abaixo, substituindo o formato atual por essa disposição mais alinhada.
+
+================================================================================
+
+9. HOME — CARROSSEL DE UNIDADES
+
+9.1 Substitua os cards estáticos de unidades por um carrossel dinâmico. Transforme os 6 cards atuais em um carrossel de unidades, posicionado logo abaixo da seção "Motivos para estudar no Objetivo".
+
+================================================================================
+
+10. HOME — SEÇÃO EGÊNIO → TESTE VOCACIONAL
+
+10.1 Substitua completamente a seção/produto "eGênio" (que não existe mais) pelo "Teste Vocacional" — o teste que indica ao usuário qual curso combina mais com o seu perfil.
+
+10.2 Configure o link do Teste Vocacional utilizando o subdomínio "ov.objetivo.br" (ex.: ov.objetivo.br), que abre uma página do Objetivo já preparada, reaproveitando o frame existente para exibição.
+
+10.3 Reaproveite o texto já existente na home para essa seção (algo como "Qual a carreira ideal para você? Descubra"), substituindo o texto antigo do eGênio por esse conteúdo, mantendo o mesmo formato visual da seção.
+
+================================================================================
+
+11. BLOG / NOTÍCIAS
+
+11.1 Padronize a dimensão de todas as fotos do blog/notícias em 1920x1080, aplicando soft-crop/redimensionamento com uma margem de segurança no enquadramento, de forma que elementos importantes da imagem não sejam cortados.
+
+11.2 [JÁ DECIDIDO] Cadastre e pré-estabeleça as seguintes categorias de notícias no blog: Eventos, Notícias, Palestras, Feiras, Objetivo na Mídia, Vestibulares, Jogos e Interclasse. Mantenha essa lista fixa como padrão, podendo ser expandida futuramente se necessário.
+
+11.3 Configure o blog para que categorias sem nenhum artigo publicado fiquem ocultas na listagem — uma categoria vazia não deve aparecer como opção clicável para o visitante.
+
+================================================================================
+
+12. CARDS DE ENSINO (EDUCAÇÃO INFANTIL / FUNDAMENTAL / MÉDIO)
+
+12.1 Nos cards de cada segmento de ensino (Educação Infantil, Fundamental 1/2/3, Médio), substitua o fundo verde sólido atual por uma imagem de fundo com um overlay/filtro verde por cima, preservando a identidade de cor de cada segmento.
+
+12.2 Inverta a posição do gradiente nesses cards: posicione o gradiente verde na parte de baixo do card e deixe a imagem mais visível na parte de cima — o inverso do padrão atual do site — para não depender de imagens com muito "céu"/cenário na parte superior.
+
+12.3 Priorize o uso de imagens em formato vertical nesses cards, já que esse formato funciona melhor com o novo posicionamento do gradiente.
+
+12.4 Remova o ícone que hoje aparece nesses cards. Como a imagem de fundo já identifica visualmente a faixa etária de cada segmento, o ícone se tornou redundante.
+
+================================================================================
+
+13. SEÇÃO LATERAL "ANO" (AVANÇO / INOVAÇÃO / HOJE)
+
+13.1 No bloco lateral esquerdo que atualmente exibe palavras como "avanço", "inovação" e "hoje", substitua o texto por um número de ano.
+
+================================================================================
+
+14. SEÇÃO "NOVIDADES"
+
+14.1 Inverta a lógica de exibição da seção "Novidades": em vez de depender de conteúdo cadastrado manualmente, faça essa seção puxar automaticamente os artigos publicados na categoria "novidades" do blog. Ao publicar um artigo marcado como "novidade", ele deve passar a aparecer automaticamente tanto na seção "Novidades" da home quanto na listagem de "Notícias".
+
+================================================================================
+
+15. RODAPÉ (FOOTER)
+
+15.1 Mantenha a estrutura atual do rodapé como está, sem replicar ali a mesma quantidade de informações do banner de Exame de Bolsas — essa função já é cumprida pela seção própria (carrossel) dedicada a isso.
+
+15.2 Atualize os dois números de WhatsApp exibidos no site: um número deve ser específico para o Objetivo Júnior e outro para o Objetivo (unidade normal).
+
+15.3 Replique a estrutura do menu principal também no rodapé do site, mantendo os mesmos itens e organização usados no menu de topo.
+
+15.4 Atualize os créditos e ícones do rodapé: altere o ano para 2026 e mantenha o texto de crédito de desenvolvimento como "Desenvolvido pela M9".
+
+15.5 Reorganize os ícones de redes sociais do rodapé em duas linhas: a linha de cima deve representar o Objetivo (normal), com os ícones de Instagram, Facebook, Threads, YouTube e LinkedIn; a linha de baixo deve representar o Objetivo Júnior, com os ícones de Instagram, Facebook e Threads.
+
+15.6 Alinhe os ícones das duas linhas de redes sociais pela esquerda, de forma que o ícone do Instagram da linha de cima fique diretamente acima do ícone do Instagram da linha de baixo (e assim sucessivamente), dispensando qualquer rótulo de texto explicando "Júnior" ou "Normal".
+
+================================================================================
+
+16. BOTÕES DA HOME (CONHEÇA O OBJETIVO / ATENDIMENTO)
+
+16.1 Revise o destino do botão "Conheça o Objetivo": atualmente ele leva à página "Sobre" — confirme com o cliente se esse redirecionamento deve ser mantido ou alterado.
+
+16.2 Renomeie o botão "Atendimento" para "Matrículas e Transferências". Como já existe um botão de WhatsApp fixo do lado esquerdo para atendimento geral, esse botão deve ser reposicionado para atender especificamente quem busca matrícula ou transferência.
+
+16.3 Redirecione o botão "Matrículas e Transferências" para a landing page de captação do Objetivo Conecta (ex.: objetivosaocarlos.com.br/captação), que já é utilizada para captar matrículas e transferências.
+
+================================================================================
+
+17. INFRAESTRUTURA / PUBLICAÇÃO
+
+17.1 Avalie a migração do site para um servidor mais rápido. O upload e o carregamento dos links no servidor atual estão demorando mais do que o esperado; verifique alternativas de hospedagem que agilizem esse processo.
+
+17.2 Publique as atualizações via upload direto no servidor, sem enviar arquivo compactado — o processo de publicação deve ser feito subindo os arquivos diretamente.
+
+17.3 Agende a publicação das atualizações em produção para depois do período de inscrições em andamento (que segue até sábado). A atualização do site ao vivo deve ocorrer somente na semana seguinte.
+
+17.4 Antes de publicar em definitivo (subir para produção), apresente todas as atualizações realizadas para validação e aprovação do cliente.
+
+================================================================================
+
+Total: 50 prompts de atualização em 17 grupos.
+Baseado na transcrição da reunião de revisão do site (transcricao.txt) e no checklist original (Checklist de Atualizações — Site Objetivo.html).
