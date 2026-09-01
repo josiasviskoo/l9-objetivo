@@ -1,0 +1,71 @@
+<!-- Fonte: Aba site_ Programas, atividades e extracurriculares.docx -->
+<style>
+.opc{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--text,#1a1e2e);line-height:1.75;font-size:1rem;}
+.opc h3.opc-h{display:flex;align-items:center;gap:.6rem;font-size:1.2rem;font-weight:800;color:var(--navy,#0d2346);letter-spacing:-.01em;margin:2rem 0 .9rem;}
+.opc h3.opc-h:first-child{margin-top:0;}
+.opc h3.opc-h::before{content:'';width:20px;height:3px;border-radius:9999px;background:var(--gold,#e8a020);flex-shrink:0;}
+.opc h3.opc-h-card{margin-top:0;}
+.opc p.opc-p{margin:0 0 1.1rem;font-size:.98rem;color:var(--text,#1a1e2e);}
+.opc p.opc-p:last-child{margin-bottom:0;}
+.opc p.opc-lead{font-size:1.08rem;font-weight:600;color:var(--navy,#0d2346);}
+.opc strong{color:var(--navy,#0d2346);font-weight:700;}
+.opc em{font-style:italic;color:var(--blue,#1a4fac);font-weight:600;}
+.opc a.opc-link{color:var(--blue,#1a4fac);text-decoration:none;font-weight:600;border-bottom:1px solid rgba(26,79,172,.35);transition:color .2s ease,border-color .2s ease;}
+.opc a.opc-link:hover{color:var(--gold,#e8a020);border-color:var(--gold,#e8a020);}
+.opc ul.opc-list{list-style:none;margin:0 0 1.4rem;padding:0;display:flex;flex-direction:column;gap:.6rem;}
+.opc ul.opc-list li{display:flex;align-items:flex-start;gap:.7rem;background:var(--light,#f0f4fb);border:1px solid var(--border,#dde3f0);border-radius:14px;padding:.85rem 1.1rem;font-size:.93rem;line-height:1.55;}
+.opc ul.opc-list li::before{content:'\2713';flex-shrink:0;width:22px;height:22px;border-radius:9999px;background:linear-gradient(135deg,var(--blue,#1a4fac),var(--sky,#1e8dc1));color:#fff;font-size:.7rem;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:.1rem;}
+.opc hr.opc-divider{border:none;border-top:1px dashed var(--border,#dde3f0);margin:1.6rem 0;}
+.opc p.opc-cta{margin:1.2rem 0;}
+.opc a.opc-btn{display:inline-flex;align-items:center;gap:.45rem;background:var(--gold,#e8a020);color:var(--navy,#0d2346);padding:.8rem 1.8rem;border-radius:9999px;font-weight:800;font-size:.82rem;text-decoration:none;letter-spacing:.03em;text-transform:uppercase;box-shadow:0 8px 28px rgba(232,160,32,.4);transition:background .2s ease,transform .2s ease,box-shadow .2s ease;}
+.opc a.opc-btn:hover{background:#f5b030;transform:translateY(-2px);box-shadow:0 10px 32px rgba(232,160,32,.55);}
+.opc p.opc-highlight{display:inline-flex;background:linear-gradient(135deg,var(--gold,#e8a020),#f5b030);color:var(--navy,#0d2346);font-weight:800;padding:.65rem 1.2rem;border-radius:12px;margin:0 0 1.1rem;box-shadow:0 6px 18px rgba(232,160,32,.3);}
+.opc p.opc-info{display:flex;align-items:flex-start;gap:.6rem;margin:0 0 .55rem;font-size:.92rem;color:var(--text,#1a1e2e);}
+.opc p.opc-info .opc-info-icon{flex-shrink:0;font-size:1rem;line-height:1.4;}
+.opc div.opc-btn-row{display:flex;flex-wrap:wrap;gap:.6rem;margin:.9rem 0 1.2rem;}
+.opc a.opc-btn-sm{display:inline-flex;align-items:center;gap:.4rem;background:var(--blue,#1a4fac);color:#fff;padding:.55rem 1.2rem;border-radius:9999px;font-weight:700;font-size:.78rem;text-decoration:none;letter-spacing:.03em;text-transform:uppercase;transition:background .2s ease,transform .2s ease;}
+.opc a.opc-btn-sm:hover{background:var(--sky,#1e8dc1);transform:translateY(-1px);}
+.opc a.opc-btn-sm.opc-btn-outline{background:transparent;color:var(--blue,#1a4fac);border:1.5px solid var(--blue,#1a4fac);}
+.opc a.opc-btn-sm.opc-btn-outline:hover{background:var(--blue,#1a4fac);color:#fff;}
+.opc div.opc-percent-table{display:flex;flex-direction:column;gap:.4rem;margin:0 0 1.2rem;border:1px solid var(--border,#dde3f0);border-radius:14px;overflow:hidden;}
+.opc div.opc-percent-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.6rem 1rem;font-size:.88rem;background:var(--white,#fff);}
+.opc div.opc-percent-row:nth-child(even){background:var(--light,#f0f4fb);}
+.opc span.opc-percent-badge{flex-shrink:0;background:var(--navy,#0d2346);color:var(--gold,#e8a020);font-weight:800;font-size:.82rem;padding:.25rem .75rem;border-radius:9999px;}
+.opc div.opc-card{background:var(--white,#fff);border:1px solid var(--border,#dde3f0);border-radius:20px;padding:1.6rem 1.7rem;margin:0 0 1.3rem;box-shadow:var(--shadow-sm,0 2px 8px rgba(13,35,70,.10));transition:box-shadow .2s ease,transform .2s ease;}
+.opc div.opc-card:hover{box-shadow:var(--shadow-lg,0 8px 32px rgba(13,35,70,.14));transform:translateY(-2px);}
+.opc div.opc-card .opc-list,.opc div.opc-card .opc-percent-table{margin-bottom:0;}
+.opc div.opc-card .opc-btn-row{margin-bottom:0;}
+.opc div.opc-card-cta{background:var(--light,#f0f4fb);border:1px solid var(--border,#dde3f0);border-radius:16px;padding:1.4rem 1.6rem;display:flex;align-items:center;justify-content:space-between;gap:1.2rem;flex-wrap:wrap;}
+.opc div.opc-card-cta p{margin:0;font-weight:700;color:var(--navy,#0d2346);}
+</style>
+<div class="opc">
+<h3 class="opc-h">Objetivo Jesuíno:</h3>
+<h3 class="opc-h">Teatro</h3>
+<p class="opc-p opc-lead">As aulas de Teatro do Colégio Objetivo Jesuíno são um espaço de expressão, criatividade e desenvolvimento pessoal. Por meio de jogos teatrais, improvisações e montagens, os alunos trabalham a comunicação, a autoconfiança e a habilidade de se expressar em público.</p>
+<p class="opc-p">Além de estimular a imaginação e o trabalho em equipe, o teatro contribui para o desenvolvimento emocional e social, ajudando os estudantes a lidarem melhor com desafios, emoções e diferentes pontos de vista. </p>
+<h3 class="opc-h">inSchool influx</h3>
+<p class="opc-p">Com o programa <strong>inSchool</strong>, os alunos do <strong>Objetivo São Carlos</strong> têm a oportunidade de dominar o inglês com uma estrutura completa e sem sair do colégio.</p>
+<p class="opc-p">Benefícios do inSchool no Objetivo São Carlos</p>
+<ul class="opc-list"><li><span><strong>Metodologia Revolucionária:</strong> Seu filho aprende inglês de forma natural através dos <em>chunks</em> (blocos de palavras), garantindo fluência muito mais rápido.</span></li><li><span><strong>Mesmas Garantias inFlux:</strong> O programa mantém a mesma qualidade técnica e os mesmos termos de garantia de aprendizado oferecidos nas unidades físicas tradicionais.</span></li><li><span><strong>Acesso Total a Eventos:</strong> O estudante participa de todas as atividades de imersão, festas temáticas e eventos culturais promovidos pela rede inFlux na unidade São Carlos, SP.</span></li><li><span><strong>Praticidade e Segurança:</strong> As aulas ocorrem dentro do próprio colégio no contraturno, eliminando a necessidade de transporte e otimizando a rotina da família.</span></li></ul>
+<p class="opc-p">Seu filho garante uma formação global de excelência, unindo a força pedagógica do Objetivo à eficiência do método inFlux.</p>
+<h3 class="opc-h">Educação financeira</h3>
+<p class="opc-p">A aula extracurricular de Educação Financeira do Colégio Objetivo Jesuíno foi criada para preparar nossos alunos para a vida. Integrada à rotina escolar, ela tem como objetivo desenvolver uma relação mais consciente e responsável com o dinheiro, estimulando o planejamento, a organização e a tomada de decisões equilibradas.</p>
+<h3 class="opc-h">Objetivo Júnior:</h3>
+<h3 class="opc-h">Xadrez</h3>
+<p class="opc-p">O xadrez desenvolve a <strong>concentração, o foco e o raciocínio lógico</strong>, além de estimular a paciência e a criatividade. A prática também promove a <strong>competição saudável</strong>, incentivando estratégias e tomadas de decisão.</p>
+<h3 class="opc-h">Judô</h3>
+<p class="opc-p">O judô vai além do esporte: fortalece a <strong>disciplina, o respeito e os valores</strong>, além de estimular a socialização e o desenvolvimento físico de forma equilibrada.</p>
+<h3 class="opc-h">Balé</h3>
+<p class="opc-p">O balé contribui para a <strong>postura, consciência corporal e coordenação motora</strong>, além de incentivar a sociabilidade, a disciplina e a autoconfiança física e emocional.</p>
+<h3 class="opc-h">Violão</h3>
+<p class="opc-p">A prática do violão estimula o <strong>desenvolvimento cognitivo</strong>, a coordenação motora e a inteligência emocional. Também fortalece a disciplina, a autoconfiança e o trabalho em grupo.</p>
+<h3 class="opc-h">Robótica</h3>
+<p class="opc-p">A robótica desperta o interesse por <strong>ciência e tecnologia</strong>, tornando o aprendizado de matemática e física mais dinâmico e interdisciplinar. Estimula a criatividade e a resolução de problemas.</p>
+<h3 class="opc-h">Teatro </h3>
+<p class="opc-p">O teatro desenvolve a <strong>criatividade, a expressão e a confiança</strong>, além de contribuir para a dicção, memória, concentração, autonomia e responsabilidade.</p>
+<h3 class="opc-h">inSchool influx</h3>
+<p class="opc-p">Com o programa <strong>inSchool</strong>, os alunos do <strong>Objetivo São Carlos</strong> têm a oportunidade de dominar o inglês com uma estrutura completa e sem sair do colégio.</p>
+<p class="opc-p">Benefícios do inSchool no Objetivo São Carlos</p>
+<ul class="opc-list"><li><span><strong>Metodologia Revolucionária:</strong> Seu filho aprende inglês de forma natural através dos <em>chunks</em> (blocos de palavras), garantindo fluência muito mais rápido.</span></li><li><span><strong>Mesmas Garantias inFlux:</strong> O programa mantém a mesma qualidade técnica e os mesmos termos de garantia de aprendizado oferecidos nas unidades físicas tradicionais.</span></li><li><span><strong>Acesso Total a Eventos:</strong> O estudante participa de todas as atividades de imersão, festas temáticas e eventos culturais promovidos pela rede inFlux na unidade São Carlos, SP.</span></li><li><span><strong>Praticidade e Segurança:</strong> As aulas ocorrem dentro do próprio colégio no contraturno, eliminando a necessidade de transporte e otimizando a rotina da família.</span></li></ul>
+<p class="opc-p">Seu filho garante uma formação global de excelência, unindo a força pedagógica do Objetivo à eficiência do método inFlux.</p>
+</div>

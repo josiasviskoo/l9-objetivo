@@ -1,0 +1,69 @@
+<!-- Fonte: Aba site_ Sobre.docx -->
+<style>
+.opc{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--text,#1a1e2e);line-height:1.75;font-size:1rem;}
+.opc h3.opc-h{display:flex;align-items:center;gap:.6rem;font-size:1.2rem;font-weight:800;color:var(--navy,#0d2346);letter-spacing:-.01em;margin:2rem 0 .9rem;}
+.opc h3.opc-h:first-child{margin-top:0;}
+.opc h3.opc-h::before{content:'';width:20px;height:3px;border-radius:9999px;background:var(--gold,#e8a020);flex-shrink:0;}
+.opc h3.opc-h-card{margin-top:0;}
+.opc p.opc-p{margin:0 0 1.1rem;font-size:.98rem;color:var(--text,#1a1e2e);}
+.opc p.opc-p:last-child{margin-bottom:0;}
+.opc p.opc-lead{font-size:1.08rem;font-weight:600;color:var(--navy,#0d2346);}
+.opc strong{color:var(--navy,#0d2346);font-weight:700;}
+.opc em{font-style:italic;color:var(--blue,#1a4fac);font-weight:600;}
+.opc a.opc-link{color:var(--blue,#1a4fac);text-decoration:none;font-weight:600;border-bottom:1px solid rgba(26,79,172,.35);transition:color .2s ease,border-color .2s ease;}
+.opc a.opc-link:hover{color:var(--gold,#e8a020);border-color:var(--gold,#e8a020);}
+.opc ul.opc-list{list-style:none;margin:0 0 1.4rem;padding:0;display:flex;flex-direction:column;gap:.6rem;}
+.opc ul.opc-list li{display:flex;align-items:flex-start;gap:.7rem;background:var(--light,#f0f4fb);border:1px solid var(--border,#dde3f0);border-radius:14px;padding:.85rem 1.1rem;font-size:.93rem;line-height:1.55;}
+.opc ul.opc-list li::before{content:'\2713';flex-shrink:0;width:22px;height:22px;border-radius:9999px;background:linear-gradient(135deg,var(--blue,#1a4fac),var(--sky,#1e8dc1));color:#fff;font-size:.7rem;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:.1rem;}
+.opc hr.opc-divider{border:none;border-top:1px dashed var(--border,#dde3f0);margin:1.6rem 0;}
+.opc p.opc-cta{margin:1.2rem 0;}
+.opc a.opc-btn{display:inline-flex;align-items:center;gap:.45rem;background:var(--gold,#e8a020);color:var(--navy,#0d2346);padding:.8rem 1.8rem;border-radius:9999px;font-weight:800;font-size:.82rem;text-decoration:none;letter-spacing:.03em;text-transform:uppercase;box-shadow:0 8px 28px rgba(232,160,32,.4);transition:background .2s ease,transform .2s ease,box-shadow .2s ease;}
+.opc a.opc-btn:hover{background:#f5b030;transform:translateY(-2px);box-shadow:0 10px 32px rgba(232,160,32,.55);}
+.opc p.opc-highlight{display:inline-flex;background:linear-gradient(135deg,var(--gold,#e8a020),#f5b030);color:var(--navy,#0d2346);font-weight:800;padding:.65rem 1.2rem;border-radius:12px;margin:0 0 1.1rem;box-shadow:0 6px 18px rgba(232,160,32,.3);}
+.opc p.opc-info{display:flex;align-items:flex-start;gap:.6rem;margin:0 0 .55rem;font-size:.92rem;color:var(--text,#1a1e2e);}
+.opc p.opc-info .opc-info-icon{flex-shrink:0;font-size:1rem;line-height:1.4;}
+.opc div.opc-btn-row{display:flex;flex-wrap:wrap;gap:.6rem;margin:.9rem 0 1.2rem;}
+.opc a.opc-btn-sm{display:inline-flex;align-items:center;gap:.4rem;background:var(--blue,#1a4fac);color:#fff;padding:.55rem 1.2rem;border-radius:9999px;font-weight:700;font-size:.78rem;text-decoration:none;letter-spacing:.03em;text-transform:uppercase;transition:background .2s ease,transform .2s ease;}
+.opc a.opc-btn-sm:hover{background:var(--sky,#1e8dc1);transform:translateY(-1px);}
+.opc a.opc-btn-sm.opc-btn-outline{background:transparent;color:var(--blue,#1a4fac);border:1.5px solid var(--blue,#1a4fac);}
+.opc a.opc-btn-sm.opc-btn-outline:hover{background:var(--blue,#1a4fac);color:#fff;}
+.opc div.opc-percent-table{display:flex;flex-direction:column;gap:.4rem;margin:0 0 1.2rem;border:1px solid var(--border,#dde3f0);border-radius:14px;overflow:hidden;}
+.opc div.opc-percent-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.6rem 1rem;font-size:.88rem;background:var(--white,#fff);}
+.opc div.opc-percent-row:nth-child(even){background:var(--light,#f0f4fb);}
+.opc span.opc-percent-badge{flex-shrink:0;background:var(--navy,#0d2346);color:var(--gold,#e8a020);font-weight:800;font-size:.82rem;padding:.25rem .75rem;border-radius:9999px;}
+.opc div.opc-card{background:var(--white,#fff);border:1px solid var(--border,#dde3f0);border-radius:20px;padding:1.6rem 1.7rem;margin:0 0 1.3rem;box-shadow:var(--shadow-sm,0 2px 8px rgba(13,35,70,.10));transition:box-shadow .2s ease,transform .2s ease;}
+.opc div.opc-card:hover{box-shadow:var(--shadow-lg,0 8px 32px rgba(13,35,70,.14));transform:translateY(-2px);}
+.opc div.opc-card .opc-list,.opc div.opc-card .opc-percent-table{margin-bottom:0;}
+.opc div.opc-card .opc-btn-row{margin-bottom:0;}
+.opc div.opc-card-cta{background:var(--light,#f0f4fb);border:1px solid var(--border,#dde3f0);border-radius:16px;padding:1.4rem 1.6rem;display:flex;align-items:center;justify-content:space-between;gap:1.2rem;flex-wrap:wrap;}
+.opc div.opc-card-cta p{margin:0;font-weight:700;color:var(--navy,#0d2346);}
+</style>
+<div class="opc">
+<h3 class="opc-h">1981 </h3>
+<p class="opc-p opc-lead">Fundação do Curso Pré Vestibular </p>
+<p class="opc-info"><span class="opc-info-icon">📍</span><span>Rua Bento Carlos. </span></p>
+<p class="opc-p">Logo depois, mudou-se para a Rua 7 de Setembro e, posteriormente, para o endereço atual. Mesmo durante os períodos de reestruturação, as atividades jamais foram interrompidas.</p>
+<h3 class="opc-h">1981 </h3>
+<p class="opc-p">No mesmo ano, começou o funcionamento do Ensino Médio (1°, 2° e 3° ano)</p>
+<p class="opc-p">A unidade funcionava perto da antiga FADISC.</p>
+<h3 class="opc-h">1999</h3>
+<p class="opc-p">Fundação da unidade Objetivo Jesuino</p>
+<div class="opc-card"><h3 class="opc-h opc-h-card">Pioneirismo em estrutura de laboratórios</h3><ul class="opc-list"><li><span>Laboratórios de Física, Química e Biologia</span></li><li><span>Laboratório de Informática (novidade importante para a época)</span></li></ul></div>
+<h3 class="opc-h">Objetivo Júnior </h3>
+<h3 class="opc-h">2002 </h3>
+<p class="opc-p">Fundação do Objetivo Júnior. </p>
+<p class="opc-p">Atendia apenas do Infantil até o 9° ano.</p>
+<p class="opc-p">Houve a separação e o fundamental II foi para o Jesuíno.</p>
+<p class="opc-p"><strong>Mudança do Objetivo Júnior para o Objetivo Jesuíno. </strong></p>
+<h3 class="opc-h">2019 - 2020</h3>
+<p class="opc-p">Fundação do Objetivo Júnior, unidade II. Começou o funcionamento em 2020.</p>
+<h3 class="opc-h">2019 - 2021</h3>
+<p class="opc-p">Fundação do Objetivo Júnior Infantil. Começou o funcionamento em 2021.</p>
+<h3 class="opc-h">2026</h3>
+<p class="opc-p">Hoje, o Objetivo São Carlos segue sólido e em constante crescimento.</p>
+<p class="opc-p">São mais de quatro décadas de história formando gerações, com unidades que atendem desde a Educação Infantil até o Pré-Vestibular.</p>
+<p class="opc-p">Com expansão contínua, investimentos em estrutura, revitalização dos espaços e compromisso com a excelência acadêmica, o Objetivo São Carlos mantém sua tradição de ensino forte, consolidando-se como referência na cidade.</p>
+<p class="opc-p">Uma história construída diariamente, com a confiança das famílias são-carlenses, geração após geração.</p>
+<p class="opc-p">Hoje, com 6 unidades ativas: Objetivo Júnior (Infantil, Unidade I e Unidade II), o Objetivo Jesuíno (Fundamental II e Ensino Médio) e o Objetivo Terceirão &amp; Curso.</p>
+<p class="opc-p">O Objetivo São Carlos segue forte na cidade, com crescimento contínuo, educando diariamente alunos do Infantil ao Pré-Vestibular. Novas expansões estão no horizonte, reformas constantes garantem ambientes cada vez mais acolhedores e modernos, e o ensino sólido e comprometido mantém viva a tradição da nossa instituição, aquela em que o são-carlense confia geração após geração.</p>
+</div>

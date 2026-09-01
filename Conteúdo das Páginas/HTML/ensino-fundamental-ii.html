@@ -1,0 +1,46 @@
+<!-- Fonte: Aba site_ Ensino Fundamental II.docx -->
+<style>
+.opc{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--text,#1a1e2e);line-height:1.75;font-size:1rem;}
+.opc h3.opc-h{display:flex;align-items:center;gap:.6rem;font-size:1.2rem;font-weight:800;color:var(--navy,#0d2346);letter-spacing:-.01em;margin:2rem 0 .9rem;}
+.opc h3.opc-h:first-child{margin-top:0;}
+.opc h3.opc-h::before{content:'';width:20px;height:3px;border-radius:9999px;background:var(--gold,#e8a020);flex-shrink:0;}
+.opc h3.opc-h-card{margin-top:0;}
+.opc p.opc-p{margin:0 0 1.1rem;font-size:.98rem;color:var(--text,#1a1e2e);}
+.opc p.opc-p:last-child{margin-bottom:0;}
+.opc p.opc-lead{font-size:1.08rem;font-weight:600;color:var(--navy,#0d2346);}
+.opc strong{color:var(--navy,#0d2346);font-weight:700;}
+.opc em{font-style:italic;color:var(--blue,#1a4fac);font-weight:600;}
+.opc a.opc-link{color:var(--blue,#1a4fac);text-decoration:none;font-weight:600;border-bottom:1px solid rgba(26,79,172,.35);transition:color .2s ease,border-color .2s ease;}
+.opc a.opc-link:hover{color:var(--gold,#e8a020);border-color:var(--gold,#e8a020);}
+.opc ul.opc-list{list-style:none;margin:0 0 1.4rem;padding:0;display:flex;flex-direction:column;gap:.6rem;}
+.opc ul.opc-list li{display:flex;align-items:flex-start;gap:.7rem;background:var(--light,#f0f4fb);border:1px solid var(--border,#dde3f0);border-radius:14px;padding:.85rem 1.1rem;font-size:.93rem;line-height:1.55;}
+.opc ul.opc-list li::before{content:'\2713';flex-shrink:0;width:22px;height:22px;border-radius:9999px;background:linear-gradient(135deg,var(--blue,#1a4fac),var(--sky,#1e8dc1));color:#fff;font-size:.7rem;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:.1rem;}
+.opc hr.opc-divider{border:none;border-top:1px dashed var(--border,#dde3f0);margin:1.6rem 0;}
+.opc p.opc-cta{margin:1.2rem 0;}
+.opc a.opc-btn{display:inline-flex;align-items:center;gap:.45rem;background:var(--gold,#e8a020);color:var(--navy,#0d2346);padding:.8rem 1.8rem;border-radius:9999px;font-weight:800;font-size:.82rem;text-decoration:none;letter-spacing:.03em;text-transform:uppercase;box-shadow:0 8px 28px rgba(232,160,32,.4);transition:background .2s ease,transform .2s ease,box-shadow .2s ease;}
+.opc a.opc-btn:hover{background:#f5b030;transform:translateY(-2px);box-shadow:0 10px 32px rgba(232,160,32,.55);}
+.opc p.opc-highlight{display:inline-flex;background:linear-gradient(135deg,var(--gold,#e8a020),#f5b030);color:var(--navy,#0d2346);font-weight:800;padding:.65rem 1.2rem;border-radius:12px;margin:0 0 1.1rem;box-shadow:0 6px 18px rgba(232,160,32,.3);}
+.opc p.opc-info{display:flex;align-items:flex-start;gap:.6rem;margin:0 0 .55rem;font-size:.92rem;color:var(--text,#1a1e2e);}
+.opc p.opc-info .opc-info-icon{flex-shrink:0;font-size:1rem;line-height:1.4;}
+.opc div.opc-btn-row{display:flex;flex-wrap:wrap;gap:.6rem;margin:.9rem 0 1.2rem;}
+.opc a.opc-btn-sm{display:inline-flex;align-items:center;gap:.4rem;background:var(--blue,#1a4fac);color:#fff;padding:.55rem 1.2rem;border-radius:9999px;font-weight:700;font-size:.78rem;text-decoration:none;letter-spacing:.03em;text-transform:uppercase;transition:background .2s ease,transform .2s ease;}
+.opc a.opc-btn-sm:hover{background:var(--sky,#1e8dc1);transform:translateY(-1px);}
+.opc a.opc-btn-sm.opc-btn-outline{background:transparent;color:var(--blue,#1a4fac);border:1.5px solid var(--blue,#1a4fac);}
+.opc a.opc-btn-sm.opc-btn-outline:hover{background:var(--blue,#1a4fac);color:#fff;}
+.opc div.opc-percent-table{display:flex;flex-direction:column;gap:.4rem;margin:0 0 1.2rem;border:1px solid var(--border,#dde3f0);border-radius:14px;overflow:hidden;}
+.opc div.opc-percent-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.6rem 1rem;font-size:.88rem;background:var(--white,#fff);}
+.opc div.opc-percent-row:nth-child(even){background:var(--light,#f0f4fb);}
+.opc span.opc-percent-badge{flex-shrink:0;background:var(--navy,#0d2346);color:var(--gold,#e8a020);font-weight:800;font-size:.82rem;padding:.25rem .75rem;border-radius:9999px;}
+.opc div.opc-card{background:var(--white,#fff);border:1px solid var(--border,#dde3f0);border-radius:20px;padding:1.6rem 1.7rem;margin:0 0 1.3rem;box-shadow:var(--shadow-sm,0 2px 8px rgba(13,35,70,.10));transition:box-shadow .2s ease,transform .2s ease;}
+.opc div.opc-card:hover{box-shadow:var(--shadow-lg,0 8px 32px rgba(13,35,70,.14));transform:translateY(-2px);}
+.opc div.opc-card .opc-list,.opc div.opc-card .opc-percent-table{margin-bottom:0;}
+.opc div.opc-card .opc-btn-row{margin-bottom:0;}
+.opc div.opc-card-cta{background:var(--light,#f0f4fb);border:1px solid var(--border,#dde3f0);border-radius:16px;padding:1.4rem 1.6rem;display:flex;align-items:center;justify-content:space-between;gap:1.2rem;flex-wrap:wrap;}
+.opc div.opc-card-cta p{margin:0;font-weight:700;color:var(--navy,#0d2346);}
+</style>
+<div class="opc">
+<p class="opc-p opc-lead">O Ensino Fundamental II do Objetivo São Carlos é uma fase decisiva na formação acadêmica e pessoal do aluno. É nesse período que ele amplia seus conhecimentos, desenvolve autonomia intelectual e aprende a lidar com novos desafios, responsabilidades e escolhas.</p>
+<p class="opc-p">Nossa proposta pedagógica vai além da transmissão de conteúdos. Trabalhamos com uma metodologia dinâmica, que equilibra teoria e prática, estimulando o pensamento crítico, a curiosidade, a organização dos estudos e a construção do raciocínio lógico. O aluno aprende a aprender, desenvolvendo habilidades essenciais para a continuidade da vida escolar.</p>
+<p class="opc-p">Contamos com uma equipe de professores experientes, que acompanha de perto o desenvolvimento acadêmico e socioemocional dos estudantes, respeitando diferentes ritmos de aprendizagem e incentivando o protagonismo do aluno.</p>
+<p class="opc-p">No Objetivo São Carlos, o Ensino Fundamental II oferece uma base sólida de conhecimentos e valores, preparando o aluno com segurança para o Ensino Médio e para os desafios futuros.</p>
+</div>
