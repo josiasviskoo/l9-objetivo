@@ -156,6 +156,76 @@ function objetivo_insert_seed_item( $post_type, $title, $excerpt, $meta = array(
 	return $post_id;
 }
 
+/**
+ * Marcos da linha do tempo "Nossa História" - CPT objetivo_timeline,
+ * compartilhado pela seção da home (template-parts/front/timeline.php) e
+ * pela página "Nossa História" (template-sobre.php). O rótulo curto de
+ * cada bolinha (_dot_label) é o ano do marco, não uma palavra genérica -
+ * ver objetivo_migrate_timeline_years() para a correção nos sites onde o
+ * seed antigo (INÍCIO/AVANÇO/INOVAÇÃO/HOJE) já rodou.
+ */
+function objetivo_seed_timeline_content() {
+	$timeline = array(
+		array( 'Fundação', '1981', 'Fundação do Curso Pré-Vestibular', 'Início das atividades na Rua Bento Carlos. Logo depois, a unidade se mudou para a Rua 7 de Setembro e, posteriormente, para o endereço atual. Mesmo durante os períodos de reestruturação, as atividades jamais foram interrompidas.', false ),
+		array( 'Expansão', '1981', 'Início do Ensino Médio', 'No mesmo ano, começou o funcionamento do Ensino Médio (1º, 2º e 3º ano), com a unidade funcionando perto da antiga FADISC - pioneirismo em estrutura de laboratórios de Física, Química e Biologia, além de um laboratório de Informática, novidade importante para a época.', false ),
+		array( 'Expansão', '1999', 'Fundação da unidade Objetivo Jesuíno', 'Expansão da estrutura física com a criação de uma nova unidade.', false ),
+		array( 'Crescimento', '2002', 'Fundação do Objetivo Júnior', 'A unidade atendia do Infantil até o 9º ano. Com o crescimento, houve a separação: o Fundamental II passou a funcionar no Objetivo Jesuíno, com a mudança do Objetivo Júnior para essa nova estrutura.', false ),
+		array( 'Expansão', '2019', 'Objetivo Júnior - Unidade II', 'Fundação da segunda unidade do Objetivo Júnior, com início de funcionamento em 2020.', false ),
+		array( 'Expansão', '2019', 'Objetivo Júnior Infantil', 'Fundação da unidade dedicada à Educação Infantil, com início de funcionamento em 2021.', false ),
+		array( 'Presente', '2026', 'Objetivo São Carlos em constante crescimento', 'Mais de quatro décadas de história formando gerações, com unidades que atendem desde a Educação Infantil até o Pré-Vestibular. Com expansão contínua, investimentos em estrutura, revitalização dos espaços e compromisso com a excelência acadêmica, o Objetivo São Carlos mantém sua tradição de ensino forte, consolidando-se como referência na cidade.', true ),
+	);
+	foreach ( $timeline as $i => $item ) {
+		list( $era, $dot, $title, $desc, $highlight ) = $item;
+		objetivo_insert_seed_item( 'objetivo_timeline', $title, $desc, array(
+			'_era_label'    => $era,
+			'_dot_label'    => $dot,
+			'_is_highlight' => $highlight ? '1' : '',
+		), $i );
+	}
+}
+
+/**
+ * Correção pontual: a primeira versão do seed populava a linha do tempo
+ * com 4 marcos genéricos (bolinhas INÍCIO/AVANÇO/INOVAÇÃO/HOJE) em vez dos
+ * marcos reais do material enviado pelo cliente (ver Conteúdo das
+ * Páginas/DOC/Aba site_ Sobre.docx). Em sites onde esse seed antigo já
+ * rodou, os posts do CPT objetivo_timeline já existem no banco - só trocar
+ * o array acima não muda o que já foi salvo. Aqui a gente manda os marcos
+ * antigos pra lixeira e roda o seed de novo com o conteúdo real (7 marcos,
+ * bolinha com o ano).
+ */
+function objetivo_migrate_timeline_years() {
+	if ( get_option( 'objetivo_migrated_timeline_years_v1' ) ) {
+		return;
+	}
+
+	$old_dot_labels = array( 'INÍCIO', 'AVANÇO', 'INOVAÇÃO', 'HOJE' );
+	$all_items      = get_posts( array(
+		'post_type'      => 'objetivo_timeline',
+		'posts_per_page' => -1,
+		'post_status'    => array( 'publish', 'draft', 'pending', 'private' ),
+		'fields'         => 'ids',
+	) );
+
+	$has_old_content = false;
+	foreach ( $all_items as $post_id ) {
+		if ( in_array( get_post_meta( $post_id, '_dot_label', true ), $old_dot_labels, true ) ) {
+			$has_old_content = true;
+			break;
+		}
+	}
+
+	if ( $has_old_content ) {
+		foreach ( $all_items as $post_id ) {
+			wp_trash_post( $post_id );
+		}
+		objetivo_seed_timeline_content();
+	}
+
+	update_option( 'objetivo_migrated_timeline_years_v1', 1 );
+}
+add_action( 'init', 'objetivo_migrate_timeline_years', 22 );
+
 function objetivo_seed_cpt_content() {
 	// Banners do slider da home.
 	$banners = array(
@@ -226,23 +296,7 @@ function objetivo_seed_cpt_content() {
 	}
 
 	// Timeline.
-	$timeline = array(
-		array( 'Fundação', '1981', 'Fundação do Curso Pré-Vestibular', 'Início das atividades na Rua Bento Carlos. Logo depois, a unidade se mudou para a Rua 7 de Setembro e, posteriormente, para o endereço atual. Mesmo durante os períodos de reestruturação, as atividades jamais foram interrompidas.', false ),
-		array( 'Expansão', '1981', 'Início do Ensino Médio', 'No mesmo ano, começou o funcionamento do Ensino Médio (1º, 2º e 3º ano), com a unidade funcionando perto da antiga FADISC - pioneirismo em estrutura de laboratórios de Física, Química e Biologia, além de um laboratório de Informática, novidade importante para a época.', false ),
-		array( 'Expansão', '1999', 'Fundação da unidade Objetivo Jesuíno', 'Expansão da estrutura física com a criação de uma nova unidade.', false ),
-		array( 'Crescimento', '2002', 'Fundação do Objetivo Júnior', 'A unidade atendia do Infantil até o 9º ano. Com o crescimento, houve a separação: o Fundamental II passou a funcionar no Objetivo Jesuíno, com a mudança do Objetivo Júnior para essa nova estrutura.', false ),
-		array( 'Expansão', '2019', 'Objetivo Júnior - Unidade II', 'Fundação da segunda unidade do Objetivo Júnior, com início de funcionamento em 2020.', false ),
-		array( 'Expansão', '2019', 'Objetivo Júnior Infantil', 'Fundação da unidade dedicada à Educação Infantil, com início de funcionamento em 2021.', false ),
-		array( 'Presente', '2026', 'Objetivo São Carlos em constante crescimento', 'Mais de quatro décadas de história formando gerações, com unidades que atendem desde a Educação Infantil até o Pré-Vestibular. Com expansão contínua, investimentos em estrutura, revitalização dos espaços e compromisso com a excelência acadêmica, o Objetivo São Carlos mantém sua tradição de ensino forte, consolidando-se como referência na cidade.', true ),
-	);
-	foreach ( $timeline as $i => $item ) {
-		list( $era, $dot, $title, $desc, $highlight ) = $item;
-		objetivo_insert_seed_item( 'objetivo_timeline', $title, $desc, array(
-			'_era_label'    => $era,
-			'_dot_label'    => $dot,
-			'_is_highlight' => $highlight ? '1' : '',
-		), $i );
-	}
+	objetivo_seed_timeline_content();
 
 	// Vestibulares.
 	$vestibular = array(
