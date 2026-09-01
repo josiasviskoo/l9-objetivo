@@ -227,10 +227,13 @@ function objetivo_seed_cpt_content() {
 
 	// Timeline.
 	$timeline = array(
-		array( 'Fundação', 'INÍCIO', 'Objetivo São Carlos', 'Nasce a unidade de São Carlos do Colégio Objetivo, com a missão de transformar a educação local por meio de um método de ensino inovador e rigoroso. Uma história dedicada à formação dos jovens da nossa região.', false ),
-		array( 'Crescimento', 'AVANÇO', 'Liderança Regional', 'Com excelência e dedicação, formamos gerações de estudantes que hoje ocupam posições de destaque nas melhores universidades e empresas, consolidando o Objetivo São Carlos como referência educacional.', false ),
-		array( 'Tecnologia', 'INOVAÇÃO', 'Inovação Educacional', 'Adoção contínua de plataformas inovadoras, como o e-GENIO, para apoiar os alunos de São Carlos em seu desenvolvimento integral, integrando o ensino presencial com as melhores ferramentas digitais.', false ),
-		array( 'Presente', 'HOJE', 'Referência no Ensino 🏆', 'Hoje, o Objetivo São Carlos é sinônimo de qualidade, com incontáveis aprovações nas melhores universidades do país e dedicação inabalável à formação de nossos jovens.', true ),
+		array( 'Fundação', '1981', 'Fundação do Curso Pré-Vestibular', 'Início das atividades na Rua Bento Carlos. Logo depois, a unidade se mudou para a Rua 7 de Setembro e, posteriormente, para o endereço atual. Mesmo durante os períodos de reestruturação, as atividades jamais foram interrompidas.', false ),
+		array( 'Expansão', '1981', 'Início do Ensino Médio', 'No mesmo ano, começou o funcionamento do Ensino Médio (1º, 2º e 3º ano), com a unidade funcionando perto da antiga FADISC - pioneirismo em estrutura de laboratórios de Física, Química e Biologia, além de um laboratório de Informática, novidade importante para a época.', false ),
+		array( 'Expansão', '1999', 'Fundação da unidade Objetivo Jesuíno', 'Expansão da estrutura física com a criação de uma nova unidade.', false ),
+		array( 'Crescimento', '2002', 'Fundação do Objetivo Júnior', 'A unidade atendia do Infantil até o 9º ano. Com o crescimento, houve a separação: o Fundamental II passou a funcionar no Objetivo Jesuíno, com a mudança do Objetivo Júnior para essa nova estrutura.', false ),
+		array( 'Expansão', '2019', 'Objetivo Júnior - Unidade II', 'Fundação da segunda unidade do Objetivo Júnior, com início de funcionamento em 2020.', false ),
+		array( 'Expansão', '2019', 'Objetivo Júnior Infantil', 'Fundação da unidade dedicada à Educação Infantil, com início de funcionamento em 2021.', false ),
+		array( 'Presente', '2026', 'Objetivo São Carlos em constante crescimento', 'Mais de quatro décadas de história formando gerações, com unidades que atendem desde a Educação Infantil até o Pré-Vestibular. Com expansão contínua, investimentos em estrutura, revitalização dos espaços e compromisso com a excelência acadêmica, o Objetivo São Carlos mantém sua tradição de ensino forte, consolidando-se como referência na cidade.', true ),
 	);
 	foreach ( $timeline as $i => $item ) {
 		list( $era, $dot, $title, $desc, $highlight ) = $item;
