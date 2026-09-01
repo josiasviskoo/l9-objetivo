@@ -222,7 +222,7 @@ ul.primary-menu { display: flex; align-items: center; gap: .15rem; list-style: n
 .motivo-text p { font-size: .84rem; color: var(--muted); line-height: 1.6; }
 
 .motivos-selos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
-.selo-card { background: var(--light); border: 1px solid var(--border); border-radius: var(--r-md); padding: 1.6rem 1.5rem; display: flex; flex-direction: column; align-items: center; text-align: center; gap: .8rem; box-shadow: var(--shadow-xs); transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease); }
+.selo-card { background: rgba(30,141,193,.08); border: 1px solid rgba(30,141,193,.2); border-radius: var(--r-md); padding: 1.6rem 1.5rem; display: flex; flex-direction: column; align-items: center; text-align: center; gap: .8rem; box-shadow: var(--shadow-xs); transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease); }
 .selo-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
 .selo-icon { font-size: 2.8rem; flex-shrink: 0; }
 .selo-card h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: .25rem; }

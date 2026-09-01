@@ -33,7 +33,7 @@ if ( ! $motivos && ! $selos ) {
 					$is_dark = (bool) get_post_meta( $selo->ID, '_is_dark', true );
 					$icon    = get_post_meta( $selo->ID, '_icon_emoji', true );
 					$url     = get_post_meta( $selo->ID, '_objetivo_url', true );
-					$img     = get_the_post_thumbnail_url( $selo->ID, 'thumbnail' );
+					$img     = get_the_post_thumbnail_url( $selo->ID, 'full' );
 					?>
 					<div class="selo-card<?php echo $is_dark ? ' selo-card-dark' : ''; ?>">
 						<?php if ( $img ) : ?>
