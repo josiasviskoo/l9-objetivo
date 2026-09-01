@@ -10,22 +10,24 @@ if ( ! $motivos && ! $selos ) {
 ?>
 <section class="motivos">
 	<div class="container">
-		<div class="motivos-inner">
-			<div>
-				<p class="section-label"><?php echo esc_html( objetivo_opt( 'sec_motivos', 'label' ) ); ?></p>
-				<h2 class="section-title"><?php echo objetivo_kses_em( objetivo_opt( 'sec_motivos', 'title' ) ); ?></h2>
-				<ul class="motivos-list">
-					<?php foreach ( $motivos as $motivo ) : ?>
-						<li>
-							<div class="motivo-icon"><?php echo esc_html( get_post_meta( $motivo->ID, '_icon_emoji', true ) ); ?></div>
-							<div class="motivo-text">
-								<h4><?php echo esc_html( get_the_title( $motivo ) ); ?></h4>
-								<p><?php echo esc_html( get_the_excerpt( $motivo ) ); ?></p>
-							</div>
-						</li>
-					<?php endforeach; ?>
-				</ul>
-			</div>
+		<div style="text-align:center; margin-bottom:2.8rem;">
+			<p class="section-label" style="justify-content:center;"><?php echo esc_html( objetivo_opt( 'sec_motivos', 'label' ) ); ?></p>
+			<h2 class="section-title" style="margin:0 auto .8rem;"><?php echo objetivo_kses_em( objetivo_opt( 'sec_motivos', 'title' ) ); ?></h2>
+		</div>
+
+		<ul class="motivos-grid">
+			<?php foreach ( $motivos as $motivo ) : ?>
+				<li>
+					<div class="motivo-icon"><?php echo esc_html( get_post_meta( $motivo->ID, '_icon_emoji', true ) ); ?></div>
+					<div class="motivo-text">
+						<h4><?php echo esc_html( get_the_title( $motivo ) ); ?></h4>
+						<p><?php echo esc_html( get_the_excerpt( $motivo ) ); ?></p>
+					</div>
+				</li>
+			<?php endforeach; ?>
+		</ul>
+
+		<?php if ( $selos ) : ?>
 			<div class="motivos-selos">
 				<?php foreach ( $selos as $selo ) :
 					$is_dark = (bool) get_post_meta( $selo->ID, '_is_dark', true );
@@ -49,6 +51,6 @@ if ( ! $motivos && ! $selos ) {
 					</div>
 				<?php endforeach; ?>
 			</div>
-		</div>
+		<?php endif; ?>
 	</div>
 </section>

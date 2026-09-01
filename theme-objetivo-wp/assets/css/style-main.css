@@ -215,17 +215,15 @@ ul.primary-menu { display: flex; align-items: center; gap: .15rem; list-style: n
 
 /* ── MOTIVOS ─────────────────────────────────────────── */
 .motivos { background: var(--white); }
-.motivos-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-.motivos-list { list-style: none; }
-.motivos-list li { display: flex; gap: 1rem; align-items: flex-start; padding: 1rem 0; border-bottom: 1px solid var(--border); border-radius: var(--r-xs); padding-left: .4rem; }
-.motivos-list li:last-child { border-bottom: none; }
+.motivos-grid { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; margin-bottom: 2.6rem; }
+.motivos-grid li { display: flex; gap: 1rem; align-items: flex-start; background: var(--light); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 1.4rem 1.5rem; }
 .motivo-icon { width: 44px; height: 44px; border-radius: var(--r-sm); background: linear-gradient(135deg, var(--blue), var(--sky)); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.5rem; box-shadow: 0 4px 12px rgba(26,79,172,.25); }
 .motivo-text h4 { font-weight: 700; color: var(--navy); margin-bottom: .2rem; font-size: .95rem; }
 .motivo-text p { font-size: .84rem; color: var(--muted); line-height: 1.6; }
 
-.motivos-selos { display: flex; flex-direction: column; gap: 1.2rem; }
-.selo-card { background: var(--light); border: 1px solid var(--border); border-radius: var(--r-md); padding: 1.4rem 1.5rem; display: flex; gap: 1.2rem; align-items: center; box-shadow: var(--shadow-xs); transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease); }
-.selo-card:hover { box-shadow: var(--shadow-md); transform: translateX(4px); }
+.motivos-selos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+.selo-card { background: var(--light); border: 1px solid var(--border); border-radius: var(--r-md); padding: 1.6rem 1.5rem; display: flex; flex-direction: column; align-items: center; text-align: center; gap: .8rem; box-shadow: var(--shadow-xs); transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease); }
+.selo-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
 .selo-icon { font-size: 2.8rem; flex-shrink: 0; }
 .selo-card h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: .25rem; }
 .selo-card p { font-size: .84rem; color: var(--muted); line-height: 1.5; }
@@ -600,7 +598,8 @@ ul.products {
    RESPONSIVO
    ========================================================================= */
 @media (max-width: 960px) {
-  .motivos-inner, .vestibulares-inner, .egenio-inner { grid-template-columns: 1fr; }
+  .vestibulares-inner, .egenio-inner { grid-template-columns: 1fr; }
+  .motivos-grid, .motivos-selos { grid-template-columns: 1fr 1fr; }
   .noticias-grid { grid-template-columns: 1fr 1fr; }
   .blog-grid { grid-template-columns: 1fr 1fr; }
   #content.shop-container ul.products, .woocommerce ul.products { grid-template-columns: repeat(2, 1fr) !important; }
@@ -636,6 +635,7 @@ ul.products {
   .blog-grid { grid-template-columns: 1fr; }
   #content.shop-container ul.products, .woocommerce ul.products { grid-template-columns: 1fr !important; }
   .segmentos-grid { grid-template-columns: 1fr; }
+  .motivos-grid, .motivos-selos { grid-template-columns: 1fr; }
   .timeline-wrap { grid-template-columns: 60px 1fr !important; }
   .tl-dot { transform: scale(.85); }
   .matriculas-inner { flex-direction: column; align-items: flex-start; }

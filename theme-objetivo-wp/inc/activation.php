@@ -226,6 +226,27 @@ function objetivo_migrate_timeline_years() {
 }
 add_action( 'init', 'objetivo_migrate_timeline_years', 22 );
 
+/**
+ * Correção pontual: o seed antigo criava um card de selo "Unidade de São
+ * Carlos/SP" na seção Motivos/Selos da home. Com o site passando a
+ * representar várias unidades, esse card isolado não faz mais sentido ali
+ * - foi removido do seed, e aqui a gente manda pra lixeira o que já tiver
+ * sido criado em sites onde o seed antigo já rodou.
+ */
+function objetivo_migrate_remove_unidade_sc_selo() {
+	if ( get_option( 'objetivo_migrated_remove_unidade_sc_selo_v1' ) ) {
+		return;
+	}
+
+	$post_id = objetivo_find_post_by_title( 'Unidade de São Carlos/SP', 'objetivo_selo' );
+	if ( $post_id ) {
+		wp_trash_post( $post_id );
+	}
+
+	update_option( 'objetivo_migrated_remove_unidade_sc_selo_v1', 1 );
+}
+add_action( 'init', 'objetivo_migrate_remove_unidade_sc_selo', 22 );
+
 function objetivo_seed_cpt_content() {
 	// Banners do slider da home.
 	$banners = array(
@@ -270,11 +291,13 @@ function objetivo_seed_cpt_content() {
 		objetivo_insert_seed_item( 'objetivo_motivo', $title, $desc, array( '_icon_emoji' => $icon ), $i );
 	}
 
-	// Selos.
+	// Selos. O card "Unidade de São Carlos/SP" foi removido daqui - com o
+	// site agora representando várias unidades, esse card isolado não fazia
+	// mais sentido nessa seção (ver objetivo_migrate_remove_unidade_sc_selo
+	// para a limpeza em sites onde ele já tinha sido semeado).
 	$selo1 = objetivo_insert_seed_item( 'objetivo_selo', '7 anos consecutivos: O Melhor de São Paulo', 'Colégio Objetivo vencedor por sete anos consecutivos do prêmio O Melhor de São Paulo na categoria Serviços.', array(), 0, objetivo_theme_image( 'selo-7-anos.png' ) );
 	$selo2 = objetivo_insert_seed_item( 'objetivo_selo', '9 anos consecutivos: Curso Objetivo', 'Curso Objetivo vencedor por nove anos consecutivos do prêmio O Melhor de São Paulo na categoria Serviços.', array(), 1, objetivo_theme_image( 'selo-9-anos.png' ) );
 	$selo3 = objetivo_insert_seed_item( 'objetivo_selo', '1º lugar no ENEM em São Paulo', 'O Objetivo ocupa o primeiro lugar no ENEM no Estado de São Paulo, comprovando décadas de dedicação à excelência.', array(), 2, objetivo_theme_image( 'selo-enem.png' ) );
-	objetivo_insert_seed_item( 'objetivo_selo', 'Unidade de São Carlos/SP', 'O Objetivo está presente em diversas regiões de São Paulo para atender você.', array( '_icon_emoji' => '📍', '_is_dark' => '1', '_objetivo_url' => '#' ), 3 );
 
 	// Segmentos.
 	$segmentos = array(
