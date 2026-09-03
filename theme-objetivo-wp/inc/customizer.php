@@ -21,12 +21,16 @@ function objetivo_customizer_definitions() {
 			'fields' => array(
 				'phone_display'    => array( 'label' => __( 'Telefone (texto exibido)', 'objetivo' ), 'type' => 'text', 'default' => '(16) 3374-5001' ),
 				'phone_tel'        => array( 'label' => __( 'Telefone (somente números, para o link tel:)', 'objetivo' ), 'type' => 'text', 'default' => '1633745001' ),
-				'whatsapp_display' => array( 'label' => __( 'WhatsApp (texto exibido)', 'objetivo' ), 'type' => 'text', 'default' => 'WhatsApp: (16) 3362-2600' ),
-				'whatsapp_number'  => array( 'label' => __( 'WhatsApp (número com DDI, ex: 551633622600)', 'objetivo' ), 'type' => 'text', 'default' => '551633622600' ),
+				'whatsapp_display'        => array( 'label' => __( 'WhatsApp Objetivo - unidade normal (texto exibido)', 'objetivo' ), 'type' => 'text', 'default' => 'WhatsApp Objetivo: (16) 3362-2600' ),
+				'whatsapp_number'         => array( 'label' => __( 'WhatsApp Objetivo - unidade normal (número com DDI, ex: 551633622600)', 'objetivo' ), 'type' => 'text', 'default' => '551633622600' ),
+				'whatsapp_junior_display' => array( 'label' => __( 'WhatsApp Objetivo Júnior (texto exibido)', 'objetivo' ), 'type' => 'text', 'default' => '' ),
+				'whatsapp_junior_number'  => array( 'label' => __( 'WhatsApp Objetivo Júnior (número com DDI, ex: 551633622600)', 'objetivo' ), 'type' => 'text', 'default' => '' ),
 				'address_label'    => array( 'label' => __( 'Endereço/unidade (texto exibido)', 'objetivo' ), 'type' => 'text', 'default' => 'Unidade de São Carlos/SP' ),
-				'atendimento_url'  => array( 'label' => __( 'Link "Atendimento"', 'objetivo' ), 'type' => 'url', 'default' => '#' ),
+				'atendimento_url'  => array( 'label' => __( 'Link "Central de Atendimento" (rodapé)', 'objetivo' ), 'type' => 'url', 'default' => '#' ),
 				'topbar_cta_label' => array( 'label' => __( 'Botão da barra superior (texto)', 'objetivo' ), 'type' => 'text', 'default' => 'Conheça o Objetivo' ),
 				'topbar_cta_url'   => array( 'label' => __( 'Botão da barra superior (link)', 'objetivo' ), 'type' => 'url', 'default' => '#' ),
+				'matriculas_label' => array( 'label' => __( 'Botão "Matrículas e Transferências" (texto)', 'objetivo' ), 'type' => 'text', 'default' => 'Matrículas e Transferências' ),
+				'matriculas_url'   => array( 'label' => __( 'Botão "Matrículas e Transferências" (link - landing page do Objetivo Conecta)', 'objetivo' ), 'type' => 'url', 'default' => 'https://www.objetivosaocarlos.com.br/captacao/' ),
 			),
 		),
 		'header'       => array(
@@ -64,6 +68,14 @@ function objetivo_customizer_definitions() {
 				'title' => array( 'label' => __( 'Título', 'objetivo' ), 'type' => 'textarea', 'default' => 'Motivos para estudar<br>no <em>Objetivo</em>' ),
 			),
 		),
+		'sec_unidades' => array(
+			'title'  => __( 'Seção: Carrossel de Unidades', 'objetivo' ),
+			'fields' => array(
+				'label' => array( 'label' => __( 'Rótulo pequeno', 'objetivo' ), 'type' => 'text', 'default' => 'Objetivo São Carlos' ),
+				'title' => array( 'label' => __( 'Título', 'objetivo' ), 'type' => 'text', 'default' => 'Uma unidade para cada etapa da <em>jornada</em>' ),
+				'desc'  => array( 'label' => __( 'Descrição', 'objetivo' ), 'type' => 'textarea', 'default' => 'Seis unidades em São Carlos/SP, do Infantil ao Pré-Vestibular - cada uma com estrutura dedicada à sua etapa de ensino.' ),
+			),
+		),
 		'sec_vest'     => array(
 			'title'  => __( 'Seção: Vestibulares', 'objetivo' ),
 			'fields' => array(
@@ -85,21 +97,13 @@ function objetivo_customizer_definitions() {
 				'btn2_url'   => array( 'label' => __( 'Botão 2 (link)', 'objetivo' ), 'type' => 'url', 'default' => '#' ),
 			),
 		),
-		'egenio'       => array(
-			'title'  => __( 'Seção: e-GENIO', 'objetivo' ),
+		'sec_teste_vocacional' => array(
+			'title'  => __( 'Seção: Teste Vocacional', 'objetivo' ),
 			'fields' => array(
-				'label'    => array( 'label' => __( 'Rótulo pequeno', 'objetivo' ), 'type' => 'text', 'default' => 'Tecnologia educacional' ),
-				'title'    => array( 'label' => __( 'Título', 'objetivo' ), 'type' => 'textarea', 'default' => 'O <em>e-GENIO</em>: sua escola<br>também no digital' ),
-				'desc_1'   => array( 'label' => __( 'Parágrafo 1', 'objetivo' ), 'type' => 'textarea', 'default' => 'A plataforma e-GENIO é o ambiente digital do Objetivo, um espaço integrado onde alunos acessam conteúdos, tarefas e resultados, e os responsáveis acompanham a evolução escolar em tempo real.' ),
-				'desc_2'   => array( 'label' => __( 'Parágrafo 2', 'objetivo' ), 'type' => 'textarea', 'default' => 'Com recursos modernos e interface intuitiva, o e-GENIO une a excelência do ensino presencial à praticidade do digital, garantindo continuidade e engajamento no aprendizado.' ),
-				'phone_title'    => array( 'label' => __( 'Cartão - título', 'objetivo' ), 'type' => 'text', 'default' => 'e-GENIO' ),
-				'phone_subtitle' => array( 'label' => __( 'Cartão - subtítulo', 'objetivo' ), 'type' => 'textarea', 'default' => 'A plataforma digital do Objetivo para alunos, pais e educadores' ),
-				'feature_1' => array( 'label' => __( 'Recurso 1', 'objetivo' ), 'type' => 'text', 'default' => '📖 Conteúdos e aulas digitais' ),
-				'feature_2' => array( 'label' => __( 'Recurso 2', 'objetivo' ), 'type' => 'text', 'default' => '📊 Acompanhamento de desempenho' ),
-				'feature_3' => array( 'label' => __( 'Recurso 3', 'objetivo' ), 'type' => 'text', 'default' => '👨‍👩‍👧 Portal para responsáveis' ),
-				'feature_4' => array( 'label' => __( 'Recurso 4', 'objetivo' ), 'type' => 'text', 'default' => '🔔 Comunicados e avisos' ),
-				'btn_label' => array( 'label' => __( 'Botão (texto)', 'objetivo' ), 'type' => 'text', 'default' => 'Conheça o e-GENIO' ),
-				'btn_url'   => array( 'label' => __( 'Botão (link)', 'objetivo' ), 'type' => 'url', 'default' => '#' ),
+				'title'     => array( 'label' => __( 'Título (aceita <em> para a palavra dourada e <br> para quebra de linha)', 'objetivo' ), 'type' => 'textarea', 'default' => 'Descubra sua<br><em>Vocação</em><br>Profissional' ),
+				'desc'      => array( 'label' => __( 'Descrição (aceita <strong> para negrito)', 'objetivo' ), 'type' => 'textarea', 'default' => 'Orientação vocacional baseada nos modelos científicos <strong>RIASEC (Holland)</strong> e <strong>Inteligências Múltiplas (Gardner)</strong>, com apoio de inteligência artificial para uma orientação completamente personalizada.' ),
+				'btn_label' => array( 'label' => __( 'Botão (texto)', 'objetivo' ), 'type' => 'text', 'default' => 'Iniciar Orientação Vocacional' ),
+				'btn_url'   => array( 'label' => __( 'Botão (link)', 'objetivo' ), 'type' => 'url', 'default' => 'https://ov.objetivo.br/' ),
 			),
 		),
 		'sec_noticias' => array(
@@ -146,11 +150,18 @@ function objetivo_customizer_definitions() {
 		'footer'        => array(
 			'title'  => __( 'Rodapé', 'objetivo' ),
 			'fields' => array(
-				'brand_desc'    => array( 'label' => __( 'Descrição da marca', 'objetivo' ), 'type' => 'textarea', 'default' => 'Transformando vidas por meio da educação de excelência, da Educação Infantil ao Pré-Vestibular.' ),
-				'instagram_url' => array( 'label' => __( 'Instagram (deixe em branco para ocultar o ícone)', 'objetivo' ), 'type' => 'url', 'default' => '' ),
-				'facebook_url'  => array( 'label' => __( 'Facebook (deixe em branco para ocultar o ícone)', 'objetivo' ), 'type' => 'url', 'default' => '' ),
-				'youtube_url'   => array( 'label' => __( 'YouTube (deixe em branco para ocultar o ícone)', 'objetivo' ), 'type' => 'url', 'default' => '' ),
-				'linkedin_url'  => array( 'label' => __( 'LinkedIn (deixe em branco para ocultar o ícone)', 'objetivo' ), 'type' => 'url', 'default' => '' ),
+	'brand_desc'    => array( 'label' => __( 'Descrição da marca', 'objetivo' ), 'type' => 'textarea', 'default' => 'Transformando vidas por meio da educação de excelência, da Educação Infantil ao Pré-Vestibular.' ),
+				// Linha de cima dos ícones sociais: Objetivo (unidade normal).
+				'instagram_url' => array( 'label' => __( 'Objetivo - Instagram (deixe em branco para ocultar o ícone)', 'objetivo' ), 'type' => 'url', 'default' => '' ),
+				'facebook_url'  => array( 'label' => __( 'Objetivo - Facebook (deixe em branco para ocultar o ícone)', 'objetivo' ), 'type' => 'url', 'default' => '' ),
+				'threads_url'   => array( 'label' => __( 'Objetivo - Threads (deixe em branco para ocultar o ícone)', 'objetivo' ), 'type' => 'url', 'default' => '' ),
+				'youtube_url'   => array( 'label' => __( 'Objetivo - YouTube (deixe em branco para ocultar o ícone)', 'objetivo' ), 'type' => 'url', 'default' => '' ),
+				'linkedin_url'  => array( 'label' => __( 'Objetivo - LinkedIn (deixe em branco para ocultar o ícone)', 'objetivo' ), 'type' => 'url', 'default' => '' ),
+				// Linha de baixo: Objetivo Júnior (alinhada com a de cima -
+				// mesma ordem Instagram/Facebook/Threads, sem YouTube/LinkedIn).
+				'instagram_junior_url' => array( 'label' => __( 'Objetivo Júnior - Instagram (deixe em branco para ocultar o ícone)', 'objetivo' ), 'type' => 'url', 'default' => '' ),
+				'facebook_junior_url'  => array( 'label' => __( 'Objetivo Júnior - Facebook (deixe em branco para ocultar o ícone)', 'objetivo' ), 'type' => 'url', 'default' => '' ),
+				'threads_junior_url'   => array( 'label' => __( 'Objetivo Júnior - Threads (deixe em branco para ocultar o ícone)', 'objetivo' ), 'type' => 'url', 'default' => '' ),
 				'copyright'     => array( 'label' => __( 'Texto de copyright (o ano atual é adicionado automaticamente antes)', 'objetivo' ), 'type' => 'text', 'default' => 'Colégio e Cursinho Objetivo. Todos os direitos reservados.' ),
 				'developed_by'     => array( 'label' => __( 'Desenvolvido por (nome)', 'objetivo' ), 'type' => 'text', 'default' => 'L9 Propaganda' ),
 				'developed_by_url' => array( 'label' => __( 'Desenvolvido por (link)', 'objetivo' ), 'type' => 'url', 'default' => 'https://l9propaganda.com.br/' ),

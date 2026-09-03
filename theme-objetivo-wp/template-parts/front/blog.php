@@ -28,7 +28,7 @@ if ( ! $posts ) {
 				setup_postdata( $post );
 				$cats     = get_the_category( $post->ID );
 				$cat_name = $cats ? $cats[0]->name : '';
-				$img      = get_the_post_thumbnail_url( $post, 'objetivo-card' );
+				$img      = get_the_post_thumbnail_url( $post, 'objetivo-post-cover' );
 				$bg       = $img ? "url('" . esc_url( $img ) . "')," : '';
 				?>
 				<a class="blog-post<?php echo 0 === $i ? ' blog-post-featured' : ''; ?>" href="<?php echo esc_url( get_permalink( $post ) ); ?>">

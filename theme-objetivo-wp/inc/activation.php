@@ -247,6 +247,76 @@ function objetivo_migrate_remove_unidade_sc_selo() {
 }
 add_action( 'init', 'objetivo_migrate_remove_unidade_sc_selo', 22 );
 
+/**
+ * Correção pontual: o produto "e-GENIO" não existe mais - a seção da home
+ * foi substituída por "Teste Vocacional" (ver
+ * template-parts/front/teste-vocacional.php) e o item "e-GENIO" do submenu
+ * "Objetivo" (renomeado para "Objetivo São Carlos") precisa virar "Teste
+ * Vocacional", apontando para o subdomínio ov.objetivo.br. Só trocar os
+ * valores em objetivo_seed_menu() não muda o menu "Principal" em sites onde
+ * o seed antigo já rodou - aqui a gente renomeia os itens existentes.
+ */
+function objetivo_migrate_teste_vocacional_menu() {
+	if ( get_option( 'objetivo_migrated_teste_vocacional_menu_v1' ) ) {
+		return;
+	}
+
+	$menu = wp_get_nav_menu_object( 'Principal' );
+	if ( $menu ) {
+		$items = wp_get_nav_menu_items( $menu->term_id );
+		foreach ( (array) $items as $item ) {
+			if ( 'Objetivo' === $item->title && 0 === (int) $item->menu_item_parent ) {
+				wp_update_nav_menu_item( $menu->term_id, $item->ID, array(
+					'menu-item-title'  => 'Objetivo São Carlos',
+					'menu-item-url'    => $item->url,
+					'menu-item-status' => 'publish',
+				) );
+			} elseif ( 'e-GENIO' === $item->title ) {
+				wp_update_nav_menu_item( $menu->term_id, $item->ID, array(
+					'menu-item-title'     => 'Teste Vocacional',
+					'menu-item-url'       => 'https://ov.objetivo.br/',
+					'menu-item-parent-id' => $item->menu_item_parent,
+					'menu-item-status'    => 'publish',
+				) );
+			}
+		}
+	}
+
+	update_option( 'objetivo_migrated_teste_vocacional_menu_v1', 1 );
+}
+add_action( 'init', 'objetivo_migrate_teste_vocacional_menu', 22 );
+
+/**
+ * Correção pontual: a seção "Navegue pelo seu segmento" trocou o fundo de
+ * cor sólida por uma foto vertical com overlay na cor do segmento (ver
+ * template-parts/front/segmentos.php) - em sites onde o CPT
+ * objetivo_segmento já foi semeado sem imagem destacada, sideload aqui a
+ * mesma foto usada no seed novo (objetivo_seed_cpt_content).
+ */
+function objetivo_migrate_segmento_images() {
+	if ( get_option( 'objetivo_migrated_segmento_images_v1' ) ) {
+		return;
+	}
+
+	$images = array(
+		'Educação Infantil' => 'https://www.objetivo.br/assets/img/photo/img-home-educacao-infantil.jpg',
+		'Fundamental I'     => 'https://www.objetivo.br/assets/img/photo/img-home-ensino-fundamental.jpg',
+		'Fundamental II'    => 'https://www.objetivo.br/assets/img/photo/img-home-ensino-fundamental.jpg',
+		'Ensino Médio'      => 'https://www.objetivo.br/assets/img/photo/img-home-ensino-medio.jpg',
+		'Pré-Vestibular'    => 'https://www.objetivo.br/assets/img/photo/img-home-curso-objetivo.jpg',
+	);
+
+	foreach ( $images as $title => $url ) {
+		$post_id = objetivo_find_post_by_title( $title, 'objetivo_segmento' );
+		if ( $post_id && ! has_post_thumbnail( $post_id ) ) {
+			objetivo_sideload_featured_image( $url, $post_id, $title );
+		}
+	}
+
+	update_option( 'objetivo_migrated_segmento_images_v1', 1 );
+}
+add_action( 'init', 'objetivo_migrate_segmento_images', 22 );
+
 function objetivo_seed_cpt_content() {
 	// Banners do slider da home.
 	$banners = array(
@@ -299,23 +369,24 @@ function objetivo_seed_cpt_content() {
 	$selo2 = objetivo_insert_seed_item( 'objetivo_selo', '9 anos consecutivos: Curso Objetivo', 'Curso Objetivo vencedor por nove anos consecutivos do prêmio O Melhor de São Paulo na categoria Serviços.', array(), 1, objetivo_theme_image( 'selo-9-anos.png' ) );
 	$selo3 = objetivo_insert_seed_item( 'objetivo_selo', '1º lugar no ENEM em São Paulo', 'O Objetivo ocupa o primeiro lugar no ENEM no Estado de São Paulo, comprovando décadas de dedicação à excelência.', array(), 2, objetivo_theme_image( 'selo-enem.png' ) );
 
-	// Segmentos.
+	// Segmentos - foto vertical (formato retrato) com overlay na cor do
+	// segmento; reaproveita as mesmas fotos reais já usadas no seed do
+	// CPT objetivo_ensino, sideload feito por objetivo_insert_seed_item().
 	$segmentos = array(
-		array( '🌱', 'Seg. Verde', 'Educação Infantil', 'Berçário ao Pré-escola · 0 a 5 anos', '#27ae60', '#2ecc71' ),
-		array( '📐', 'Seg. Laranja', 'Fundamental I', '1º ao 5º ano · 6 a 10 anos', '#e67e22', '#f39c12' ),
-		array( '🔬', 'Seg. Roxo', 'Fundamental II', '6º ao 9º ano · 11 a 14 anos', '#8e44ad', '#9b59b6' ),
-		array( '🎓', 'Seg. Azul', 'Ensino Médio', '1ª à 3ª série · ENEM & Vestibulares', '#1a4fac', '#1e8dc1' ),
-		array( '🏆', 'Seg. Vermelho', 'Pré-Vestibular', 'Aprovação nas melhores universidades', '#c0392b', '#e74c3c' ),
+		array( 'Seg. Verde', 'Educação Infantil', 'Berçário ao Pré-escola · 0 a 5 anos', '#27ae60', '#2ecc71', 'https://www.objetivo.br/assets/img/photo/img-home-educacao-infantil.jpg' ),
+		array( 'Seg. Laranja', 'Fundamental I', '1º ao 5º ano · 6 a 10 anos', '#e67e22', '#f39c12', 'https://www.objetivo.br/assets/img/photo/img-home-ensino-fundamental.jpg' ),
+		array( 'Seg. Roxo', 'Fundamental II', '6º ao 9º ano · 11 a 14 anos', '#8e44ad', '#9b59b6', 'https://www.objetivo.br/assets/img/photo/img-home-ensino-fundamental.jpg' ),
+		array( 'Seg. Azul', 'Ensino Médio', '1ª à 3ª série · ENEM & Vestibulares', '#1a4fac', '#1e8dc1', 'https://www.objetivo.br/assets/img/photo/img-home-ensino-medio.jpg' ),
+		array( 'Seg. Vermelho', 'Pré-Vestibular', 'Aprovação nas melhores universidades', '#c0392b', '#e74c3c', 'https://www.objetivo.br/assets/img/photo/img-home-curso-objetivo.jpg' ),
 	);
 	foreach ( $segmentos as $i => $item ) {
-		list( $icon, $badge, $title, $desc, $from, $to ) = $item;
+		list( $badge, $title, $desc, $from, $to, $img ) = $item;
 		objetivo_insert_seed_item( 'objetivo_segmento', $title, $desc, array(
-			'_icon_emoji'  => $icon,
 			'_badge_label' => $badge,
 			'_color_from'  => $from,
 			'_color_to'    => $to,
 			'_objetivo_url' => '#',
-		), $i );
+		), $i, $img );
 	}
 
 	// Timeline.
@@ -523,10 +594,10 @@ function objetivo_seed_menu( $sobre_id, $blog_id ) {
 		return wp_update_nav_menu_item( $menu_id, 0, $args );
 	};
 
-	$objetivo_top = $add_item( 'Objetivo', '#' );
+	$objetivo_top = $add_item( 'Objetivo São Carlos', '#' );
 	$add_item( 'Sobre o Objetivo', $sobre_id ? get_permalink( $sobre_id ) : '#', $objetivo_top, $sobre_id );
 	$add_item( 'Proposta Pedagógica', '#', $objetivo_top );
-	$add_item( 'e-GENIO', '#', $objetivo_top );
+	$add_item( 'Teste Vocacional', 'https://ov.objetivo.br/', $objetivo_top );
 	$add_item( 'Convênios', '#', $objetivo_top );
 	$add_item( 'Unidade de São Carlos/SP', '#', $objetivo_top );
 	$add_item( 'Nossos Resultados', '#', $objetivo_top );
@@ -556,45 +627,7 @@ function objetivo_seed_menu( $sobre_id, $blog_id ) {
 	// filtro objetivo_nav_menu_shop_class() reconheça e destaque o item.
 	$add_item( 'Shop', $shop_url, 0, $shop_id > 0 ? $shop_id : 0 );
 
-	$locations = get_theme_mod( 'nav_menu_locations', array() );
+	$locations             = get_theme_mod( 'nav_menu_locations', array() );
 	$locations['primary'] = $menu_id;
-
-	// Colunas do rodapé - os mesmos links curados do layout aprovado, em
-	// menus próprios para o admin editar em Aparência → Menus.
-	$footer_ensino_items = array( 'Educação Infantil', 'Ensino Fundamental', 'Ensino Médio', 'Pré-Vestibular', 'Proposta Pedagógica' );
-	$footer_ensino_id    = objetivo_seed_simple_menu( 'Rodapé - Ensino', $footer_ensino_items );
-	if ( $footer_ensino_id ) {
-		$locations['footer-ensino'] = $footer_ensino_id;
-	}
-
-	$footer_vest_items = array( 'Resoluções Comentadas', 'Simulados', 'Aprovações', 'Fique por Dentro' );
-	$footer_vest_id    = objetivo_seed_simple_menu( 'Rodapé - Vestibulares', $footer_vest_items );
-	if ( $footer_vest_id ) {
-		$locations['footer-vestibulares'] = $footer_vest_id;
-	}
-
 	set_theme_mod( 'nav_menu_locations', $locations );
-}
-
-/**
- * Cria um menu simples (sem hierarquia) a partir de uma lista de títulos,
- * todos apontando para "#" até o admin criar as páginas correspondentes.
- * Retorna o ID do menu (ou 0 se já existir/falhar).
- */
-function objetivo_seed_simple_menu( $menu_name, $items ) {
-	if ( wp_get_nav_menu_object( $menu_name ) ) {
-		return 0;
-	}
-	$menu_id = wp_create_nav_menu( $menu_name );
-	if ( is_wp_error( $menu_id ) ) {
-		return 0;
-	}
-	foreach ( $items as $title ) {
-		wp_update_nav_menu_item( $menu_id, 0, array(
-			'menu-item-title'  => $title,
-			'menu-item-url'    => '#',
-			'menu-item-status' => 'publish',
-		) );
-	}
-	return $menu_id;
 }

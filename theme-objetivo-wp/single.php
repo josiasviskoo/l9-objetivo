@@ -25,7 +25,7 @@ get_header();
 		<div class="container single-post-content">
 			<?php if ( has_post_thumbnail() ) : ?>
 				<div class="article-cover">
-					<?php the_post_thumbnail( 'large' ); ?>
+					<?php the_post_thumbnail( 'objetivo-post-cover' ); ?>
 				</div>
 			<?php endif; ?>
 

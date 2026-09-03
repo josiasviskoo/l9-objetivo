@@ -1,7 +1,9 @@
 <?php
 /**
- * Seção "Navegue pelo seu segmento" - banners coloridos do CPT
- * objetivo_segmento.
+ * Seção "Navegue pelo seu segmento" - CPT objetivo_segmento. Cada card usa
+ * a imagem destacada (formato vertical) como fundo, com um wash na cor do
+ * segmento concentrado na base (identidade visual) e transparente no topo
+ * (foto visível) - ver .segmento-overlay em style-main.css.
  */
 $items = objetivo_get_items( 'objetivo_segmento' );
 if ( ! $items ) {
@@ -17,14 +19,14 @@ if ( ! $items ) {
 		</div>
 		<div class="segmentos-grid">
 			<?php foreach ( $items as $item ) :
-				$from = get_post_meta( $item->ID, '_color_from', true );
-				$to   = get_post_meta( $item->ID, '_color_to', true );
+				$from = get_post_meta( $item->ID, '_color_from', true ) ?: '#1a4fac';
+				$to   = get_post_meta( $item->ID, '_color_to', true ) ?: '#1e8dc1';
 				$url  = get_post_meta( $item->ID, '_objetivo_url', true );
+				$img  = get_the_post_thumbnail_url( $item->ID, 'objetivo-segmento' );
 				?>
-				<a class="segmento-card" href="<?php echo esc_url( $url ? $url : '#' ); ?>" style="background: linear-gradient(135deg, <?php echo esc_attr( $from ?: '#1a4fac' ); ?>, <?php echo esc_attr( $to ?: '#1e8dc1' ); ?>);">
-					<div class="segmento-pattern"></div>
+				<a class="segmento-card" href="<?php echo esc_url( $url ? $url : '#' ); ?>" style="background-color: <?php echo esc_attr( $to ); ?>;<?php echo $img ? " background-image:url('" . esc_url( $img ) . "'); background-size:cover; background-position:center;" : ''; ?>">
+					<div class="segmento-overlay" style="background: linear-gradient(to top, <?php echo esc_attr( $to ); ?> 0%, <?php echo esc_attr( $from ); ?>cc 45%, <?php echo esc_attr( $from ); ?>00 100%);"></div>
 					<div class="segmento-content">
-						<div class="segmento-icon"><?php echo esc_html( get_post_meta( $item->ID, '_icon_emoji', true ) ); ?></div>
 						<div class="segmento-badge"><?php echo esc_html( get_post_meta( $item->ID, '_badge_label', true ) ); ?></div>
 						<h3><?php echo esc_html( get_the_title( $item ) ); ?></h3>
 						<p><?php echo esc_html( get_the_excerpt( $item ) ); ?></p>

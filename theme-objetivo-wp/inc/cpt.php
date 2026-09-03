@@ -60,13 +60,13 @@ function objetivo_cpt_definitions() {
 			'singular'    => __( 'Segmento', 'objetivo' ),
 			'plural'      => __( 'Segmentos por Cor', 'objetivo' ),
 			'menu_icon'   => 'dashicons-networking',
-			'description' => __( 'Banners coloridos da seção "Navegue pelo seu segmento".', 'objetivo' ),
+			'description' => __( 'Banners da seção "Navegue pelo seu segmento" - imagem destacada (formato vertical) com overlay na cor do segmento.', 'objetivo' ),
 			'fields'      => array(
-				array( 'key' => '_icon_emoji', 'label' => __( 'Ícone (emoji)', 'objetivo' ), 'type' => 'text', 'placeholder' => '🌱' ),
 				array( 'key' => '_badge_label', 'label' => __( 'Rótulo do segmento', 'objetivo' ), 'type' => 'text', 'placeholder' => 'Seg. Verde' ),
 				array( 'key' => '_color_from', 'label' => __( 'Cor do gradiente (início)', 'objetivo' ), 'type' => 'color', 'placeholder' => '#27ae60' ),
 				array( 'key' => '_color_to', 'label' => __( 'Cor do gradiente (fim)', 'objetivo' ), 'type' => 'color', 'placeholder' => '#2ecc71' ),
 				array( 'key' => '_objetivo_url', 'label' => __( 'Link "Ver conteúdos"', 'objetivo' ), 'type' => 'url' ),
+				array( 'key' => '_icon_emoji', 'label' => __( 'Ícone (emoji) - usado só na faixa colorida do topo ao navegar dentro do segmento, não aparece mais no card da home', 'objetivo' ), 'type' => 'text', 'placeholder' => '🌱' ),
 			),
 		),
 		'objetivo_timeline'    => array(

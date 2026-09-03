@@ -23,7 +23,7 @@ if ( ! $posts ) {
 		<div class="noticias-grid">
 			<?php foreach ( $posts as $i => $post ) :
 				setup_postdata( $post );
-				$img       = get_the_post_thumbnail_url( $post, 'objetivo-card' );
+				$img       = get_the_post_thumbnail_url( $post, 'objetivo-post-cover' );
 				$bg        = $img ? "url('" . esc_url( $img ) . "')," : '';
 				$cats      = get_the_category( $post->ID );
 				$cat_name  = $cats ? $cats[0]->name : '';

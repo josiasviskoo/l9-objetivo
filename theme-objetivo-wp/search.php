@@ -27,7 +27,7 @@ get_header();
 				$i = 0;
 				while ( have_posts() ) :
 					the_post();
-					$img = get_the_post_thumbnail_url( get_the_ID(), 'objetivo-card' );
+					$img = get_the_post_thumbnail_url( get_the_ID(), 'objetivo-post-cover' );
 					$bg  = $img ? "url('" . esc_url( $img ) . "')," : '';
 					?>
 					<a class="blog-post" href="<?php the_permalink(); ?>">

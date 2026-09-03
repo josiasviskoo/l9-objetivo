@@ -38,16 +38,28 @@ function objetivo_setup() {
 	set_post_thumbnail_size( 640, 480, true );
 	add_image_size( 'objetivo-card', 640, 400, true );
 	add_image_size( 'objetivo-hero', 900, 1000, true );
+	// Formato vertical (3:4) para os cards de "Navegue pelo seu segmento" -
+	// o gradiente de cor de cada segmento fica na base do card, então a
+	// imagem funciona melhor alta/vertical (retrato) do que larga.
+	add_image_size( 'objetivo-segmento', 480, 640, true );
+	// Dimensão única para todas as fotos do blog/notícias (cards e capa do
+	// post): crop centralizado em 1920x1080, sempre a mesma proporção 16:9
+	// nos cards, na listagem e na página do artigo. Corte real (não é
+	// "sem cortar") - por isso, ao subir a foto, enquadre com margem de
+	// segurança (elementos importantes centralizados, longe das bordas)
+	// para nada essencial ficar de fora do corte 16:9.
+	add_image_size( 'objetivo-post-cover', 1920, 1080, true );
 	// crop = false: só redimensiona (sem cortar) - o banner precisa mostrar a
 	// imagem inteira, nunca uma versão mascarada/cortada dela.
 	add_image_size( 'objetivo-banner', 1920, 800, false );
 	add_image_size( 'objetivo-banner-mobile', 960, 1280, false );
 
+	// O rodapé não tem locations próprias: ele reaproveita o mesmo menu
+	// "primary" (ver footer.php), assim a estrutura do topo e do rodapé
+	// nunca ficam fora de sincronia - o admin edita só o menu "Principal".
 	register_nav_menus( array(
-		'primary'            => __( 'Principal (cabeçalho)', 'objetivo' ),
-		'topbar'              => __( 'Barra superior', 'objetivo' ),
-		'footer-ensino'       => __( 'Rodapé - Ensino', 'objetivo' ),
-		'footer-vestibulares' => __( 'Rodapé - Vestibulares', 'objetivo' ),
+		'primary' => __( 'Principal (cabeçalho e rodapé)', 'objetivo' ),
+		'topbar'  => __( 'Barra superior', 'objetivo' ),
 	) );
 }
 add_action( 'after_setup_theme', 'objetivo_setup' );
@@ -130,11 +142,12 @@ function objetivo_enqueue_assets() {
 add_action( 'wp_enqueue_scripts', 'objetivo_enqueue_assets', 20 );
 
 /**
- * Helper: emite um bloco de texto vindo do Customizer permitindo <em> para
- * destaque de palavra (usado em títulos "Sistema de Ensino <em>Objetivo</em>").
+ * Helper: emite um bloco de texto vindo do Customizer permitindo <em>/<strong>
+ * para destaque de palavra (usado em títulos "Sistema de Ensino
+ * <em>Objetivo</em>" e em parágrafos com termos em negrito).
  */
 function objetivo_kses_em( $text ) {
-	return wp_kses( $text, array( 'em' => array(), 'br' => array() ) );
+	return wp_kses( $text, array( 'em' => array(), 'strong' => array(), 'br' => array() ) );
 }
 
 /**

@@ -31,7 +31,7 @@ $area_restrita_url = objetivo_opt( 'header', 'area_restrita_url' );
 			<a href="#">📍 <?php echo esc_html( objetivo_opt( 'contato', 'address_label' ) ); ?></a>
 		</div>
 		<div class="topbar-right">
-			<a href="<?php echo esc_url( objetivo_opt( 'contato', 'atendimento_url' ) ); ?>"><?php esc_html_e( 'Atendimento', 'objetivo' ); ?></a>
+			<a href="<?php echo esc_url( objetivo_opt( 'contato', 'matriculas_url' ) ); ?>"><?php echo esc_html( objetivo_opt( 'contato', 'matriculas_label' ) ); ?></a>
 			<?php if ( has_nav_menu( 'topbar' ) ) : ?>
 				<?php wp_nav_menu( array( 'theme_location' => 'topbar', 'container' => false, 'menu_class' => 'topbar-menu', 'depth' => 1 ) ); ?>
 			<?php endif; ?>

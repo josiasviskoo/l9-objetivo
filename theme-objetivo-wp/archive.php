@@ -23,7 +23,7 @@ get_header();
 					the_post();
 					$cats     = get_the_category();
 					$cat_name = $cats ? $cats[0]->name : '';
-					$img      = get_the_post_thumbnail_url( get_the_ID(), 'objetivo-card' );
+					$img      = get_the_post_thumbnail_url( get_the_ID(), 'objetivo-post-cover' );
 					$bg       = $img ? "url('" . esc_url( $img ) . "')," : '';
 					?>
 					<a class="blog-post" href="<?php the_permalink(); ?>">
