@@ -616,8 +616,8 @@ function objetivo_seed_menu( $sobre_id, $blog_id ) {
 
 	$matriculas_top = $add_item( 'Matrículas', '#' );
 	$add_item( 'Agende uma Visita', '#', $matriculas_top );
-	$add_item( 'Desafio – Fundamental e Médio', '#', $matriculas_top );
-	$add_item( 'Concurso de Bolsas – Pré-Vestibular', '#', $matriculas_top );
+	$add_item( 'Desafio: Fundamental e Médio', '#', $matriculas_top );
+	$add_item( 'Concurso de Bolsas: Pré-Vestibular', '#', $matriculas_top );
 
 	$add_item( 'Blog', $blog_id ? get_permalink( $blog_id ) : '#', 0, $blog_id );
 

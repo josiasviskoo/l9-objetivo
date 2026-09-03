@@ -56,10 +56,15 @@ section { padding: 5.5rem 0; }
 
 /* ── TOP BAR ─────────────────────────────────────────── */
 .topbar { background: var(--navy); color: #9bb3d4; font-size: .78rem; font-weight: 600; letter-spacing: .03em; padding: .5rem 0; }
-.topbar-inner { max-width: 1260px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
-.topbar-left { display: flex; gap: 1.4rem; flex-wrap: wrap; }
-.topbar-right { display: flex; gap: .75rem; align-items: center; flex-wrap: wrap; }
-.topbar a { color: #9bb3d4; text-decoration: none; display: flex; align-items: center; gap: .35rem; transition: color var(--dur) var(--ease); border-radius: var(--r-xs); padding: .15rem .35rem; }
+/* No desktop a barra inteira fica numa linha só (nunca quebra em duas
+   partes): sem wrap, com scroll horizontal invisível como último recurso
+   em telas mais estreitas. No celular (≤960px, mesmo corte do menu
+   hambúrguer) ela volta a quebrar livremente - ver media query abaixo. */
+.topbar-inner { max-width: 1260px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
+.topbar-inner::-webkit-scrollbar { display: none; }
+.topbar-left { display: flex; gap: 1.4rem; flex-wrap: nowrap; flex-shrink: 0; }
+.topbar-right { display: flex; gap: .75rem; align-items: center; flex-wrap: nowrap; flex-shrink: 0; }
+.topbar a { color: #9bb3d4; text-decoration: none; display: flex; align-items: center; gap: .35rem; white-space: nowrap; transition: color var(--dur) var(--ease); border-radius: var(--r-xs); padding: .15rem .35rem; }
 .topbar a:hover { color: var(--gold); }
 .topbar-menu { display: flex; gap: .75rem; list-style: none; }
 .topbar-cta { background: var(--gold); color: var(--navy) !important; padding: .35rem 1rem; border-radius: var(--r-full); font-weight: 700; box-shadow: 0 2px 8px rgba(232,160,32,.35); transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease) !important; }
@@ -645,6 +650,8 @@ ul.products {
    RESPONSIVO
    ========================================================================= */
 @media (max-width: 960px) {
+  .topbar-inner, .topbar-left, .topbar-right { flex-wrap: wrap; overflow-x: visible; }
+  .topbar-left, .topbar-right { flex-shrink: 1; }
   .vestibulares-inner { grid-template-columns: 1fr; }
   .motivos-grid, .motivos-selos { grid-template-columns: 1fr 1fr; }
   .noticias-grid { grid-template-columns: 1fr 1fr; }
