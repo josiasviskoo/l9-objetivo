@@ -56,20 +56,13 @@ section { padding: 5.5rem 0; }
 
 /* ── TOP BAR ─────────────────────────────────────────── */
 .topbar { background: var(--navy); color: #9bb3d4; font-size: .78rem; font-weight: 600; letter-spacing: .03em; padding: .5rem 0; }
-/* No desktop a barra inteira fica numa linha só (nunca quebra em duas
-   partes): sem wrap, com scroll horizontal invisível como último recurso
-   em telas mais estreitas. No celular (≤960px, mesmo corte do menu
-   hambúrguer) ela volta a quebrar livremente - ver media query abaixo. */
-.topbar-inner { max-width: 1260px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
-.topbar-inner::-webkit-scrollbar { display: none; }
-.topbar-left { display: flex; gap: 1.4rem; flex-wrap: nowrap; flex-shrink: 0; }
-.topbar-right { display: flex; gap: .75rem; align-items: center; flex-wrap: nowrap; flex-shrink: 0; }
+.topbar-inner { max-width: 1260px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; justify-content: flex-end; gap: 1rem; }
+.topbar-right { display: flex; gap: .75rem; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
 .topbar a { color: #9bb3d4; text-decoration: none; display: flex; align-items: center; gap: .35rem; white-space: nowrap; transition: color var(--dur) var(--ease); border-radius: var(--r-xs); padding: .15rem .35rem; }
 .topbar a:hover { color: var(--gold); }
 .topbar-menu { display: flex; gap: .75rem; list-style: none; }
 .topbar-cta { background: var(--gold); color: var(--navy) !important; padding: .35rem 1rem; border-radius: var(--r-full); font-weight: 700; box-shadow: 0 2px 8px rgba(232,160,32,.35); transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease) !important; }
 .topbar-cta:hover { background: #f5b030 !important; color: var(--navy) !important; box-shadow: 0 4px 14px rgba(232,160,32,.5) !important; transform: translateY(-1px); }
-.topbar svg { width: 13px; height: 13px; fill: currentColor; flex-shrink: 0; }
 
 /* Financeiro / Área Restrita - vivem na topbar (fundo navy), à direita do
    "Conheça o Objetivo"; por isso usam azul/sky em vez de navy (que sumiria
@@ -291,6 +284,7 @@ ul.primary-menu { display: flex; align-items: center; gap: .15rem; list-style: n
 .matriculas-text p { color: rgba(13,35,70,.72); font-size: 1rem; }
 .btn-navy { display: inline-flex; align-items: center; gap: .45rem; background: var(--navy); color: var(--white); padding: .95rem 2rem; border-radius: var(--r-full); font-weight: 800; font-size: .9rem; text-decoration: none; letter-spacing: .03em; text-transform: uppercase; box-shadow: 0 4px 16px rgba(13,35,70,.3); transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease); white-space: nowrap; border: none; cursor: pointer; }
 .btn-navy:hover { background: #162d5a; box-shadow: 0 8px 24px rgba(13,35,70,.4); transform: translateY(-2px); }
+.btn-navy svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
 
 /* ── TESTE VOCACIONAL ────────────────────────────────── */
 .vocacional { background: var(--navy); position: relative; overflow: hidden; }
@@ -650,8 +644,7 @@ ul.products {
    RESPONSIVO
    ========================================================================= */
 @media (max-width: 960px) {
-  .topbar-inner, .topbar-left, .topbar-right { flex-wrap: wrap; overflow-x: visible; }
-  .topbar-left, .topbar-right { flex-shrink: 1; }
+  .topbar-inner, .topbar-right { flex-wrap: wrap; }
   .vestibulares-inner { grid-template-columns: 1fr; }
   .motivos-grid, .motivos-selos { grid-template-columns: 1fr 1fr; }
   .noticias-grid { grid-template-columns: 1fr 1fr; }

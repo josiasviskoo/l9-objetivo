@@ -287,6 +287,65 @@ function objetivo_migrate_teste_vocacional_menu() {
 add_action( 'init', 'objetivo_migrate_teste_vocacional_menu', 22 );
 
 /**
+ * Correção pontual: os cards de "Prepare-se para as maiores provas" (CPT
+ * objetivo_vestibular), o botão "Fique por Dentro", "Agende uma Visita",
+ * "Desafio: Fund. e Médio" e os itens de menu correspondentes apontavam
+ * para "#" - clicáveis, mas sem página de destino. Cria as páginas (ver
+ * objetivo_seed_vestibulares_pages(), definida mais abaixo) e atualiza o
+ * que já tiver sido semeado/criado em sites onde o seed antigo já rodou -
+ * só trocar os valores no seed não muda posts/itens de menu existentes.
+ */
+function objetivo_migrate_fix_vestibular_matriculas_links() {
+	if ( get_option( 'objetivo_migrated_fix_vestibular_matriculas_links_v1' ) ) {
+		return;
+	}
+
+	$vest_pages        = objetivo_seed_vestibulares_pages();
+	$vest_url_by_title = array(
+		'Resoluções Comentadas' => ! empty( $vest_pages['resolucoes-comentadas'] ) ? get_permalink( $vest_pages['resolucoes-comentadas'] ) : '',
+		'Simulados'             => ! empty( $vest_pages['simulados'] ) ? get_permalink( $vest_pages['simulados'] ) : '',
+		'Aprovações'            => ! empty( $vest_pages['aprovacoes'] ) ? get_permalink( $vest_pages['aprovacoes'] ) : '',
+		'Concurso de Bolsas'    => ! empty( $vest_pages['concurso-de-bolsas'] ) ? get_permalink( $vest_pages['concurso-de-bolsas'] ) : '',
+	);
+	foreach ( $vest_url_by_title as $title => $url ) {
+		if ( ! $url ) {
+			continue;
+		}
+		$post_id = objetivo_find_post_by_title( $title, 'objetivo_vestibular' );
+		if ( $post_id ) {
+			update_post_meta( $post_id, '_objetivo_url', $url );
+		}
+	}
+
+	$menu_url_by_title = array(
+		'Resoluções Comentadas'            => '/resolucoes-comentadas',
+		'Simulados'                        => '/simulados',
+		'Fique por Dentro'                 => '/fique-por-dentro',
+		'Aprovações'                       => '/aprovacoes',
+		'Agende uma Visita'                => 'https://wa.me/551633622600',
+		'Desafio: Fundamental e Médio'     => '/desafio',
+		'Concurso de Bolsas: Pré-Vestibular' => '/concurso-de-bolsas',
+	);
+	$menu = wp_get_nav_menu_object( 'Principal' );
+	if ( $menu ) {
+		$items = wp_get_nav_menu_items( $menu->term_id );
+		foreach ( (array) $items as $item ) {
+			if ( isset( $menu_url_by_title[ $item->title ] ) ) {
+				wp_update_nav_menu_item( $menu->term_id, $item->ID, array(
+					'menu-item-title'     => $item->title,
+					'menu-item-url'       => $menu_url_by_title[ $item->title ],
+					'menu-item-parent-id' => $item->menu_item_parent,
+					'menu-item-status'    => 'publish',
+				) );
+			}
+		}
+	}
+
+	update_option( 'objetivo_migrated_fix_vestibular_matriculas_links_v1', 1 );
+}
+add_action( 'init', 'objetivo_migrate_fix_vestibular_matriculas_links', 22 );
+
+/**
  * Correção pontual: a seção "Navegue pelo seu segmento" trocou o fundo de
  * cor sólida por uma foto vertical com overlay na cor do segmento (ver
  * template-parts/front/segmentos.php) - em sites onde o CPT
@@ -392,16 +451,19 @@ function objetivo_seed_cpt_content() {
 	// Timeline.
 	objetivo_seed_timeline_content();
 
-	// Vestibulares.
+	// Vestibulares - cada card aponta pra sua própria página (ver
+	// objetivo_seed_vestibulares_pages()), em vez do "#" de antes.
+	$vest_pages = objetivo_seed_vestibulares_pages();
 	$vestibular = array(
-		array( '📝', 'Resoluções Comentadas', 'FUVEST, UNICAMP, ENEM e mais, resolvidas pelo nosso time de professores.' ),
-		array( '⏱️', 'Simulados', 'Treine em condições reais de prova com nossos simulados periódicos.' ),
-		array( '🎉', 'Aprovações', 'Confira a lista histórica de alunos aprovados nas melhores universidades.' ),
-		array( '✅', 'Concurso de Bolsas', 'Inscreva-se no Concurso de Bolsas para o Pré-Vestibular Objetivo.' ),
+		array( '📝', 'Resoluções Comentadas', 'FUVEST, UNICAMP, ENEM e mais, resolvidas pelo nosso time de professores.', 'resolucoes-comentadas' ),
+		array( '⏱️', 'Simulados', 'Treine em condições reais de prova com nossos simulados periódicos.', 'simulados' ),
+		array( '🎉', 'Aprovações', 'Confira a lista histórica de alunos aprovados nas melhores universidades.', 'aprovacoes' ),
+		array( '✅', 'Concurso de Bolsas', 'Inscreva-se no Concurso de Bolsas para o Pré-Vestibular Objetivo.', 'concurso-de-bolsas' ),
 	);
 	foreach ( $vestibular as $i => $item ) {
-		list( $icon, $title, $desc ) = $item;
-		objetivo_insert_seed_item( 'objetivo_vestibular', $title, $desc, array( '_icon_emoji' => $icon, '_objetivo_url' => '#' ), $i );
+		list( $icon, $title, $desc, $slug ) = $item;
+		$url = ! empty( $vest_pages[ $slug ] ) ? get_permalink( $vest_pages[ $slug ] ) : '#';
+		objetivo_insert_seed_item( 'objetivo_vestibular', $title, $desc, array( '_icon_emoji' => $icon, '_objetivo_url' => $url ), $i );
 	}
 }
 
@@ -513,6 +575,68 @@ function objetivo_seed_blog_page() {
 }
 
 /**
+ * Cria (se ainda não existir) uma página simples com o template genérico
+ * page.php - usada pelas páginas de destino dos cards de Vestibulares e do
+ * botão "Desafio: Fund. e Médio", que antes apontavam para "#".
+ */
+function objetivo_seed_simple_page( $title, $slug, $content ) {
+	$existing = get_page_by_path( $slug );
+	if ( $existing ) {
+		return $existing->ID;
+	}
+	$page_id = wp_insert_post( array(
+		'post_type'    => 'page',
+		'post_title'   => $title,
+		'post_name'    => $slug,
+		'post_content' => $content,
+		'post_status'  => 'publish',
+	) );
+	return ( is_wp_error( $page_id ) || ! $page_id ) ? 0 : (int) $page_id;
+}
+
+/**
+ * Páginas de destino da seção "Prepare-se para as maiores provas" (home) -
+ * os 4 cards e o botão "Fique por Dentro" apontavam para "#". Retorna
+ * slug => ID para quem for montar os links (seed do CPT e do menu).
+ */
+function objetivo_seed_vestibulares_pages() {
+	$pages = array(
+		'fique-por-dentro'      => array(
+			'title'   => 'Fique por Dentro',
+			'content' => '<p>Acompanhe de perto tudo o que você precisa saber sobre os principais vestibulares e o ENEM: resoluções comentadas, simulados periódicos e o histórico de aprovações dos alunos do Objetivo São Carlos.</p>'
+				. '<ul><li><a href="/resolucoes-comentadas">Resoluções Comentadas</a></li><li><a href="/simulados">Simulados</a></li><li><a href="/aprovacoes">Aprovações</a></li><li><a href="/concurso-de-bolsas">Concurso de Bolsas</a></li></ul>',
+		),
+		'resolucoes-comentadas' => array(
+			'title'   => 'Resoluções Comentadas',
+			'content' => '<p>FUVEST, UNICAMP, ENEM e mais: as provas dos principais vestibulares do país, resolvidas e comentadas pelo nosso time de professores.</p>'
+				. '<p>Em breve, novas resoluções serão publicadas nesta página.</p>',
+		),
+		'simulados'             => array(
+			'title'   => 'Simulados',
+			'content' => '<p>Treine em condições reais de prova com os simulados periódicos do Objetivo São Carlos, aplicados ao longo do ano para preparar o aluno para o dia da prova.</p>'
+				. '<p>Em breve, o calendário de simulados será divulgado nesta página.</p>',
+		),
+		'aprovacoes'            => array(
+			'title'   => 'Aprovações',
+			'content' => '<p>Confira o histórico de alunos do Objetivo São Carlos aprovados nas melhores universidades do país - USP, UNICAMP, FUVEST e muito mais.</p>'
+				. '<p>Em breve, a lista completa de aprovações estará disponível nesta página.</p>',
+		),
+		'concurso-de-bolsas'    => array(
+			'title'   => 'Concurso de Bolsas',
+			'content' => '<p>O Concurso de Bolsas do Objetivo São Carlos oferece descontos na mensalidade para novos alunos do 6º ano do Ensino Fundamental II e do 1º ano do Ensino Médio, de acordo com o número de acertos na prova.</p>'
+				. '<p>As datas de inscrição, aulão preparatório e aplicação da prova para o próximo ano letivo serão divulgadas em breve. Para mais informações, fale com a nossa secretaria pelo WhatsApp.</p>'
+				. '<p><a class="btn-navy" href="https://wa.me/551633622600" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a></p>',
+		),
+	);
+
+	$ids = array();
+	foreach ( $pages as $slug => $data ) {
+		$ids[ $slug ] = objetivo_seed_simple_page( $data['title'], $slug, $data['content'] );
+	}
+	return $ids;
+}
+
+/**
  * Produtos de exemplo (excursões) no WooCommerce.
  */
 function objetivo_seed_woocommerce_products() {
@@ -609,15 +733,15 @@ function objetivo_seed_menu( $sobre_id, $blog_id ) {
 	$add_item( 'Pré-Vestibular', '#', $ensino_top );
 
 	$vest_top = $add_item( 'Vestibulares', '#' );
-	$add_item( 'Resoluções Comentadas', '#', $vest_top );
-	$add_item( 'Simulados', '#', $vest_top );
-	$add_item( 'Fique por Dentro', '#', $vest_top );
-	$add_item( 'Aprovações', '#', $vest_top );
+	$add_item( 'Resoluções Comentadas', '/resolucoes-comentadas', $vest_top );
+	$add_item( 'Simulados', '/simulados', $vest_top );
+	$add_item( 'Fique por Dentro', '/fique-por-dentro', $vest_top );
+	$add_item( 'Aprovações', '/aprovacoes', $vest_top );
 
 	$matriculas_top = $add_item( 'Matrículas', '#' );
-	$add_item( 'Agende uma Visita', '#', $matriculas_top );
-	$add_item( 'Desafio: Fundamental e Médio', '#', $matriculas_top );
-	$add_item( 'Concurso de Bolsas: Pré-Vestibular', '#', $matriculas_top );
+	$add_item( 'Agende uma Visita', 'https://wa.me/551633622600', $matriculas_top );
+	$add_item( 'Desafio: Fundamental e Médio', '/desafio', $matriculas_top );
+	$add_item( 'Concurso de Bolsas: Pré-Vestibular', '/concurso-de-bolsas', $matriculas_top );
 
 	$add_item( 'Blog', $blog_id ? get_permalink( $blog_id ) : '#', 0, $blog_id );
 

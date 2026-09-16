@@ -19,3 +19,4 @@ Conteúdo:
 ## `plugin-wp/`
 
 Pasta onde será desenvolvido o **plugin WordPress** que recria o layout de `layout-apresentado/` como um tema/plugin dinâmico (com blocos, custom post types, etc. conforme necessário). Todo o desenvolvimento novo acontece aqui.
+

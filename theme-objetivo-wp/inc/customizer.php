@@ -83,7 +83,7 @@ function objetivo_customizer_definitions() {
 				'title'    => array( 'label' => __( 'Título', 'objetivo' ), 'type' => 'textarea', 'default' => 'Prepare-se para<br>as maiores provas' ),
 				'desc'     => array( 'label' => __( 'Descrição', 'objetivo' ), 'type' => 'textarea', 'default' => 'Acesse resoluções comentadas, simulados e tudo sobre os principais vestibulares do Brasil. O Objetivo coloca você à frente.' ),
 				'btn_label' => array( 'label' => __( 'Botão (texto)', 'objetivo' ), 'type' => 'text', 'default' => 'Fique por Dentro' ),
-				'btn_url'   => array( 'label' => __( 'Botão (link)', 'objetivo' ), 'type' => 'url', 'default' => '#' ),
+				'btn_url'   => array( 'label' => __( 'Botão (link)', 'objetivo' ), 'type' => 'url', 'default' => '/fique-por-dentro' ),
 			),
 		),
 		'matriculas'   => array(
@@ -92,9 +92,9 @@ function objetivo_customizer_definitions() {
 				'title'      => array( 'label' => __( 'Título', 'objetivo' ), 'type' => 'text', 'default' => 'Matrículas abertas para 2027!' ),
 				'desc'       => array( 'label' => __( 'Descrição', 'objetivo' ), 'type' => 'textarea', 'default' => 'Venha conhecer a estrutura do Objetivo e garantir a vaga do seu filho. Agende uma visita hoje mesmo.' ),
 				'btn1_label' => array( 'label' => __( 'Botão 1 (texto)', 'objetivo' ), 'type' => 'text', 'default' => 'Agendar Visita' ),
-				'btn1_url'   => array( 'label' => __( 'Botão 1 (link)', 'objetivo' ), 'type' => 'url', 'default' => '#' ),
+				'btn1_url'   => array( 'label' => __( 'Botão 1 (link)', 'objetivo' ), 'type' => 'url', 'default' => 'https://wa.me/551633622600' ),
 				'btn2_label' => array( 'label' => __( 'Botão 2 (texto)', 'objetivo' ), 'type' => 'text', 'default' => 'Desafio: Fund. e Médio' ),
-				'btn2_url'   => array( 'label' => __( 'Botão 2 (link)', 'objetivo' ), 'type' => 'url', 'default' => '#' ),
+				'btn2_url'   => array( 'label' => __( 'Botão 2 (link)', 'objetivo' ), 'type' => 'url', 'default' => '/desafio' ),
 			),
 		),
 		'sec_teste_vocacional' => array(
@@ -150,7 +150,7 @@ function objetivo_customizer_definitions() {
 		'footer'        => array(
 			'title'  => __( 'Rodapé', 'objetivo' ),
 			'fields' => array(
-	'brand_desc'    => array( 'label' => __( 'Descrição da marca', 'objetivo' ), 'type' => 'textarea', 'default' => 'Transformando vidas por meio da educação de excelência, da Educação Infantil ao Pré-Vestibular.' ),
+	'brand_desc'    => array( 'label' => __( 'Descrição da marca', 'objetivo' ), 'type' => 'textarea', 'default' => 'Crescer, aprender e realizar.' ),
 				// Linha de cima dos ícones sociais: Objetivo (unidade normal).
 				'instagram_url' => array( 'label' => __( 'Objetivo - Instagram (deixe em branco para ocultar o ícone)', 'objetivo' ), 'type' => 'url', 'default' => '' ),
 				'facebook_url'  => array( 'label' => __( 'Objetivo - Facebook (deixe em branco para ocultar o ícone)', 'objetivo' ), 'type' => 'url', 'default' => '' ),
