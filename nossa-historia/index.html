@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nossa História — Objetivo São Carlos</title>
+<meta name="description" content="Mais de quatro décadas de história do Objetivo São Carlos, marco a marco."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #0d2346;
+    --blue:   #1a4fac;
+    --sky:    #1e8dc1;
+    --gold:   #e8a020;
+    --white:  #ffffff;
+    --muted:  #c7d3ea;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ---------- topbar fixo ---------- */
+  .hist-topbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 40;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 1.75rem;
+    background: linear-gradient(to bottom, rgba(13,35,70,.75), rgba(13,35,70,0));
+    pointer-events: none;
+  }
+  .hist-topbar > * { pointer-events: auto; }
+  .hist-topbar img { height: 32px; width: auto; display: block; }
+  .hist-back {
+    display: inline-flex; align-items: center; gap: .4rem;
+    color: var(--white); text-decoration: none; font-size: .8rem; font-weight: 700;
+    letter-spacing: .03em; text-transform: uppercase;
+    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.25);
+    padding: .55rem 1.1rem; border-radius: 9999px;
+    backdrop-filter: blur(6px);
+    transition: background .2s ease, border-color .2s ease;
+  }
+  .hist-back:hover { background: rgba(255,255,255,.2); border-color: rgba(255,255,255,.5); }
+
+  /* ---------- navegação lateral (pontos) ---------- */
+  .hist-dots {
+    position: fixed; right: 1.6rem; top: 50%; transform: translateY(-50%);
+    z-index: 40; display: flex; flex-direction: column; align-items: flex-end; gap: .85rem;
+  }
+  .hist-dot {
+    display: flex; align-items: center; gap: .6rem;
+    background: none; border: none; cursor: pointer; padding: 0;
+    color: var(--muted); font-family: inherit;
+  }
+  .hist-dot-year {
+    font-size: .7rem; font-weight: 700; letter-spacing: .03em;
+    opacity: 0; transform: translateX(6px);
+    transition: opacity .2s ease, transform .2s ease;
+    white-space: nowrap;
+  }
+  .hist-dot:hover .hist-dot-year,
+  .hist-dot.is-active .hist-dot-year { opacity: 1; transform: translateX(0); color: var(--white); }
+  .hist-dot-mark {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: rgba(255,255,255,.35);
+    border: 2px solid transparent;
+    transition: background .2s ease, border-color .2s ease, transform .2s ease;
+  }
+  .hist-dot:hover .hist-dot-mark { background: rgba(255,255,255,.7); }
+  .hist-dot.is-active .hist-dot-mark {
+    background: var(--gold); border-color: rgba(232,160,32,.4);
+    transform: scale(1.3);
+  }
+  @media (max-width: 780px) { .hist-dots { display: none; } }
+
+  /* ---------- telas fullscreen ---------- */
+  main { position: relative; }
+
+  .hist-screen {
+    position: relative;
+    min-height: 100vh; min-height: 100svh;
+    display: flex; align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .hist-bg {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    /* Slot para foto real de cada marco: troque o gradiente abaixo por
+       background-image: url('img/historia-N.jpg'); quando as fotos
+       chegarem do cliente. O padrão/gradiente atual funciona como fundo
+       provisório e não depende de nenhum arquivo externo. */
+  }
+  .hist-bg::before {
+    content: ''; position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 18% 20%, rgba(255,255,255,.05) 0, transparent 45%),
+      radial-gradient(circle at 82% 78%, rgba(255,255,255,.06) 0, transparent 50%);
+  }
+  .hist-bg::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(6,16,34,.92) 0%, rgba(6,16,34,.55) 45%, rgba(6,16,34,.25) 75%);
+  }
+
+  .hist-screen-1 .hist-bg { background-image: linear-gradient(135deg, #0d2346 0%, #1a4fac 100%); }
+  .hist-screen-2 .hist-bg { background-image: linear-gradient(135deg, #123a72 0%, #1e8dc1 100%); }
+  .hist-screen-3 .hist-bg { background-image: linear-gradient(135deg, #0d2346 0%, #1a3a7a 55%, #1e8dc1 100%); }
+  .hist-screen-4 .hist-bg { background-image: linear-gradient(135deg, #16336b 0%, #1e8dc1 100%); }
+  .hist-screen-5 .hist-bg { background-image: linear-gradient(135deg, #0d2346 0%, #1a4fac 100%); }
+  .hist-screen-6 .hist-bg { background-image: linear-gradient(135deg, #123a72 0%, #1e8dc1 100%); }
+  .hist-screen-7 .hist-bg { background-image: linear-gradient(135deg, #0d2346 0%, #7a5410 55%, #e8a020 130%); }
+
+  .hist-year-decor {
+    position: absolute; right: -2vw; top: 50%; transform: translateY(-50%);
+    font-size: clamp(9rem, 26vw, 22rem); font-weight: 900;
+    color: rgba(255,255,255,.06);
+    line-height: 1; letter-spacing: -.04em;
+    pointer-events: none; user-select: none;
+  }
+
+  .hist-content {
+    position: relative; z-index: 2;
+    width: 100%;
+    padding: 0 1.75rem 6.5rem;
+    max-width: 1180px; margin: 0 auto;
+  }
+
+  .hist-era {
+    display: inline-flex; align-items: center; gap: .6rem;
+    font-size: .8rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1rem;
+  }
+  .hist-era span {
+    color: var(--white); background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.25);
+    padding: .25rem .7rem; border-radius: 9999px; font-size: .74rem;
+    letter-spacing: .04em;
+  }
+
+  .hist-title {
+    font-size: clamp(2rem, 4.6vw, 3.6rem); font-weight: 900;
+    line-height: 1.12; letter-spacing: -.02em;
+    max-width: 16ch; margin-bottom: 1.2rem;
+  }
+
+  .hist-desc {
+    font-size: clamp(1rem, 1.35vw, 1.15rem); line-height: 1.7;
+    color: var(--muted); max-width: 62ch; font-weight: 400;
+  }
+
+  .hist-screen-7 .hist-era { color: var(--white); }
+  .hist-screen-7 .hist-era span { background: rgba(13,35,70,.35); border-color: rgba(255,255,255,.4); }
+
+  .hist-next {
+    position: absolute; left: 50%; bottom: 1.9rem; transform: translateX(-50%);
+    z-index: 2; width: 42px; height: 42px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--white); text-decoration: none; font-size: 1.2rem;
+    border: 1px solid rgba(255,255,255,.35); background: rgba(255,255,255,.08);
+    animation: hist-bounce 2.2s ease-in-out infinite;
+  }
+  .hist-next:hover { background: rgba(255,255,255,.18); }
+  @keyframes hist-bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  .hist-screen:last-child .hist-next { display: none; }
+
+  @media (max-width: 780px) {
+    .hist-content { padding: 0 1.25rem 4.5rem; }
+    .hist-title { max-width: none; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="hist-topbar">
+    <img src="logo-branco.png" alt="Objetivo São Carlos"/>
+    <a href="../layout-apresentado/index.html" class="hist-back">← Voltar ao site</a>
+  </header>
+
+  <nav class="hist-dots" aria-label="Navegar pelos marcos da história">
+    <button class="hist-dot" data-target="#s1"><span class="hist-dot-year">1981</span><span class="hist-dot-mark"></span></button>
+    <button class="hist-dot" data-target="#s2"><span class="hist-dot-year">1981</span><span class="hist-dot-mark"></span></button>
+    <button class="hist-dot" data-target="#s3"><span class="hist-dot-year">1999</span><span class="hist-dot-mark"></span></button>
+    <button class="hist-dot" data-target="#s4"><span class="hist-dot-year">2002</span><span class="hist-dot-mark"></span></button>
+    <button class="hist-dot" data-target="#s5"><span class="hist-dot-year">2019</span><span class="hist-dot-mark"></span></button>
+    <button class="hist-dot" data-target="#s6"><span class="hist-dot-year">2021</span><span class="hist-dot-mark"></span></button>
+    <button class="hist-dot" data-target="#s7"><span class="hist-dot-year">Hoje</span><span class="hist-dot-mark"></span></button>
+  </nav>
+
+  <main>
+
+    <section class="hist-screen hist-screen-1" id="s1">
+      <div class="hist-bg"></div>
+      <span class="hist-year-decor" aria-hidden="true">1981</span>
+      <div class="hist-content">
+        <p class="hist-era">Fundação <span>1981</span></p>
+        <h2 class="hist-title">Fundação do Curso Pré-Vestibular</h2>
+        <p class="hist-desc">Início das atividades na Rua Bento Carlos. Logo depois, a unidade se mudou para a Rua 7 de Setembro e, posteriormente, para o endereço atual. Mesmo durante os períodos de reestruturação, as atividades jamais foram interrompidas.</p>
+      </div>
+      <a href="#s2" class="hist-next" aria-label="Próximo marco">↓</a>
+    </section>
+
+    <section class="hist-screen hist-screen-2" id="s2">
+      <div class="hist-bg"></div>
+      <span class="hist-year-decor" aria-hidden="true">1981</span>
+      <div class="hist-content">
+        <p class="hist-era">Expansão <span>1981</span></p>
+        <h2 class="hist-title">Início do Ensino Médio</h2>
+        <p class="hist-desc">No mesmo ano, começou o funcionamento do Ensino Médio (1º, 2º e 3º ano), com a unidade funcionando perto da antiga FADISC - pioneirismo em estrutura de laboratórios de Física, Química e Biologia, além de um laboratório de Informática, novidade importante para a época.</p>
+      </div>
+      <a href="#s3" class="hist-next" aria-label="Próximo marco">↓</a>
+    </section>
+
+    <section class="hist-screen hist-screen-3" id="s3">
+      <div class="hist-bg"></div>
+      <span class="hist-year-decor" aria-hidden="true">1999</span>
+      <div class="hist-content">
+        <p class="hist-era">Expansão <span>1999</span></p>
+        <h2 class="hist-title">Fundação da unidade Objetivo Jesuíno</h2>
+        <p class="hist-desc">Expansão da estrutura física com a criação de uma nova unidade.</p>
+      </div>
+      <a href="#s4" class="hist-next" aria-label="Próximo marco">↓</a>
+    </section>
+
+    <section class="hist-screen hist-screen-4" id="s4">
+      <div class="hist-bg"></div>
+      <span class="hist-year-decor" aria-hidden="true">2002</span>
+      <div class="hist-content">
+        <p class="hist-era">Crescimento <span>2002</span></p>
+        <h2 class="hist-title">Fundação do Objetivo Júnior</h2>
+        <p class="hist-desc">A unidade atendia do Infantil até o 9º ano. Com o crescimento, houve a separação: o Fundamental II passou a funcionar no Objetivo Jesuíno, com a mudança do Objetivo Júnior para essa nova estrutura.</p>
+      </div>
+      <a href="#s5" class="hist-next" aria-label="Próximo marco">↓</a>
+    </section>
+
+    <section class="hist-screen hist-screen-5" id="s5">
+      <div class="hist-bg"></div>
+      <span class="hist-year-decor" aria-hidden="true">2019</span>
+      <div class="hist-content">
+        <p class="hist-era">Expansão <span>2019</span></p>
+        <h2 class="hist-title">Objetivo Júnior - Unidade II</h2>
+        <p class="hist-desc">Fundação da segunda unidade do Objetivo Júnior, com início de funcionamento em 2020.</p>
+      </div>
+      <a href="#s6" class="hist-next" aria-label="Próximo marco">↓</a>
+    </section>
+
+    <section class="hist-screen hist-screen-6" id="s6">
+      <div class="hist-bg"></div>
+      <span class="hist-year-decor" aria-hidden="true">2019</span>
+      <div class="hist-content">
+        <p class="hist-era">Expansão <span>2019</span></p>
+        <h2 class="hist-title">Objetivo Júnior Infantil</h2>
+        <p class="hist-desc">Fundação da unidade dedicada à Educação Infantil, com início de funcionamento em 2021.</p>
+      </div>
+      <a href="#s7" class="hist-next" aria-label="Próximo marco">↓</a>
+    </section>
+
+    <section class="hist-screen hist-screen-7" id="s7">
+      <div class="hist-bg"></div>
+      <span class="hist-year-decor" aria-hidden="true">2026</span>
+      <div class="hist-content">
+        <p class="hist-era">Presente <span>2026</span></p>
+        <h2 class="hist-title">Objetivo São Carlos em constante crescimento</h2>
+        <p class="hist-desc">Mais de quatro décadas de história formando gerações, com unidades que atendem desde a Educação Infantil até o Pré-Vestibular. Com expansão contínua, investimentos em estrutura, revitalização dos espaços e compromisso com a excelência acadêmica, o Objetivo São Carlos mantém sua tradição de ensino forte, consolidando-se como referência na cidade.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    (function () {
+      var dots = Array.prototype.slice.call(document.querySelectorAll('.hist-dot'));
+      var screens = Array.prototype.slice.call(document.querySelectorAll('.hist-screen'));
+
+      dots.forEach(function (dot) {
+        dot.addEventListener('click', function () {
+          var target = document.querySelector(dot.getAttribute('data-target'));
+          if (target) target.scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+
+      var setActive = function (id) {
+        dots.forEach(function (dot) {
+          dot.classList.toggle('is-active', dot.getAttribute('data-target') === '#' + id);
+        });
+      };
+
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) setActive(entry.target.id);
+          });
+        }, { threshold: .55 });
+        screens.forEach(function (screen) { observer.observe(screen); });
+      } else {
+        setActive(screens[0].id);
+      }
+    })();
+  </script>
+
+</body>
+</html>

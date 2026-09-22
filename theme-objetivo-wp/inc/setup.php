@@ -132,6 +132,22 @@ function objetivo_enqueue_assets() {
 		true
 	);
 
+	if ( is_page_template( 'template-sobre.php' ) ) {
+		wp_enqueue_style(
+			'objetivo-historia-fullscreen',
+			OBJETIVO_THEME_URI . '/assets/css/historia-fullscreen.css',
+			array( 'objetivo-main' ),
+			OBJETIVO_THEME_VERSION
+		);
+		wp_enqueue_script(
+			'objetivo-historia-fullscreen',
+			OBJETIVO_THEME_URI . '/assets/js/historia-fullscreen.js',
+			array(),
+			OBJETIVO_THEME_VERSION,
+			true
+		);
+	}
+
 	if ( is_singular() && comments_open() ) {
 		wp_enqueue_script( 'comment-reply' );
 	}

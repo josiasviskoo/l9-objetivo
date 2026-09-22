@@ -16,42 +16,42 @@ $unidades = array(
 		'title'   => 'Educação Infantil',
 		'address' => 'Rua Campos Salles, 2092',
 		'phone'   => '(16) 3374-5001',
-		'url'     => '#',
+		'url'     => 'https://wa.me/5516997076935',
 	),
 	array(
 		'badge'   => 'Ensino Fundamental I',
 		'title'   => 'Unidade I',
 		'address' => 'Rua Campos Salles, 2029',
 		'phone'   => '(16) 3362-2600',
-		'url'     => '#',
+		'url'     => 'https://wa.me/5516997076935',
 	),
 	array(
 		'badge'   => 'Ensino Fundamental II',
 		'title'   => 'Unidade Jesuíno',
 		'address' => 'Rua Jesuíno de Arruda, 2625',
 		'phone'   => '(16) 3373-3610',
-		'url'     => '#',
+		'url'     => 'https://wa.me/5516996542318',
 	),
 	array(
 		'badge'   => 'Ensino Médio',
 		'title'   => 'Unidade I',
 		'address' => 'Rua Jesuíno de Arruda, 2625',
 		'phone'   => '(16) 3373-3610',
-		'url'     => '#',
+		'url'     => 'https://wa.me/5516996542318',
 	),
 	array(
 		'badge'   => 'Ensino Médio',
 		'title'   => 'Unidade II',
 		'address' => 'Rua São Joaquim, 1515',
 		'phone'   => '(16) 3373-1900',
-		'url'     => '#',
+		'url'     => 'https://wa.me/551633731900',
 	),
 	array(
 		'badge'   => 'Pré-Vestibular',
 		'title'   => 'Curso Pré-Vestibular',
 		'address' => 'Rua São Sebastião, 2173',
 		'phone'   => '(16) 3373-1900',
-		'url'     => '#',
+		'url'     => 'https://wa.me/551633731900',
 	),
 );
 ?>
@@ -78,7 +78,7 @@ $unidades = array(
 							<p class="unidade-card-row"><span class="ico">📞</span><span><?php echo esc_html( $unidade['phone'] ); ?></span></p>
 						<?php endif; ?>
 						<?php if ( ! empty( $unidade['url'] ) ) : ?>
-							<a href="<?php echo esc_url( $unidade['url'] ); ?>" class="unidade-card-link"><?php esc_html_e( 'Agendar Visita', 'objetivo' ); ?> →</a>
+							<a href="<?php echo esc_url( $unidade['url'] ); ?>" class="unidade-card-link" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Agendar Visita', 'objetivo' ); ?> →</a>
 						<?php endif; ?>
 					</div>
 				<?php endforeach; ?>

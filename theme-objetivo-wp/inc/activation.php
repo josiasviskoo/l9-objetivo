@@ -346,6 +346,51 @@ function objetivo_migrate_fix_vestibular_matriculas_links() {
 add_action( 'init', 'objetivo_migrate_fix_vestibular_matriculas_links', 22 );
 
 /**
+ * Correção pontual: a migração acima corrigiu o item de menu "Fique por
+ * Dentro", mas não o botão da seção "Prepare-se para as maiores provas" na
+ * home (customizer sec_vest.btn_url) - em sites onde esse campo já tinha
+ * sido salvo apontando para a página errada (ex.: o Blog), o botão
+ * continuava levando para o lugar errado mesmo depois da página
+ * "Fique por Dentro" existir. Força o valor correto uma única vez.
+ */
+function objetivo_migrate_fix_home_fique_por_dentro_btn() {
+	if ( get_option( 'objetivo_migrated_fix_home_fique_por_dentro_btn_v1' ) ) {
+		return;
+	}
+
+	$page = get_page_by_path( 'fique-por-dentro' );
+	if ( $page ) {
+		set_theme_mod( 'objetivo_sec_vest_btn_url', get_permalink( $page ) );
+	}
+
+	update_option( 'objetivo_migrated_fix_home_fique_por_dentro_btn_v1', 1 );
+}
+add_action( 'init', 'objetivo_migrate_fix_home_fique_por_dentro_btn', 22 );
+
+/**
+ * Correção pontual: mesmo problema do fix acima, agora com o botão "Ver
+ * história completa" da home (customizer sec_timeline.cta_url). O valor só
+ * era gravado dentro de objetivo_seed_sobre_page() no momento em que a
+ * página "Nossa História" era criada pela primeira vez - em sites onde essa
+ * página já existia antes (ou onde o campo ficou salvo como "#"), o botão
+ * nunca chegou a apontar para a página real, mesmo com a página existindo.
+ * Força o valor correto uma única vez.
+ */
+function objetivo_migrate_fix_home_historia_completa_btn() {
+	if ( get_option( 'objetivo_migrated_fix_home_historia_completa_btn_v1' ) ) {
+		return;
+	}
+
+	$page = get_page_by_path( 'nossa-historia' );
+	if ( $page ) {
+		set_theme_mod( 'objetivo_sec_timeline_cta_url', get_permalink( $page ) );
+	}
+
+	update_option( 'objetivo_migrated_fix_home_historia_completa_btn_v1', 1 );
+}
+add_action( 'init', 'objetivo_migrate_fix_home_historia_completa_btn', 22 );
+
+/**
  * Correção pontual: a seção "Navegue pelo seu segmento" trocou o fundo de
  * cor sólida por uma foto vertical com overlay na cor do segmento (ver
  * template-parts/front/segmentos.php) - em sites onde o CPT

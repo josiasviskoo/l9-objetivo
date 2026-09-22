@@ -1,0 +1,133 @@
+/* =========================================================================
+   "Nossa História" em tela cheia - uma seção de 100vh por marco (CPT
+   objetivo_timeline). Usa as variáveis de cor globais de style-main.css
+   (--navy, --blue, --sky, --gold, --white) e só é carregado na página com
+   o modelo "Nossa História" (template-sobre.php).
+   ========================================================================= */
+
+.historia-fullscreen { position: relative; background: var(--navy); }
+
+/* ---------- navegação lateral (pontos com o ano) ---------- */
+.hist-dots {
+  position: fixed; right: 1.6rem; top: 50%; transform: translateY(-50%);
+  z-index: 40; display: flex; flex-direction: column; align-items: flex-end; gap: .85rem;
+}
+.hist-dot {
+  display: flex; align-items: center; gap: .6rem;
+  background: none; border: none; cursor: pointer; padding: 0;
+  color: #c7d3ea; font-family: inherit;
+}
+.hist-dot-year {
+  font-size: .7rem; font-weight: 700; letter-spacing: .03em;
+  opacity: 0; transform: translateX(6px);
+  transition: opacity .2s ease, transform .2s ease;
+  white-space: nowrap;
+}
+.hist-dot:hover .hist-dot-year,
+.hist-dot.is-active .hist-dot-year { opacity: 1; transform: translateX(0); color: var(--white); }
+.hist-dot-mark {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: rgba(255,255,255,.35);
+  border: 2px solid transparent;
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+.hist-dot:hover .hist-dot-mark { background: rgba(255,255,255,.7); }
+.hist-dot.is-active .hist-dot-mark {
+  background: var(--gold); border-color: rgba(232,160,32,.4);
+  transform: scale(1.3);
+}
+@media (max-width: 780px) { .hist-dots { display: none; } }
+
+/* ---------- telas fullscreen ---------- */
+.hist-screen {
+  position: relative;
+  min-height: 100vh; min-height: 100svh;
+  display: flex; align-items: flex-end;
+  overflow: hidden;
+  color: var(--white);
+}
+
+.hist-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+}
+.hist-bg::before {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 18% 20%, rgba(255,255,255,.05) 0, transparent 45%),
+    radial-gradient(circle at 82% 78%, rgba(255,255,255,.06) 0, transparent 50%);
+}
+.hist-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(6,16,34,.92) 0%, rgba(6,16,34,.55) 45%, rgba(6,16,34,.25) 75%);
+}
+
+/* Fundos-placeholder (gradiente) usados quando o marco não tem Imagem
+   Destacada definida no wp-admin - ao cadastrar uma imagem destacada no
+   marco (CPT "Nossa História (Timeline)"), ela substitui o gradiente
+   automaticamente (ver template-parts/front/historia-fullscreen.php). */
+.hist-bg-v0 { background-image: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%); }
+.hist-bg-v1 { background-image: linear-gradient(135deg, #123a72 0%, var(--sky) 100%); }
+.hist-bg-v2 { background-image: linear-gradient(135deg, var(--navy) 0%, #1a3a7a 55%, var(--sky) 100%); }
+.hist-bg-v3 { background-image: linear-gradient(135deg, #16336b 0%, var(--sky) 100%); }
+
+.hist-screen-highlight .hist-bg { background-image: linear-gradient(135deg, var(--navy) 0%, #7a5410 55%, var(--gold) 130%); }
+
+.hist-year-decor {
+  position: absolute; right: -2vw; top: 50%; transform: translateY(-50%);
+  font-size: clamp(9rem, 26vw, 22rem); font-weight: 900;
+  color: rgba(255,255,255,.06);
+  line-height: 1; letter-spacing: -.04em;
+  pointer-events: none; user-select: none;
+}
+
+.hist-content {
+  position: relative; z-index: 2;
+  width: 100%;
+  padding: 0 1.75rem 6.5rem;
+  max-width: 1180px; margin: 0 auto;
+}
+
+.hist-era {
+  display: inline-flex; align-items: center; gap: .6rem;
+  font-size: .8rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1rem;
+}
+.hist-era span {
+  color: var(--white); background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.25);
+  padding: .25rem .7rem; border-radius: 9999px; font-size: .74rem;
+  letter-spacing: .04em;
+}
+.hist-screen-highlight .hist-era { color: var(--white); }
+.hist-screen-highlight .hist-era span { background: rgba(13,35,70,.35); border-color: rgba(255,255,255,.4); }
+
+.hist-title {
+  font-size: clamp(2rem, 4.6vw, 3.6rem); font-weight: 900;
+  line-height: 1.12; letter-spacing: -.02em;
+  max-width: 16ch; margin-bottom: 1.2rem;
+}
+
+.hist-desc {
+  font-size: clamp(1rem, 1.35vw, 1.15rem); line-height: 1.7;
+  color: #c7d3ea; max-width: 62ch; font-weight: 400;
+}
+
+.hist-next {
+  position: absolute; left: 50%; bottom: 1.9rem; transform: translateX(-50%);
+  z-index: 2; width: 42px; height: 42px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--white); text-decoration: none; font-size: 1.2rem;
+  border: 1px solid rgba(255,255,255,.35); background: rgba(255,255,255,.08);
+  animation: hist-bounce 2.2s ease-in-out infinite;
+}
+.hist-next:hover { background: rgba(255,255,255,.18); }
+@keyframes hist-bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+@media (max-width: 780px) {
+  .hist-content { padding: 0 1.25rem 4.5rem; }
+  .hist-title { max-width: none; }
+}
