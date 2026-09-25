@@ -162,7 +162,7 @@ function objetivo_customizer_definitions() {
 				'instagram_junior_url' => array( 'label' => __( 'Objetivo Júnior - Instagram (deixe em branco para ocultar o ícone)', 'objetivo' ), 'type' => 'url', 'default' => '' ),
 				'facebook_junior_url'  => array( 'label' => __( 'Objetivo Júnior - Facebook (deixe em branco para ocultar o ícone)', 'objetivo' ), 'type' => 'url', 'default' => '' ),
 				'threads_junior_url'   => array( 'label' => __( 'Objetivo Júnior - Threads (deixe em branco para ocultar o ícone)', 'objetivo' ), 'type' => 'url', 'default' => '' ),
-				'copyright'     => array( 'label' => __( 'Texto de copyright (o ano atual é adicionado automaticamente antes)', 'objetivo' ), 'type' => 'text', 'default' => 'Colégio e Cursinho Objetivo. Todos os direitos reservados.' ),
+				'copyright'     => array( 'label' => __( 'Texto de copyright (o ano atual é adicionado automaticamente antes)', 'objetivo' ), 'type' => 'text', 'default' => 'Colégio Objetivo Júnior & Curso e Colégio Objetivo - São Carlos. Todos os direitos reservados.' ),
 				'developed_by'     => array( 'label' => __( 'Desenvolvido por (nome)', 'objetivo' ), 'type' => 'text', 'default' => 'L9 Propaganda' ),
 				'developed_by_url' => array( 'label' => __( 'Desenvolvido por (link)', 'objetivo' ), 'type' => 'url', 'default' => 'https://l9propaganda.com.br/' ),
 			),
