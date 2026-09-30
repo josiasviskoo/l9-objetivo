@@ -4,56 +4,13 @@
  * estudar no Objetivo". Seção estática (sem CPT) - os 6 cards abaixo são os
  * dados reais das unidades de São Carlos/SP, migrados da página estática
  * "Unidades" (Conteúdo das Páginas/HTML/unidades.html); para editar,
- * altere o array $unidades diretamente neste arquivo.
+ * altere objetivo_unidades() em inc/setup.php (também usada no rodapé).
  *
  * Autoplay e navegação por páginas (2 cards por vez no celular, 3 no
  * desktop) via assets/js/main.js (#unidades-carousel) + breakpoint em
  * style-main.css.
  */
-$unidades = array(
-	array(
-		'badge'   => 'Educação Infantil',
-		'title'   => 'Educação Infantil Campos Salles',
-		'address' => 'Rua Campos Salles, 2092 - Jardim Macarengo, São Carlos - SP',
-		'phone'   => '(16) 3374-5001',
-		'url'     => 'https://wa.me/5516997076935',
-	),
-	array(
-		'badge'   => 'Ensino Fundamental I',
-		'title'   => 'Unidade I Campos Salles',
-		'address' => 'Rua Campos Salles, 2029 - Vila Monteiro (Gleba I), São Carlos - SP',
-		'phone'   => '(16) 3362-2600',
-		'url'     => 'https://wa.me/5516997076935',
-	),
-	array(
-		'badge'   => 'Ensino Fundamental I',
-		'title'   => 'Unidade II Jesuíno de Arruda',
-		'address' => 'R. Jesuíno de Arruda, 2566 - Jardim São Carlos, São Carlos - SP',
-		'phone'   => '(16) 3373-3600',
-		'url'     => 'https://wa.me/5516997076935',
-	),
-	array(
-		'badge'   => 'Ens. Fund. II e Médio (1º e 2º ano)',
-		'title'   => 'Unidade Jesuíno',
-		'address' => 'R. Jesuíno de Arruda, 2625 - Jardim São Carlos, São Carlos - SP',
-		'phone'   => '(16) 3373-3610',
-		'url'     => 'https://wa.me/5516996542318',
-	),
-	array(
-		'badge'   => 'Ensino Médio (3º ano)',
-		'title'   => 'Unidade São Joaquim (Terceirão)',
-		'address' => 'R. São Joaquim, 1515 - Vila Monteiro (Gleba I), São Carlos - SP',
-		'phone'   => '(16) 3373-1900',
-		'url'     => 'https://wa.me/551633731900',
-	),
-	array(
-		'badge'   => 'Pré-Vestibular',
-		'title'   => 'Curso Extensivo Objetivo São Carlos',
-		'address' => 'R. São Sebastião, 2173 - Centro, São Carlos - SP',
-		'phone'   => '(16) 3373-1900',
-		'url'     => 'https://wa.me/551633731900',
-	),
-);
+$unidades = objetivo_unidades();
 ?>
 <section class="unidades-carousel" id="unidades-carousel">
 	<div class="container">

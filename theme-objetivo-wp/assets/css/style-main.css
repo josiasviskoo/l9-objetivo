@@ -405,7 +405,7 @@ ul.primary-menu { display: flex; align-items: center; gap: .15rem; list-style: n
 
 /* ── FOOTER ──────────────────────────────────────────── */
 footer { background: var(--navy); color: #9bb3d4; }
-.footer-top { padding: 4rem 0 2.5rem; display: grid; grid-template-columns: 1.2fr 2.2fr 1fr; gap: 2.5rem; }
+.footer-top { padding: 4rem 0 2.5rem; display: grid; grid-template-columns: 1fr 1.2fr 1.2fr 1.2fr; gap: 2.5rem; }
 .footer-brand p { font-size: .87rem; line-height: 1.75; color: #8aa5c8; max-width: 240px; }
 /* Duas linhas de ícones sociais (Objetivo em cima, Objetivo Júnior embaixo)
    - mesmo tamanho/gap nas duas linhas para o Instagram de cima ficar
@@ -421,19 +421,21 @@ footer { background: var(--navy); color: #9bb3d4; }
 .footer-col ul a { color: #8aa5c8; text-decoration: none; font-size: .86rem; transition: color var(--dur) var(--ease), padding-left var(--dur) var(--ease); padding-left: 0; display: block; }
 .footer-col ul a:hover { color: var(--gold); padding-left: 4px; }
 
-/* Menu do rodapé = mesmo menu "Principal" do cabeçalho (wp_nav_menu com
-   theme_location "primary", ver footer.php) - cada item de topo vira uma
-   coluna, com os filhos listados abaixo dele. */
-.footer-menu-replica { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8rem 2rem; margin: 0; padding: 0; }
-.footer-menu-replica > li > a { display: block; color: var(--white); font-size: .75rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; margin-bottom: .8rem; }
-.footer-menu-replica > li > a:hover { color: var(--gold); }
-.footer-menu-replica .sub-menu { list-style: none; display: flex; flex-direction: column; gap: .5rem; margin: 0; padding: 0; }
-.footer-menu-replica .sub-menu a { display: block; color: #8aa5c8; text-decoration: none; font-size: .86rem; padding-left: 0; transition: color var(--dur) var(--ease), padding-left var(--dur) var(--ease); }
-.footer-menu-replica .sub-menu a:hover { color: var(--gold); padding-left: 4px; }
+/* Unidades no rodapé (ver footer.php) - agrupadas por segmento em 3
+   colunas, como no layout de referência: título leve com sublinhado
+   dourado sobre uma linha tracejada, e rua/telefone/WhatsApp abaixo. */
+.footer-col-unidades { display: flex; flex-direction: column; gap: 2rem; }
+.footer-col-unidades .footer-segmento h4 { margin: 0 0 .9rem; border-bottom: 1px dashed rgba(255,255,255,.3); font-size: 1.15rem; font-weight: 300; letter-spacing: 0; text-transform: none; }
+.footer-col-unidades .footer-segmento h4 span { display: inline-block; padding-bottom: .35rem; margin-bottom: -1px; border-bottom: 2px solid var(--gold); }
+.footer-unidade { display: flex; flex-direction: column; gap: .55rem; font-size: .8rem; line-height: 1.4; color: #d5e1f1; }
+.footer-unidade + .footer-unidade { margin-top: 1.4rem; }
+.footer-unidade strong { color: var(--white); font-size: .78rem; font-weight: 700; text-transform: uppercase; }
+.footer-unidade p { margin: 0; }
+.footer-unidade a { color: inherit; text-decoration: none; transition: color var(--dur) var(--ease); }
+.footer-unidade a:hover { color: var(--gold); }
+.footer-socials { border-top: 1px dashed rgba(255,255,255,.3); padding-top: 1rem; }
+.footer-socials .socials-group { margin-top: 0; align-items: center; }
 .footer-bottom { border-top: 1px solid rgba(255,255,255,.08); padding: 1.4rem 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: .78rem; color: #6a88b0; }
-.footer-contact { display: flex; flex-direction: column; gap: .4rem; }
-.footer-contact a { color: var(--gold); text-decoration: none; font-weight: 600; transition: color var(--dur); }
-.footer-contact a:hover { color: #f5c54a; }
 
 /* ── PÁGINA GENÉRICA / POST ──────────────────────────── */
 .page-hero {
@@ -652,7 +654,6 @@ ul.products {
   #content.shop-container ul.products, .woocommerce ul.products { grid-template-columns: repeat(2, 1fr) !important; }
   .segmentos-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-top { grid-template-columns: 1fr 1fr; }
-  .footer-menu-replica { grid-template-columns: repeat(2, 1fr); }
   .hero-slider { min-height: 520px; }
   .hero-content { padding: 2rem 1.5rem; }
   .hero-slider-arrow { width: 36px; height: 36px; font-size: 1.4rem; }
@@ -684,7 +685,6 @@ ul.products {
   .noticias-grid { grid-template-columns: 1fr; }
   .vest-cards { grid-template-columns: 1fr; }
   .footer-top { grid-template-columns: 1fr; }
-  .footer-menu-replica { grid-template-columns: 1fr 1fr; }
   .blog-grid { grid-template-columns: 1fr; }
   #content.shop-container ul.products, .woocommerce ul.products { grid-template-columns: 1fr !important; }
   .segmentos-grid { grid-template-columns: 1fr; }

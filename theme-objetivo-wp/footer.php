@@ -1,7 +1,7 @@
 <?php
 /**
- * Rodapé (marca, ícones sociais, menu principal replicado, contato e
- * créditos).
+ * Rodapé (marca, unidades por segmento em 3 colunas com os ícones sociais
+ * na última, e créditos). Unidades vêm de objetivo_unidades() (inc/setup.php).
  */
 
 // Ícones sociais disponíveis - reaproveitados nas duas linhas (Objetivo e
@@ -37,6 +37,25 @@ $objetivo_social_rows = array(
 	array( 'instagram' => 'instagram_url', 'facebook' => 'facebook_url', 'threads' => 'threads_url', 'youtube' => 'youtube_url', 'linkedin' => 'linkedin_url' ),
 	array( 'instagram' => 'instagram_junior_url', 'facebook' => 'facebook_junior_url', 'threads' => 'threads_junior_url' ),
 );
+
+// Unidades agrupadas por segmento em 3 colunas (layout de referência do
+// rodapé). Cada item é [chave em objetivo_unidades(), rótulo da unidade];
+// rótulo vazio = segmento com uma unidade só, sem subtítulo. A Unidade
+// Jesuíno aparece em Fundamental II e em Médio porque atende os dois.
+$objetivo_footer_colunas = array(
+	array(
+		'Educação Infantil'     => array( array( 'infantil', '' ) ),
+		'Ensino Fundamental I'  => array( array( 'fund1-campos-salles', 'Unidade I Campos Salles' ), array( 'fund1-jesuino', 'Unidade II Jesuíno de Arruda' ) ),
+	),
+	array(
+		'Ensino Fundamental II' => array( array( 'jesuino', '' ) ),
+		'Ensino Médio'          => array( array( 'jesuino', 'Unidade Jesuíno (1º e 2º ano)' ), array( 'sao-joaquim', 'Unidade São Joaquim (Terceirão)' ) ),
+	),
+	array(
+		'Pré-Vestibular'        => array( array( 'pre-vestibular', '' ) ),
+	),
+);
+$objetivo_unidades_footer = objetivo_unidades();
 ?>
 
 <footer>
@@ -45,56 +64,58 @@ $objetivo_social_rows = array(
 			<div class="footer-brand">
 				<img src="<?php echo esc_url( objetivo_theme_image( 'logo-branco.png' ) ); ?>" alt="<?php bloginfo( 'name' ); ?>" style="height:44px;width:auto;margin-bottom:1.4rem;display:block;" />
 				<p><?php echo esc_html( objetivo_opt( 'footer', 'brand_desc' ) ); ?></p>
-				<div class="socials-group">
-					<?php foreach ( $objetivo_social_rows as $row ) : ?>
-						<div class="socials">
-							<?php foreach ( $row as $network => $field_key ) :
-								$url = objetivo_opt( 'footer', $field_key );
-								if ( ! $url || ! isset( $objetivo_social_icons[ $network ] ) ) {
+			</div>
+
+			<?php foreach ( $objetivo_footer_colunas as $col_index => $grupos ) : ?>
+				<div class="footer-col footer-col-unidades">
+					<?php foreach ( $grupos as $segmento => $itens ) : ?>
+						<div class="footer-segmento">
+							<h4><span><?php echo esc_html( $segmento ); ?></span></h4>
+							<?php foreach ( $itens as $item ) :
+								list( $chave, $rotulo ) = $item;
+								if ( empty( $objetivo_unidades_footer[ $chave ] ) ) {
 									continue;
 								}
-								list( $label, $icon_markup ) = $objetivo_social_icons[ $network ];
+								$unidade  = $objetivo_unidades_footer[ $chave ];
+								// Endereço curto (só rua e número), como no layout de referência.
+								$endereco = explode( ' - ', $unidade['address'] )[0];
+								$whatsapp = preg_replace( '/\D/', '', (string) wp_parse_url( $unidade['url'], PHP_URL_PATH ) );
 								?>
-								<a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener noreferrer" title="<?php echo esc_attr( $label ); ?>" aria-label="<?php echo esc_attr( $label ); ?>"><?php echo $icon_markup; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- SVG/glifo fixo definido acima, mesmo padrão dos ícones de telefone/WhatsApp em header.php. ?></a>
+								<div class="footer-unidade">
+									<?php if ( $rotulo ) : ?>
+										<strong><?php echo esc_html( $rotulo ); ?></strong>
+									<?php endif; ?>
+									<p><?php echo esc_html( $endereco ); ?></p>
+									<p><?php esc_html_e( 'Telefone:', 'objetivo' ); ?> <a href="tel:+55<?php echo esc_attr( preg_replace( '/\D/', '', $unidade['phone'] ) ); ?>"><?php echo esc_html( $unidade['phone'] ); ?></a></p>
+									<?php if ( $whatsapp ) : ?>
+										<p><?php esc_html_e( 'WhatsApp:', 'objetivo' ); ?> <a href="<?php echo esc_url( $unidade['url'] ); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html( objetivo_format_phone( $whatsapp ) ); ?></a></p>
+									<?php endif; ?>
+								</div>
 							<?php endforeach; ?>
 						</div>
 					<?php endforeach; ?>
-				</div>
-			</div>
 
-			<div class="footer-col footer-col-menu">
-				<h4><?php esc_html_e( 'Menu', 'objetivo' ); ?></h4>
-				<?php
-				// Mesmo menu "Principal" do cabeçalho (theme_location "primary") -
-				// qualquer alteração feita em Aparência → Menus aparece nas duas
-				// listagens automaticamente, sem precisar manter um menu à parte
-				// só para o rodapé.
-				wp_nav_menu( array(
-					'theme_location' => 'primary',
-					'container'      => false,
-					'menu_class'     => 'footer-menu-replica',
-					'items_wrap'     => '<ul class="%2$s">%3$s</ul>',
-					'depth'          => 2,
-					'fallback_cb'    => false,
-				) );
-				?>
-			</div>
-
-			<div class="footer-col">
-				<h4><?php esc_html_e( 'Contato', 'objetivo' ); ?></h4>
-				<div class="footer-contact">
-					<a href="tel:<?php echo esc_attr( objetivo_opt( 'contato', 'phone_tel' ) ); ?>"><?php echo esc_html( objetivo_opt( 'contato', 'phone_display' ) ); ?></a>
-					<a href="https://wa.me/<?php echo esc_attr( objetivo_opt( 'contato', 'whatsapp_number' ) ); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html( objetivo_opt( 'contato', 'whatsapp_display' ) ); ?></a>
-					<?php if ( objetivo_opt( 'contato', 'whatsapp_junior_number' ) ) : ?>
-						<a href="https://wa.me/<?php echo esc_attr( objetivo_opt( 'contato', 'whatsapp_junior_number' ) ); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html( objetivo_opt( 'contato', 'whatsapp_junior_display' ) ); ?></a>
+					<?php if ( count( $objetivo_footer_colunas ) - 1 === $col_index ) : ?>
+						<div class="footer-socials">
+							<div class="socials-group">
+								<?php foreach ( $objetivo_social_rows as $row ) : ?>
+									<div class="socials">
+										<?php foreach ( $row as $network => $field_key ) :
+											$url = objetivo_opt( 'footer', $field_key );
+											if ( ! $url || ! isset( $objetivo_social_icons[ $network ] ) ) {
+												continue;
+											}
+											list( $label, $icon_markup ) = $objetivo_social_icons[ $network ];
+											?>
+											<a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener noreferrer" title="<?php echo esc_attr( $label ); ?>" aria-label="<?php echo esc_attr( $label ); ?>"><?php echo $icon_markup; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- SVG/glifo fixo definido acima, mesmo padrão dos ícones de telefone/WhatsApp em header.php. ?></a>
+										<?php endforeach; ?>
+									</div>
+								<?php endforeach; ?>
+							</div>
+						</div>
 					<?php endif; ?>
-					<a href="<?php echo esc_url( objetivo_opt( 'contato', 'atendimento_url' ) ); ?>"><?php esc_html_e( 'Central de Atendimento', 'objetivo' ); ?></a>
-					<?php if ( objetivo_opt( 'header', 'area_restrita_url' ) ) : ?>
-						<a href="<?php echo esc_url( objetivo_opt( 'header', 'area_restrita_url' ) ); ?>"><?php esc_html_e( 'Área Restrita', 'objetivo' ); ?></a>
-					<?php endif; ?>
-					<a href="#"><?php echo esc_html( objetivo_opt( 'contato', 'address_label' ) ); ?></a>
 				</div>
-			</div>
+			<?php endforeach; ?>
 		</div>
 
 		<?php

@@ -225,3 +225,72 @@ function objetivo_post_gradient( $index ) {
 	);
 	return $gradients[ $index % count( $gradients ) ];
 }
+
+/**
+ * Formata um número só com dígitos (com ou sem o 55 do Brasil) no padrão
+ * "(16) 99707-6935" / "(16) 3373-1900". Usado nos WhatsApps do rodapé,
+ * que são derivados dos links wa.me de objetivo_unidades().
+ */
+function objetivo_format_phone( $digits ) {
+	$digits = preg_replace( '/\D/', '', $digits );
+	if ( strlen( $digits ) > 11 && 0 === strpos( $digits, '55' ) ) {
+		$digits = substr( $digits, 2 );
+	}
+	if ( strlen( $digits ) < 10 ) {
+		return $digits;
+	}
+	return sprintf( '(%s) %s-%s', substr( $digits, 0, 2 ), substr( $digits, 2, -4 ), substr( $digits, -4 ) );
+}
+
+/**
+ * Unidades de São Carlos/SP - fonte única usada no carrossel da home
+ * (template-parts/front/unidades.php) e na listagem do rodapé (footer.php).
+ * Seção estática (sem CPT): para editar, altere o array abaixo. As chaves
+ * são usadas pelo rodapé para agrupar as unidades por segmento.
+ */
+function objetivo_unidades() {
+	return array(
+		'infantil' => array(
+			'badge'   => 'Educação Infantil',
+			'title'   => 'Educação Infantil Campos Salles',
+			'address' => 'Rua Campos Salles, 2092 - Jardim Macarengo, São Carlos - SP',
+			'phone'   => '(16) 3374-5001',
+			'url'     => 'https://wa.me/5516997076935',
+		),
+		'fund1-campos-salles' => array(
+			'badge'   => 'Ensino Fundamental I',
+			'title'   => 'Unidade I Campos Salles',
+			'address' => 'Rua Campos Salles, 2029 - Vila Monteiro (Gleba I), São Carlos - SP',
+			'phone'   => '(16) 3362-2600',
+			'url'     => 'https://wa.me/5516997076935',
+		),
+		'fund1-jesuino' => array(
+			'badge'   => 'Ensino Fundamental I',
+			'title'   => 'Unidade II Jesuíno de Arruda',
+			'address' => 'R. Jesuíno de Arruda, 2566 - Jardim São Carlos, São Carlos - SP',
+			'phone'   => '(16) 3373-3600',
+			'url'     => 'https://wa.me/5516997076935',
+		),
+		'jesuino' => array(
+			'badge'   => 'Ens. Fund. II e Médio (1º e 2º ano)',
+			'title'   => 'Unidade Jesuíno',
+			'address' => 'R. Jesuíno de Arruda, 2625 - Jardim São Carlos, São Carlos - SP',
+			'phone'   => '(16) 3373-3610',
+			'url'     => 'https://wa.me/5516996542318',
+		),
+		'sao-joaquim' => array(
+			'badge'   => 'Ensino Médio (3º ano)',
+			'title'   => 'Unidade São Joaquim (Terceirão)',
+			'address' => 'R. São Joaquim, 1515 - Vila Monteiro (Gleba I), São Carlos - SP',
+			'phone'   => '(16) 3373-1900',
+			'url'     => 'https://wa.me/551633731900',
+		),
+		'pre-vestibular' => array(
+			'badge'   => 'Pré-Vestibular',
+			'title'   => 'Curso Extensivo Objetivo São Carlos',
+			'address' => 'R. São Sebastião, 2173 - Centro, São Carlos - SP',
+			'phone'   => '(16) 3373-1900',
+			'url'     => 'https://wa.me/551633731900',
+		),
+	);
+}
