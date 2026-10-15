@@ -34,9 +34,14 @@ $unidades = objetivo_unidades();
 						<?php if ( ! empty( $unidade['phone'] ) ) : ?>
 							<p class="unidade-card-row"><span class="ico">📞</span><span><?php echo esc_html( $unidade['phone'] ); ?></span></p>
 						<?php endif; ?>
-						<?php if ( ! empty( $unidade['url'] ) ) : ?>
-							<a href="<?php echo esc_url( $unidade['url'] ); ?>" class="unidade-card-link" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Agendar Visita', 'objetivo' ); ?> →</a>
-						<?php endif; ?>
+						<div class="unidade-card-links">
+							<?php if ( ! empty( $unidade['info'] ) ) : ?>
+								<a href="<?php echo esc_url( $unidade['info'] ); ?>" class="unidade-card-link unidade-card-link-info" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Informações', 'objetivo' ); ?></a>
+							<?php endif; ?>
+							<?php if ( ! empty( $unidade['url'] ) ) : ?>
+								<a href="<?php echo esc_url( $unidade['url'] ); ?>" class="unidade-card-link" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Agendar Visita', 'objetivo' ); ?> →</a>
+							<?php endif; ?>
+						</div>
 					</div>
 				<?php endforeach; ?>
 			</div>

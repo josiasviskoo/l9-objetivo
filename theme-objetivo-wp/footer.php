@@ -85,7 +85,13 @@ $objetivo_unidades_footer = objetivo_unidades();
 									<?php if ( $rotulo ) : ?>
 										<strong><?php echo esc_html( $rotulo ); ?></strong>
 									<?php endif; ?>
-									<p><?php echo esc_html( $endereco ); ?></p>
+									<p>
+										<?php if ( ! empty( $unidade['info'] ) ) : ?>
+											<a href="<?php echo esc_url( $unidade['info'] ); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html( $endereco ); ?></a>
+										<?php else : ?>
+											<?php echo esc_html( $endereco ); ?>
+										<?php endif; ?>
+									</p>
 									<p><?php esc_html_e( 'Telefone:', 'objetivo' ); ?> <a href="tel:+55<?php echo esc_attr( preg_replace( '/\D/', '', $unidade['phone'] ) ); ?>"><?php echo esc_html( $unidade['phone'] ); ?></a></p>
 									<?php if ( $whatsapp ) : ?>
 										<p><?php esc_html_e( 'WhatsApp:', 'objetivo' ); ?> <a href="<?php echo esc_url( $unidade['url'] ); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html( objetivo_format_phone( $whatsapp ) ); ?></a></p>

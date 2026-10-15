@@ -246,7 +246,8 @@ function objetivo_format_phone( $digits ) {
  * Unidades de São Carlos/SP - fonte única usada no carrossel da home
  * (template-parts/front/unidades.php) e na listagem do rodapé (footer.php).
  * Seção estática (sem CPT): para editar, altere o array abaixo. As chaves
- * são usadas pelo rodapé para agrupar as unidades por segmento.
+ * são usadas pelo rodapé para agrupar as unidades por segmento. 'url' =
+ * WhatsApp para agendar visita; 'info' = link do Google (perfil/mapa).
  */
 function objetivo_unidades() {
 	return array(
@@ -256,6 +257,7 @@ function objetivo_unidades() {
 			'address' => 'Rua Campos Salles, 2092 - Jardim Macarengo, São Carlos - SP',
 			'phone'   => '(16) 3374-5001',
 			'url'     => 'https://wa.me/5516997076935',
+			'info'    => 'https://share.google/IYDGGG4nw0YMzvZzj',
 		),
 		'fund1-campos-salles' => array(
 			'badge'   => 'Ensino Fundamental I',
@@ -263,6 +265,7 @@ function objetivo_unidades() {
 			'address' => 'Rua Campos Salles, 2029 - Vila Monteiro (Gleba I), São Carlos - SP',
 			'phone'   => '(16) 3362-2600',
 			'url'     => 'https://wa.me/5516997076935',
+			'info'    => 'https://share.google/FcvC1on8C3HsQzILG',
 		),
 		'fund1-jesuino' => array(
 			'badge'   => 'Ensino Fundamental I',
@@ -270,6 +273,7 @@ function objetivo_unidades() {
 			'address' => 'R. Jesuíno de Arruda, 2566 - Jardim São Carlos, São Carlos - SP',
 			'phone'   => '(16) 3373-3600',
 			'url'     => 'https://wa.me/5516997076935',
+			'info'    => 'https://share.google/Z4DfEUXPEMXM4vnlJ',
 		),
 		'jesuino' => array(
 			'badge'   => 'Ens. Fund. II e Médio (1º e 2º ano)',
@@ -277,6 +281,7 @@ function objetivo_unidades() {
 			'address' => 'R. Jesuíno de Arruda, 2625 - Jardim São Carlos, São Carlos - SP',
 			'phone'   => '(16) 3373-3610',
 			'url'     => 'https://wa.me/5516996542318',
+			'info'    => 'https://share.google/7MTWQak1nzSDxxq8W',
 		),
 		'sao-joaquim' => array(
 			'badge'   => 'Ensino Médio (3º ano)',
@@ -284,6 +289,7 @@ function objetivo_unidades() {
 			'address' => 'R. São Joaquim, 1515 - Vila Monteiro (Gleba I), São Carlos - SP',
 			'phone'   => '(16) 3373-1900',
 			'url'     => 'https://wa.me/551633731900',
+			'info'    => 'https://share.google/VUy0e6rul6SnB5ac0',
 		),
 		'pre-vestibular' => array(
 			'badge'   => 'Pré-Vestibular',
@@ -291,6 +297,7 @@ function objetivo_unidades() {
 			'address' => 'R. São Sebastião, 2173 - Centro, São Carlos - SP',
 			'phone'   => '(16) 3373-1900',
 			'url'     => 'https://wa.me/551633731900',
+			'info'    => 'https://share.google/SeMKrj0etrfV494TN',
 		),
 	);
 }
