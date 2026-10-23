@@ -27,7 +27,6 @@ if ( ! $items ) {
 				<a class="segmento-card" href="<?php echo esc_url( $url ? $url : '#' ); ?>" style="background-color: <?php echo esc_attr( $to ); ?>;<?php echo $img ? " background-image:url('" . esc_url( $img ) . "'); background-size:cover; background-position:center;" : ''; ?>">
 					<div class="segmento-overlay" style="background: linear-gradient(to top, <?php echo esc_attr( $to ); ?> 0%, <?php echo esc_attr( $from ); ?>cc 45%, <?php echo esc_attr( $from ); ?>00 100%);"></div>
 					<div class="segmento-content">
-						<div class="segmento-badge"><?php echo esc_html( get_post_meta( $item->ID, '_badge_label', true ) ); ?></div>
 						<h3><?php echo esc_html( get_the_title( $item ) ); ?></h3>
 						<p><?php echo esc_html( get_the_excerpt( $item ) ); ?></p>
 						<div class="segmento-cta"><?php esc_html_e( 'Ver conteúdos', 'objetivo' ); ?> <span>→</span></div>

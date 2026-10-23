@@ -325,7 +325,6 @@ ul.primary-menu { display: flex; align-items: center; gap: .15rem; list-style: n
    topo, para a foto de fundo ficar visível em cima - ver segmentos.php. */
 .segmento-overlay { position: absolute; inset: 0; z-index: 1; }
 .segmento-content { position: relative; z-index: 2; padding: 2rem 1.5rem; }
-.segmento-badge { display: inline-block; background: rgba(255,255,255,.25); color: #fff; font-size: .65rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; padding: .2rem .7rem; border-radius: 20px; margin-bottom: .7rem; }
 .segmento-content h3 { font-size: 1.3rem; font-weight: 800; color: #fff; margin-bottom: .4rem; }
 .segmento-content p { font-size: .83rem; color: rgba(255,255,255,.82); line-height: 1.55; }
 .segmento-cta { margin-top: 1.2rem; display: flex; align-items: center; gap: .4rem; color: #fff; font-size: .8rem; font-weight: 700; }
